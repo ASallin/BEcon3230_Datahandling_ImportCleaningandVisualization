@@ -1,0 +1,165 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+author: "Ulrich Matter"
+date: "11/10/2018"
+output:
+  pdf_document: default
+  html_document:
+    highlight: tango
+    mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    theme: cerulean
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes_hsg.css
+subtitle: 'Exercise/Workshop 2: Computer Code and Data Storage'
+bibliography: ../../references/datahandling.bib
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+```
+
+
+## Exercise A: Point Nemo Tutorial (read raw text data)
+
+This exercise guides you through how we can import raw text data into R. It is an update of the tutorial in Chapter 1 of Paul Murell's book [@murrell_2009]. Read the chapter to get some background information of what this exercise is all about. 
+
+## Set Up (Update of @murrell_2009, Chaper 1)
+
+1. Go to [NOAA's Ferret data tool](https://ferret.pmel.noaa.gov/uaf/las/UI.vm): https://ferret.pmel.noaa.gov/uaf/las/UI.vm
+2. In the lower left corner of the dashboard under 'Line Plots' select `Time`.
+3. Enter the coordinats `48.9 S`/`123.4 W` (Point Nemo)
+4. Click 'Update Plot' in the upper left corner.
+
+
+## Download and data import
+
+1. Click on `Save As...`.
+2. In the new tab select `ASCII` from the `Select a Data Format:`-dropdown menu, and
+3. select the time frame from January 1990 to June 2018.
+4. Click `Save`.
+
+The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save it as `PointNemo.txt` in your current R working directory (`File/Save Page As...`) or another directory dedicated to store data.
+
+Now we can read the data into R, following @murrell_2009, p. 5:
+
+
+
+```{r echo=FALSE, purl = FALSE}
+# read the data
+point_nemo <- 
+  read.table("../../data/PointNemo.txt", skip = 9,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+```
+
+
+```{r eval=FALSE }
+# read the data
+point_nemo <- 
+  read.table("PointNemo.txt", skip = 9,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+
+```
+
+```{r}
+# inspect the first rows
+head(point_nemo)
+
+```
+
+
+
+## Exercise B
+
+Now, repeat what we've just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). Once we have stored the raw ASCII data in the same folder as `Eurasia.txt`, we can simply reuse the code from before to load the data into R. The only thing we have to change is the file name.
+
+
+
+```{r echo=FALSE}
+# read the data
+eurasia <- 
+  read.table("../../data/Eurasia.txt", skip = 9,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+
+
+```
+
+```{r eval=FALSE, purl=FALSE}
+# read the data
+eurasia <- 
+  read.table("Eurasia.txt", skip = 9,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+
+```
+
+
+```{r}
+
+# inspect the first rows
+head(eurasia)
+
+```
+
+
+
+# Writing/Exploring Computer Code
+
+## Exercise C: A simple website
+
+In the previous workshop we have looked at what kind of computer code websites consist of (HTML). In this exercise we follow up on the concepts learned there by implementing a very simply website ourselves. 
+
+1. Open a new text file in RStudio: `File/New File/Text File`, store it in your current working directory (set the working directory accordingly beforehand) as `my_website.html`. 
+
+2. Copy/paste the follwing HTML-code to the empty text-file and save it. 
+
+```{html}
+     <!DOCTYPE html>
+
+     <html>
+         <head>
+         </head>
+         <body>
+             <h2> hello, world </h2>
+             <p>Welcome to my website! How are you today?</p>
+         </body>
+     </html>
+
+```
+
+
+3. Click on the file in the RStudio file browser and select `View in Web Browser`. The webpage should open in your default web browser. Inspect the webpage's content and compare it with the raw source code. Figure out which part of the source code is resulting in which part displayed in browser, by changing the text in the source code (change the text between the html-tags in the source code, save the file, reopen it in the web browser, etc.).
+
+4. Visit the following documentation on the `<title>`-element:  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title . Based on the description and the examples shown there, add the title `My Website` to your webpage by modifying/extending the source code accordingly. Verify your solution by checking whether the page's title is displayed in the browser tab/window.
+
+# Mock Exam Questions
+
+```{r echo=FALSE, results='asis', message=FALSE}
+library(pander)
+library(examr)
+# load file with questions
+questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
+my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week1-2")
+
+# select questions
+selection_mock_ex2 <- select_questions(my_questions)
+questions_text <- generate_question_text(selection_mock_ex2)  
+pander(questions_text, sep="\n")
+```
+
+
+
+
+
+# References

@@ -1,0 +1,53 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+author: "Ulrich Matter"
+date: "22/11/2018"
+output:
+  pdf_document: default
+  html_document:
+    highlight: tango
+    mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    theme: cerulean
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes.css
+subtitle: 'Exercise 4: Data import and data preparation/manipulation'
+bibliography: ../../references/datahandling.bib
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, message=FALSE, warning=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+```
+
+
+# Exercises: Advanced Data Import
+
+
+## Exercise A
+Solve the problem posed in Section 11.4.2 ("Problems") in https://r4ds.had.co.nz/data-import.html, by going step-by-step through the instructions. Hint: You will need to have the `readr` package installed and loaded (should be also installed/loaded with `tidyverse`).
+
+## Exercise B
+Download the file `tv_ownership.dat` posted on StudyNet along these instructions. Save this file in your current working directory/the directory dedicated to work on these exercises. The file is an excerpt of a dataset provided by the US Federal Communications Commission (FCC) with detailed data on TV and Radio stations ownership. The exerpt is in the orignal format as provided by the FCC. Figure out how to properly read this dataset into R with the functions provided in the `tidyverse/readr`-packages. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them (using comments).
+
+
+# Mock Exam Questions
+
+
+```{r echo=FALSE, results='asis', message=FALSE}
+library(pander)
+library(examr)
+# load file with questions
+questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
+my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week5-6")
+
+# select questions
+selection_mock_ex2 <- select_questions(my_questions)
+questions_text <- generate_question_text(selection_mock_ex2)  
+pander(questions_text, sep="\n")
+```
+
+

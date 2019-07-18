@@ -1,0 +1,118 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+author: "Prof. Dr. Ulrich Matter"
+date: "06/12/2018"
+output:
+  html_document:
+    highlight: tango
+    mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    theme: cerulean
+  pdf_document: default
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes_hsg.css
+subtitle: 'Exercise 5: Applied Data Analysis with R'
+bibliography: ../../references/datahandling.bib
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, message=FALSE, warning=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+```
+
+# Exercises^[Adopted from https://r4ds.had.co.nz/tidy-data.html.]
+
+
+## Exercise A
+Load `tidyverse` and read `stocks.csv` into R (store it in variable `stocks`). The dataset is currently in long format. Use `spread()` to transform it into wide format (separate columns for different years). Store the resulting `tibble`/`data.frame` in a variable called `stocks2`. Then, run the following code.
+
+```{r eval=FALSE}
+gather(stocks2, "year", "return", `2015`:`2016`) == stocks
+```
+
+Why is the result not identical to the original dataset (`stocks`)? In other words, Why are `gather()` and `spread()` not perfectly symmetrical? (Hint: look at the variable types and think about column names.)
+
+```{r echo=TRUE, purl= FALSE, message=FALSE, warning=FALSE}
+# steps as instructed:
+library(tidyverse)
+stocks <- read_csv("../data/stocks.csv")
+stocks_wide <- spread(stocks, year, return)
+stocks_wide_long <- gather(stocks_wide, "year", "return", `2015`:`2016`) 
+
+# test if symmetrical
+stocks_wide_long == stocks
+identical(stocks_wide_long, stocks)
+
+# analyze the problem problem
+str(stocks_wide_long)
+str(stocks)
+
+```
+
+
+
+## Exercise B
+Load `tidyverse` and read `countries.csv` into R (store it in variable `countries`). Then, run the following code.
+
+```{r eval=FALSE}
+gather(countries, 1999, 2000, key = "year", value = "cases")
+```
+
+Why does this code fail?
+
+```{r eval=FALSE, purl= FALSE}
+
+# sample solution
+countries <- read_csv("../data/countries.csv")
+# try the example code
+gather(countries, 1999, 2000, key = "year", value = "cases")
+
+# fix the problem (numeric values can't be used as variable names!)
+gather(countries, `1999`, `2000`, key = "year", value = "cases")
+
+```
+
+
+
+## Exercise C
+Load `tidyverse` and read `people.csv` into R (store it in variable `people`). Try to spread `people`. Why does the spreading fail? How could you add a new column to fix the problem?
+
+```{r eval= FALSE, purl= FALSE}
+# sample solution
+people <- read_csv("../data/people.csv")
+spread(people, key, value)
+
+# look at the dataset
+View(people)
+str(people)
+
+# key-variable (identifiers) contains duplicate values!
+
+# how to fix this?
+# assuming there are two Philip Woods
+people$id <- c(1,1,2,3,3)
+spread(people, key, value)
+
+```
+
+
+## Exercise D
+Load `tidyverse` and read `preg.csv` into R (store it in variable `preg`). Tidy `preg`. Do you need to spread or gather it? What are the variables?
+
+```{r echo=FALSE, purl= FALSE}
+# sample solution
+preg <- read_csv("../data/preg.csv")
+preg # have a look at the data
+
+# use common sense ('heuristics') to figure out what is what
+# this could make sense:
+gather(preg, "male", "female", key="gender", value = "count")
+```
+
+
+
+
+# References
