@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Exercise 1:<br>Tools, Text Files, and Computer Code'
 author: "Prof. Dr. Ulrich Matter"
-date: "27/09/2018"
+date: "26/09/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -75,6 +75,14 @@ Install Atom from [here](https://flight-manual.atom.io/getting-started/sections/
 
 
 
+## GitHub
+
+```{r echo=FALSE, fig.align='center', out.width="55%", purl=FALSE}
+
+include_graphics("../../img/octocat.png")
+
+```
+Install Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and create a GitHub account [here](https://github.com/join)!
 
 
 # Exercises
@@ -111,7 +119,7 @@ You should see the words `"Hello world"` printed on screen. This is the usual wa
 # Part II: First Steps in R
 
 ## Variables and Vectors
-'Asign the numeric value `2` to variable `a`':
+Assign the numeric value `2` to variable `a`:
 ```{r}
 a <- 2
 ```
@@ -177,15 +185,15 @@ str(a)
 
 ## Downloading/accessing a website
 
-```{r htmldownload, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Components involved in 'visiting' a website. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
-include_graphics("../../img/script-htmldownload.png")
+```{r htmldownload, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Components involved in visiting a website.", purl=FALSE}
+include_graphics("../../img/script-htmldownload.jpg")
 ```
 
 
 ## Downloading/accessing a website
 
-```{r htmldownloaddata, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "Data involved involved in 'visiting a website'. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
-include_graphics("../../img/script-htmldownloaddata.png")
+```{r htmldownloaddata, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Data involved involved in visiting a website.", purl=FALSE}
+include_graphics("../../img/script-htmldownloaddata.jpg")
 ```
 
 
@@ -222,8 +230,8 @@ line_number
 ## Searching/filtering the webpage
 
 
-```{r ramcalc, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Accessing data in RAM, processing it, and storing the result in RAM. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
-include_graphics("../../img/script-ramcalc.png")
+```{r ramcalc, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Accessing data in RAM, processing it, and storing the result in RAM.", purl=FALSE}
+include_graphics("../../img/script-ramcalc.jpg")
 ```
 
 
@@ -238,8 +246,8 @@ writeLines(clockHTML, "clock.html")
 ## Output to local hard drive
 
 
-```{r htmlstore, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Writing data stored in RAM to a Mass Storage device (hard drive). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
-include_graphics("../../img/script-htmlstore.png")
+```{r htmlstore, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Writing data stored in RAM to a Mass Storage device (hard drive).", purl=FALSE}
+include_graphics("../../img/script-htmlstore.jpg")
 ```
 
 
@@ -338,9 +346,19 @@ head(eurasia)
 
 ```
 
+# Part V: GitHub
 
+## Exercise D  {.smaller}
 
+Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
 
+ - Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
+
+Hint: You can access your terminal in RStudio.
+
+ - Next, pull changes from the course repo to update your local copy. In the terminal, navigate to the course repository (the 'datahandling' folder on your computer) and run ```git pull origin master```. What message do you see?
+
+- Go to the 'datahandling' repo. Where can issues be raised? If an issue is raised in this repo, who can see it? 
 
 
 # Q&A
@@ -353,4 +371,4 @@ slides > slide:not(.nobackground):after {
 }
 </style>
 
-## References {.smaller}
+[//]: # (References {.smaller})

@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Ulrich Matter"
-date: "27/09/2018"
+date: "26/09/2019"
 output:
   html_document:
     highlight: tango
@@ -30,7 +30,8 @@ library(bookdown)
 
 - Install the latest R version. R is open source and freely available from here: https://stat.ethz.ch/CRAN/. Click on the respective link for your operating system (Windows, Mac, Linux), and follow the instructions.
 - Once R is installed, install RStudio from here: https://www.rstudio.com/products/rstudio/download/#download. Under "Installers for Supported Platforms", click on the respective installer for your operating system (Windows, Mac, etc.) and follow the instructions.
-
+- Install Git on your computer. Follow the instructions (specific to your operating system) here: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git.
+- If you do not have a GitHub account, create one here: https://github.com/join. Accounts are free. No need to use your unisg E-Mail address.
 
 
 # Why R?^[From @umatter_2018]
@@ -127,6 +128,24 @@ include_graphics("../../img/rstudio_files.png")
 ```
 (ref:files) The file browser window in RStudio.
 
+# A Note on GitHub
+
+## What is GitHub?
+
+GitHub is a code hosting platform, where developers can store and manage their code. GitHub allows for version control and collaboration (it builds on the version control system Git). On GitHub, you and others can work together on projects from anywhere. Usually, one repository (or repo) is used to organize a single project. Repositories can be public (for everyone to see) or private (only for you and your team). There are functionalities like branching for version control (i.e., making a temporary separate copy of the project) or raising issues.
+
+### Version Control: Why make such a Big Deal?
+
+Have you ever stored a files like this: 'file_final.txt', 'file_really_final.txt', 'file_really_final2.txt', etc.? Gets out of hands quickly (even more so if you work in a team)! Also, in software development, it is not safe if a developer works on the 'official' source code directly (the definitive code on which a program runs, referred to as the master branch on GitHub). Rather, the developer works on a separate copy of the master branch  (referred to as a branch). Once the developers' suggested changes have been approved by others, they can be merged from the separate branch to the master branch.
+
+### What are Issues?
+
+Raising an issue means that you create a flag to keep track of bugs, enhancements, or team members' tasks. You can think of issues in a similar fashion as of e-mails. However, issues can be shared and discussed. They are also helpful when using a (publicly accessible) program written by someone else: if you suspect there is a bug in the program, you can go to the GitHub repository associated with the program and raise an issue. Sometimes, you will see that someone else has already reported the bug, and possibly the owner of the repo has already suggested a solution.
+
+## Why is GitHub helpful for Economists and Data Scientists?
+
+GitHub is useful in data science for reasons similar to those in software development: whenever you work with code, you will want to check if your changes do not break anything before merging them with the definitive code. Moreover, many data scientists or econometricians publicly share their programs on GitHub. You can thus build on what others have done, interact with them, and upload your own code for others to use it and to get feedback on it. Your GitHub repo can also enable others to replicate your research results.
+As this course shows, GitHub is convenient to store and work on code, but it can incorporate other components like data, text components, or slides. We encourage you to contribute to this course by raising issues (if you spot mistakes or have ideas for improvements). As a side note: in principle, you can also use GitHub for version control in a completely coding-free project.
 
 # Exercises
 
@@ -250,17 +269,16 @@ pi
 
 ## Downloading/accessing a website
 
-```{r htmldownload, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Components involved in 'visiting' a website. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
-include_graphics("../../img/script-htmldownload.png")
+```{r htmldownload, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Components involved in visiting a website.", purl=FALSE}
+include_graphics("../../img/script-htmldownload_w.jpg")
 ```
 
 
 ## Downloading/accessing a website
 
-```{r htmldownloaddata, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "Data involved involved in 'visiting a website'. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
-include_graphics("../../img/script-htmldownloaddata.png")
+```{r htmldownloaddata, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Data involved involved in visiting a website.", purl=FALSE}
+include_graphics("../../img/script-htmldownloaddata_w.jpg")
 ```
-
 
 ## How can we do this in R? 
 
@@ -295,8 +313,8 @@ line_number
 ## Searching/filtering the webpage
 
 
-```{r ramcalc, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Accessing data in RAM, processing it, and storing the result in RAM. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
-include_graphics("../../img/script-ramcalc.png")
+```{r ramcalc, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Accessing data in RAM, processing it, and storing the result in RAM.", purl=FALSE}
+include_graphics("../../img/script-ramcalc_w.jpg")
 ```
 
 
@@ -311,8 +329,8 @@ writeLines(clockHTML, "clock.html")
 ## Output to local hard drive
 
 
-```{r htmlstore, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Writing data stored in RAM to a Mass Storage device (hard drive). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
-include_graphics("../../img/script-htmlstore.png")
+```{r htmlstore, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Writing data stored in RAM to a Mass Storage device (hard drive).", purl=FALSE}
+include_graphics("../../img/script-htmlstore_w.jpg")
 ```
 
 
