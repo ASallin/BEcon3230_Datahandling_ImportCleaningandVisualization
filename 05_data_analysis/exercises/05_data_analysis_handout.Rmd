@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
-date: "06/12/2018"
+date: "05/12/2019"
 output:
   pdf_document: default
   html_document:
@@ -134,7 +134,7 @@ gather(preg, "male", "female", key="gender", value = "count")
 library(pander)
 library(examr)
 # load file with questions
-questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
+questions_file <- "~/datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week7-8")
 
 # select questions
