@@ -64,7 +64,7 @@ Test your enhanced sum function with the two input vectors `numbers` and `number
 
 
 ## Exercise C: Standard Deviation Function
-During the lecture on Programming with Data we have step-by-step implemented our own R function to compute the mean. Now implement an R function called `my_sd` that computes the standard deviation, defined as: $SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$. (Hint: revisit the math operators section in the notes on the first exercise session: https://umatter.github.io/courses/datahandling/notes/html/E01_tools_textfiles.html).
+During the lecture on Programming with Data we have step-by-step implemented our own R function to compute the mean. Now implement an R function called `my_sd` that computes the standard deviation, defined as: $SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$. (Hint: revisit the math operators section in the notes on the first exercise session: https://umatter.github.io/courses/datahandling/notes/html/01_tools_textfiles.html).
 
 Test your implementation by comparing its output with the already implemented `sd()` function.
 
