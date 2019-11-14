@@ -3,6 +3,7 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
 date: "05/12/2019"
 output:
+  word_document: default
   pdf_document: default
   html_document:
     highlight: tango
@@ -73,7 +74,7 @@ Load `tidyverse` and read `stocks.csv` into R (store it in variable `stocks`). T
 gather(stocks2, "year", "return", `2015`:`2016`) == stocks
 ```
 
-Why is the result not identical to the original dataset (`stocks`)? In other words, Why are `gather()` and `spread()` not perfectly symmetrical? (Hint: look at the variable types and think about column names.)
+Why is the result not identical to the original dataset (`stocks`)? In other words, why are `gather()` and `spread()` not perfectly symmetrical? (Hint: look at the variable types and think about column names.)
 
 ```{r echo=FALSE,  purl= FALSE, message=FALSE}
 stocks <- read_csv("../data/stocks.csv")
@@ -104,14 +105,6 @@ countries <- read_csv("../data/countries.csv")
 ## Exercise C
 Load `tidyverse` and read `people.csv` into R (store it in variable `people`). Try to spread `people`. Why does the spreading fail? How could you add a new column to fix the problem?
 
-```{r eval=FALSE, purl= FALSE}
-# sample solution
-people <- read_csv("people.csv")
-# assuming there are two Philip Woods
-people$id <- c(1,1,2,3,3)
-spread(people, key, value)
-
-```
 
 
 ## Exercise D
