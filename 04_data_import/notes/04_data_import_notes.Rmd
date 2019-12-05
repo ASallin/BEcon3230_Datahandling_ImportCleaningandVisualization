@@ -35,7 +35,6 @@ library(tidyverse)
 
 ```
 
-Set your working directory and then read the data.
 
 ```{r eval=FALSE}
 
