@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -194,9 +193,9 @@ window.buildTabsets = function(tocID) {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -206,16 +205,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -224,9 +221,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -428,6 +425,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -462,7 +460,7 @@ summary {
 <h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
 <h3 class="subtitle">Exercise/Workshop 1: Tools, Working with Text Files</h3>
 <h4 class="author">Ulrich Matter</h4>
-<h4 class="date">26/09/2019</h4>
+<h4 class="date">24/09/2020</h4>
 
 </div>
 
@@ -472,9 +470,11 @@ summary {
 <ul>
 <li>Install the latest R version. R is open source and freely available from here: <a href="https://stat.ethz.ch/CRAN/" class="uri">https://stat.ethz.ch/CRAN/</a>. Click on the respective link for your operating system (Windows, Mac, Linux), and follow the instructions.</li>
 <li>Once R is installed, install RStudio from here: <a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a>. Under “Installers for Supported Platforms”, click on the respective installer for your operating system (Windows, Mac, etc.) and follow the instructions.</li>
-<li>Install Git on your computer. Follow the instructions (specific to your operating system) here: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" class="uri">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a>.</li>
 <li>If you do not have a GitHub account, create one here: <a href="https://github.com/join" class="uri">https://github.com/join</a>. Accounts are free. No need to use your unisg E-Mail address.</li>
 </ul>
+</div>
+<div id="part-i-introduction" class="section level1">
+<h1>Part I: Introduction</h1>
 </div>
 <div id="why-r" class="section level1">
 <h1>Why R?<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h1>
@@ -538,7 +538,7 @@ summary {
 </div>
 <p>(ref:console) Running R in the Mac/OSX terminal.</p>
 <p>For example, we can tell R to print the phrase <code>Hello world</code> to the console, by typing to following command in the console and hit enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">print</span>(<span class="st">&quot;Hello world&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
 </div>
 <div id="r-scripts" class="section level2">
@@ -594,118 +594,87 @@ summary {
 <p>GitHub is useful in data science for reasons similar to those in software development: whenever you work with code, you will want to check if your changes do not break anything before merging them with the definitive code. Moreover, many data scientists or econometricians publicly share their programs on GitHub. You can thus build on what others have done, interact with them, and upload your own code for others to use it and to get feedback on it. Your GitHub repo can also enable others to replicate your research results. As this course shows, GitHub is convenient to store and work on code, but it can incorporate other components like data, text components, or slides. We encourage you to contribute to this course by raising issues (if you spot mistakes or have ideas for improvements). As a side note: in principle, you can also use GitHub for version control in a completely coding-free project.</p>
 </div>
 </div>
-<div id="exercises" class="section level1">
-<h1>Exercises</h1>
-<div id="exercise-a-setting-up-a-working-environment" class="section level2">
-<h2>Exercise A: Setting up a Working Environment</h2>
-<ol style="list-style-type: decimal">
-<li><p>Open RStudio and get familiar with the file browser pane on the lower right. Navigate to a folder on your hard disk in which you want to work throughout this course (and store all the code you write in this course).</p></li>
-<li><p>Use the ‘New Folder’-button to create a new folder. Name this new folder <code>r_course</code>.</p></li>
-<li><p>You should see the new folder listed in the file browser. Click on it to navigate to its contents (so far empty). Now, click on the ‘More’ button and select ‘Set as Working Directory’ in the drop-down menu.</p></li>
-<li><p>Again, use the ‘New Folder’-button in order to create two new folders called <code>data</code> and <code>code</code>.</p></li>
-<li><p>Finally, click on the project button in the top-right corner of the RStudio window (<img src="data:image/png;base64,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" />) and select ‘New Project’ in the drop-down menu. In the pop-up window, select ‘Existing directory’, browse to and select your <code>r_course</code> folder, then click ‘Create Project’.</p></li>
-</ol>
-<p>Now you know how to set up a meaningful basic folder structure and working environment for an R project. The next exercise teaches you how to write R scripts in this environment.</p>
-</div>
-<div id="exercise-b-r-scripts" class="section level2">
-<h2>Exercise B: R Scripts</h2>
-<ol style="list-style-type: decimal">
-<li>Switch to the R console and type the following line of code and hit enter (see example from above).</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
-<p>You should see the words <code>&quot;Hello world&quot;</code> printed on screen. This is the usual way of working with R in an interactive session. However, as pointed out above, in most circumstances it makes sense to write the R code to an R script (in order to store and document it) and then execute the code from there.</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>In the RStudio Menu-bar select <code>File/New File/R Script</code> to create a new file, shown/opened in the Script pane.</p></li>
-<li><p>Type <code>print(&quot;Hello world&quot;)</code> to the first line of the script, and click on ‘Run’ (<img src="data:image/png;base64,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" />) to execute the code in the console.</p></li>
-<li><p>Save the file as <code>hello_world.R</code> (<code>File/Save As...</code>) in the sub folder <code>code</code> (created in the previous exercise).</p></li>
-<li><p>Type the following command into the command line and hit enter:</p></li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">source</span>(<span class="st">&quot;code/hello_world.R&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Hello world&quot;</code></pre>
-<p>Now you know how to execute R code directly in the console (interactive session), how to execute lines of code written to an R script, as well as how to execute the entire R script (stored on disk) from the command line.</p>
-</div>
-</div>
 <div id="part-ii-first-steps-with-r" class="section level1">
 <h1>Part II: First steps with R</h1>
 <p>Before introducing some of the key functions and packages for data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <div id="variables-and-vectors" class="section level2">
 <h2>Variables and Vectors</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># a simle integer vector</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># give names to vector elements</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="kw">names</span>(a) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</span>
-<span id="cb6-6"><a href="#cb6-6"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># a simle integer vector</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># give names to vector elements</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">names</span>(a) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">a</a></code></pre></div>
 <pre><code>##   Andy  Betty Claire Daniel    Eva 
 ##     10     22     33     22     40</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># indexing either via number of vector element (start count with 1)</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># or by element name</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>a[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># indexing either via number of vector element (start count with 1)</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># or by element name</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">a[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## Claire 
 ##     33</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>a[<span class="st">&quot;Claire&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">a[<span class="st">&quot;Claire&quot;</span>]</a></code></pre></div>
 <pre><code>## Claire 
 ##     33</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Inspect the object you are working with</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">class</span>(a) <span class="co"># returns the class(es) of the object</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Inspect the object you are working with</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">class</span>(a) <span class="co"># returns the class(es) of the object</span></a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></a></code></pre></div>
 <pre><code>##  Named num [1:5] 10 22 33 22 40
 ##  - attr(*, &quot;names&quot;)= chr [1:5] &quot;Andy&quot; &quot;Betty&quot; &quot;Claire&quot; &quot;Daniel&quot; ...</code></pre>
 </div>
 <div id="math-operators" class="section level2">
 <h2>Math Operators</h2>
 <p>R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># basic arithmetic </span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># basic arithmetic </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>sum_result &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>sum_result</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">sum_result &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">sum_result</a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>sum_result <span class="dv">-2</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">sum_result <span class="dv">-2</span></a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="dv">4</span><span class="op">*</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="dv">4</span><span class="op">*</span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="dv">20</span><span class="op">/</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="dv">20</span><span class="op">/</span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># order of operations</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># order of operations</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>(<span class="dv">5</span><span class="op">+</span><span class="dv">5</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">(<span class="dv">5</span><span class="op">+</span><span class="dv">5</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># work with variables</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>a &lt;-<span class="st"> </span><span class="dv">20</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>b &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a>a<span class="op">/</span>b</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># work with variables</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">a<span class="op">/</span>b</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># arithmetic with vectors</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
-<span id="cb34-3"><a href="#cb34-3"></a>a <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># arithmetic with vectors</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">a <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1]  2  8 12</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</span>
-<span id="cb36-2"><a href="#cb36-2"></a>a <span class="op">*</span><span class="st"> </span>b</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">a <span class="op">*</span><span class="st"> </span>b</a></code></pre></div>
 <pre><code>## [1]  10 160 480</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>a <span class="op">+</span><span class="st"> </span>b </span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">a <span class="op">+</span><span class="st"> </span>b </a></code></pre></div>
 <pre><code>## [1] 11 44 86</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># other common math operators and functions</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="dv">4</span><span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># other common math operators and functions</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="dv">4</span><span class="op">^</span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="kw">sqrt</span>(<span class="dv">4</span><span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="dv">4</span><span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">log</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 0.6931472</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw">exp</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">exp</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] 22026.47</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">log</span>(<span class="kw">exp</span>(<span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">log</span>(<span class="kw">exp</span>(<span class="dv">10</span>))</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># special numbers</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="co"># Euler&#39;s number</span></span>
-<span id="cb50-3"><a href="#cb50-3"></a><span class="kw">exp</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># special numbers</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="co"># Euler's number</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="kw">exp</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 2.718282</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># Pi</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a>pi</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># Pi</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2">pi</a></code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
 </div>
 </div>
@@ -732,9 +701,9 @@ Data involved involved in visiting a website.
 <div id="how-can-we-do-this-in-r" class="section level2">
 <h2>How can we do this in R?</h2>
 <p>Download the website (read its source code into RAM)</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>clockHTML &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;https://www.census.gov/popclock/&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">clockHTML &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;https://www.census.gov/popclock/&quot;</span>)</a></code></pre></div>
 <p>Have a look at the first lines of the webpage’s source code:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="kw">head</span>(clockHTML)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">head</span>(clockHTML)</a></code></pre></div>
 <pre><code>## [1] &quot;&lt;!DOCTYPE html&gt;&quot;                   &quot;&lt;html lang=\&quot;en\&quot;&gt;&quot;               
 ## [3] &quot;&lt;head&gt;&quot;                            &quot;\t&lt;title&gt;Population Clock&lt;/title&gt;&quot;
 ## [5] &quot;        &lt;meta charset=\&quot;UTF-8\&quot;&gt;&quot;  &quot;\t&quot;</code></pre>
@@ -742,10 +711,10 @@ Data involved involved in visiting a website.
 <div id="searchingfiltering-the-webpage" class="section level2">
 <h2>Searching/filtering the webpage</h2>
 <p>Search the source code for the line that contains the part of the website with the world population counter:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>line_number &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&#39;id=&quot;world-pop-container&quot;&#39;</span>, clockHTML)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">line_number &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">'id=&quot;world-pop-container&quot;'</span>, clockHTML)</a></code></pre></div>
 <p>We can now check on which line the text was found.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>line_number</span></code></pre></div>
-<pre><code>## [1] 4610</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">line_number</a></code></pre></div>
+<pre><code>## [1] 412</code></pre>
 </div>
 <div id="searchingfiltering-the-webpage-1" class="section level2">
 <h2>Searching/filtering the webpage</h2>
@@ -758,7 +727,7 @@ Accessing data in RAM, processing it, and storing the result in RAM.
 </div>
 <div id="output-to-local-hard-drive" class="section level2">
 <h2>Output to local hard drive</h2>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="kw">writeLines</span>(clockHTML, <span class="st">&quot;clock.html&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">writeLines</span>(clockHTML, <span class="st">&quot;clock.html&quot;</span>)</a></code></pre></div>
 </div>
 <div id="output-to-local-hard-drive-1" class="section level2">
 <h2>Output to local hard drive</h2>
@@ -781,8 +750,8 @@ Writing data stored in RAM to a Mass Storage device (hard drive).
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>From <span class="citation">Matter (2018)</span><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>From <span class="citation">Matter (2018)</span><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
