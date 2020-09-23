@@ -40,14 +40,14 @@ When working with data, a first important step is to load your data, in our case
 
 3. Go back to RStudio and load the data in .txt format as follows:
 
-```
+```{r eval=FALSE}
 df1 <- read.table("data/simple_data.txt", header = FALSE)
 ```
 Type `df1` or `print(df1)` into the console. What do you see?
 
 4. Next, turn to the file in .csv format. Run the following code to load it:
 
-```
+```{r eval=FALSE}
 df2 <- read.table("data/simple_data.csv", header = FALSE, sep=",")
 ```
 Again, type `df2` or `print(df2)` into the console. Now, what do you see? Compare this output to the output from `print(df1)`.
@@ -64,7 +64,7 @@ In the following, we are going to download and import data on COVID-19 cases aro
 
 3. Based on Exercise A, Part 4, how would you open this dataset in RStudio? Hint: In contrast to the files in Exercise A, this file comes with a header row. Complete the following code accordingly:
 
-```
+```{r eval=FALSE}
 df_covid <- read.table(...)
 ```
 4. Once you have loaded the data into RStudio, you can inspect the first (or last) couple of rows using `head(df_covid)` (or `tail(df_covid)`).
@@ -108,43 +108,32 @@ In this exercise, we will implement a very simple website ourselves (in HTML).
 
 ## Exercise E: Point Nemo (read raw text data)
 
-This exercise guides you through how we can import raw text data into R. It is an update of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter to get some background information of what this exercise is all about. 
+This exercise guides you through how we can import raw text data into R. It is an adapted version of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter to get some background information of what this exercise is all about. 
 
-1. Go to NOAA's Ferret data tool: https://ferret.pmel.noaa.gov/uaf/las/UI.vm.
+1. Go to NASA's Earth System Data Explorer: https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm.
 
-2. In the lower left corner of the dashboard under 'Line Plots' select `Time`.
+2. As a dataset, select `Monthly Mean Sea Surface Temperature`.
 
-3. Enter the coordinates `48.9 S`/`123.4 W` (Point Nemo) and click 'Update Plot' in the upper left corner.
+3. On the bottom left part of the page, under `Line Plots`, select `Time`.
 
-4. Click on `Save As...`.
+4. Enter the coordinates 48.9 S and 123.4 W (Point Nemo) and click `Update Plot` in the upper left corner.
 
-5. In the new tab select `ASCII` from the `Select a Data Format:`-dropdown menu, and select the time frame from January 1990 to June 2018. Click `Save`.
+5. Click on `Save As...`. In the new tab select `ASCII` as a data format and January 1990 to April 2020 as the time frame. Click to save.
 
-The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save it as `PointNemo.txt` in your `r_course/data`folder.
+The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save it as `PointNemo.txt` in your `r_course/data` folder.
 
 Now we can read the data into R:
 
-```
+```{r eval=FALSE}
 # read the data
 point_nemo <- 
-  read.table("~/datahandling-exercises/02_computercode/data/PointNemo.txt", skip = 9,
+  read.table("data/PointNemo.txt", skip = 9,
            colClasses = c("character",
                           "NULL", "numeric"),
            col.names = c("date", "",  "temp"))
 ```
 
-
-```
-# read the data
-point_nemo <- 
-  read.table("PointNemo.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-
-```
-
-```
+```{r eval=FALSE}
 # inspect the first rows
 head(point_nemo)
 
@@ -152,27 +141,19 @@ head(point_nemo)
 
 ## Exercise F: Eurasian Pole of Inaccessibility (read raw text data)
 
-Repeat what we've just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). Once we have stored the raw ASCII data in the same folder as `Eurasia.txt`, we can simply reuse the code from before to load the data into R. The only thing we have to change is the file name.
+1. Repeat what we have just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). Change the dataset to `Monthly Surface Air Temperature`.
 
-```
+2. Save the raw ASCII data as "Eurasia.txt" (in the same folder). Now, you can reuse the code from before to load the data into R. You will have to addapt the file name. Also, note that the "Monthly Surface Air Temperature" does not have the (meaningless) middle column that we saw in the "PointNemo.txt" file.
+
+```{r eval=FALSE}
 # read the data
 eurasia <- 
-  read.table("~/datahandling-exercises/02_computercode/data/Eurasia.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
+  read.table("data/Eurasia.txt", skip = 9,
+           colClasses = c("character", "numeric"),
+           col.names = c("date", "temp"))
 ```
 
-```
-# read the data
-eurasia <- 
-  read.table("Eurasia.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-```
-
-```
+```{r eval=FALSE}
 # inspect the first rows
 head(eurasia)
 ```
@@ -181,9 +162,11 @@ head(eurasia)
 
 ```{r echo=FALSE, results='asis', message=FALSE}
 library(pander)
-library(examr)
+# library(examr)
+source("/Users/philine/Desktop/data_handling_philine/examr.R")
 # load file with questions
-questions_file <- "~/datahandling-examination/data/questions_db.xlsx"
+# questions_file <- "../datahandling-examination/data/questions_db.xlsx"
+questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week1-2")
 
 # select questions
