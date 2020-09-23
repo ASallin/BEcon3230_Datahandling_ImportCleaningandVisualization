@@ -3,13 +3,13 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "24/09/2019"
+date: "24/09/2020"
 output:
+  pdf_document: default
   html_document:
     highlight: tango
     mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     theme: cerulean
-  pdf_document: default
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -122,7 +122,5 @@ Hint: You can access your terminal in RStudio.
 2. Next, pull changes from the course repo to update your local copy. In the terminal, navigate to the course repository (the `datahandling` folder on your computer) and run `git pull origin master`. What message do you see?
 
 3. Go to the `datahandling` repo on GitHub. Where can issues be raised? If an issue is raised in this repo, who can see it? 
-
-
 
 
