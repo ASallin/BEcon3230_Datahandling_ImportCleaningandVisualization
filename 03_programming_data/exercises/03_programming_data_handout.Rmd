@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Ulrich Matter"
-date: "24/10/2019"
+date: "22/10/2020"
 output:
   pdf_document: default
   html_document:
@@ -28,47 +28,56 @@ library(bookdown)
 
 ## Exercise A: Write a Sum Function
 
-In the lecture on Programming with Data, we have discussed the most basic programming concepts in R. Among other things, you have learned how we can use for-loops to sum up numbers stored in a numeric vector. Use the code example in the respective lecture notes and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
+In the lecture on Programming with Data, we have discussed the most basic programming concepts in R. Among other things, you have learned how we can use for-loops to sum up numbers stored in a numeric vector.
+
+1. Use the code example in the respective lecture notes and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
 
 ```{r eval=FALSE, purl=FALSE}
 my_sum <- 
      function(x){
           
      }
-
 ```
 
-Test your function by comparing its output with the output of `sum()` (the pre-implemented sum function in R) when calling it with the same input. 
-
-
+2. Define the vector `numbers = c(1, 2, 3)`. Then, compare your function `my_sum()` with the `sum()` function (the pre-implemented sum function in R) when using `numbers` as the input argument: Do you get the same output for `my_sum(numbers)` and `sum(numbers)`?
 
 ## Exercise B: Robustness and Warnings
-Once you have implemented and successfully tested `my_sum()`, see what happens if you call it with the following vector as input
+
+1. Once you have implemented and successfully tested `my_sum()`, call your function with the following vector as input. What happens?
 
 ```{r}
 numbers2 <- c("1", "2", "3")
 ```
 
+2. Why do we get an error? Investigate by comparing the vector `numbers` from Exercise A with the new vector `numbers2`. Hint: the functions `str()` and `class()` might help you.
 
-Why do we get an error? Investigate by comparing the vector `numbers` from the code example above with the new vector `numbers2` (the functions `str()` and `class()` might help you).
-
-Extend your `my_sum()` function with a control statement that checks whether the input is of the right class for the function to work (Hint: `class(x)!="numeric"`). The goal is to make the function more robust to wrong input. That is, if the input is wrong, issue a warning but don't break down with an error. Use the following code for the warning message:
+3. Extend your `my_sum()` function with a control statement that checks whether the input is of the right class for the function to work (Hint: `class(x)!="numeric"`). The goal is to make the function more robust to wrong input. That is, if the input is wrong, issue a warning but don't break down with an error. Use the following code for the warning message:
 
 ```{r eval=FALSE, purl=FALSE}
 warning("Wrong input! This function only accepts numeric or integer values!")
 ```
 
-Test your enhanced sum function with the two input vectors `numbers` and `numbers2`.
-
-
+4. Test your enhanced sum function with the two input vectors `numbers` and `numbers2`.
 
 
 ## Exercise C: Standard Deviation Function
-During the lecture on Programming with Data we have step-by-step implemented our own R function to compute the mean. Now implement an R function called `my_sd` that computes the standard deviation, defined as: $SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$. (Hint: revisit the math operators section in the notes on the first exercise session: https://umatter.github.io/courses/datahandling/notes/html/01_tools_textfiles.html).
 
-Test your implementation by comparing its output with the already implemented `sd()` function.
+1. During the lecture on Programming with Data we have step-by-step implemented our own R function to compute the mean. Now implement an R function called `my_sd` that computes the standard deviation, defined as: $SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$. Hint: revisit the math operators section in the notes on the first exercise session.
 
+2. Test your implementation by comparing its output with the already implemented `sd()` function.
 
+# Additional Exercises (not exam-relavant)
+
+## Exercise D: Standard Error Function
+
+Building on the function written in Exercise C, implement a function to compute (the estimate of) the sample mean standard error as defined here: $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$. Hint: the idea is to use your own implementation (in Exercise C) to compute $SD$ as a first step of your standard error function.
+
+Exercises C and D should illustrate how you can approach more complex problems by breaking them up in smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$, you see that computing $SD$ is a part of the overall problem, which can be addressed separately.
+
+## Exercise E: T-test
+
+Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test):
+$t = \frac{\bar{x} - \mu_0}{\frac{SE}{\sqrt{n}}}$.
 
 
 # Mock Exam Questions
@@ -76,9 +85,11 @@ Test your implementation by comparing its output with the already implemented `s
 
 ```{r echo=FALSE, results='asis', message=FALSE}
 library(pander)
-library(examr)
+source('/Users/philine/Desktop/data_handling_philine/examr.R')
+# library(examr)
 # load file with questions
-questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
+questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
+# questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week3-4")
 
 # select questions
@@ -86,13 +97,3 @@ selection_mock_ex2 <- select_questions(my_questions)
 questions_text <- generate_question_text(selection_mock_ex2)  
 pander(questions_text, sep="\n")
 ```
-
-
-<!-- ## Exercise D: Standard Error Function -->
-<!-- Building on the function written in Exercise C, implement a function to compute (the estimate of) the sample mean standard error as defined here: $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$. Hint: the idea is to use your own implementation (in Exercise C) to compute $SD$ as a first step of your standard error function.  -->
-
-<!-- Exercises C and D should illustrate how you can approach more complex problems by breaking them up in smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$, you see that computing $SD$ is a part of the overall problem, which can be addressed separately. -->
-
-<!-- ## Exercise E: T-test  -->
-<!-- Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test): -->
-<!-- $t = \frac{\bar{x} - \mu_0}{\frac{SE}{\sqrt{n}}}$. -->
