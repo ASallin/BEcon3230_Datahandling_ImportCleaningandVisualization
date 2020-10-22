@@ -48,12 +48,11 @@ Solve the problem posed in Section 11.4.2 ("Problems") in https://r4ds.had.co.nz
 
 ```{r echo=FALSE, results='asis', message=FALSE}
 library(pander)
-# library(examr)
-source("/Users/philine/Desktop/data_handling_philine/examr.R")
+library(examr)
+# source("/Users/philine/Desktop/data_handling_philine/examr.R")
 # load file with questions
 questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
-# questions_file <- "../datahandling-examination/data/questions_db.xlsx"
-questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
+# questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week5-6")
 
 # select questions
