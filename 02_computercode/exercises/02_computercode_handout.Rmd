@@ -162,11 +162,9 @@ head(eurasia)
 
 ```{r echo=FALSE, results='asis', message=FALSE}
 library(pander)
-# library(examr)
-source("/Users/philine/Desktop/data_handling_philine/examr.R")
+library(examr)
 # load file with questions
-# questions_file <- "../datahandling-examination/data/questions_db.xlsx"
-questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
+questions_file <- "../datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week1-2")
 
 # select questions
