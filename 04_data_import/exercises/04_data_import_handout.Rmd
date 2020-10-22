@@ -24,8 +24,6 @@ library(bookdown)
 ```
 
 
-# Exercises: Advanced Data Import
-
 ## Exercise A
 Solve the problem posed in Section 11.4.2 ("Problems") in https://r4ds.had.co.nz/data-import.html, by going step-by-step through the instructions. Hint: You will need to have the `readr` package installed and loaded (should be also installed/loaded with `tidyverse`).
 
@@ -40,7 +38,7 @@ Solve the problem posed in Section 11.4.2 ("Problems") in https://r4ds.had.co.nz
 
 ## Exercise C
 1. Visit the EU Open Data Portal on COVID cases. (Do you remember this website from Exercise Session 2?)
-2. Download the "COVID-19 Cases Worldwide" data in JSON format. However, do not download these data manually (i.e., do not click-and-save). Instead, load the data directly into RStudio from the internet. Hint1: consider the `readr` function `read_file()`. Hint2: the direct link to the JSON file (https://opendata.ecdc.europa.eu/covid19/casedistribution/json/) may be helpful.
+2. Download the "COVID-19 Cases Worldwide" data in JSON format. However, do not download these data manually (i.e., do not click-and-save). Instead, load the data directly into RStudio from the internet. Hint1: consider the `jsonlite` package. Hint2: the direct link to the JSON file (https://opendata.ecdc.europa.eu/covid19/casedistribution/json/) may be helpful.
 3. Reformat the JSON data that you have imported into RStudio to a rectangular format (such that each record is represented as a row and each field as a column).
 
 
