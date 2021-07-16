@@ -106,57 +106,43 @@ In this exercise, we will implement a very simple website ourselves (in HTML).
 
 3. Once you have loaded the .xml file in Part 2, how can you convert it to a R dataframe?
 
-## Exercise E: Point Nemo (read raw text data)
+## Exercise E: Read raw text data
 
-This exercise guides you through how we can import raw text data into R. It is an adapted version of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter to get some background information of what this exercise is all about. 
+This exercise guides you through how we can import raw text data into R. Suppose you are writing your BA Thesis on the topic "The Effect of Climate Change on Consumption Behavior in Switzerland". For your empirical analysis you need inter alia standardized data on temperature anomalies in Switzerland (as a proxy for the salience of climate change). You identify NASA's Earth System Data Explorer as a promising data source and aim to download and work with this data in R. The exercise guide's you exemplary thourgh how this can be done. 
+
+*Hint*: This exercise is an adapted version of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter for an additional introduction to data stored in text files.
+
+
 
 1. Go to NASA's Earth System Data Explorer: https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm.
 
-2. As a dataset, select `Monthly Mean Sea Surface Temperature`.
+2. Click on *Data Set* in the upper left corner and navigate through `Atmosphere/Featured Phenomena/Changing Air Temperatures/Temperatures` and select `Monthly Surface Air Temperature Anomaly`.
 
-3. On the bottom left part of the page, under `Line Plots`, select `Time`.
+3. On the bottom left part of the page, under `Line Graphs`, select `Time`.
 
-4. Enter the coordinates 48.9 S and 123.4 W (Point Nemo) and click `Update Plot` in the upper left corner.
+4. Enter the coordinates 47.25 N and 9.22 W (St. Gallen) and click `Update Plot` in the upper left corner. The page shows a plot of the monthly surface air temperature anomaly time series.
 
-5. Click on `Save As...`. In the new tab select `ASCII` as a data format and January 1990 to April 2020 as the time frame. Click to save.
+5. Click on `Download Data ...`. In the new tab select `ASCII` as a data format. Click to save.
 
-The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save it as `PointNemo.txt` in your `r_course/data` folder.
+The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save (`Save page as...`) it as `temp_anomaly.txt` in your `r_course/data` folder.
 
 Now we can read the data into R:
 
 ```{r eval=FALSE}
+# install the readr package if not yet installed: install.packages("readr")
+library(readr)
 # read the data
-point_nemo <- 
-  read.table("data/PointNemo.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
+ta <- read_tsv("data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
 ```
 
 ```{r eval=FALSE}
 # inspect the first rows
-head(point_nemo)
+head(ta)
 
 ```
 
-## Exercise F: Eurasian Pole of Inaccessibility (read raw text data)
-
-1. Repeat what we have just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). Change the dataset to `Monthly Surface Air Temperature`.
-
-2. Save the raw ASCII data as "Eurasia.txt" (in the same folder). Now, you can reuse the code from before to load the data into R. You will have to addapt the file name. Also, note that the "Monthly Surface Air Temperature" does not have the (meaningless) middle column that we saw in the "PointNemo.txt" file.
-
-```{r eval=FALSE}
-# read the data
-eurasia <- 
-  read.table("data/Eurasia.txt", skip = 9,
-           colClasses = c("character", "numeric"),
-           col.names = c("date", "temp"))
-```
-
-```{r eval=FALSE}
-# inspect the first rows
-head(eurasia)
-```
+- What is the purpose of the `skip` argument and why is it set to `9`?
+- Why do we use `read_tsv()` in this situation and not `read_csv()`?
 
 # Mock Exam Questions
 
@@ -164,7 +150,7 @@ head(eurasia)
 library(pander)
 library(examr)
 # load file with questions
-questions_file <- "../datahandling-examination/data/questions_db.xlsx"
+questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week1-2")
 
 # select questions

@@ -84,12 +84,11 @@ $t = \frac{\bar{x} - \mu_0}{\frac{SE}{\sqrt{n}}}$.
 
 
 ```{r echo=FALSE, results='asis', message=FALSE}
+library(examr)
 library(pander)
-source('/Users/philine/Desktop/data_handling_philine/examr.R')
-# library(examr)
+
 # load file with questions
-questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
-# questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
+questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week3-4")
 
 # select questions
