@@ -28,19 +28,18 @@ library(bookdown)
 
 # Prerequisites
 
-- Install the latest R version. R is open source and freely available from https://stat.ethz.ch/CRAN/. Click on the respective link for your operating system (Windows, Mac, Linux), and follow the instructions.
-- Once R is installed, install RStudio from https://www.rstudio.com/products/rstudio/download/#download. Click on the respective installer for your operating system (Windows, Mac, etc.) and follow the instructions.
+- Nuvolos Account with RStudio
 
 
 # Exercises
 
 ## Exercise A: Setting up a Working Environment
 
- 1. Open RStudio and get familiar with the file browser pane on the lower right. Navigate to a folder on your hard disk in which you want to work throughout this course (and store all the code you write in this course).
+ 1. Get familiar with the file browser pane on the lower right. In Nuvolos, navigate to the folder "files". When you work on your PC locally, navigate to a location of your choice.
 
- 2. Use the 'New Folder'-button to create a new folder. Name this new folder `r_course`.
+ 2. Use the 'New Folder'-button to create a new folder. Name this new folder `r_course`. 
 
- 3. You should see the new folder listed in the file browser. Click on it to navigate to its contents (so far empty). Now, click on the 'More' button and select 'Set as Working Directory' in the drop-down menu.
+ 3. You should see the new folder listed in the file browser. Click on it to navigate to its contents. Now, click on the 'More' button and select 'Set as Working Directory' in the drop-down menu.
 
  4. Again, use the 'New Folder'-button in order to create two new folders called `data` and `code`.
 
@@ -56,7 +55,7 @@ Now you know how to set up a meaningful basic folder structure and working envir
 ```{r eval=FALSE, purl=FALSE}
 print("Hello world")
 ```
-You should see the words `"Hello world"` printed on screen. This is the usual way of working with R in an interactive session. However, as pointed out above, in most circumstances it makes sense to write the R code to an R script (in order to store and document it) and then execute the code from there.
+You should see the words `"Hello world"` printed on screen. This is the usual way of working with R in an interactive session. However, in most circumstances, it makes sense to write the R code to an R script (in order to store and document it) and then execute the code from there.
 
 2. In the RStudio Menu-bar select `File/New File/R Script` to create a new file, shown/opened in the Script pane.
 
@@ -88,7 +87,7 @@ In Exercise B, you printed the phrase "Hello world" to your console. Now, you wi
 cat("Hello world", file = "hello_world_file.txt")
 ```
 
-4. Outside of RStudio, open the folder `../r_course/code` on your computer. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
+4. In the file pane, open the folder `../r_course/code`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
 
 Important: throughout our exercise sessions, you will save output to .txt files and upload them to Github Classroom to complete the assignments. Make sure your .txt files are named according to our instructions - otherwise your assignment will fail.
 
@@ -114,13 +113,8 @@ Important: throughout our exercise sessions, we will send you invitation links t
 
 ## Exercise E: Cloning and updating a GitHub repository
 
-Recall that Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
+Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
 
-1. Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
-Hint: You can access your terminal in RStudio.
-
-2. Next, pull changes from the course repo to update your local copy. In the terminal, navigate to the course repository (the `datahandling` folder on your computer) and run `git pull origin master`. What message do you see?
-
-3. Go to the `datahandling` repo on GitHub. Where can issues be raised? If an issue is raised in this repo, who can see it? 
+ - Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
 
 

@@ -28,9 +28,9 @@ library(bookdown)
 
 # Prerequisites
 
-- Install the latest R version. R is open source and freely available from here: https://stat.ethz.ch/CRAN/. Click on the respective link for your operating system (Windows, Mac, Linux), and follow the instructions.
-- Once R is installed, install RStudio from here: https://www.rstudio.com/products/rstudio/download/#download. Under "Installers for Supported Platforms", click on the respective installer for your operating system (Windows, Mac, etc.) and follow the instructions.
-- If you do not have a GitHub account, create one here: https://github.com/join. Accounts are free. No need to use your unisg E-Mail address.
+- Sign in to Nuvolos here: https://az.nuvolos.cloud/login using your Unisg E-Mail address.
+- Nuvolos is a cloud-based service that allows you to use R and the IDE RStudio through your browser. In the scope of this course, there is no need to install R locally on your machine.
+- If you do not have a GitHub account, create one here: https://github.com/join. Accounts are free. No need to use your Unisg E-Mail address.
 
 # Part I: Introduction
 
@@ -42,10 +42,10 @@ The programming language and open-source statistical computing environment [R](w
 ## High-level language, relatively easy to learn
 R is a relatively easy computer language to learn for people with no previous programming experience. The syntax is rather intuitive and error messages not too cryptic to understand (facilitates learning by doing). Moreover, with R's recent stark rise in popularity, there are plenty of freely accessible resources online that help beginners to learn the language.
 
-## Free, open source, large community
+## Free, open-source, large community
 Due to its vast base of contributors, R serves as a valuable tool for users in various fields related to data analysis and computation (economics/econometrics, biomedicine, business analytics, etc.). R users have direct access to thousands of freely available 'R-packages' (small software libraries written in R), covering diverse aspects of data analysis, statistics, data preparation, and data import.
 
-Hence, a lot of people using R as a tool in their daily work do not actually 'write programs' (in the traditional sense of the word), but apply those packages. Applied econometrics with R is a good example of this. Almost any function a modern commercial computing environment with a focus on statistics and econometrics (such as [STATA](http://www.stata.com/)) is offering, can also be found within the R environment. Furthermore, there are R packages covering all the areas of modern data analytics, including natural language processing, machine learning, big data analytics, etc. (see the [CRAN Task Views](https://cran.r-project.org/web/views/) for an overview). We thus do not actually have to write a program for many tasks we perform with R. Instead, we can build on already existing and reliable packages.
+Hence, a lot of people using R as a tool in their daily work do not actually 'write programs' (in the traditional sense of the word) but apply those packages. Applied econometrics with R is a good example of this. Almost any function a modern commercial computing environment with a focus on statistics and econometrics (such as [STATA](http://www.stata.com/)) is offering can also be found within the R environment. Furthermore, there are R packages covering all the areas of modern data analytics, including natural language processing, machine learning, big data analytics, etc. (see the [CRAN Task Views](https://cran.r-project.org/web/views/) for an overview). We thus do not actually have to write a program for many tasks we perform with R. Instead, we can build on already existing and reliable packages.
 
 
 
@@ -53,30 +53,18 @@ Hence, a lot of people using R as a tool in their daily work do not actually 'wr
 
 R is the high-level (meaning 'more user friendly') programming language for statistical computing. Once we have installed R on our computer, we can run it...
 
- a. ...directly from the command line, by typing `R` and hit enter (here in the OSX terminal):
-
-```{r terminal, echo=FALSE, fig.align='center', fig.cap="(ref:rterminal)", out.width="60%", purl=FALSE}
-include_graphics("../../img/r_terminal.png")
-```
-(ref:rterminal) Running R in the Mac/OSX terminal.
-
-
- b. ...with the simple [Integrated Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) delivered with the basic R installation
-
-```{r ide, echo=FALSE, fig.align='center', fig.cap="(ref:ride)", out.width="75%", purl=FALSE}
-include_graphics("../../img/r_ide.png")
-```
-(ref:ride) Running R in the original R GUI/IDE.
-
-
- c. ...with the more elaborated and user-friendly IDE called *RStudio*:
+ a. ...locally:
+ - Install the latest R version. R is open-source and freely available from here: https://stat.ethz.ch/CRAN/. Click on the respective link for your operating system (Windows, Mac, Linux), and follow the instructions.
+ - Once R is installed, install RStudio from here: https://www.rstudio.com/products/rstudio/download/#download. Under “Installers for Supported Platforms”, click on the respective installer for your operating system (Windows, Mac, etc.) and follow the instructions. 
+ 
+ c. ...using Nuvolos:
 
 ```{r rstudio, echo=FALSE, fig.align='center', fig.cap="(ref:rstudio)", out.width="75%", purl=FALSE}
 include_graphics("../../img/rstudio_panels.png")
 ```
 (ref:rstudio) Running R in RStudio (IDE).
 
-The latter is what we will do throughout this course. It is a very helpful tool for simple data analysis with R, writing R scripts (short R programs), or even for developing R packages (software written in R), building interactive documents, presentations, etc. Moreover, it offers many options to change its own appearance (Pane Layout, Code Highlighting, etc.).
+The latter is what we will do throughout this course. 
 
 In the following, we have a look at each of the main panels we will use in this course.
 
@@ -90,7 +78,7 @@ include_graphics("../../img/rstudio_console.png")
 ```
 (ref:console) Running R in the Mac/OSX terminal.
 
-For example, we can tell R to print the phrase `Hello world` to the console, by typing to following command in the console and hit enter:
+For example, we can tell R to print the phrase `Hello world` to the console by typing to following command in the console and hitting enter:
 
 ```{r}
 print("Hello world")
@@ -99,7 +87,7 @@ print("Hello world")
 
 ## R-Scripts
 
-Apart from very short interactive sessions, it usually makes sense to write R code not directly in the command line, but to a R-script in the script panel. This way, execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.
+Apart from very short interactive sessions, it usually makes sense to write R code not directly in the command line but to a R-script in the script panel. This way, execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.
 
 ```{r rscript, echo=FALSE, fig.align='center', fig.cap="(ref:script)", out.width="75%", purl=FALSE}
 include_graphics("../../img/rstudio_script.png")
@@ -121,7 +109,7 @@ include_graphics("../../img/rstudio_environment.png")
 
 ## File Browser
 
-With the File browser window we can navigate through the folder structure and files on our computer's hard disk, modify files, and set the working directory of our current R session. Moreover, it has a pane to show plots generated in R and a pane with help pages and R documentation.
+With the File browser window, we can navigate through the folder structure and files on our computer's hard disk, modify files, and set the working directory of our current R session. Moreover, it has a pane to show plots generated in R and a pane with help pages and R documentation.
 
 ```{r rfiles, echo=FALSE, fig.align='center', fig.cap="(ref:files)", out.width="50%", purl=FALSE}
 include_graphics("../../img/rstudio_files.png")
@@ -132,11 +120,11 @@ include_graphics("../../img/rstudio_files.png")
 
 ## What is GitHub?
 
-GitHub is a code hosting platform, where developers can store and manage their code. GitHub allows for version control and collaboration (it builds on the version control system Git). On GitHub, you and others can work together on projects from anywhere. Usually, one repository (or repo) is used to organize a single project. Repositories can be public (for everyone to see) or private (only for you and your team). There are functionalities like branching for version control (i.e., making a temporary separate copy of the project) or raising issues.
+GitHub is a code hosting platform where developers can store and manage their code. GitHub allows for version control and collaboration (it builds on the version control system Git). On GitHub, you and others can work together on projects from anywhere. Usually, one repository (or repo) is used to organize a single project. Repositories can be public (for everyone to see) or private (only for you and your team). There are functionalities like branching for version control (i.e., making a temporary separate copy of the project) or raising issues.
 
 ### Version Control: Why make such a Big Deal?
 
-Have you ever stored a files like this: 'file_final.txt', 'file_really_final.txt', 'file_really_final2.txt', etc.? Gets out of hands quickly (even more so if you work in a team)! Also, in software development, it is not safe if a developer works on the 'official' source code directly (the definitive code on which a program runs, referred to as the master branch on GitHub). Rather, the developer works on a separate copy of the master branch  (referred to as a branch). Once the developers' suggested changes have been approved by others, they can be merged from the separate branch to the master branch.
+Have you ever stored files like this: 'file_final.txt', 'file_really_final.txt', 'file_really_final2.txt', etc.? Gets out of hands quickly (even more so if you work in a team)! Also, in software development, it is not safe if a developer works on the 'official' source code directly (the definitive code on which a program runs, referred to as the master branch on GitHub). Rather, the developer works on a separate copy of the master branch  (referred to as a branch). Once the developers' suggested changes have been approved by others, they can be merged from the separate branch to the master branch.
 
 ### What are Issues?
 
@@ -144,7 +132,7 @@ Raising an issue means that you create a flag to keep track of bugs, enhancement
 
 ## Why is GitHub helpful for Economists and Data Scientists?
 
-GitHub is useful in data science for reasons similar to those in software development: whenever you work with code, you will want to check if your changes do not break anything before merging them with the definitive code. Moreover, many data scientists or econometricians publicly share their programs on GitHub. You can thus build on what others have done, interact with them, and upload your own code for others to use it and to get feedback on it. Your GitHub repo can also enable others to replicate your research results.
+GitHub is useful in data science for reasons similar to those in software development: whenever you work with code, you will want to check if your changes do not break anything before merging them with the definitive code. Moreover, many data scientists or econometricians publicly share their programs on GitHub. You can thus build on what others have done, interact with them, and upload your own code for others to use and to get feedback on it. Your GitHub repo can also enable others to replicate your research results.
 As this course shows, GitHub is convenient to store and work on code, but it can incorporate other components like data, text components, or slides. We encourage you to contribute to this course by raising issues (if you spot mistakes or have ideas for improvements). As a side note: in principle, you can also use GitHub for version control in a completely coding-free project.
 
 
@@ -232,7 +220,7 @@ include_graphics("../../img/script-htmldownload_w.jpg")
 
 ## Downloading/accessing a website
 
-```{r htmldownloaddata, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Data involved involved in visiting a website.", purl=FALSE}
+```{r htmldownloaddata, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Data involved in visiting a website.", purl=FALSE}
 include_graphics("../../img/script-htmldownloaddata_w.jpg")
 ```
 
@@ -241,23 +229,23 @@ include_graphics("../../img/script-htmldownloaddata_w.jpg")
 Download the website (read its source code into RAM)
 
 ```{r}
-clockHTML <- readLines("https://www.census.gov/popclock/")
+weatherHTML <- readLines("https://www.nzz.ch/wetter/wetter-heute")
 ```
 
 Have a look at the first lines of the webpage's source code:
 
 ```{r}
-head(clockHTML)
+head(weatherHTML, 3)
 ```
 
 
 
 ## Searching/filtering the webpage
 
-Search the source code for the line that contains the part of the website with the world population counter:
+Search the source code for the line that contains the part of the website with todays maximum temperature:
 
 ```{r}
-line_number <- grep('id="world-pop-container"', clockHTML)
+line_number <- grep('weatherlist__temp--max', weatherHTML)
 ```
 
 We can now check on which line the text was found.
@@ -265,6 +253,17 @@ We can now check on which line the text was found.
 ```{r}
 line_number
 ```
+
+And display those two lines.
+```{r}
+weatherHTML[line_number]
+```
+At a closer look, we see that the first and second objects correspond to the weather today and tomorrow. 
+
+```{r webpage, echo=FALSE, fig.align='center', fig.cap="(ref:webpage)", out.width="50%", purl=FALSE}
+include_graphics("../../img/webpage.png")
+```
+(ref:webpage) The lines of interest on the webpage.
 
 ## Searching/filtering the webpage
 
@@ -278,7 +277,7 @@ include_graphics("../../img/script-ramcalc_w.jpg")
 
 
 ```{r eval=FALSE}
-writeLines(clockHTML, "clock.html")
+writeLines(weatherHTML, "weather.html")
 ```
 
 
