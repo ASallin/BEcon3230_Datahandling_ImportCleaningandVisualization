@@ -34,7 +34,7 @@ library(bookdown)
 
 When working with data, a first important step is to load your data, in our case in RStudio. As you know, data can come in different formats.
 
-1. Along with the exercise instructios on GitHub classroom, you will find two datasets, `simple_data.txt` and `simple_data.csv`. Download them from GitHub and copy them into the `r_course/data` folder that we created in the last exercise session.
+1. Along with the exercise instructios on GitHub classroom, you will find two datasets, `simple_data.txt` and `simple_data.csv`. Download them from GitHub and upload them into the `r_course/data` folder that we created in the last exercise session.
 
 2. Check out the files `simple_data.txt` and `simple_data.csv` by opening them (outside of RStudio) in a text editor, such as Atom. Do they look different from each other?
 
@@ -58,9 +58,9 @@ Again, type `df2` or `print(df2)` into the console. Now, what do you see? Compar
 
 In the following, we are going to download and import data on COVID-19 cases around the world. We will reuse this data in later exercise sessions.
 
-1. Using a browser of your choice, navigate to this page by the EU Open Data Portal: https://data.europa.eu/euodp/en/data/dataset/covid-19-coronavirus-data.
+1. Using a browser of your choice, navigate to this page by the EU Open Data Portal: https://data.europa.eu/data/datasets/covid-19-coronavirus-data-daily-up-to-14-december-2020?locale=en.
 
-2. Scroll down to the Section 'Resources' and download the file 'COVID-19 cases worldwide' in .csv format into your `r_course/data` folder.
+2. Scroll down to the Section 'Distributions' and download the file 'COVID-19 cases worldwide - daily' in .csv format into your `r_course/data` folder.
 
 3. Based on Exercise A, Part 4, how would you open this dataset in RStudio? Hint: In contrast to the files in Exercise A, this file comes with a header row. Complete the following code accordingly:
 
@@ -69,13 +69,13 @@ df_covid <- read.table(...)
 ```
 4. Once you have loaded the data into RStudio, you can inspect the first (or last) couple of rows using `head(df_covid)` (or `tail(df_covid)`).
 
-5. Again, create a text file for upload on GitHub classroom. It should contain the number of cases (variable `cases`) on 26 March 2020 (variable `dateRep`) in Zimbabwe (variable `countriesAndTerritories`). Hint: this observation is in the 43922th row. Save you text file as "covid.txt" in your `r_course/data` folder.
+5. Again, create a text file for upload on GitHub classroom. It should contain the number of cases (variable `cases`) on 26 March 2020 (variable `dateRep`) in Zimbabwe (variable `countriesAndTerritories`). Hint: this observation is in the 61896th row. Save you text file as "covid.txt" in your `r_course/data` folder.
 
 ## Exercise C: Writing/Exploring computer code: a simple website
 
 In this exercise, we will implement a very simple website ourselves (in HTML).
 
-1. Open a new text file in RStudio: `File/New File/Text File`, store it in your current working directory (set the working directory accordingly beforehand) as `my_website.html`. 
+1. Open a new text file in RStudio: `File/New File/Html File`, store it in your current working directory (set the working directory accordingly beforehand) as `my_website.html`. 
 
 2. Copy/paste the follwing HTML-code to the empty text-file and save it. 
 
@@ -100,7 +100,7 @@ In this exercise, we will implement a very simple website ourselves (in HTML).
 
 ## Exercise D: Downloading and importing data on COVID cases (XML format)
 
-1. Go back to the EU Open Data Portal (see Exercise B). Download the same dataset again, but this time, download the .xml version. Again, save it in your `r_course/data` folder.
+1. Go back to the EU Open Data Portal (see Exercise B). Download the same dataset again, but this time, download the .xml version. Again, save it in your `r_course/data` folder. (Loading the)
 
 2. Load the data in .xml format. Hint: The package `XML` might be of use. You can install new packages as follows: `install.packages("package_name")`.
 
@@ -144,17 +144,17 @@ head(ta)
 - What is the purpose of the `skip` argument and why is it set to `9`?
 - Why do we use `read_tsv()` in this situation and not `read_csv()`?
 
-# Mock Exam Questions
+<!-- # Mock Exam Questions -->
 
-```{r echo=FALSE, results='asis', message=FALSE}
-library(pander)
-library(examr)
-# load file with questions
-questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
-my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week1-2")
+<!-- ```{r echo=FALSE, results='asis', message=FALSE} -->
+<!-- library(pander) -->
+<!-- library(examr) -->
+<!-- # load file with questions -->
+<!-- questions_file <- "../../../datahandling-examination/data/questions_db.xlsx" -->
+<!-- my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week1-2") -->
 
-# select questions
-selection_mock_ex2 <- select_questions(my_questions)
-questions_text <- generate_question_text(selection_mock_ex2)  
-pander(questions_text, sep="\n")
-```
+<!-- # select questions -->
+<!-- selection_mock_ex2 <- select_questions(my_questions) -->
+<!-- questions_text <- generate_question_text(selection_mock_ex2)   -->
+<!-- pander(questions_text, sep="\n") -->
+<!-- ``` -->
