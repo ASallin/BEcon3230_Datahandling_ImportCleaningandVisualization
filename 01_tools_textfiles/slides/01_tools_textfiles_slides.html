@@ -3136,7 +3136,7 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">26/09/2019</p>
+            <p style="margin-top: 6px; margin-left: -2px;">30/09/2021</p>
           </hgroup>
   </slide>
 
@@ -3400,8 +3400,8 @@ Data involved in visiting a website.
 
 <pre class = 'prettyprint lang-r'>weatherHTML[line_number]</pre>
 
-<pre >## [1] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/9.15.5/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;wechselnd bewÃ¶lkt&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;24Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;16Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;span class=\&quot;weatherlist__name\&quot;&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-## [2] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/9.15.5/static/images/weather/weather4.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;wolkig, aber kaum Regen&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;21Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;15Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt; &lt;div class=\&quot;weatherelement weatherelement--paragraph\&quot;&gt;&lt;h2 class=\&quot;weatherelement weatherelement--subtitle weatherlist__subtitle\&quot;&gt;&lt;span class=\&quot;subtitle__text\&quot;&gt;Prognose fÃ¼r die Nordschweiz&lt;/span&gt;&lt;/h2&gt; &lt;p class=\&quot;weatherelement weatherelement--text\&quot;&gt;Am Abend verÃ¤nderlicher Mix aus Wolken und Sonne. Im Flachland hÃ¶chstens vereinzelt ein Regenguss, in den Alpen etwas verbreiteter Schauer. In der Nacht wechselnd bewÃ¶lkt mit ein paar RegengÃ¼ssen. Am Freitag Wolken, etwas Sonne und mit Schwerpunkt am Nachmittag und in den Alpen ein paar Schauer und lokale Gewitter.&quot;</pre>
+<pre >## [1] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/9.17.11/static/images/weather/weather5.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;trÃ¼b und nass&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;14Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;11Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;span class=\&quot;weatherlist__name\&quot;&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                          
+## [2] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/9.17.11/static/images/weather/weather5.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;bedeckt, wenig Regen&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;16Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;11Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt; &lt;div class=\&quot;weatherelement weatherelement--paragraph\&quot;&gt;&lt;h2 class=\&quot;weatherelement weatherelement--subtitle weatherlist__subtitle\&quot;&gt;&lt;span class=\&quot;subtitle__text\&quot;&gt;Prognose fÃ¼r die Nordschweiz&lt;/span&gt;&lt;/h2&gt; &lt;p class=\&quot;weatherelement weatherelement--text\&quot;&gt;Am Abend und in der Nacht weithin stark bewÃ¶lkt, allmÃ¤hlich nachlassender Regen. Am Montag ganztags meistens dichte Wolken, dazu zwischendurch einzelne RegengÃ¼sse. Am Nachmittag und vor allem gegen Abend von Norden her  ein paar Auflockerungen.&quot;</pre>
 
 <p>At a closer look, we see that the first and second objects correspond to the weather today and tomorrow.</p>
 
@@ -3410,14 +3410,14 @@ Data involved in visiting a website.
 <pre class = 'prettyprint lang-r'>strsplit(weatherHTML[line_number[1]], split = &quot;span&quot;)</pre>
 
 <pre >## [[1]]
-## [1] &quot;        &lt;/&quot;                                                                                                              
-## [2] &quot;&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/9.15.5/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;&quot;
-## [3] &quot; class=\&quot;weatherlist__text\&quot;&gt;wechselnd bewÃ¶lkt&lt;/&quot;                                                                       
-## [4] &quot;&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;&quot;                                                                              
-## [5] &quot; class=\&quot;weatherlist__temp--max\&quot;&gt;24Â°&lt;/&quot;                                                                                
-## [6] &quot;&gt; &lt;&quot;                                                                                                                     
-## [7] &quot; class=\&quot;weatherlist__temp--min\&quot;&gt;16Â°&lt;/&quot;                                                                                
-## [8] &quot;&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;&quot;                                      
+## [1] &quot;        &lt;/&quot;                                                                                                               
+## [2] &quot;&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/9.17.11/static/images/weather/weather5.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;&quot;
+## [3] &quot; class=\&quot;weatherlist__text\&quot;&gt;trÃ¼b und nass&lt;/&quot;                                                                            
+## [4] &quot;&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;&quot;                                                                               
+## [5] &quot; class=\&quot;weatherlist__temp--max\&quot;&gt;14Â°&lt;/&quot;                                                                                 
+## [6] &quot;&gt; &lt;&quot;                                                                                                                      
+## [7] &quot; class=\&quot;weatherlist__temp--min\&quot;&gt;11Â°&lt;/&quot;                                                                                 
+## [8] &quot;&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;&quot;                                       
 ## [9] &quot; class=\&quot;weatherlist__name\&quot;&gt;&quot;</pre>
 
 <p>We can pick the corresponding line and filter for the text for numbers:</p>
@@ -3425,7 +3425,7 @@ Data involved in visiting a website.
 <pre class = 'prettyprint lang-r'>temperature &lt;- strsplit(weatherHTML[line_number[1]], split = &quot;span&quot;)[[1]][5]
 gsub(&quot;\\D&quot;, &quot;&quot;, temperature)</pre>
 
-<pre >## [1] &quot;24&quot;</pre>
+<pre >## [1] &quot;14&quot;</pre>
 
 <!-- Alternatively: -->
 

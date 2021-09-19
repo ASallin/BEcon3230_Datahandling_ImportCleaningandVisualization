@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Ulrich Matter"
-date: "22/10/2020"
+date: "24/10/2021"
 output:
   pdf_document: default
   html_document:
@@ -78,21 +78,3 @@ Exercises C and D should illustrate how you can approach more complex problems b
 
 Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test):
 $t = \frac{\bar{x} - \mu_0}{\frac{SE}{\sqrt{n}}}$.
-
-
-# Mock Exam Questions
-
-
-```{r echo=FALSE, results='asis', message=FALSE}
-library(examr)
-library(pander)
-
-# load file with questions
-questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
-my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week3-4")
-
-# select questions
-selection_mock_ex2 <- select_questions(my_questions)
-questions_text <- generate_question_text(selection_mock_ex2)  
-pander(questions_text, sep="\n")
-```

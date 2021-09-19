@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Exercise/Workshop 3:<br>Programming with Data'
 author: "Prof. Dr. Ulrich Matter"
-date: "24/10/2019"
+date: "28/10/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css

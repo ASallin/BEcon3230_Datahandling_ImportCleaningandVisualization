@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Exercise 2:<br>Text Files and Computer Code'
 author: "Prof. Dr. Ulrich Matter"
-date: "10/10/2019"
+date: "14/10/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css

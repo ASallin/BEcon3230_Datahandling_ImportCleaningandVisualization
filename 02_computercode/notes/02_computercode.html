@@ -11,7 +11,6 @@
 
 <meta name="author" content="Ulrich Matter" />
 
-<meta name="date" content="2020-08-10" />
 
 <title>Data Handling: Import, Cleaning and Visualisation</title>
 
@@ -190,13 +189,29 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -206,14 +221,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -222,9 +239,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -311,45 +328,7 @@ h6 {
 }
 </style>
 
-<style type="text/css">
-.author {
-color: #02934a;
-}
-.date {
-color: #02934a;
-}
-.title {
-color: #02934a;
-}
-h1 { 
-color: #02934a;
-}
-h2 { 
-color: #02934a;
-}
-h3 { 
-color: #02934a;
-}
-
-a {
-color: #02934a;
-text-decoration: none;
-}
-a:visited {
-color: #02934a;
-text-decoration: none;
-}
-a:active {
-color: #02934a;
-text-decoration: none;
-}
-
-a:hover {
-color: #02934a;
-border-bottom: 1px solid #02934a;
-text-decoration: none;
-}
-</style>
+<style type="text/css">.author {color: #02934a;}.date {color: #02934a;}.title {color: #02934a;}h1 { color: #02934a;}h2 { color: #02934a;}h3 { color: #02934a;}a {color: #02934a;text-decoration: none;}a:visited {color: #02934a;text-decoration: none;}a:active {color: #02934a;text-decoration: none;}a:hover {color: #02934a;border-bottom: 1px solid #02934a;text-decoration: none;}</style>
 
 
 
@@ -461,7 +440,7 @@ summary {
 <h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
 <h3 class="subtitle">Exercise/Workshop 2: Computer Code and Data Storage</h3>
 <h4 class="author">Ulrich Matter</h4>
-<h4 class="date">08/10/2020</h4>
+<h4 class="date">14/10/2021</h4>
 
 </div>
 
@@ -471,97 +450,97 @@ summary {
 <p>R provides different object classes to work with data. In simple terms, they differ with regard to how data is structured when saved in a variable. This, in turn, defines how we can access different parts of the data in this variable. For example, if we store a bunch of numbers in a numeric vector, we can then access each of these numbers individually, by telling R to give us the first, second, nth element of this vector. If we store data in a two-dimensional structure such as a matrix, we can then access the data column-wise, row-wise, or cell-wise. Depending on the task, one or the other object class is preferable to store and work with data.</p>
 <div id="vectors-and-lists" class="section level2">
 <h2>Vectors and Lists</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># A vector containing numeric (or integer) values</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">numeric_vector &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">numeric_vector[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># A vector containing numeric (or integer) values</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>numeric_vector &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">20</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>numeric_vector[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">numeric_vector[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>numeric_vector[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>## [1] 11 12 13 14</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># A string vector ('a vector containing text')</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">string_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">string_vector[<span class="op">-</span><span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># A string vector (&#39;a vector containing text&#39;)</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>string_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>string_vector[<span class="op">-</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># Lists</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co"># A list can contain different types of elements, for example a numeric vector and a string_vector</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">mylist &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">numbers =</span> numeric_vector, <span class="dt">letters =</span> string_vector)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">mylist</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Lists</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># A list can contain different types of elements, for example a numeric vector and a string_vector</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>mylist &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">numbers =</span> numeric_vector, <span class="dt">letters =</span> string_vector)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>mylist</span></code></pre></div>
 <pre><code>## $numbers
 ##  [1] 10 11 12 13 14 15 16 17 18 19 20
 ## 
 ## $letters
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># We can access the elements of a list in various ways</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># with the element's name</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">mylist<span class="op">$</span>numbers</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># We can access the elements of a list in various ways</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># with the element&#39;s name</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>mylist<span class="op">$</span>numbers</span></code></pre></div>
 <pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">mylist[<span class="st">&quot;numbers&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mylist[<span class="st">&quot;numbers&quot;</span>]</span></code></pre></div>
 <pre><code>## $numbers
 ##  [1] 10 11 12 13 14 15 16 17 18 19 20</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># via the index</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">mylist[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># via the index</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>mylist[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## $numbers
 ##  [1] 10 11 12 13 14 15 16 17 18 19 20</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># with [[]] we can access directly the content of the element</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">mylist[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># with [[]] we can access directly the content of the element</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>mylist[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># lists can also be nested (list of lists of lists....)</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">mynestedlist &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> mylist, <span class="dt">b =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># lists can also be nested (list of lists of lists....)</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>mynestedlist &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> mylist, <span class="dt">b =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 </div>
 <div id="matrices-and-data-frames" class="section level2">
 <h2>Matrices and Data Frames</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># matrices</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">mymatrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(numeric_vector, <span class="dt">nrow =</span> <span class="dv">4</span>)</a></code></pre></div>
-<pre><code>## Warning in matrix(numeric_vector, nrow = 4): data length [11] is not a sub-multiple or multiple of
-## the number of rows [4]</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># get the second row</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">mymatrix[<span class="dv">2</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># matrices</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>mymatrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(numeric_vector, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Warning in matrix(numeric_vector, nrow = 4): Datenlänge [11] ist kein Teiler oder Vielfaches der
+## Anzahl der Zeilen [4]</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># get the second row</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>mymatrix[<span class="dv">2</span>,]</span></code></pre></div>
 <pre><code>## [1] 11 15 19</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># get the first two columns</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">mymatrix[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># get the first two columns</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>mymatrix[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]   10   14
 ## [2,]   11   15
 ## [3,]   12   16
 ## [4,]   13   17</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># data frames (&quot;lists as columns&quot;)</span></a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>), <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">45</span>))</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">mydf</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># data frames (&quot;lists as columns&quot;)</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>), <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">45</span>))</span>
+<span id="cb24-3"><a href="#cb24-3"></a>mydf</span></code></pre></div>
 <pre><code>##     Name Age
 ## 1  Alice  20
 ## 2  Betty  30
 ## 3 Claire  45</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># select the age column</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">mydf<span class="op">$</span>Age</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># select the age column</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>mydf<span class="op">$</span>Age</span></code></pre></div>
 <pre><code>## [1] 20 30 45</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">mydf[, <span class="st">&quot;Age&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>mydf[, <span class="st">&quot;Age&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] 20 30 45</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">mydf[, <span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>mydf[, <span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 20 30 45</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># select the second row</span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">mydf[<span class="dv">2</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># select the second row</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>mydf[<span class="dv">2</span>,]</span></code></pre></div>
 <pre><code>##    Name Age
 ## 2 Betty  30</code></pre>
 </div>
 <div id="classes-and-data-structure" class="section level2">
 <h2>Classes and Data Structure</h2>
 <p>When importing data to R, using a new R-package, or extracting data from web sources, it is imperative to understand how the data is structured in the R-object (variable) one is working with. A lot of errors occur due to giving R functions input in the wrong format/structure. Having a close look at how the data stored in a variable that we want to work with further can help avoid such errors.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The function <code>class()</code> returns the class(es) of an R object:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># have a look at what kind of object you are dealing with</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">class</span>(mydf)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># have a look at what kind of object you are dealing with</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="kw">class</span>(mydf)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">class</span>(mymatrix)</a></code></pre></div>
-<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">class</span>(mymatrix)</span></code></pre></div>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>To get a clear idea of the structure of data stored in a specific variable, we can call the function <code>str()</code> (for structure) with the object of interest as the only function argument. This is particularly helpful when dealing with a complex/nested data structure.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># have a closer look at the data structure</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">str</span>(mydf)</a></code></pre></div>
-<pre><code>## 'data.frame':    3 obs. of  2 variables:
-##  $ Name: Factor w/ 3 levels &quot;Alice&quot;,&quot;Betty&quot;,..: 1 2 3
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># have a closer look at the data structure</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="kw">str</span>(mydf)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    3 obs. of  2 variables:
+##  $ Name: chr  &quot;Alice&quot; &quot;Betty&quot; &quot;Claire&quot;
 ##  $ Age : num  20 30 45</code></pre>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Note that basic R functions as well as functions distributed via R packages are usually very well documented (look up documentation with <code>help(FUNCTION-NAME)</code> or <code>?FUNCTION-NAME</code>. An important part of such documentations is what class the input arguments of a function must have and what the class of the returned object is. See, for example the documentation of <code>mean()</code> by typing <code>?mean</code> into the R-console and hit enter.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Note that basic R functions as well as functions distributed via R packages are usually very well documented (look up documentation with <code>help(FUNCTION-NAME)</code> or <code>?FUNCTION-NAME</code>. An important part of such documentations is what class the input arguments of a function must have and what the class of the returned object is. See, for example the documentation of <code>mean()</code> by typing <code>?mean</code> into the R-console and hit enter.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
