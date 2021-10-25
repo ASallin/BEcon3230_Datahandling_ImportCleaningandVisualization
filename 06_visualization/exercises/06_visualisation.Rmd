@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
-date: "17/12/2020"
+date: "23/12/2021"
 output:
   pdf_document: default
   html_document:
@@ -143,7 +143,7 @@ confirmed <- confirmedraw %>% gather(key="date", value="confirmed", -c(Country.R
 # str(confirmed)
 confirmed$date <- confirmed$date %>% sub("X", "", .) %>% as.Date("%m.%d.%y")
 # str(confirmed)
-confirmed <- confirmed %>% group_by(Country.Region) %>% mutate(cumconfirmed=cumsum(confirmed), days = date - first(date) + 1)
+confirmed <- confirmed %>% group_by(Country.Region) %>% mutate(cumconfirmed=cumsum(confirmed), days = date - min(date) + 1)
 
 countryselection <- confirmed %>% filter(Country.Region==c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
 ggplot(countryselection, aes(x=days, y=confirmed, colour=Country.Region)) + geom_line(size=1) +
@@ -155,7 +155,7 @@ ggplot(countryselection, aes(x=days, y=confirmed, colour=Country.Region)) + geom
 
 
 \newpage
-# Additional Exercises (not exam-relavant)
+# Additional Exercises (advanced)
 
 ## Exercise D: `ggplot2` challenge on corruption
 Import the dataset `EconomistData.csv` (provided in `data.zip`) to R. The underlying data sources have been used by The Economist (2nd December 2011, ['Corrosive Corruption']( https://www.economist.com/graphic-detail/2011/12/02/corrosive-corruption)) to generate the following figure:
