@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -194,9 +193,9 @@ window.buildTabsets = function(tocID) {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -206,16 +205,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -224,9 +221,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -313,7 +310,45 @@ h6 {
 }
 </style>
 
-<style type="text/css">.author {color: #02934a;}.date {color: #02934a;}.title {color: #02934a;}h1 { color: #02934a;}h2 { color: #02934a;}h3 { color: #02934a;}a {color: #02934a;text-decoration: none;}a:visited {color: #02934a;text-decoration: none;}a:active {color: #02934a;text-decoration: none;}a:hover {color: #02934a;border-bottom: 1px solid #02934a;text-decoration: none;}</style>
+<style type="text/css">
+.author {
+color: #02934a;
+}
+.date {
+color: #02934a;
+}
+.title {
+color: #02934a;
+}
+h1 { 
+color: #02934a;
+}
+h2 { 
+color: #02934a;
+}
+h3 { 
+color: #02934a;
+}
+
+a {
+color: #02934a;
+text-decoration: none;
+}
+a:visited {
+color: #02934a;
+text-decoration: none;
+}
+a:active {
+color: #02934a;
+text-decoration: none;
+}
+
+a:hover {
+color: #02934a;
+border-bottom: 1px solid #02934a;
+text-decoration: none;
+}
+</style>
 
 
 
@@ -329,7 +364,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -391,6 +425,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -425,7 +460,7 @@ summary {
 <h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
 <h3 class="subtitle">Exercise 4: Data Import and Data Preparation/Manipulation</h3>
 <h4 class="author">Ulrich Matter</h4>
-<h4 class="date">21/11/2019</h4>
+<h4 class="date">19/11/2020</h4>
 
 </div>
 
@@ -434,40 +469,42 @@ summary {
 <h2>Notes on Exercise B</h2>
 <p>The US Federal Communications Commission (FCC) provides detailed data on TV and Radio stations in the US. The file <code>tv_ownership.dat</code> is an excerpt of these data in the orignal format as provided by the FCC. Figure out how to properly read this dataset into R with the functions provided in the <code>tidyverse/readr</code>-packages. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them.</p>
 <p>Let’s just give it a try with <code>read_csv()</code> and see what happens.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># load packages for import and data handling</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># first try to read the data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>mydata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;tv_ownership.dat&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># load packages for import and data handling</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># first try to read the data</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">mydata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;tv_ownership.dat&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   `222947|1480881|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|` = col_character()
 ## )</code></pre>
 <pre><code>## Warning: 4 parsing failures.
 ## row col  expected    actual                  file
-##  11  -- 1 columns 6 columns &#39;../tv_ownership.dat&#39;
-##  13  -- 1 columns 6 columns &#39;../tv_ownership.dat&#39;
-##  14  -- 1 columns 6 columns &#39;../tv_ownership.dat&#39;
-##  15  -- 1 columns 3 columns &#39;../tv_ownership.dat&#39;</code></pre>
+##  11  -- 1 columns 6 columns '../tv_ownership.dat'
+##  13  -- 1 columns 6 columns '../tv_ownership.dat'
+##  14  -- 1 columns 6 columns '../tv_ownership.dat'
+##  15  -- 1 columns 3 columns '../tv_ownership.dat'</code></pre>
 <p>The code did not break down but R issued a warning message, indicating that something might have gone wrong. Let’s look at the first few rows to see the result.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">mydata</a></code></pre></div>
 <pre><code>## # A tibble: 24 x 1
-##    `222947|1480881|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/20~
+##    `222947|1480881|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/20…
 ##    &lt;chr&gt;                                                                                            
-##  1 222948|1480883|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/201~
-##  2 222949|1480886|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/201~
-##  3 222950|1480887|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/201~
+##  1 222948|1480883|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/201…
+##  2 222949|1480886|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/201…
+##  3 222950|1480887|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/201…
 ##  4 222952|1480908|ARTICLES OF INCORPORATION|STATE OF CALIFORNIA|04/24/1998||1|||||||||12/21/2011|^| 
 ##  5 222953|1480908|BY-LAWS|CORPORATION|04/24/1998||2|||||||||12/21/2011|^|                           
-##  6 222954|1479522|MEMBERSHIP AGREEMENT RENEWAL|NATIONAL PUBLIC RADIO|10/01/2011|09/30/2012|1|||||||~
-##  7 222955|1479522|CHARTER OF THE ST. LAWRENCE UNIVERSITY|BOARD OF REGENTS OF THE UNIVERSITY OF THE ~
+##  6 222954|1479522|MEMBERSHIP AGREEMENT RENEWAL|NATIONAL PUBLIC RADIO|10/01/2011|09/30/2012|1|||||||…
+##  7 222955|1479522|CHARTER OF THE ST. LAWRENCE UNIVERSITY|BOARD OF REGENTS OF THE UNIVERSITY OF THE …
 ##  8 222956|1480866|ARTICLES OF INCORPORATION|STATE OF CALIFORNIA|||1|||X|OCT|1996|||X|12/21/2011|^|  
 ##  9 222957|1480866|CERTIFICATE OF AMENDMENT|STATE OF CALIFORNIA|||2|||X|OCT|1996|||X|12/21/2011|^|   
 ## 10 222958|1480866|BYLAWS|N/A|||3|||X|OCT|1996|||X|12/21/2011|^|                                     
-## # ... with 14 more rows</code></pre>
+## # … with 14 more rows</code></pre>
 <p>We note that the tibble created consists of 24 rows, but only one column. From looking at the first few rows we see that this is likely wrong. It looks like the data values should be delimited with the pipe character <code>|</code> and not with commas as <code>read_csv()</code> does. In addition, we notice that the first row of the raw data does not contain column names but that the file directly starts with observations. Let’s try it again with <code>read_delim()</code>, a function that allows us to specify which special character should be used as delimiter when parsing the data file. In addition we specify that the values in the first row are not taken as column names.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>mydata &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;tv_ownership.dat&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>mydata</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">mydata &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;tv_ownership.dat&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">mydata</a></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   X1 = col_character(),
 ##   X2 = col_character(),
@@ -490,61 +527,65 @@ summary {
 ## )</code></pre>
 <pre><code>## Warning: 2 parsing failures.
 ## row col   expected     actual                  file
-##  13  -- 18 columns 3 columns  &#39;../tv_ownership.dat&#39;
-##  14  -- 18 columns 16 columns &#39;../tv_ownership.dat&#39;</code></pre>
+##  13  -- 18 columns 3 columns  '../tv_ownership.dat'
+##  14  -- 18 columns 16 columns '../tv_ownership.dat'</code></pre>
 <pre><code>## # A tibble: 25 x 18
 ##    X1     X2    X3    X4     X5    X6       X7 X8    X9    X10   X11     X12 X13   X14   X15   X16  
 ##    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 222947 1480~ STAN~ TRUST~ &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2~
-##  2 222948 1480~ STAN~ TRUST~ &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2~
-##  3 222949 1480~ STAN~ TRUST~ &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2~
-##  4 222950 1480~ STAN~ TRUST~ &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2~
-##  5 222952 1480~ ARTI~ STATE~ 04/2~ &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2~
-##  6 222953 1480~ BY-L~ CORPO~ 04/2~ &lt;NA&gt;      2 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2~
-##  7 222954 1479~ MEMB~ NATIO~ 10/0~ 09/3~     1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2~
-##  8 222955 1479~ CHAR~ BOARD~ 07/2~ NONE      2 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2~
-##  9 222956 1480~ ARTI~ STATE~ &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1996 &lt;NA&gt;  &lt;NA&gt;  X     12/2~
-## 10 222957 1480~ CERT~ STATE~ &lt;NA&gt;  &lt;NA&gt;      2 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1996 &lt;NA&gt;  &lt;NA&gt;  X     12/2~
-## # ... with 15 more rows, and 2 more variables: X17 &lt;chr&gt;, X18 &lt;lgl&gt;</code></pre>
+##  1 222947 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  2 222948 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  3 222949 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  4 222950 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  5 222952 1480… ARTI… STATE… 04/2… &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  6 222953 1480… BY-L… CORPO… 04/2… &lt;NA&gt;      2 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  7 222954 1479… MEMB… NATIO… 10/0… 09/3…     1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  8 222955 1479… CHAR… BOARD… 07/2… NONE      2 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  9 222956 1480… ARTI… STATE… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1996 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+## 10 222957 1480… CERT… STATE… &lt;NA&gt;  &lt;NA&gt;      2 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1996 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+## # … with 15 more rows, and 2 more variables: X17 &lt;chr&gt;, X18 &lt;lgl&gt;</code></pre>
 <p>From looking at the output, the columns seem to be recognized correctly by the parser now. However, R is still issuing a warning, indicating that there is a parsing issue in rows 13 and 14. We therefore use the <code>problems()</code>-function introduced in Exercise A in order to investigate what the problem is.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">problems</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">problems</span>(mydata)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##     row col   expected   actual     file                 
 ##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;                
-## 1    13 &lt;NA&gt;  18 columns 3 columns  &#39;../tv_ownership.dat&#39;
-## 2    14 &lt;NA&gt;  18 columns 16 columns &#39;../tv_ownership.dat&#39;</code></pre>
+## 1    13 &lt;NA&gt;  18 columns 3 columns  '../tv_ownership.dat'
+## 2    14 &lt;NA&gt;  18 columns 16 columns '../tv_ownership.dat'</code></pre>
 <p>In row 13, the parser expected 18 columns, but only encountered 3 columns. Quite likely, there is an inconsistency in the formal structure/syntax of the data. At this point, it makes sense to have a look at the raw data in order to investigate whether there is an extra newline or quote where it should not be. The following code block shows line 13 and 14 of the raw data file:</p>
-<pre><code>206425|1464390|GUARANTEE AGREEMENT       (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION (&#39;SALEM&#39;), SALEM COMMUNICATIONS HOLDING CORPORATION,
+<pre><code>206425|1464390|GUARANTEE AGREEMENT       (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION ('SALEM'), SALEM COMMUNICATIONS HOLDING CORPORATION,
 
  EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND BANK OF AMERICA, N.A., AS ADMINISTRATIVE AGENT.|||6|||X|DEC|2009|DEC|2012||12/21/2011|^|</code></pre>
 <p>From looking at the raw data, we see that the fourth data field contains newline-characters, which the parser then wrongly interprets as the beginning of a new row. One way to deal with this is to manually remove this extra newline in the raw data file. However, if the dataset is large and contains several of these cases, removing all of them manually would be rather unpleasant.</p>
 <p>Thus, how could we implement a cleaning procedure of the raw data in order to resolve this issue? From looking at the raw data, we notice a peculiarity about the structure of this dataset. Each proper line ends with <code>|^|</code>. Hence, we can first remove all end of line (eol) characters from the raw data, and then replace <code>|^|</code> with eol characters in order to recover the proper rows when parsing the data.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># read the file as raw text</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>myrawdata &lt;-<span class="st"> </span><span class="kw">read_file</span>(<span class="st">&quot;tv_ownership.dat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># read the file as raw text</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">myrawdata &lt;-<span class="st"> </span><span class="kw">read_file</span>(<span class="st">&quot;tv_ownership.dat&quot;</span>)</a></code></pre></div>
 <p>The code below prints <code>myrawdata</code>, allowing us to observe the eol characters This is a useful check because how they are displayed can vary with the operating system. On the printout we see the linebreaks written as <code>\r\n</code>. Note that in your case they could also be indicated as <code>\n</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">print</span>(myrawdata)</span></code></pre></div>
-<pre><code>## [1] &quot;222947|1480881|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\r\n222948|1480883|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\r\n222949|1480886|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\r\n222950|1480887|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\r\n222952|1480908|ARTICLES OF INCORPORATION|STATE OF CALIFORNIA|04/24/1998||1|||||||||12/21/2011|^|\r\n222953|1480908|BY-LAWS|CORPORATION|04/24/1998||2|||||||||12/21/2011|^|\r\n222954|1479522|MEMBERSHIP AGREEMENT RENEWAL|NATIONAL PUBLIC RADIO|10/01/2011|09/30/2012|1|||||||||12/21/2011|^|\r\n222955|1479522|CHARTER OF THE ST. LAWRENCE UNIVERSITY|BOARD OF REGENTS OF THE UNIVERSITY OF THE STATE OF NEW YORK|07/21/1995|NONE|2|||||||||12/21/2011|^|\r\n222956|1480866|ARTICLES OF INCORPORATION|STATE OF CALIFORNIA|||1|||X|OCT|1996|||X|12/21/2011|^|\r\n222957|1480866|CERTIFICATE OF AMENDMENT|STATE OF CALIFORNIA|||2|||X|OCT|1996|||X|12/21/2011|^|\r\n222958|1480866|BYLAWS|N/A|||3|||X|OCT|1996|||X|12/21/2011|^|\r\n206424|1464390|FIRST LIEN SECURITY AGREEMENT       (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION (&#39;SALEM&#39;), SALEM COMMUNICATIONS HOLDING CORPORATION, EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND BANK OF AMERICA, N.A., AS ADMINISTRATIVE AGENT.|||5|||X|DEC|2009|DEC|2012||02/06/2012|^|\r\n206425|1464390|GUARANTEE AGREEMENT   \r\n(COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION (&#39;SALEM&#39;), SALEM COMMUNICATIONS HOLDING CORPORATION, EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND BANK OF AMERICA, N.A., AS ADMINISTRATIVE AGENT.|||6|||X|DEC|2009|DEC|2012||12/21/2011|^|\r\n206428|1464390|SECOND LIEN SECURITY AGREEMENT (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION (&#39;SALEM&#39;), SALEM COMMUNICATIONS HOLDING CORPORATION, EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND THE BANK OF NEW YORK MELLON TRUST COMPANY, N.A., AS COLLATERAL AGENT.|||9|||X|DEC|2009|DEC|2016||02/06/2012|^|\r\n206429|1464390|NOTATIONAL GUARANTEES     (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION (&#39;SALEM&#39;), SALEM COMMUNICATIONS HOLDING CORPORATION, AND EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM.|||10|||X|DEC|2009|DEC|2016||02/06/2012|^|\r\n222967|1481174|CERTIFICATE OF FORMATION|STATE OF DELAWARE|||1|||X|JUL|2006|||X|12/22/2011|^|\r\n222968|1481176|CERTIFICATE OF FORMATION|STATE OF DELAWARE|||1|||X|JAN|2006|||X|12/22/2011|^|\r\n222969|1481176|LIMITED LIABILITY COMPANY AGREEMENT|LLC MEMBERS|||2|||X|JUN|2006|||X|12/22/2011|^|\r\n222970|1481176|CREDIT AGREEMENT|WEBSTER BANK|||3|||X|JUN|2006|||X|12/22/2011|^|\r\n222971|1481176|SECURITY AGREEMENT|WEBSTER BANK|||4|||X|JUN|2006|||X|12/22/2011|^|\r\n222972|1481176|GUARANTEE AGREEMENT|WEBSTER BANK|||5|||X|JUN|2006|||X|12/22/2011|^|\r\n222973|1481177|AMENDED AND RESTATED LIMITED PARTNERSHIP AGREEMENT|LLC PARTNERS|||1|||X|MAR|2004|||X|12/22/2011|^|\r\n222974|1481180|CERTIFICATE OF FORMATION|STATE OF NEW YORK|||1|||X|DEC|2006|||X|12/22/2011|^|\r\n222975|1481180|LIMITED LIABILITY COMPANY AGREEMENT|LLC MEMBERS|||2|||X|DEC|2006|||X|12/22/2011|^|\r\n&quot;</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># remove eol characters</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>myrawdata &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\r\n</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, myrawdata, <span class="dt">fixed =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co"># replace all `|^|` with eol characters</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>myrawdata &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;|^|&quot;</span>, <span class="st">&quot;</span><span class="ch">\r\n</span><span class="st">&quot;</span>, myrawdata, <span class="dt">fixed =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">print</span>(myrawdata)</a></code></pre></div>
+<pre><code>## [1] &quot;222947|1480881|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\n222948|1480883|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\n222949|1480886|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\n222950|1480887|STANLEY S. HUBBARD REVOCABLE TRUST|TRUST AGREEMENT|||1|||X|OCT|1979|||X|12/21/2011|^|\n222952|1480908|ARTICLES OF INCORPORATION|STATE OF CALIFORNIA|04/24/1998||1|||||||||12/21/2011|^|\n222953|1480908|BY-LAWS|CORPORATION|04/24/1998||2|||||||||12/21/2011|^|\n222954|1479522|MEMBERSHIP AGREEMENT RENEWAL|NATIONAL PUBLIC RADIO|10/01/2011|09/30/2012|1|||||||||12/21/2011|^|\n222955|1479522|CHARTER OF THE ST. LAWRENCE UNIVERSITY|BOARD OF REGENTS OF THE UNIVERSITY OF THE STATE OF NEW YORK|07/21/1995|NONE|2|||||||||12/21/2011|^|\n222956|1480866|ARTICLES OF INCORPORATION|STATE OF CALIFORNIA|||1|||X|OCT|1996|||X|12/21/2011|^|\n222957|1480866|CERTIFICATE OF AMENDMENT|STATE OF CALIFORNIA|||2|||X|OCT|1996|||X|12/21/2011|^|\n222958|1480866|BYLAWS|N/A|||3|||X|OCT|1996|||X|12/21/2011|^|\n206424|1464390|FIRST LIEN SECURITY AGREEMENT       (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION ('SALEM'), SALEM COMMUNICATIONS HOLDING CORPORATION, EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND BANK OF AMERICA, N.A., AS ADMINISTRATIVE AGENT.|||5|||X|DEC|2009|DEC|2012||02/06/2012|^|\n206425|1464390|GUARANTEE AGREEMENT   \n(COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION ('SALEM'), SALEM COMMUNICATIONS HOLDING CORPORATION, EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND BANK OF AMERICA, N.A., AS ADMINISTRATIVE AGENT.|||6|||X|DEC|2009|DEC|2012||12/21/2011|^|\n206428|1464390|SECOND LIEN SECURITY AGREEMENT (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION ('SALEM'), SALEM COMMUNICATIONS HOLDING CORPORATION, EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND THE BANK OF NEW YORK MELLON TRUST COMPANY, N.A., AS COLLATERAL AGENT.|||9|||X|DEC|2009|DEC|2016||02/06/2012|^|\n206429|1464390|NOTATIONAL GUARANTEES     (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION ('SALEM'), SALEM COMMUNICATIONS HOLDING CORPORATION, AND EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM.|||10|||X|DEC|2009|DEC|2016||02/06/2012|^|\n222967|1481174|CERTIFICATE OF FORMATION|STATE OF DELAWARE|||1|||X|JUL|2006|||X|12/22/2011|^|\n222968|1481176|CERTIFICATE OF FORMATION|STATE OF DELAWARE|||1|||X|JAN|2006|||X|12/22/2011|^|\n222969|1481176|LIMITED LIABILITY COMPANY AGREEMENT|LLC MEMBERS|||2|||X|JUN|2006|||X|12/22/2011|^|\n222970|1481176|CREDIT AGREEMENT|WEBSTER BANK|||3|||X|JUN|2006|||X|12/22/2011|^|\n222971|1481176|SECURITY AGREEMENT|WEBSTER BANK|||4|||X|JUN|2006|||X|12/22/2011|^|\n222972|1481176|GUARANTEE AGREEMENT|WEBSTER BANK|||5|||X|JUN|2006|||X|12/22/2011|^|\n222973|1481177|AMENDED AND RESTATED LIMITED PARTNERSHIP AGREEMENT|LLC PARTNERS|||1|||X|MAR|2004|||X|12/22/2011|^|\n222974|1481180|CERTIFICATE OF FORMATION|STATE OF NEW YORK|||1|||X|DEC|2006|||X|12/22/2011|^|\n222975|1481180|LIMITED LIABILITY COMPANY AGREEMENT|LLC MEMBERS|||2|||X|DEC|2006|||X|12/22/2011|^|\n&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># remove eol characters</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">myrawdata &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\r\n</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, myrawdata, <span class="dt">fixed =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co"># replace all `|^|` with eol characters</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">myrawdata &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;|^|&quot;</span>, <span class="st">&quot;</span><span class="ch">\r\n</span><span class="st">&quot;</span>, myrawdata, <span class="dt">fixed =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Finally, we can parse the cleaned raw data without any parsing issues.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>mydata &lt;-<span class="st"> </span><span class="kw">read_delim</span>(myrawdata, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>mydata</span></code></pre></div>
-<pre><code>## # A tibble: 24 x 16
-##        X1     X2 X3    X4    X5    X6       X7 X8    X9    X10   X11     X12 X13     X14 X15   X16  
-##     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 222947 1.48e6 STAN~ TRUS~ &lt;NA&gt;  &lt;NA&gt;      1 NA    NA    X     OCT    1979 &lt;NA&gt;     NA X     12/2~
-##  2 222948 1.48e6 STAN~ TRUS~ &lt;NA&gt;  &lt;NA&gt;      1 NA    NA    X     OCT    1979 &lt;NA&gt;     NA X     12/2~
-##  3 222949 1.48e6 STAN~ TRUS~ &lt;NA&gt;  &lt;NA&gt;      1 NA    NA    X     OCT    1979 &lt;NA&gt;     NA X     12/2~
-##  4 222950 1.48e6 STAN~ TRUS~ &lt;NA&gt;  &lt;NA&gt;      1 NA    NA    X     OCT    1979 &lt;NA&gt;     NA X     12/2~
-##  5 222952 1.48e6 ARTI~ STAT~ 04/2~ &lt;NA&gt;      1 NA    NA    &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;     NA &lt;NA&gt;  12/2~
-##  6 222953 1.48e6 BY-L~ CORP~ 04/2~ &lt;NA&gt;      2 NA    NA    &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;     NA &lt;NA&gt;  12/2~
-##  7 222954 1.48e6 MEMB~ NATI~ 10/0~ 09/3~     1 NA    NA    &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;     NA &lt;NA&gt;  12/2~
-##  8 222955 1.48e6 CHAR~ BOAR~ 07/2~ NONE      2 NA    NA    &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;     NA &lt;NA&gt;  12/2~
-##  9 222956 1.48e6 ARTI~ STAT~ &lt;NA&gt;  &lt;NA&gt;      1 NA    NA    X     OCT    1996 &lt;NA&gt;     NA X     12/2~
-## 10 222957 1.48e6 CERT~ STAT~ &lt;NA&gt;  &lt;NA&gt;      2 NA    NA    X     OCT    1996 &lt;NA&gt;     NA X     12/2~
-## # ... with 14 more rows</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">mydata &lt;-<span class="st"> </span><span class="kw">read_delim</span>(myrawdata, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## Warning: 2 parsing failures.
+## row col   expected     actual         file
+##  13  -- 16 columns 3 columns  literal data
+##  14  -- 16 columns 14 columns literal data</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">mydata</a></code></pre></div>
+<pre><code>## # A tibble: 25 x 16
+##    X1     X2    X3    X4     X5    X6       X7 X8    X9    X10   X11     X12 X13   X14   X15   X16  
+##    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 222947 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  2 222948 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  3 222949 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  4 222950 1480… STAN… TRUST… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1979 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+##  5 222952 1480… ARTI… STATE… 04/2… &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  6 222953 1480… BY-L… CORPO… 04/2… &lt;NA&gt;      2 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  7 222954 1479… MEMB… NATIO… 10/0… 09/3…     1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  8 222955 1479… CHAR… BOARD… 07/2… NONE      2 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     NA &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  12/2…
+##  9 222956 1480… ARTI… STATE… &lt;NA&gt;  &lt;NA&gt;      1 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1996 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+## 10 222957 1480… CERT… STATE… &lt;NA&gt;  &lt;NA&gt;      2 &lt;NA&gt;  &lt;NA&gt;  X     OCT    1996 &lt;NA&gt;  &lt;NA&gt;  X     12/2…
+## # … with 15 more rows</code></pre>
 </div>
 
 

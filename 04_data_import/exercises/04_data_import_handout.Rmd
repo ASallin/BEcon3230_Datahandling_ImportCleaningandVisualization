@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Ulrich Matter"
-date: "19/11/2020"
+date: "25/11/2021"
 output:
   pdf_document: default
   html_document:
@@ -25,12 +25,12 @@ library(bookdown)
 
 
 ## Exercise A
-Solve the problem posed in Section 11.4.2 ("Problems") in https://r4ds.had.co.nz/data-import.html, by going step-by-step through the instructions. Hint: You will need to have the `readr` package installed and loaded (should be also installed/loaded with `tidyverse`).
+Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the problem posed in Section 11.4.2 ("Problems") by going step-by-step through the instructions. Hint: You will need to have the `readr` package installed and loaded (should be also installed/loaded with `tidyverse`).
 
 
 ## Exercise B
 1. Download the file `tv_ownership.dat` posted in this repo and save it in your `r_course/data` folder.
-2. The file is an excerpt of a dataset provided by the US Federal Communications Commission (FCC) with detailed data on TV and Radio stations ownership. The excerpt is in the orignal format as provided by the FCC. Figure out how to read this dataset into R with the functions provided in the `tidyverse/readr`-packages.
+2. The file is an excerpt of a dataset provided by the US Federal Communications Commission (FCC) with detailed data on TV and Radio stations ownership. The excerpt is in the original format as provided by the FCC. Figure out how to read this dataset into R with the functions provided in the `tidyverse/readr`-packages.
 3. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them (using comments).
 4. Once you have properly imported the TV ownership data, prepare a text file for upload on GitHub classroom. Namely, export the value in the 7th column for the 15th observation to a text file named "tv_ownership_value.txt" (save the file in your `data` folder).
 5. Upload "tv_ownership_value.txt" to GitHub classroom.
@@ -38,7 +38,7 @@ Solve the problem posed in Section 11.4.2 ("Problems") in https://r4ds.had.co.nz
 
 ## Exercise C
 1. Visit the EU Open Data Portal on COVID cases. (Do you remember this website from Exercise Session 2?)
-2. Download the "COVID-19 Cases Worldwide" data in JSON format. However, do not download these data manually (i.e., do not click-and-save). Instead, load the data directly into RStudio from the internet. Hint1: consider the `jsonlite` package. Hint2: the direct link to the JSON file (https://opendata.ecdc.europa.eu/covid19/casedistribution/json/) may be helpful.
+2. Download the "COVID-19 Cases Worldwide" data in JSON format. However, do not download these data manually (i.e., do not click-and-save). Instead, load the data directly into RStudio from the web. Hint 1: consider the `jsonlite` package. Hint2: the direct link to the JSON file (https://opendata.ecdc.europa.eu/covid19/casedistribution/json/) may be helpful.
 3. Reformat the JSON data that you have imported into RStudio to a rectangular format (such that each record is represented as a row and each field as a column).
 
 
