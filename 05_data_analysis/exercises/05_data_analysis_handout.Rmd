@@ -1,10 +1,10 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
-date: "05/12/2019"
+date: "09/12/2021"
 output:
-  word_document: default
   pdf_document: default
+  word_document: default
   html_document:
     highlight: tango
     mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
@@ -13,7 +13,7 @@ header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
-subtitle: 'Exercise 5: Applied Data Analysis with R'
+subtitle: 'Exercise 5: Data Preparation and Data Analysis with R'
 bibliography: ../../references/datahandling.bib
 ---
 
@@ -28,7 +28,7 @@ library(bookdown)
 
 # Exercises^[Adopted from https://r4ds.had.co.nz/tidy-data.html.]
 
-Download and unzip `data.zip` (posted along these instructions on StudyNet). The zip-file contains four csv-files with data needed to solve the following exercises. Make sure you store them in the respective working directory of your R session when solving the exercises.
+The GitHub repo for Exercise Session 5 contains csv files with data needed to solve the following exercises. Make sure to store them in your `r_course/data/` folder. Do not forget to load `tidyverse` before you get started!
 
 ```{r echo=FALSE, message=FALSE, purl=FALSE, warning=FALSE}
 # generate csvs for exercises (all taken from https://r4ds.had.co.nz/tidy-data.html)
@@ -68,7 +68,7 @@ write_csv(preg, "../data/preg.csv")
 
 
 ## Exercise A
-Load `tidyverse` and read `stocks.csv` into R (store it in variable `stocks`). The dataset is currently in long format. Use `spread()` to transform it into wide format (separate columns for different years). Store the resulting `tibble`/`data.frame` in a variable called `stocks2`. Then, run the following code.
+Read `stocks.csv` into RStudio (store it in variable `stocks`). The dataset is currently in long format. Use `spread()` to transform it into wide format (separate columns for different years). Store the resulting `tibble`/`data.frame` in a variable called `stocks2`. Then, run the following code.
 
 ```{r eval=FALSE}
 gather(stocks2, "year", "return", `2015`:`2016`) == stocks
@@ -82,16 +82,14 @@ stocks2 <- spread(stocks, year, return)
 #gather(stocks2, "year", "return", `2015`:`2016`) == stocks
 ```
 
-
-
 ## Exercise B
-Load `tidyverse` and read `countries.csv` into R (store it in variable `countries`). Then, run the following code.
+Read `countries.csv` into RStudio (store it in variable `countries`). Then, run the following code.
 
 ```{r eval=FALSE}
 gather(countries, 1999, 2000, key = "year", value = "cases")
 ```
 
-Why does this code fail?
+Why does this code fail? How can you fix the problem?
 
 ```{r echo=FALSE, eval=FALSE, purl= FALSE}
 # sample solution
@@ -103,12 +101,12 @@ countries <- read_csv("../data/countries.csv")
 
 
 ## Exercise C
-Load `tidyverse` and read `people.csv` into R (store it in variable `people`). Try to spread `people`. Why does the spreading fail? How could you add a new column to fix the problem?
+Read `people.csv` into RStudio (store it in variable `people`). Try to spread `people`. Why does the spreading fail? How could you add a new column to fix the problem?
 
 
 
 ## Exercise D
-Load `tidyverse` and read `preg.csv` into R (store it in variable `preg`). Tidy `preg`. Do you need to spread or gather it? What are the variables?
+Read `preg.csv` into RStudio (store it in variable `preg`). Tidy `preg`. Do you need to spread or gather it? What are the variables?
 
 ```{r eval=FALSE, echo=FALSE, purl= FALSE}
 # sample solution
@@ -116,6 +114,10 @@ preg <- read_csv("preg.csv")
 gather(preg, "male", "female", key="gender", value = "count")
 ```
 
+# Additional Exercises (advanced)
+
+## Exercise E
+Load `covid_sample.csv` (this is a small sample of the data from the EU Open Data Portal that we have seen in previous exercise sessions). Spread the data (i.e., you want one row for each country and columns of the kind `deaths_20/09/2020` and `cases_20/09/2020`). Hint: check out `pivot_longer()` and `pivot_wider()` (from `tidyr`) -- which one of the two could be helpful?
 
 
 # Mock Exam Questions
@@ -126,8 +128,10 @@ gather(preg, "male", "female", key="gender", value = "count")
 
 library(pander)
 library(examr)
+# source('/Users/philine/Desktop/data_handling_philine/examr.R')
 # load file with questions
-questions_file <- "~/datahandling-examination/data/questions_db.xlsx"
+questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
+# questions_file <- "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
 my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week7-8")
 
 # select questions
