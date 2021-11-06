@@ -29,7 +29,7 @@ Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the p
 
 
 ## Exercise B
-1. Download the file `tv_ownership.dat` posted in this repo and save it in your `r_course/data` folder.
+1. Download the file `tv_ownership.dat` posted on Canvas and save it in your `r_course/data` folder.
 2. The file is an excerpt of a dataset provided by the US Federal Communications Commission (FCC) with detailed data on TV and Radio stations ownership. The excerpt is in the original format as provided by the FCC. Figure out how to read this dataset into R with the functions provided in the `tidyverse/readr`-packages.
 3. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them (using comments).
 4. Once you have properly imported the TV ownership data, prepare a text file for upload on GitHub classroom. Namely, export the value in the 7th column for the 15th observation to a text file named "tv_ownership_value.txt" (save the file in your `data` folder).
