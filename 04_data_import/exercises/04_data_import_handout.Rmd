@@ -42,10 +42,7 @@ Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the p
 3. Reformat the JSON data that you have imported into RStudio to a rectangular format (such that each record is represented as a row and each field as a column).
 
 
-
 # Mock Exam Questions
-
-
 ```{r echo=FALSE, results='asis', message=FALSE}
 library(pander)
 library(examr)
