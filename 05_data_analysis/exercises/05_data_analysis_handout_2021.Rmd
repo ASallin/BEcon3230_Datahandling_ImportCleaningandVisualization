@@ -124,7 +124,7 @@ $$ \text{CO2\_percapita}_i = \alpha + \beta \text{GDP\_percapita}_i + u_i.$$
 
 Estimate this linear regression by creating your own function `myols` that takes the following three arguments: ($x$) for the dependent variable, ($y$) for the independent variable, and \textit{matrix}, which takes \texttt{TRUE} if the function estimates the coefficients using matrix algebra, and \texttt{FALSE} if the function estimates the coefficients using the sum operators. Compare the coefficients with the \texttt{R} built-in function `lm()`. Finally, comment and interpret the coefficients. 
 
-(\textbf{Hint 1} (linear regression with sum operator): the slope parameter of the linear regression is expressed as the following formula: 
+\textbf{Hint 1} (linear regression with sum operator): the slope parameter of the linear regression is expressed as the following formula: 
 $$\hat{\beta} = \frac{\sum{x_{i}y_{i}}-N\bar{y}\bar{x}}{\sum{x_i^2}-N\bar{x}^2},$$ and the constant is given by this formula: $$\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x},$$ where $\bar{x}$ gives the mean of $x$ and $\bar{y}$ gives the mean of $y$.
 
 \textbf{Hint 2} (linear regression with matrix algebra): the formula for the linear regression in matrix algebra is 
