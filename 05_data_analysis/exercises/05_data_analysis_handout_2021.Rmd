@@ -118,12 +118,21 @@ pivot_longer(preg, c("male", "female"), names_to = "gender", values_to = "count"
 # Additional Exercises (advanced)
 
 ## Exercise F
-You want to investigate the relationship between GDP per capita and CO2 emissions per capita across countries. On Canvas, download the dataset `co2.csv`. This dataset has been downloaded from the website "Our World in Data" (https://ourworldindata.org/grapher/co2-emissions-vs-gdp). Investigate the relationship between the dependent variable `CO2_percapita` and the independent variable `GDP_percapita` using a linear regression. To do this, create your own function `myols` that takes the dependent ($x$) and the independent variables ($y$) as arguments. Compare the coefficients with the \texttt{R} built-in function `lm()`. Finally, comment and interpret the coefficients. 
+You want to investigate the relationship between GDP per capita and CO2 emissions per capita across countries. On Canvas, download the dataset `co2.csv`. This dataset has been downloaded from the website "Our World in Data" (https://ourworldindata.org/grapher/co2-emissions-vs-gdp). Investigate the relationship between the dependent variable `CO2_percapita` and the independent variable `GDP_percapita` using a linear regression of the following form:
 
-(Hints: the slope parameter of the linear regression is expressed as the following formula: 
-$$\beta_1 = \frac{\sum_{i=1}(y_i - \bar{y})(x_i - \bar{x})}{\sum_{i=1}^n(x_i - \bar{x})^2},$$ and the constant is given by this formula: $$\beta_0 = \bar{y} - \beta_1*\bar{x},$$ where $\bar{x}$ gives the mean of $x$ and $\bar{y}$ gives the mean of $y$.)
+$$ \text{CO2\_percapita}_i = \alpha + \beta \text{GDP\_percapita}_i + u_i.$$
 
-(Note: this exercise is about programming and implementing the formula of the linear regression. You don't need to understand the mechanics of linear regression for the exam. This will be covered next semester in the course `Data Analytics II`.)
+Estimate this linear regression by creating your own function `myols` that takes the following three arguments: ($x$) for the dependent variable, ($y$) for the independent variable, and \textit{matrix}, which takes \texttt{TRUE} if the function estimates the coefficients using matrix algebra, and \texttt{FALSE} if the function estimates the coefficients using the sum operators. Compare the coefficients with the \texttt{R} built-in function `lm()`. Finally, comment and interpret the coefficients. 
+
+(\textbf{Hint 1} (linear regression with sum operator): the slope parameter of the linear regression is expressed as the following formula: 
+$$\hat{\beta} = \frac{\sum{x_{i}y_{i}}-N\bar{y}\bar{x}}{\sum{x_i^2}-N\bar{x}^2},$$ and the constant is given by this formula: $$\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x},$$ where $\bar{x}$ gives the mean of $x$ and $\bar{y}$ gives the mean of $y$.
+
+\textbf{Hint 2} (linear regression with matrix algebra): the formula for the linear regression in matrix algebra is 
+$$\hat{\bf{\beta}} = (\bf{X'X})^{-1} \bf{Xy},$$ where you find the inverse of a matrix with the command 'solve()', the cross-product of two matrices with `crossprod(X,Y)` $= t(X)\%^{*}\% Y'$. Also, note that you need a column of 1s in your matrix of covariates to compute the intercept.)
+
+(\textbf{Note}: this exercise is about programming and implementing the formula of the linear regression. You don't need to understand the mechanics of linear regression for the exam. This will be covered next semester in the course `Data Analytics II`.)
+
+
 
 ```{r echo=FALSE, message=FALSE, purl=FALSE, warning=FALSE}
 # Preparation csv
@@ -136,19 +145,33 @@ write_csv(co2, "../data/co2gdp.csv")
 
 ```{r eval=FALSE, echo=FALSE, purl= FALSE}
 # Create a function for linear regression
-myols <- function(y, x) {
+myols <- function(y, x, matrix = F) {
   
+  if (isFALSE(matrix)){
   # Apply formula for the slope coefficient
-  beta1 <- (sum((y - mean(y))*(x - mean(x)))) / 
-    (sum((x - mean(x))^2))
+  N <- length(y)
+    
+  beta <- (sum(y*x) - N*mean(x)*mean(y)) / (sum(x^2)-N*mean(x)^2)
   
   # Apply formula for the constant
-  beta0 <- mean(y) - beta1*mean(x)
+  alpha <- mean(y)-beta*mean(x)
   
-  return(list(beta1, beta0))
+  return(list("alpha" = alpha, "beta" = beta))
+  }
+
+  if (isTRUE(matrix)){
+    # compute cross products and inverse
+    x <- cbind(1, x)
+    XXi <- solve(crossprod(x,x))
+    Xy <- crossprod(x, y) 
+          
+    return(XXi %*% Xy)
+  }
 }
 
-myols(y = co2$CO2_percapita, x = co2$GDP_percapita)
+myols(y = co2$CO2_percapita, x = co2$GDP_percapita, matrix = F)
+myols(y = co2$CO2_percapita, x = co2$GDP_percapita, matrix = T)
+
 
 # Check with lm()
 lm(CO2_percapita ~ GDP_percapita, data = co2)
@@ -162,7 +185,7 @@ ggplot(co2, aes(x = GDP_percapita, y = CO2_percapita)) +
 
 # Mock Exam Questions
 
-```{r echo=FALSE, results='markdown', message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, include=FALSE, results='markdown'}
 
 library(pander)
 library(examr)
