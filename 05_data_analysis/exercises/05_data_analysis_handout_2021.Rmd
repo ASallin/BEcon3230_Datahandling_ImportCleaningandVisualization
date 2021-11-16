@@ -118,7 +118,7 @@ pivot_longer(preg, c("male", "female"), names_to = "gender", values_to = "count"
 # Additional Exercises (advanced)
 
 ## Exercise F
-You want to investigate the relationship between GDP per capita and CO2 emissions per capita across countries. On Canvas, download the dataset `co2.csv`. This dataset has been downloaded from the website "Our World in Data" (https://ourworldindata.org/grapher/co2-emissions-vs-gdp). Investigate the relationship between the dependent variable `CO2_percapita` and the independent variable `GDP_percapita` using a linear regression of the following form:
+You want to investigate the relationship between GDP per capita and CO2 emissions per capita across countries. On Canvas, download the dataset `co2gdp.csv`. This dataset has been downloaded from the website "Our World in Data" (https://ourworldindata.org/grapher/co2-emissions-vs-gdp). Investigate the relationship between the dependent variable `CO2_percapita` and the independent variable `GDP_percapita` using a linear regression of the following form:
 
 $$ \text{CO2\_percapita}_i = \alpha + \beta \text{GDP\_percapita}_i + u_i.$$
 
