@@ -185,7 +185,7 @@ ggplot(co2, aes(x = GDP_percapita, y = CO2_percapita)) +
 
 # Mock Exam Questions
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, include=TRUE, results='markdown'}
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE, results='markdown'}
 
 library(pander)
 library(examr)
