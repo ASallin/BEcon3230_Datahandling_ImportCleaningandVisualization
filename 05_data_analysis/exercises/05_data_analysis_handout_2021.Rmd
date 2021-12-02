@@ -3,12 +3,12 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
 date: "09/12/2021"
 output:
-  pdf_document: default
-  word_document: default
   html_document:
     highlight: tango
     mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     theme: cerulean
+  word_document: default
+  pdf_document: default
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -128,7 +128,7 @@ Estimate this linear regression by creating your own function `myols` that takes
 $$\hat{\beta} = \frac{\sum{x_{i}y_{i}}-N\bar{y}\bar{x}}{\sum{x_i^2}-N\bar{x}^2},$$ and the constant is given by this formula: $$\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x},$$ where $\bar{x}$ gives the mean of $x$ and $\bar{y}$ gives the mean of $y$.
 
 \textbf{Hint 2} (linear regression with matrix algebra): the formula for the linear regression in matrix algebra is 
-$$\hat{\bf{\beta}} = (\bf{X'X})^{-1} \bf{Xy},$$ where you find the inverse of a matrix with the command 'solve()', the cross-product of two matrices with `crossprod(X,Y)` $= t(X)\%^{*}\% Y'$. Also, note that you need a column of 1s in your matrix of covariates to compute the intercept.
+$$\hat{\bf{\beta}} = (\bf{X'X})^{-1} \bf{Xy},$$ where you find the inverse of a matrix with the command 'solve()', the cross-product of two matrices with `crossprod(X,Y)` $= t(X)\%^{*}\% Y$. Also, note that you need a column of 1s in your matrix of covariates to compute the intercept.
 
 (\textbf{Note}: this exercise is about programming and implementing the formula of the linear regression. You don't need to understand the mechanics of linear regression for the exam. This will be covered next semester in the course `Data Analytics II`.)
 
