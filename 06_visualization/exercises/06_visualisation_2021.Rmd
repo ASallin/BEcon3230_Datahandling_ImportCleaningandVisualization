@@ -6,8 +6,8 @@ output:
   pdf_document: default
   html_document:
     highlight: tango
-    mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     theme: cerulean
+  word_document: default
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -155,49 +155,28 @@ ggplot(countryselection, aes(x=days, y=confirmed, colour=Country.Region)) + geom
 
 
 \newpage
-# Additional Exercises (advanced)
-
-## Exercise D: `ggplot2` challenge on corruption
-Import the dataset `EconomistData.csv` (provided in `data.zip`) to R. The underlying data sources have been used by The Economist (2nd December 2011, ['Corrosive Corruption']( https://www.economist.com/graphic-detail/2011/12/02/corrosive-corruption)) to generate the following figure:
-
-```{r echo=FALSE}
-include_graphics("../../img/economist_corr_hdev.png")
-```
-
-Given the data, the challenge is to reproduce (or get as close to) the original figure with `ggplot2`.
-
-## Exercise E: How confident are you from confidence intervals?
-A new 2021 study looks at whether poor people are more in favor of redistributive policies (https://www.aeaweb.org/articles?id=10.1257/pol.20190276). The authors conduct a randomized survey experiment with over 30,000 participants across 10 countries, half of whom are informed of their position in the national income distribution. In general, they find that people who are told they are relatively poorer than they thought are less concerned about inequality and are not more supportive of redistribution. 
-
-```{r}
-crosscountry <- read_dta("D:/HSG_teaching/Data_Handling/datahandling-exercises/06_visualization/data/crosscountry.dta")
-write_csv(crosscountry, "../data/poor_redistribution.csv")
-crosscountry <- crosscountry %>% 
-  select(context, country)
-
-poor_redistribution <- read_csv("../data/poor_redistribution.csv")
-
-poor_redistribution <- na.omit(poor_redistribution)
-
-```
-
-\newpage
-# Christmas Bonus Exercise (advanced)
+# Christmas Gift Exercise (advanced)
 Two PhD students, after a long evening, were arguing about fundamental research questions. Talking about drug restrictions, one of the two was convinced that the liberalization of private drug use (such as cannabis and harder narcotics) would naturally lead to an increase in violence and in episodes of (collective) psychosis. The only way to see if this claim holds water is to find data that would confirm this hypothesis. The two economists then gathered the two following datasets:
-  - To measure psychotic episodes, they used data from the National UFO Reporting Center, which collects data on each reported UFO seeing across the world. The data are available here: http://www.nuforc.org/webreports.html. The data are ready for use in the file  `ufodata_exercise.csv`, which contains the following variables:
-      - `State.name` and `State.abbr` give the US State identifier;
-      - `year` gives the year;
-      - `total.views.year` gives the number of UFO seeings per year and per State
-  - To measure drug liberalization policies, they scraped the Wikipedia website to get a timeline of cannabis legalization dates across US States. The data was obtained here:  https://en.wikipedia.org/wiki/Legality_of_cannabis_by_U.S._jurisdiction. The data are ready for use in the file `pot_exercise.csv`, which contains the following variables:
-      - `state` gives the US State identifier;
-      - `year` gives the year;
-      - `Legalization_medical` is 1 if the use of cannabis for medical purposes was legalized in the State-year, and 0 otherwise.
+
+- To measure psychotic episodes, they used data from the National UFO Reporting Center, which collects data on each reported UFO seeing across the world. The data are available here: http://www.nuforc.org/webreports.html. The data are ready for use in the file  `ufodata_exercise.csv`, which contains the following variables:
+
+  + `State.name` and `State.abbr` give the US State identifier;
+  + `year` gives the year;
+  + `total.views.year` gives the number of UFO seeings per year and per State
+ 
+- To measure drug liberalization policies, they scraped the Wikipedia website to get a timeline of cannabis legalization dates across US States. The data was obtained here:  https://en.wikipedia.org/wiki/Legality_of_cannabis_by_U.S._jurisdiction. The data are ready for use in the file `pot_exercise.csv`, which contains the following variables:
+
+  + `state` gives the US State identifier;
+  + `year` gives the year;
+  + `Legalization_medical` is 1 if the use of cannabis for medical purposes was legalized in the State-year, and 0 otherwise.
 
 The hypothesis is the following: the legalization of cannabis for medical purposes leads to an increase in hallucinations and episodes of "psychosis". These episodes of psychosis might translate into the number of UFO seeings. Since cannabis was not legalized at the same time in all States ("staggered" introduction), we can compare States which have introduced legal cannabis for medical purposes with States which did not. 
 
-First, import the two datasets `pot_exercise.csv` and `ufodata_exercise.csv` found on Canvas. Explore the datasets, and merge the two datasets using `left_join()` into a new dataframe called `data`. Clean the new dataset. 
+ <br>
 
-```{r include=FALSE, echo=FALSE}
+ 1. First, import the two datasets `pot_exercise.csv` and `ufodata_exercise.csv` found on Canvas. Explore the datasets, and merge the two datasets using `left_join(pot_exercise, ufodata_exercise, by = c("state" = "State.name", "year"))` into a new dataframe called `data`. Clean the new dataset.** 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 pot <- read_csv("../data/pot_exercise.csv")
 ufodata <- read_csv("../data/ufodata_exercise.csv")
 
@@ -209,22 +188,30 @@ data <- left_join(pot, ufodata,
 data <- data[!is.na(data$total.views.year), ]
 ```
 
-You want to see whether the number of UFO seeings in States which have legalized cannabis for medical use is larger than in States which have not. You consider the following linear regression model:
-$$Y = \alpha + \beta \text{Lega} + u, $$ where $Y$ is the number of UFO seeings , and Lega indicates whether the State has legalized cannabis for medical use. Save your regression model in an object called `regression`.
+ <br>
 
-```{r echo=TRUE}
+ 2. You want to see whether the number of UFO seeings in States which have legalized cannabis for medical use is larger than in States which have not. You consider the following linear regression model: $$\text{total.views.year} = \alpha + \beta \text{Legalization\_medical} + u,$$ where *total.views.year* is the number of UFO seeings, and *Legalization_medical* indicates whether the State has legalized cannabis for medical use. $u$ is an error term. Estimate the regression and save your regression model in an object called `regression`.
+
+```{r}
 regression <- lm(total.views.year ~ Legalization_medical, data = data)
 summary(regression)
 ```
 
-Use `ggplot()` to plot the coefficient estimates of Legalization_medical and corresponding confidence intervals. Interpret the results.
+ <br>
 
-(*Hint*: To draw a plot of regression estimates, proceed as follows: (1) transform the regression output into a tibble specifying that you need 95% confidence intervals. A handy way to do this is to use the command `tidy()`from the `broom` package (load the package accordingly); (2) on your graph, you will need `geom_point()` to draw your point estimate, `geom_errorbar()` to draw the confidence intervals, and `geom_hline()` to draw the horizontal zero line. Note that you don't need to draw the coefficient for the constant.)
+ 3. Use `ggplot()` to plot the coefficient estimates of Legalization_medical and corresponding confidence intervals. Interpret the results.
+ 
+*Hint (1)*: To draw a plot of regression estimates, transform the regression output into a tibble specifying that you need 95% confidence intervals. A handy way to do this is to use the command `tidy()`from the `broom` package (you'll need to load the package accordingly). The command `tidy()` takes an `lm` object as its argument, and "extracts" all the important information about the linear regression stored in the `lm` object. It works like `summary()`, but it delivers the information in a tibble: each parameter of the linear regression (here, $\alpha$ and $\beta$) is stored as an observation (row), which contains values for the coefficient, the standard errors, the $t$ statistics, and the p-value. Confidence intervals are optional, and must be called with the option `conf.int = T`. You can compare the result of `summary(regression)` above with the result of `tidy()` right below. 
 
-```{r echo=FALSE}
+```{r}
 library(broom)
 summary.regression <- tidy(regression, conf.int = T, conf.level = 0.95)
+summary.regression
+```
 
+*Hint (2)* To draw the graph, you will need `geom_point()` to draw your point estimate, `geom_errorbar()` to draw the confidence intervals, and `geom_hline()` to draw the horizontal zero line. Note that you don't need to draw the coefficient for the constant.)
+
+```{r include=FALSE}
 # We are not interested in the constant:
 summary.regression <- filter(summary.regression, term == "Legalization_medical")
 
@@ -235,11 +222,14 @@ ggplot(summary.regression, aes(x = term, y = estimate)) +
   theme_classic()
 ```
 
-In this analysis, we did not take into account the fact that States are heterogeneous, and that our effect could be driven only by the fact that States with lots of UFO seeings are also States that would be more inclined to have cannabis legalized. Perform the same analysis as before, but this time include State and year controls in your regression. This model is called a "Difference-in-Difference" model with many groups and time periods in econometrics. Look at the coefficient of `Legalization_medical`. What happened?
+<br>
 
-```{r eval=FALSE, include=FALSE}
+ 4. In this analysis, we did not take into account the fact that States are heterogeneous, and that our effect could be driven only by the fact that States with lots of UFO seeings are also States that would be more inclined to have cannabis legalized. Perform the same analysis as before, but this time include State and year controls in your regression: 
+$$total.views.year = \alpha + \beta *\text{Legalization\_medical} + \delta *\text{as.factor(state)} + \gamma *\text{as.factor(year)} + u.$$
+This model is called a "Difference-in-Difference" model with many groups and time periods in econometrics. Look at the coefficient of `Legalization_medical`. What happened?
+
+```{r include=FALSE}
 regression_2 <- lm(total.views.year ~ Legalization_medical + as.factor(state) + as.factor(year), data = data)
-summary(regression_2)
 
 summary.regression_2 <- tidy(regression_2, conf.int = T, conf.level = 0.95)
 
@@ -252,6 +242,19 @@ ggplot(summary.regression_2, aes(x = term, y = estimate)) +
   geom_hline(yintercept = 0, linetype = 2) +
   theme_classic()
 ```
+
+
+
+\newpage
+# Advanced visualization exercise
+## `ggplot2` challenge on corruption
+Import the dataset `EconomistData.csv` (provided in `data.zip`) to R. The underlying data sources have been used by The Economist (2nd December 2011, ['Corrosive Corruption']( https://www.economist.com/graphic-detail/2011/12/02/corrosive-corruption)) to generate the following figure:
+
+```{r echo=FALSE}
+include_graphics("../../img/economist_corr_hdev.png")
+```
+
+Given the data, the challenge is to reproduce (or get as close to) the original figure with `ggplot2`.
 
 <!-- # References -->
 <!-- http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html -->

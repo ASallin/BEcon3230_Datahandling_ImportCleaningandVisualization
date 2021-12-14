@@ -3,10 +3,10 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
 date: "09/12/2021"
 output:
+  pdf_document: default
   html_document:
     highlight: tango
     theme: cerulean
-  pdf_document: default
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
