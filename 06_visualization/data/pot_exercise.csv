@@ -1,0 +1,2401 @@
+state,year,Legalization_medical
+Alabama,1973,0
+Alabama,1974,0
+Alabama,1975,0
+Alabama,1976,0
+Alabama,1977,0
+Alabama,1978,0
+Alabama,1979,0
+Alabama,1980,0
+Alabama,1981,0
+Alabama,1982,0
+Alabama,1983,0
+Alabama,1984,0
+Alabama,1985,0
+Alabama,1986,0
+Alabama,1987,0
+Alabama,1988,0
+Alabama,1989,0
+Alabama,1990,0
+Alabama,1991,0
+Alabama,1992,0
+Alabama,1993,0
+Alabama,1994,0
+Alabama,1995,0
+Alabama,1996,0
+Alabama,1997,0
+Alabama,1998,0
+Alabama,1999,0
+Alabama,2000,0
+Alabama,2001,0
+Alabama,2002,0
+Alabama,2003,0
+Alabama,2004,0
+Alabama,2005,0
+Alabama,2006,0
+Alabama,2007,0
+Alabama,2008,0
+Alabama,2009,0
+Alabama,2010,0
+Alabama,2011,0
+Alabama,2012,0
+Alabama,2013,0
+Alabama,2014,0
+Alabama,2015,0
+Alabama,2016,1
+Alabama,2017,0
+Alabama,2018,0
+Alabama,2019,0
+Alabama,2020,0
+Alaska,1973,0
+Alaska,1974,0
+Alaska,1975,0
+Alaska,1976,0
+Alaska,1977,0
+Alaska,1978,0
+Alaska,1979,0
+Alaska,1980,0
+Alaska,1981,0
+Alaska,1982,0
+Alaska,1983,0
+Alaska,1984,0
+Alaska,1985,0
+Alaska,1986,0
+Alaska,1987,0
+Alaska,1988,0
+Alaska,1989,0
+Alaska,1990,0
+Alaska,1991,0
+Alaska,1992,0
+Alaska,1993,0
+Alaska,1994,0
+Alaska,1995,0
+Alaska,1996,0
+Alaska,1997,0
+Alaska,1998,1
+Alaska,1999,0
+Alaska,2000,0
+Alaska,2001,0
+Alaska,2002,0
+Alaska,2003,0
+Alaska,2004,0
+Alaska,2005,0
+Alaska,2006,0
+Alaska,2007,0
+Alaska,2008,0
+Alaska,2009,0
+Alaska,2010,0
+Alaska,2011,0
+Alaska,2012,0
+Alaska,2013,0
+Alaska,2014,0
+Alaska,2015,0
+Alaska,2016,0
+Alaska,2017,0
+Alaska,2018,0
+Alaska,2019,0
+Alaska,2020,0
+Arizona,1973,0
+Arizona,1974,0
+Arizona,1975,0
+Arizona,1976,0
+Arizona,1977,0
+Arizona,1978,0
+Arizona,1979,0
+Arizona,1980,0
+Arizona,1981,0
+Arizona,1982,0
+Arizona,1983,0
+Arizona,1984,0
+Arizona,1985,0
+Arizona,1986,0
+Arizona,1987,0
+Arizona,1988,0
+Arizona,1989,0
+Arizona,1990,0
+Arizona,1991,0
+Arizona,1992,0
+Arizona,1993,0
+Arizona,1994,0
+Arizona,1995,0
+Arizona,1996,0
+Arizona,1997,0
+Arizona,1998,0
+Arizona,1999,0
+Arizona,2000,0
+Arizona,2001,0
+Arizona,2002,0
+Arizona,2003,0
+Arizona,2004,0
+Arizona,2005,0
+Arizona,2006,0
+Arizona,2007,0
+Arizona,2008,0
+Arizona,2009,0
+Arizona,2010,1
+Arizona,2011,0
+Arizona,2012,0
+Arizona,2013,0
+Arizona,2014,0
+Arizona,2015,0
+Arizona,2016,0
+Arizona,2017,0
+Arizona,2018,0
+Arizona,2019,0
+Arizona,2020,0
+Arkansas,1973,0
+Arkansas,1974,0
+Arkansas,1975,0
+Arkansas,1976,0
+Arkansas,1977,0
+Arkansas,1978,0
+Arkansas,1979,0
+Arkansas,1980,0
+Arkansas,1981,0
+Arkansas,1982,0
+Arkansas,1983,0
+Arkansas,1984,0
+Arkansas,1985,0
+Arkansas,1986,0
+Arkansas,1987,0
+Arkansas,1988,0
+Arkansas,1989,0
+Arkansas,1990,0
+Arkansas,1991,0
+Arkansas,1992,0
+Arkansas,1993,0
+Arkansas,1994,0
+Arkansas,1995,0
+Arkansas,1996,0
+Arkansas,1997,0
+Arkansas,1998,0
+Arkansas,1999,0
+Arkansas,2000,0
+Arkansas,2001,0
+Arkansas,2002,0
+Arkansas,2003,0
+Arkansas,2004,0
+Arkansas,2005,0
+Arkansas,2006,0
+Arkansas,2007,0
+Arkansas,2008,0
+Arkansas,2009,0
+Arkansas,2010,0
+Arkansas,2011,0
+Arkansas,2012,0
+Arkansas,2013,0
+Arkansas,2014,0
+Arkansas,2015,0
+Arkansas,2016,1
+Arkansas,2017,0
+Arkansas,2018,0
+Arkansas,2019,0
+Arkansas,2020,0
+California,1973,0
+California,1974,0
+California,1975,0
+California,1976,0
+California,1977,0
+California,1978,0
+California,1979,0
+California,1980,0
+California,1981,0
+California,1982,0
+California,1983,0
+California,1984,0
+California,1985,0
+California,1986,0
+California,1987,0
+California,1988,0
+California,1989,0
+California,1990,0
+California,1991,0
+California,1992,0
+California,1993,0
+California,1994,0
+California,1995,0
+California,1996,1
+California,1997,0
+California,1998,0
+California,1999,0
+California,2000,0
+California,2001,0
+California,2002,0
+California,2003,0
+California,2004,0
+California,2005,0
+California,2006,0
+California,2007,0
+California,2008,0
+California,2009,0
+California,2010,0
+California,2011,0
+California,2012,0
+California,2013,0
+California,2014,0
+California,2015,0
+California,2016,0
+California,2017,0
+California,2018,0
+California,2019,0
+California,2020,0
+Colorado,1973,0
+Colorado,1974,0
+Colorado,1975,0
+Colorado,1976,0
+Colorado,1977,0
+Colorado,1978,0
+Colorado,1979,0
+Colorado,1980,0
+Colorado,1981,0
+Colorado,1982,0
+Colorado,1983,0
+Colorado,1984,0
+Colorado,1985,0
+Colorado,1986,0
+Colorado,1987,0
+Colorado,1988,0
+Colorado,1989,0
+Colorado,1990,0
+Colorado,1991,0
+Colorado,1992,0
+Colorado,1993,0
+Colorado,1994,0
+Colorado,1995,0
+Colorado,1996,0
+Colorado,1997,0
+Colorado,1998,0
+Colorado,1999,0
+Colorado,2000,1
+Colorado,2001,0
+Colorado,2002,0
+Colorado,2003,0
+Colorado,2004,0
+Colorado,2005,0
+Colorado,2006,0
+Colorado,2007,0
+Colorado,2008,0
+Colorado,2009,0
+Colorado,2010,0
+Colorado,2011,0
+Colorado,2012,0
+Colorado,2013,0
+Colorado,2014,0
+Colorado,2015,0
+Colorado,2016,0
+Colorado,2017,0
+Colorado,2018,0
+Colorado,2019,0
+Colorado,2020,0
+Connecticut,1973,0
+Connecticut,1974,0
+Connecticut,1975,0
+Connecticut,1976,0
+Connecticut,1977,0
+Connecticut,1978,0
+Connecticut,1979,0
+Connecticut,1980,0
+Connecticut,1981,0
+Connecticut,1982,0
+Connecticut,1983,0
+Connecticut,1984,0
+Connecticut,1985,0
+Connecticut,1986,0
+Connecticut,1987,0
+Connecticut,1988,0
+Connecticut,1989,0
+Connecticut,1990,0
+Connecticut,1991,0
+Connecticut,1992,0
+Connecticut,1993,0
+Connecticut,1994,0
+Connecticut,1995,0
+Connecticut,1996,0
+Connecticut,1997,0
+Connecticut,1998,0
+Connecticut,1999,0
+Connecticut,2000,0
+Connecticut,2001,0
+Connecticut,2002,0
+Connecticut,2003,0
+Connecticut,2004,0
+Connecticut,2005,0
+Connecticut,2006,0
+Connecticut,2007,0
+Connecticut,2008,0
+Connecticut,2009,0
+Connecticut,2010,0
+Connecticut,2011,0
+Connecticut,2012,1
+Connecticut,2013,0
+Connecticut,2014,0
+Connecticut,2015,0
+Connecticut,2016,0
+Connecticut,2017,0
+Connecticut,2018,0
+Connecticut,2019,0
+Connecticut,2020,0
+Delaware,1973,0
+Delaware,1974,0
+Delaware,1975,0
+Delaware,1976,0
+Delaware,1977,0
+Delaware,1978,0
+Delaware,1979,0
+Delaware,1980,0
+Delaware,1981,0
+Delaware,1982,0
+Delaware,1983,0
+Delaware,1984,0
+Delaware,1985,0
+Delaware,1986,0
+Delaware,1987,0
+Delaware,1988,0
+Delaware,1989,0
+Delaware,1990,0
+Delaware,1991,0
+Delaware,1992,0
+Delaware,1993,0
+Delaware,1994,0
+Delaware,1995,0
+Delaware,1996,0
+Delaware,1997,0
+Delaware,1998,0
+Delaware,1999,0
+Delaware,2000,0
+Delaware,2001,0
+Delaware,2002,0
+Delaware,2003,0
+Delaware,2004,0
+Delaware,2005,0
+Delaware,2006,0
+Delaware,2007,0
+Delaware,2008,0
+Delaware,2009,0
+Delaware,2010,0
+Delaware,2011,1
+Delaware,2012,0
+Delaware,2013,0
+Delaware,2014,0
+Delaware,2015,0
+Delaware,2016,0
+Delaware,2017,0
+Delaware,2018,0
+Delaware,2019,0
+Delaware,2020,0
+Florida,1973,0
+Florida,1974,0
+Florida,1975,0
+Florida,1976,0
+Florida,1977,0
+Florida,1978,0
+Florida,1979,0
+Florida,1980,0
+Florida,1981,0
+Florida,1982,0
+Florida,1983,0
+Florida,1984,0
+Florida,1985,0
+Florida,1986,0
+Florida,1987,0
+Florida,1988,0
+Florida,1989,0
+Florida,1990,0
+Florida,1991,0
+Florida,1992,0
+Florida,1993,0
+Florida,1994,0
+Florida,1995,0
+Florida,1996,0
+Florida,1997,0
+Florida,1998,0
+Florida,1999,0
+Florida,2000,0
+Florida,2001,0
+Florida,2002,0
+Florida,2003,0
+Florida,2004,0
+Florida,2005,0
+Florida,2006,0
+Florida,2007,0
+Florida,2008,0
+Florida,2009,0
+Florida,2010,0
+Florida,2011,0
+Florida,2012,0
+Florida,2013,0
+Florida,2014,0
+Florida,2015,0
+Florida,2016,1
+Florida,2017,0
+Florida,2018,0
+Florida,2019,0
+Florida,2020,0
+Georgia,1973,0
+Georgia,1974,0
+Georgia,1975,0
+Georgia,1976,0
+Georgia,1977,0
+Georgia,1978,0
+Georgia,1979,0
+Georgia,1980,0
+Georgia,1981,0
+Georgia,1982,0
+Georgia,1983,0
+Georgia,1984,0
+Georgia,1985,0
+Georgia,1986,0
+Georgia,1987,0
+Georgia,1988,0
+Georgia,1989,0
+Georgia,1990,0
+Georgia,1991,0
+Georgia,1992,0
+Georgia,1993,0
+Georgia,1994,0
+Georgia,1995,0
+Georgia,1996,0
+Georgia,1997,0
+Georgia,1998,0
+Georgia,1999,0
+Georgia,2000,0
+Georgia,2001,0
+Georgia,2002,0
+Georgia,2003,0
+Georgia,2004,0
+Georgia,2005,0
+Georgia,2006,0
+Georgia,2007,0
+Georgia,2008,0
+Georgia,2009,0
+Georgia,2010,0
+Georgia,2011,0
+Georgia,2012,0
+Georgia,2013,0
+Georgia,2014,0
+Georgia,2015,1
+Georgia,2016,0
+Georgia,2017,0
+Georgia,2018,0
+Georgia,2019,0
+Georgia,2020,0
+Hawaii,1973,0
+Hawaii,1974,0
+Hawaii,1975,0
+Hawaii,1976,0
+Hawaii,1977,0
+Hawaii,1978,0
+Hawaii,1979,0
+Hawaii,1980,0
+Hawaii,1981,0
+Hawaii,1982,0
+Hawaii,1983,0
+Hawaii,1984,0
+Hawaii,1985,0
+Hawaii,1986,0
+Hawaii,1987,0
+Hawaii,1988,0
+Hawaii,1989,0
+Hawaii,1990,0
+Hawaii,1991,0
+Hawaii,1992,0
+Hawaii,1993,0
+Hawaii,1994,0
+Hawaii,1995,0
+Hawaii,1996,0
+Hawaii,1997,0
+Hawaii,1998,0
+Hawaii,1999,0
+Hawaii,2000,1
+Hawaii,2001,0
+Hawaii,2002,0
+Hawaii,2003,0
+Hawaii,2004,0
+Hawaii,2005,0
+Hawaii,2006,0
+Hawaii,2007,0
+Hawaii,2008,0
+Hawaii,2009,0
+Hawaii,2010,0
+Hawaii,2011,0
+Hawaii,2012,0
+Hawaii,2013,0
+Hawaii,2014,0
+Hawaii,2015,0
+Hawaii,2016,0
+Hawaii,2017,0
+Hawaii,2018,0
+Hawaii,2019,0
+Hawaii,2020,0
+Idaho,1973,0
+Idaho,1974,0
+Idaho,1975,0
+Idaho,1976,0
+Idaho,1977,0
+Idaho,1978,0
+Idaho,1979,0
+Idaho,1980,0
+Idaho,1981,0
+Idaho,1982,0
+Idaho,1983,0
+Idaho,1984,0
+Idaho,1985,0
+Idaho,1986,0
+Idaho,1987,0
+Idaho,1988,0
+Idaho,1989,0
+Idaho,1990,0
+Idaho,1991,0
+Idaho,1992,0
+Idaho,1993,0
+Idaho,1994,0
+Idaho,1995,0
+Idaho,1996,0
+Idaho,1997,0
+Idaho,1998,0
+Idaho,1999,0
+Idaho,2000,0
+Idaho,2001,0
+Idaho,2002,0
+Idaho,2003,0
+Idaho,2004,0
+Idaho,2005,0
+Idaho,2006,0
+Idaho,2007,0
+Idaho,2008,0
+Idaho,2009,0
+Idaho,2010,0
+Idaho,2011,0
+Idaho,2012,0
+Idaho,2013,0
+Idaho,2014,0
+Idaho,2015,0
+Idaho,2016,0
+Idaho,2017,0
+Idaho,2018,0
+Idaho,2019,0
+Idaho,2020,0
+Illinois,1973,0
+Illinois,1974,0
+Illinois,1975,0
+Illinois,1976,0
+Illinois,1977,0
+Illinois,1978,0
+Illinois,1979,0
+Illinois,1980,0
+Illinois,1981,0
+Illinois,1982,0
+Illinois,1983,0
+Illinois,1984,0
+Illinois,1985,0
+Illinois,1986,0
+Illinois,1987,0
+Illinois,1988,0
+Illinois,1989,0
+Illinois,1990,0
+Illinois,1991,0
+Illinois,1992,0
+Illinois,1993,0
+Illinois,1994,0
+Illinois,1995,0
+Illinois,1996,0
+Illinois,1997,0
+Illinois,1998,0
+Illinois,1999,0
+Illinois,2000,0
+Illinois,2001,0
+Illinois,2002,0
+Illinois,2003,0
+Illinois,2004,0
+Illinois,2005,0
+Illinois,2006,0
+Illinois,2007,0
+Illinois,2008,0
+Illinois,2009,0
+Illinois,2010,0
+Illinois,2011,0
+Illinois,2012,0
+Illinois,2013,0
+Illinois,2014,1
+Illinois,2015,0
+Illinois,2016,0
+Illinois,2017,0
+Illinois,2018,0
+Illinois,2019,0
+Illinois,2020,0
+Indiana,1973,0
+Indiana,1974,0
+Indiana,1975,0
+Indiana,1976,0
+Indiana,1977,0
+Indiana,1978,0
+Indiana,1979,0
+Indiana,1980,0
+Indiana,1981,0
+Indiana,1982,0
+Indiana,1983,0
+Indiana,1984,0
+Indiana,1985,0
+Indiana,1986,0
+Indiana,1987,0
+Indiana,1988,0
+Indiana,1989,0
+Indiana,1990,0
+Indiana,1991,0
+Indiana,1992,0
+Indiana,1993,0
+Indiana,1994,0
+Indiana,1995,0
+Indiana,1996,0
+Indiana,1997,0
+Indiana,1998,0
+Indiana,1999,0
+Indiana,2000,0
+Indiana,2001,0
+Indiana,2002,0
+Indiana,2003,0
+Indiana,2004,0
+Indiana,2005,0
+Indiana,2006,0
+Indiana,2007,0
+Indiana,2008,0
+Indiana,2009,0
+Indiana,2010,0
+Indiana,2011,0
+Indiana,2012,0
+Indiana,2013,0
+Indiana,2014,0
+Indiana,2015,0
+Indiana,2016,0
+Indiana,2017,0
+Indiana,2018,1
+Indiana,2019,0
+Indiana,2020,0
+Iowa,1973,0
+Iowa,1974,0
+Iowa,1975,0
+Iowa,1976,0
+Iowa,1977,0
+Iowa,1978,0
+Iowa,1979,0
+Iowa,1980,0
+Iowa,1981,0
+Iowa,1982,0
+Iowa,1983,0
+Iowa,1984,0
+Iowa,1985,0
+Iowa,1986,0
+Iowa,1987,0
+Iowa,1988,0
+Iowa,1989,0
+Iowa,1990,0
+Iowa,1991,0
+Iowa,1992,0
+Iowa,1993,0
+Iowa,1994,0
+Iowa,1995,0
+Iowa,1996,0
+Iowa,1997,0
+Iowa,1998,0
+Iowa,1999,0
+Iowa,2000,0
+Iowa,2001,0
+Iowa,2002,0
+Iowa,2003,0
+Iowa,2004,0
+Iowa,2005,0
+Iowa,2006,0
+Iowa,2007,0
+Iowa,2008,0
+Iowa,2009,0
+Iowa,2010,0
+Iowa,2011,0
+Iowa,2012,0
+Iowa,2013,0
+Iowa,2014,1
+Iowa,2015,0
+Iowa,2016,0
+Iowa,2017,0
+Iowa,2018,0
+Iowa,2019,0
+Iowa,2020,0
+Kansas,1973,0
+Kansas,1974,0
+Kansas,1975,0
+Kansas,1976,0
+Kansas,1977,0
+Kansas,1978,0
+Kansas,1979,0
+Kansas,1980,0
+Kansas,1981,0
+Kansas,1982,0
+Kansas,1983,0
+Kansas,1984,0
+Kansas,1985,0
+Kansas,1986,0
+Kansas,1987,0
+Kansas,1988,0
+Kansas,1989,0
+Kansas,1990,0
+Kansas,1991,0
+Kansas,1992,0
+Kansas,1993,0
+Kansas,1994,0
+Kansas,1995,0
+Kansas,1996,0
+Kansas,1997,0
+Kansas,1998,0
+Kansas,1999,0
+Kansas,2000,0
+Kansas,2001,0
+Kansas,2002,0
+Kansas,2003,0
+Kansas,2004,0
+Kansas,2005,0
+Kansas,2006,0
+Kansas,2007,0
+Kansas,2008,0
+Kansas,2009,0
+Kansas,2010,0
+Kansas,2011,0
+Kansas,2012,0
+Kansas,2013,0
+Kansas,2014,0
+Kansas,2015,0
+Kansas,2016,0
+Kansas,2017,0
+Kansas,2018,1
+Kansas,2019,0
+Kansas,2020,0
+Kentucky,1973,0
+Kentucky,1974,0
+Kentucky,1975,0
+Kentucky,1976,0
+Kentucky,1977,0
+Kentucky,1978,0
+Kentucky,1979,0
+Kentucky,1980,0
+Kentucky,1981,0
+Kentucky,1982,0
+Kentucky,1983,0
+Kentucky,1984,0
+Kentucky,1985,0
+Kentucky,1986,0
+Kentucky,1987,0
+Kentucky,1988,0
+Kentucky,1989,0
+Kentucky,1990,0
+Kentucky,1991,0
+Kentucky,1992,0
+Kentucky,1993,0
+Kentucky,1994,0
+Kentucky,1995,0
+Kentucky,1996,0
+Kentucky,1997,0
+Kentucky,1998,0
+Kentucky,1999,0
+Kentucky,2000,0
+Kentucky,2001,0
+Kentucky,2002,0
+Kentucky,2003,0
+Kentucky,2004,0
+Kentucky,2005,0
+Kentucky,2006,0
+Kentucky,2007,0
+Kentucky,2008,0
+Kentucky,2009,0
+Kentucky,2010,0
+Kentucky,2011,0
+Kentucky,2012,0
+Kentucky,2013,0
+Kentucky,2014,1
+Kentucky,2015,0
+Kentucky,2016,0
+Kentucky,2017,0
+Kentucky,2018,0
+Kentucky,2019,0
+Kentucky,2020,0
+Louisiana,1973,0
+Louisiana,1974,0
+Louisiana,1975,0
+Louisiana,1976,0
+Louisiana,1977,0
+Louisiana,1978,0
+Louisiana,1979,0
+Louisiana,1980,0
+Louisiana,1981,0
+Louisiana,1982,0
+Louisiana,1983,0
+Louisiana,1984,0
+Louisiana,1985,0
+Louisiana,1986,0
+Louisiana,1987,0
+Louisiana,1988,0
+Louisiana,1989,0
+Louisiana,1990,0
+Louisiana,1991,0
+Louisiana,1992,0
+Louisiana,1993,0
+Louisiana,1994,0
+Louisiana,1995,0
+Louisiana,1996,0
+Louisiana,1997,0
+Louisiana,1998,0
+Louisiana,1999,0
+Louisiana,2000,0
+Louisiana,2001,0
+Louisiana,2002,0
+Louisiana,2003,0
+Louisiana,2004,0
+Louisiana,2005,0
+Louisiana,2006,0
+Louisiana,2007,0
+Louisiana,2008,0
+Louisiana,2009,0
+Louisiana,2010,0
+Louisiana,2011,0
+Louisiana,2012,0
+Louisiana,2013,0
+Louisiana,2014,0
+Louisiana,2015,1
+Louisiana,2016,0
+Louisiana,2017,0
+Louisiana,2018,0
+Louisiana,2019,0
+Louisiana,2020,0
+Maine,1973,0
+Maine,1974,0
+Maine,1975,0
+Maine,1976,0
+Maine,1977,0
+Maine,1978,0
+Maine,1979,0
+Maine,1980,0
+Maine,1981,0
+Maine,1982,0
+Maine,1983,0
+Maine,1984,0
+Maine,1985,0
+Maine,1986,0
+Maine,1987,0
+Maine,1988,0
+Maine,1989,0
+Maine,1990,0
+Maine,1991,0
+Maine,1992,0
+Maine,1993,0
+Maine,1994,0
+Maine,1995,0
+Maine,1996,0
+Maine,1997,0
+Maine,1998,0
+Maine,1999,1
+Maine,2000,0
+Maine,2001,0
+Maine,2002,0
+Maine,2003,0
+Maine,2004,0
+Maine,2005,0
+Maine,2006,0
+Maine,2007,0
+Maine,2008,0
+Maine,2009,0
+Maine,2010,0
+Maine,2011,0
+Maine,2012,0
+Maine,2013,0
+Maine,2014,0
+Maine,2015,0
+Maine,2016,0
+Maine,2017,0
+Maine,2018,0
+Maine,2019,0
+Maine,2020,0
+Maryland,1973,0
+Maryland,1974,0
+Maryland,1975,0
+Maryland,1976,0
+Maryland,1977,0
+Maryland,1978,0
+Maryland,1979,0
+Maryland,1980,0
+Maryland,1981,0
+Maryland,1982,0
+Maryland,1983,0
+Maryland,1984,0
+Maryland,1985,0
+Maryland,1986,0
+Maryland,1987,0
+Maryland,1988,0
+Maryland,1989,0
+Maryland,1990,0
+Maryland,1991,0
+Maryland,1992,0
+Maryland,1993,0
+Maryland,1994,0
+Maryland,1995,0
+Maryland,1996,0
+Maryland,1997,0
+Maryland,1998,0
+Maryland,1999,0
+Maryland,2000,0
+Maryland,2001,0
+Maryland,2002,0
+Maryland,2003,0
+Maryland,2004,0
+Maryland,2005,0
+Maryland,2006,0
+Maryland,2007,0
+Maryland,2008,0
+Maryland,2009,0
+Maryland,2010,0
+Maryland,2011,0
+Maryland,2012,0
+Maryland,2013,0
+Maryland,2014,1
+Maryland,2015,0
+Maryland,2016,0
+Maryland,2017,0
+Maryland,2018,0
+Maryland,2019,0
+Maryland,2020,0
+Massachusetts,1973,0
+Massachusetts,1974,0
+Massachusetts,1975,0
+Massachusetts,1976,0
+Massachusetts,1977,0
+Massachusetts,1978,0
+Massachusetts,1979,0
+Massachusetts,1980,0
+Massachusetts,1981,0
+Massachusetts,1982,0
+Massachusetts,1983,0
+Massachusetts,1984,0
+Massachusetts,1985,0
+Massachusetts,1986,0
+Massachusetts,1987,0
+Massachusetts,1988,0
+Massachusetts,1989,0
+Massachusetts,1990,0
+Massachusetts,1991,0
+Massachusetts,1992,0
+Massachusetts,1993,0
+Massachusetts,1994,0
+Massachusetts,1995,0
+Massachusetts,1996,0
+Massachusetts,1997,0
+Massachusetts,1998,0
+Massachusetts,1999,0
+Massachusetts,2000,0
+Massachusetts,2001,0
+Massachusetts,2002,0
+Massachusetts,2003,0
+Massachusetts,2004,0
+Massachusetts,2005,0
+Massachusetts,2006,0
+Massachusetts,2007,0
+Massachusetts,2008,0
+Massachusetts,2009,0
+Massachusetts,2010,0
+Massachusetts,2011,0
+Massachusetts,2012,1
+Massachusetts,2013,0
+Massachusetts,2014,0
+Massachusetts,2015,0
+Massachusetts,2016,0
+Massachusetts,2017,0
+Massachusetts,2018,0
+Massachusetts,2019,0
+Massachusetts,2020,0
+Michigan,1973,0
+Michigan,1974,0
+Michigan,1975,0
+Michigan,1976,0
+Michigan,1977,0
+Michigan,1978,0
+Michigan,1979,0
+Michigan,1980,0
+Michigan,1981,0
+Michigan,1982,0
+Michigan,1983,0
+Michigan,1984,0
+Michigan,1985,0
+Michigan,1986,0
+Michigan,1987,0
+Michigan,1988,0
+Michigan,1989,0
+Michigan,1990,0
+Michigan,1991,0
+Michigan,1992,0
+Michigan,1993,0
+Michigan,1994,0
+Michigan,1995,0
+Michigan,1996,0
+Michigan,1997,0
+Michigan,1998,0
+Michigan,1999,0
+Michigan,2000,0
+Michigan,2001,0
+Michigan,2002,0
+Michigan,2003,0
+Michigan,2004,0
+Michigan,2005,0
+Michigan,2006,0
+Michigan,2007,0
+Michigan,2008,1
+Michigan,2009,0
+Michigan,2010,0
+Michigan,2011,0
+Michigan,2012,0
+Michigan,2013,0
+Michigan,2014,0
+Michigan,2015,0
+Michigan,2016,0
+Michigan,2017,0
+Michigan,2018,0
+Michigan,2019,0
+Michigan,2020,0
+Minnesota,1973,0
+Minnesota,1974,0
+Minnesota,1975,0
+Minnesota,1976,0
+Minnesota,1977,0
+Minnesota,1978,0
+Minnesota,1979,0
+Minnesota,1980,0
+Minnesota,1981,0
+Minnesota,1982,0
+Minnesota,1983,0
+Minnesota,1984,0
+Minnesota,1985,0
+Minnesota,1986,0
+Minnesota,1987,0
+Minnesota,1988,0
+Minnesota,1989,0
+Minnesota,1990,0
+Minnesota,1991,0
+Minnesota,1992,0
+Minnesota,1993,0
+Minnesota,1994,0
+Minnesota,1995,0
+Minnesota,1996,0
+Minnesota,1997,0
+Minnesota,1998,0
+Minnesota,1999,0
+Minnesota,2000,0
+Minnesota,2001,0
+Minnesota,2002,0
+Minnesota,2003,0
+Minnesota,2004,0
+Minnesota,2005,0
+Minnesota,2006,0
+Minnesota,2007,0
+Minnesota,2008,0
+Minnesota,2009,0
+Minnesota,2010,0
+Minnesota,2011,0
+Minnesota,2012,0
+Minnesota,2013,0
+Minnesota,2014,1
+Minnesota,2015,0
+Minnesota,2016,0
+Minnesota,2017,0
+Minnesota,2018,0
+Minnesota,2019,0
+Minnesota,2020,0
+Mississippi,1973,0
+Mississippi,1974,0
+Mississippi,1975,0
+Mississippi,1976,0
+Mississippi,1977,0
+Mississippi,1978,0
+Mississippi,1979,0
+Mississippi,1980,0
+Mississippi,1981,0
+Mississippi,1982,0
+Mississippi,1983,0
+Mississippi,1984,0
+Mississippi,1985,0
+Mississippi,1986,0
+Mississippi,1987,0
+Mississippi,1988,0
+Mississippi,1989,0
+Mississippi,1990,0
+Mississippi,1991,0
+Mississippi,1992,0
+Mississippi,1993,0
+Mississippi,1994,0
+Mississippi,1995,0
+Mississippi,1996,0
+Mississippi,1997,0
+Mississippi,1998,0
+Mississippi,1999,0
+Mississippi,2000,0
+Mississippi,2001,0
+Mississippi,2002,0
+Mississippi,2003,0
+Mississippi,2004,0
+Mississippi,2005,0
+Mississippi,2006,0
+Mississippi,2007,0
+Mississippi,2008,0
+Mississippi,2009,0
+Mississippi,2010,0
+Mississippi,2011,0
+Mississippi,2012,0
+Mississippi,2013,0
+Mississippi,2014,0
+Mississippi,2015,0
+Mississippi,2016,0
+Mississippi,2017,0
+Mississippi,2018,0
+Mississippi,2019,0
+Mississippi,2020,1
+Missouri,1973,0
+Missouri,1974,0
+Missouri,1975,0
+Missouri,1976,0
+Missouri,1977,0
+Missouri,1978,0
+Missouri,1979,0
+Missouri,1980,0
+Missouri,1981,0
+Missouri,1982,0
+Missouri,1983,0
+Missouri,1984,0
+Missouri,1985,0
+Missouri,1986,0
+Missouri,1987,0
+Missouri,1988,0
+Missouri,1989,0
+Missouri,1990,0
+Missouri,1991,0
+Missouri,1992,0
+Missouri,1993,0
+Missouri,1994,0
+Missouri,1995,0
+Missouri,1996,0
+Missouri,1997,0
+Missouri,1998,0
+Missouri,1999,0
+Missouri,2000,0
+Missouri,2001,0
+Missouri,2002,0
+Missouri,2003,0
+Missouri,2004,0
+Missouri,2005,0
+Missouri,2006,0
+Missouri,2007,0
+Missouri,2008,0
+Missouri,2009,0
+Missouri,2010,0
+Missouri,2011,0
+Missouri,2012,0
+Missouri,2013,0
+Missouri,2014,0
+Missouri,2015,0
+Missouri,2016,0
+Missouri,2017,0
+Missouri,2018,1
+Missouri,2019,0
+Missouri,2020,0
+Montana,1973,0
+Montana,1974,0
+Montana,1975,0
+Montana,1976,0
+Montana,1977,0
+Montana,1978,0
+Montana,1979,0
+Montana,1980,0
+Montana,1981,0
+Montana,1982,0
+Montana,1983,0
+Montana,1984,0
+Montana,1985,0
+Montana,1986,0
+Montana,1987,0
+Montana,1988,0
+Montana,1989,0
+Montana,1990,0
+Montana,1991,0
+Montana,1992,0
+Montana,1993,0
+Montana,1994,0
+Montana,1995,0
+Montana,1996,0
+Montana,1997,0
+Montana,1998,0
+Montana,1999,0
+Montana,2000,0
+Montana,2001,0
+Montana,2002,0
+Montana,2003,0
+Montana,2004,0
+Montana,2005,0
+Montana,2006,0
+Montana,2007,0
+Montana,2008,0
+Montana,2009,0
+Montana,2010,0
+Montana,2011,0
+Montana,2012,0
+Montana,2013,0
+Montana,2014,0
+Montana,2015,0
+Montana,2016,0
+Montana,2017,1
+Montana,2018,0
+Montana,2019,0
+Montana,2020,0
+Nebraska,1973,0
+Nebraska,1974,0
+Nebraska,1975,0
+Nebraska,1976,0
+Nebraska,1977,0
+Nebraska,1978,0
+Nebraska,1979,0
+Nebraska,1980,0
+Nebraska,1981,0
+Nebraska,1982,0
+Nebraska,1983,0
+Nebraska,1984,0
+Nebraska,1985,0
+Nebraska,1986,0
+Nebraska,1987,0
+Nebraska,1988,0
+Nebraska,1989,0
+Nebraska,1990,0
+Nebraska,1991,0
+Nebraska,1992,0
+Nebraska,1993,0
+Nebraska,1994,0
+Nebraska,1995,0
+Nebraska,1996,0
+Nebraska,1997,0
+Nebraska,1998,0
+Nebraska,1999,0
+Nebraska,2000,0
+Nebraska,2001,0
+Nebraska,2002,0
+Nebraska,2003,0
+Nebraska,2004,0
+Nebraska,2005,0
+Nebraska,2006,0
+Nebraska,2007,0
+Nebraska,2008,0
+Nebraska,2009,0
+Nebraska,2010,0
+Nebraska,2011,0
+Nebraska,2012,0
+Nebraska,2013,0
+Nebraska,2014,0
+Nebraska,2015,0
+Nebraska,2016,0
+Nebraska,2017,0
+Nebraska,2018,0
+Nebraska,2019,0
+Nebraska,2020,0
+Nevada,1973,0
+Nevada,1974,0
+Nevada,1975,0
+Nevada,1976,0
+Nevada,1977,0
+Nevada,1978,0
+Nevada,1979,0
+Nevada,1980,0
+Nevada,1981,0
+Nevada,1982,0
+Nevada,1983,0
+Nevada,1984,0
+Nevada,1985,0
+Nevada,1986,0
+Nevada,1987,0
+Nevada,1988,0
+Nevada,1989,0
+Nevada,1990,0
+Nevada,1991,0
+Nevada,1992,0
+Nevada,1993,0
+Nevada,1994,0
+Nevada,1995,0
+Nevada,1996,0
+Nevada,1997,0
+Nevada,1998,0
+Nevada,1999,0
+Nevada,2000,1
+Nevada,2001,0
+Nevada,2002,0
+Nevada,2003,0
+Nevada,2004,0
+Nevada,2005,0
+Nevada,2006,0
+Nevada,2007,0
+Nevada,2008,0
+Nevada,2009,0
+Nevada,2010,0
+Nevada,2011,0
+Nevada,2012,0
+Nevada,2013,0
+Nevada,2014,0
+Nevada,2015,0
+Nevada,2016,0
+Nevada,2017,0
+Nevada,2018,0
+Nevada,2019,0
+Nevada,2020,0
+New Hampshire,1973,0
+New Hampshire,1974,0
+New Hampshire,1975,0
+New Hampshire,1976,0
+New Hampshire,1977,0
+New Hampshire,1978,0
+New Hampshire,1979,0
+New Hampshire,1980,0
+New Hampshire,1981,0
+New Hampshire,1982,0
+New Hampshire,1983,0
+New Hampshire,1984,0
+New Hampshire,1985,0
+New Hampshire,1986,0
+New Hampshire,1987,0
+New Hampshire,1988,0
+New Hampshire,1989,0
+New Hampshire,1990,0
+New Hampshire,1991,0
+New Hampshire,1992,0
+New Hampshire,1993,0
+New Hampshire,1994,0
+New Hampshire,1995,0
+New Hampshire,1996,0
+New Hampshire,1997,0
+New Hampshire,1998,0
+New Hampshire,1999,0
+New Hampshire,2000,0
+New Hampshire,2001,0
+New Hampshire,2002,0
+New Hampshire,2003,0
+New Hampshire,2004,0
+New Hampshire,2005,0
+New Hampshire,2006,0
+New Hampshire,2007,0
+New Hampshire,2008,0
+New Hampshire,2009,0
+New Hampshire,2010,0
+New Hampshire,2011,0
+New Hampshire,2012,0
+New Hampshire,2013,1
+New Hampshire,2014,0
+New Hampshire,2015,0
+New Hampshire,2016,0
+New Hampshire,2017,0
+New Hampshire,2018,0
+New Hampshire,2019,0
+New Hampshire,2020,0
+New Jersey,1973,0
+New Jersey,1974,0
+New Jersey,1975,0
+New Jersey,1976,0
+New Jersey,1977,0
+New Jersey,1978,0
+New Jersey,1979,0
+New Jersey,1980,0
+New Jersey,1981,0
+New Jersey,1982,0
+New Jersey,1983,0
+New Jersey,1984,0
+New Jersey,1985,0
+New Jersey,1986,0
+New Jersey,1987,0
+New Jersey,1988,0
+New Jersey,1989,0
+New Jersey,1990,0
+New Jersey,1991,0
+New Jersey,1992,0
+New Jersey,1993,0
+New Jersey,1994,0
+New Jersey,1995,0
+New Jersey,1996,0
+New Jersey,1997,0
+New Jersey,1998,0
+New Jersey,1999,0
+New Jersey,2000,0
+New Jersey,2001,0
+New Jersey,2002,0
+New Jersey,2003,0
+New Jersey,2004,0
+New Jersey,2005,0
+New Jersey,2006,0
+New Jersey,2007,0
+New Jersey,2008,0
+New Jersey,2009,0
+New Jersey,2010,1
+New Jersey,2011,0
+New Jersey,2012,0
+New Jersey,2013,0
+New Jersey,2014,0
+New Jersey,2015,0
+New Jersey,2016,0
+New Jersey,2017,0
+New Jersey,2018,0
+New Jersey,2019,0
+New Jersey,2020,0
+New Mexico,1973,0
+New Mexico,1974,0
+New Mexico,1975,0
+New Mexico,1976,0
+New Mexico,1977,0
+New Mexico,1978,0
+New Mexico,1979,0
+New Mexico,1980,0
+New Mexico,1981,0
+New Mexico,1982,0
+New Mexico,1983,0
+New Mexico,1984,0
+New Mexico,1985,0
+New Mexico,1986,0
+New Mexico,1987,0
+New Mexico,1988,0
+New Mexico,1989,0
+New Mexico,1990,0
+New Mexico,1991,0
+New Mexico,1992,0
+New Mexico,1993,0
+New Mexico,1994,0
+New Mexico,1995,0
+New Mexico,1996,0
+New Mexico,1997,0
+New Mexico,1998,0
+New Mexico,1999,0
+New Mexico,2000,0
+New Mexico,2001,0
+New Mexico,2002,0
+New Mexico,2003,0
+New Mexico,2004,0
+New Mexico,2005,0
+New Mexico,2006,0
+New Mexico,2007,1
+New Mexico,2008,0
+New Mexico,2009,0
+New Mexico,2010,0
+New Mexico,2011,0
+New Mexico,2012,0
+New Mexico,2013,0
+New Mexico,2014,0
+New Mexico,2015,0
+New Mexico,2016,0
+New Mexico,2017,0
+New Mexico,2018,0
+New Mexico,2019,0
+New Mexico,2020,0
+New York,1973,0
+New York,1974,0
+New York,1975,0
+New York,1976,0
+New York,1977,0
+New York,1978,0
+New York,1979,0
+New York,1980,0
+New York,1981,0
+New York,1982,0
+New York,1983,0
+New York,1984,0
+New York,1985,0
+New York,1986,0
+New York,1987,0
+New York,1988,0
+New York,1989,0
+New York,1990,0
+New York,1991,0
+New York,1992,0
+New York,1993,0
+New York,1994,0
+New York,1995,0
+New York,1996,0
+New York,1997,0
+New York,1998,0
+New York,1999,0
+New York,2000,0
+New York,2001,0
+New York,2002,0
+New York,2003,0
+New York,2004,0
+New York,2005,0
+New York,2006,0
+New York,2007,0
+New York,2008,0
+New York,2009,0
+New York,2010,0
+New York,2011,0
+New York,2012,0
+New York,2013,0
+New York,2014,1
+New York,2015,0
+New York,2016,0
+New York,2017,0
+New York,2018,0
+New York,2019,0
+New York,2020,0
+North Carolina,1973,0
+North Carolina,1974,0
+North Carolina,1975,0
+North Carolina,1976,0
+North Carolina,1977,0
+North Carolina,1978,0
+North Carolina,1979,0
+North Carolina,1980,0
+North Carolina,1981,0
+North Carolina,1982,0
+North Carolina,1983,0
+North Carolina,1984,0
+North Carolina,1985,0
+North Carolina,1986,0
+North Carolina,1987,0
+North Carolina,1988,0
+North Carolina,1989,0
+North Carolina,1990,0
+North Carolina,1991,0
+North Carolina,1992,0
+North Carolina,1993,0
+North Carolina,1994,0
+North Carolina,1995,0
+North Carolina,1996,0
+North Carolina,1997,0
+North Carolina,1998,0
+North Carolina,1999,0
+North Carolina,2000,0
+North Carolina,2001,0
+North Carolina,2002,0
+North Carolina,2003,0
+North Carolina,2004,0
+North Carolina,2005,0
+North Carolina,2006,0
+North Carolina,2007,0
+North Carolina,2008,0
+North Carolina,2009,0
+North Carolina,2010,0
+North Carolina,2011,0
+North Carolina,2012,0
+North Carolina,2013,0
+North Carolina,2014,0
+North Carolina,2015,1
+North Carolina,2016,0
+North Carolina,2017,0
+North Carolina,2018,0
+North Carolina,2019,0
+North Carolina,2020,0
+North Dakota,1973,0
+North Dakota,1974,0
+North Dakota,1975,0
+North Dakota,1976,0
+North Dakota,1977,0
+North Dakota,1978,0
+North Dakota,1979,0
+North Dakota,1980,0
+North Dakota,1981,0
+North Dakota,1982,0
+North Dakota,1983,0
+North Dakota,1984,0
+North Dakota,1985,0
+North Dakota,1986,0
+North Dakota,1987,0
+North Dakota,1988,0
+North Dakota,1989,0
+North Dakota,1990,0
+North Dakota,1991,0
+North Dakota,1992,0
+North Dakota,1993,0
+North Dakota,1994,0
+North Dakota,1995,0
+North Dakota,1996,0
+North Dakota,1997,0
+North Dakota,1998,0
+North Dakota,1999,0
+North Dakota,2000,0
+North Dakota,2001,0
+North Dakota,2002,0
+North Dakota,2003,0
+North Dakota,2004,0
+North Dakota,2005,0
+North Dakota,2006,0
+North Dakota,2007,0
+North Dakota,2008,0
+North Dakota,2009,0
+North Dakota,2010,0
+North Dakota,2011,0
+North Dakota,2012,0
+North Dakota,2013,0
+North Dakota,2014,0
+North Dakota,2015,0
+North Dakota,2016,1
+North Dakota,2017,0
+North Dakota,2018,0
+North Dakota,2019,0
+North Dakota,2020,0
+Ohio,1973,0
+Ohio,1974,0
+Ohio,1975,0
+Ohio,1976,0
+Ohio,1977,0
+Ohio,1978,0
+Ohio,1979,0
+Ohio,1980,0
+Ohio,1981,0
+Ohio,1982,0
+Ohio,1983,0
+Ohio,1984,0
+Ohio,1985,0
+Ohio,1986,0
+Ohio,1987,0
+Ohio,1988,0
+Ohio,1989,0
+Ohio,1990,0
+Ohio,1991,0
+Ohio,1992,0
+Ohio,1993,0
+Ohio,1994,0
+Ohio,1995,0
+Ohio,1996,0
+Ohio,1997,0
+Ohio,1998,0
+Ohio,1999,0
+Ohio,2000,0
+Ohio,2001,0
+Ohio,2002,0
+Ohio,2003,0
+Ohio,2004,0
+Ohio,2005,0
+Ohio,2006,0
+Ohio,2007,0
+Ohio,2008,0
+Ohio,2009,0
+Ohio,2010,0
+Ohio,2011,0
+Ohio,2012,0
+Ohio,2013,0
+Ohio,2014,0
+Ohio,2015,0
+Ohio,2016,1
+Ohio,2017,0
+Ohio,2018,0
+Ohio,2019,0
+Ohio,2020,0
+Oklahoma,1973,0
+Oklahoma,1974,0
+Oklahoma,1975,0
+Oklahoma,1976,0
+Oklahoma,1977,0
+Oklahoma,1978,0
+Oklahoma,1979,0
+Oklahoma,1980,0
+Oklahoma,1981,0
+Oklahoma,1982,0
+Oklahoma,1983,0
+Oklahoma,1984,0
+Oklahoma,1985,0
+Oklahoma,1986,0
+Oklahoma,1987,0
+Oklahoma,1988,0
+Oklahoma,1989,0
+Oklahoma,1990,0
+Oklahoma,1991,0
+Oklahoma,1992,0
+Oklahoma,1993,0
+Oklahoma,1994,0
+Oklahoma,1995,0
+Oklahoma,1996,0
+Oklahoma,1997,0
+Oklahoma,1998,0
+Oklahoma,1999,0
+Oklahoma,2000,0
+Oklahoma,2001,0
+Oklahoma,2002,0
+Oklahoma,2003,0
+Oklahoma,2004,0
+Oklahoma,2005,0
+Oklahoma,2006,0
+Oklahoma,2007,0
+Oklahoma,2008,0
+Oklahoma,2009,0
+Oklahoma,2010,0
+Oklahoma,2011,0
+Oklahoma,2012,0
+Oklahoma,2013,0
+Oklahoma,2014,0
+Oklahoma,2015,0
+Oklahoma,2016,0
+Oklahoma,2017,0
+Oklahoma,2018,1
+Oklahoma,2019,0
+Oklahoma,2020,0
+Oregon,1973,0
+Oregon,1974,0
+Oregon,1975,0
+Oregon,1976,0
+Oregon,1977,0
+Oregon,1978,0
+Oregon,1979,0
+Oregon,1980,0
+Oregon,1981,0
+Oregon,1982,0
+Oregon,1983,0
+Oregon,1984,0
+Oregon,1985,0
+Oregon,1986,0
+Oregon,1987,0
+Oregon,1988,0
+Oregon,1989,0
+Oregon,1990,0
+Oregon,1991,0
+Oregon,1992,0
+Oregon,1993,0
+Oregon,1994,0
+Oregon,1995,0
+Oregon,1996,0
+Oregon,1997,0
+Oregon,1998,1
+Oregon,1999,0
+Oregon,2000,0
+Oregon,2001,0
+Oregon,2002,0
+Oregon,2003,0
+Oregon,2004,0
+Oregon,2005,0
+Oregon,2006,0
+Oregon,2007,0
+Oregon,2008,0
+Oregon,2009,0
+Oregon,2010,0
+Oregon,2011,0
+Oregon,2012,0
+Oregon,2013,0
+Oregon,2014,0
+Oregon,2015,0
+Oregon,2016,0
+Oregon,2017,0
+Oregon,2018,0
+Oregon,2019,0
+Oregon,2020,0
+Pennsylvania,1973,0
+Pennsylvania,1974,0
+Pennsylvania,1975,0
+Pennsylvania,1976,0
+Pennsylvania,1977,0
+Pennsylvania,1978,0
+Pennsylvania,1979,0
+Pennsylvania,1980,0
+Pennsylvania,1981,0
+Pennsylvania,1982,0
+Pennsylvania,1983,0
+Pennsylvania,1984,0
+Pennsylvania,1985,0
+Pennsylvania,1986,0
+Pennsylvania,1987,0
+Pennsylvania,1988,0
+Pennsylvania,1989,0
+Pennsylvania,1990,0
+Pennsylvania,1991,0
+Pennsylvania,1992,0
+Pennsylvania,1993,0
+Pennsylvania,1994,0
+Pennsylvania,1995,0
+Pennsylvania,1996,0
+Pennsylvania,1997,0
+Pennsylvania,1998,0
+Pennsylvania,1999,0
+Pennsylvania,2000,0
+Pennsylvania,2001,0
+Pennsylvania,2002,0
+Pennsylvania,2003,0
+Pennsylvania,2004,0
+Pennsylvania,2005,0
+Pennsylvania,2006,0
+Pennsylvania,2007,0
+Pennsylvania,2008,0
+Pennsylvania,2009,0
+Pennsylvania,2010,0
+Pennsylvania,2011,0
+Pennsylvania,2012,0
+Pennsylvania,2013,0
+Pennsylvania,2014,0
+Pennsylvania,2015,0
+Pennsylvania,2016,1
+Pennsylvania,2017,0
+Pennsylvania,2018,0
+Pennsylvania,2019,0
+Pennsylvania,2020,0
+Rhode Island,1973,0
+Rhode Island,1974,0
+Rhode Island,1975,0
+Rhode Island,1976,0
+Rhode Island,1977,0
+Rhode Island,1978,0
+Rhode Island,1979,0
+Rhode Island,1980,0
+Rhode Island,1981,0
+Rhode Island,1982,0
+Rhode Island,1983,0
+Rhode Island,1984,0
+Rhode Island,1985,0
+Rhode Island,1986,0
+Rhode Island,1987,0
+Rhode Island,1988,0
+Rhode Island,1989,0
+Rhode Island,1990,0
+Rhode Island,1991,0
+Rhode Island,1992,0
+Rhode Island,1993,0
+Rhode Island,1994,0
+Rhode Island,1995,0
+Rhode Island,1996,0
+Rhode Island,1997,0
+Rhode Island,1998,0
+Rhode Island,1999,0
+Rhode Island,2000,0
+Rhode Island,2001,0
+Rhode Island,2002,0
+Rhode Island,2003,0
+Rhode Island,2004,0
+Rhode Island,2005,0
+Rhode Island,2006,1
+Rhode Island,2007,0
+Rhode Island,2008,0
+Rhode Island,2009,0
+Rhode Island,2010,0
+Rhode Island,2011,0
+Rhode Island,2012,0
+Rhode Island,2013,0
+Rhode Island,2014,0
+Rhode Island,2015,0
+Rhode Island,2016,0
+Rhode Island,2017,0
+Rhode Island,2018,0
+Rhode Island,2019,0
+Rhode Island,2020,0
+South Carolina,1973,0
+South Carolina,1974,0
+South Carolina,1975,0
+South Carolina,1976,0
+South Carolina,1977,0
+South Carolina,1978,0
+South Carolina,1979,0
+South Carolina,1980,0
+South Carolina,1981,0
+South Carolina,1982,0
+South Carolina,1983,0
+South Carolina,1984,0
+South Carolina,1985,0
+South Carolina,1986,0
+South Carolina,1987,0
+South Carolina,1988,0
+South Carolina,1989,0
+South Carolina,1990,0
+South Carolina,1991,0
+South Carolina,1992,0
+South Carolina,1993,0
+South Carolina,1994,0
+South Carolina,1995,0
+South Carolina,1996,0
+South Carolina,1997,0
+South Carolina,1998,0
+South Carolina,1999,0
+South Carolina,2000,0
+South Carolina,2001,0
+South Carolina,2002,0
+South Carolina,2003,0
+South Carolina,2004,0
+South Carolina,2005,0
+South Carolina,2006,0
+South Carolina,2007,0
+South Carolina,2008,0
+South Carolina,2009,0
+South Carolina,2010,0
+South Carolina,2011,0
+South Carolina,2012,0
+South Carolina,2013,0
+South Carolina,2014,1
+South Carolina,2015,0
+South Carolina,2016,0
+South Carolina,2017,0
+South Carolina,2018,0
+South Carolina,2019,0
+South Carolina,2020,0
+South Dakota,1973,0
+South Dakota,1974,0
+South Dakota,1975,0
+South Dakota,1976,0
+South Dakota,1977,0
+South Dakota,1978,0
+South Dakota,1979,0
+South Dakota,1980,0
+South Dakota,1981,0
+South Dakota,1982,0
+South Dakota,1983,0
+South Dakota,1984,0
+South Dakota,1985,0
+South Dakota,1986,0
+South Dakota,1987,0
+South Dakota,1988,0
+South Dakota,1989,0
+South Dakota,1990,0
+South Dakota,1991,0
+South Dakota,1992,0
+South Dakota,1993,0
+South Dakota,1994,0
+South Dakota,1995,0
+South Dakota,1996,0
+South Dakota,1997,0
+South Dakota,1998,0
+South Dakota,1999,0
+South Dakota,2000,0
+South Dakota,2001,0
+South Dakota,2002,0
+South Dakota,2003,0
+South Dakota,2004,0
+South Dakota,2005,0
+South Dakota,2006,0
+South Dakota,2007,0
+South Dakota,2008,0
+South Dakota,2009,0
+South Dakota,2010,0
+South Dakota,2011,0
+South Dakota,2012,0
+South Dakota,2013,0
+South Dakota,2014,0
+South Dakota,2015,0
+South Dakota,2016,0
+South Dakota,2017,0
+South Dakota,2018,0
+South Dakota,2019,0
+South Dakota,2020,0
+Tennessee,1973,0
+Tennessee,1974,0
+Tennessee,1975,0
+Tennessee,1976,0
+Tennessee,1977,0
+Tennessee,1978,0
+Tennessee,1979,0
+Tennessee,1980,0
+Tennessee,1981,0
+Tennessee,1982,0
+Tennessee,1983,0
+Tennessee,1984,0
+Tennessee,1985,0
+Tennessee,1986,0
+Tennessee,1987,0
+Tennessee,1988,0
+Tennessee,1989,0
+Tennessee,1990,0
+Tennessee,1991,0
+Tennessee,1992,0
+Tennessee,1993,0
+Tennessee,1994,0
+Tennessee,1995,0
+Tennessee,1996,0
+Tennessee,1997,0
+Tennessee,1998,0
+Tennessee,1999,0
+Tennessee,2000,0
+Tennessee,2001,0
+Tennessee,2002,0
+Tennessee,2003,0
+Tennessee,2004,0
+Tennessee,2005,0
+Tennessee,2006,0
+Tennessee,2007,0
+Tennessee,2008,0
+Tennessee,2009,0
+Tennessee,2010,0
+Tennessee,2011,0
+Tennessee,2012,0
+Tennessee,2013,0
+Tennessee,2014,0
+Tennessee,2015,1
+Tennessee,2016,0
+Tennessee,2017,0
+Tennessee,2018,0
+Tennessee,2019,0
+Tennessee,2020,0
+Texas,1973,0
+Texas,1974,0
+Texas,1975,0
+Texas,1976,0
+Texas,1977,0
+Texas,1978,0
+Texas,1979,0
+Texas,1980,0
+Texas,1981,0
+Texas,1982,0
+Texas,1983,0
+Texas,1984,0
+Texas,1985,0
+Texas,1986,0
+Texas,1987,0
+Texas,1988,0
+Texas,1989,0
+Texas,1990,0
+Texas,1991,0
+Texas,1992,0
+Texas,1993,0
+Texas,1994,0
+Texas,1995,0
+Texas,1996,0
+Texas,1997,0
+Texas,1998,0
+Texas,1999,0
+Texas,2000,0
+Texas,2001,0
+Texas,2002,0
+Texas,2003,0
+Texas,2004,0
+Texas,2005,0
+Texas,2006,0
+Texas,2007,0
+Texas,2008,0
+Texas,2009,0
+Texas,2010,0
+Texas,2011,0
+Texas,2012,0
+Texas,2013,0
+Texas,2014,0
+Texas,2015,0
+Texas,2016,0
+Texas,2017,0
+Texas,2018,0
+Texas,2019,1
+Texas,2020,0
+Utah,1973,0
+Utah,1974,0
+Utah,1975,0
+Utah,1976,0
+Utah,1977,0
+Utah,1978,0
+Utah,1979,0
+Utah,1980,0
+Utah,1981,0
+Utah,1982,0
+Utah,1983,0
+Utah,1984,0
+Utah,1985,0
+Utah,1986,0
+Utah,1987,0
+Utah,1988,0
+Utah,1989,0
+Utah,1990,0
+Utah,1991,0
+Utah,1992,0
+Utah,1993,0
+Utah,1994,0
+Utah,1995,0
+Utah,1996,0
+Utah,1997,0
+Utah,1998,0
+Utah,1999,0
+Utah,2000,0
+Utah,2001,0
+Utah,2002,0
+Utah,2003,0
+Utah,2004,0
+Utah,2005,0
+Utah,2006,0
+Utah,2007,0
+Utah,2008,0
+Utah,2009,0
+Utah,2010,0
+Utah,2011,0
+Utah,2012,0
+Utah,2013,0
+Utah,2014,0
+Utah,2015,0
+Utah,2016,0
+Utah,2017,0
+Utah,2018,1
+Utah,2019,0
+Utah,2020,0
+Vermont,1973,0
+Vermont,1974,0
+Vermont,1975,0
+Vermont,1976,0
+Vermont,1977,0
+Vermont,1978,0
+Vermont,1979,0
+Vermont,1980,0
+Vermont,1981,0
+Vermont,1982,0
+Vermont,1983,0
+Vermont,1984,0
+Vermont,1985,0
+Vermont,1986,0
+Vermont,1987,0
+Vermont,1988,0
+Vermont,1989,0
+Vermont,1990,0
+Vermont,1991,0
+Vermont,1992,0
+Vermont,1993,0
+Vermont,1994,0
+Vermont,1995,0
+Vermont,1996,0
+Vermont,1997,0
+Vermont,1998,0
+Vermont,1999,0
+Vermont,2000,0
+Vermont,2001,0
+Vermont,2002,0
+Vermont,2003,0
+Vermont,2004,1
+Vermont,2005,0
+Vermont,2006,0
+Vermont,2007,0
+Vermont,2008,0
+Vermont,2009,0
+Vermont,2010,0
+Vermont,2011,0
+Vermont,2012,0
+Vermont,2013,0
+Vermont,2014,0
+Vermont,2015,0
+Vermont,2016,0
+Vermont,2017,0
+Vermont,2018,0
+Vermont,2019,0
+Vermont,2020,0
+Virginia,1973,0
+Virginia,1974,0
+Virginia,1975,0
+Virginia,1976,0
+Virginia,1977,0
+Virginia,1978,0
+Virginia,1979,0
+Virginia,1980,0
+Virginia,1981,0
+Virginia,1982,0
+Virginia,1983,0
+Virginia,1984,0
+Virginia,1985,0
+Virginia,1986,0
+Virginia,1987,0
+Virginia,1988,0
+Virginia,1989,0
+Virginia,1990,0
+Virginia,1991,0
+Virginia,1992,0
+Virginia,1993,0
+Virginia,1994,0
+Virginia,1995,0
+Virginia,1996,0
+Virginia,1997,0
+Virginia,1998,0
+Virginia,1999,0
+Virginia,2000,0
+Virginia,2001,0
+Virginia,2002,0
+Virginia,2003,0
+Virginia,2004,0
+Virginia,2005,0
+Virginia,2006,0
+Virginia,2007,0
+Virginia,2008,0
+Virginia,2009,0
+Virginia,2010,0
+Virginia,2011,0
+Virginia,2012,0
+Virginia,2013,0
+Virginia,2014,0
+Virginia,2015,0
+Virginia,2016,0
+Virginia,2017,0
+Virginia,2018,0
+Virginia,2019,0
+Virginia,2020,0
+Washington,1973,0
+Washington,1974,0
+Washington,1975,0
+Washington,1976,0
+Washington,1977,0
+Washington,1978,0
+Washington,1979,0
+Washington,1980,0
+Washington,1981,0
+Washington,1982,0
+Washington,1983,0
+Washington,1984,0
+Washington,1985,0
+Washington,1986,0
+Washington,1987,0
+Washington,1988,0
+Washington,1989,0
+Washington,1990,0
+Washington,1991,0
+Washington,1992,0
+Washington,1993,0
+Washington,1994,0
+Washington,1995,0
+Washington,1996,0
+Washington,1997,0
+Washington,1998,1
+Washington,1999,0
+Washington,2000,0
+Washington,2001,0
+Washington,2002,0
+Washington,2003,0
+Washington,2004,0
+Washington,2005,0
+Washington,2006,0
+Washington,2007,0
+Washington,2008,0
+Washington,2009,0
+Washington,2010,0
+Washington,2011,0
+Washington,2012,0
+Washington,2013,0
+Washington,2014,0
+Washington,2015,0
+Washington,2016,0
+Washington,2017,0
+Washington,2018,0
+Washington,2019,0
+Washington,2020,0
+West Virginia,1973,0
+West Virginia,1974,0
+West Virginia,1975,0
+West Virginia,1976,0
+West Virginia,1977,0
+West Virginia,1978,0
+West Virginia,1979,0
+West Virginia,1980,0
+West Virginia,1981,0
+West Virginia,1982,0
+West Virginia,1983,0
+West Virginia,1984,0
+West Virginia,1985,0
+West Virginia,1986,0
+West Virginia,1987,0
+West Virginia,1988,0
+West Virginia,1989,0
+West Virginia,1990,0
+West Virginia,1991,0
+West Virginia,1992,0
+West Virginia,1993,0
+West Virginia,1994,0
+West Virginia,1995,0
+West Virginia,1996,0
+West Virginia,1997,0
+West Virginia,1998,0
+West Virginia,1999,0
+West Virginia,2000,0
+West Virginia,2001,0
+West Virginia,2002,0
+West Virginia,2003,0
+West Virginia,2004,0
+West Virginia,2005,0
+West Virginia,2006,0
+West Virginia,2007,0
+West Virginia,2008,0
+West Virginia,2009,0
+West Virginia,2010,0
+West Virginia,2011,0
+West Virginia,2012,0
+West Virginia,2013,0
+West Virginia,2014,0
+West Virginia,2015,0
+West Virginia,2016,0
+West Virginia,2017,0
+West Virginia,2018,1
+West Virginia,2019,0
+West Virginia,2020,0
+Wisconsin,1973,0
+Wisconsin,1974,0
+Wisconsin,1975,0
+Wisconsin,1976,0
+Wisconsin,1977,0
+Wisconsin,1978,0
+Wisconsin,1979,0
+Wisconsin,1980,0
+Wisconsin,1981,0
+Wisconsin,1982,0
+Wisconsin,1983,0
+Wisconsin,1984,0
+Wisconsin,1985,0
+Wisconsin,1986,0
+Wisconsin,1987,0
+Wisconsin,1988,0
+Wisconsin,1989,0
+Wisconsin,1990,0
+Wisconsin,1991,0
+Wisconsin,1992,0
+Wisconsin,1993,0
+Wisconsin,1994,0
+Wisconsin,1995,0
+Wisconsin,1996,0
+Wisconsin,1997,0
+Wisconsin,1998,0
+Wisconsin,1999,0
+Wisconsin,2000,0
+Wisconsin,2001,0
+Wisconsin,2002,0
+Wisconsin,2003,0
+Wisconsin,2004,0
+Wisconsin,2005,0
+Wisconsin,2006,0
+Wisconsin,2007,0
+Wisconsin,2008,0
+Wisconsin,2009,0
+Wisconsin,2010,0
+Wisconsin,2011,0
+Wisconsin,2012,0
+Wisconsin,2013,0
+Wisconsin,2014,0
+Wisconsin,2015,0
+Wisconsin,2016,0
+Wisconsin,2017,1
+Wisconsin,2018,0
+Wisconsin,2019,0
+Wisconsin,2020,0
+Wyoming,1973,0
+Wyoming,1974,0
+Wyoming,1975,0
+Wyoming,1976,0
+Wyoming,1977,0
+Wyoming,1978,0
+Wyoming,1979,0
+Wyoming,1980,0
+Wyoming,1981,0
+Wyoming,1982,0
+Wyoming,1983,0
+Wyoming,1984,0
+Wyoming,1985,0
+Wyoming,1986,0
+Wyoming,1987,0
+Wyoming,1988,0
+Wyoming,1989,0
+Wyoming,1990,0
+Wyoming,1991,0
+Wyoming,1992,0
+Wyoming,1993,0
+Wyoming,1994,0
+Wyoming,1995,0
+Wyoming,1996,0
+Wyoming,1997,0
+Wyoming,1998,0
+Wyoming,1999,0
+Wyoming,2000,0
+Wyoming,2001,0
+Wyoming,2002,0
+Wyoming,2003,0
+Wyoming,2004,0
+Wyoming,2005,0
+Wyoming,2006,0
+Wyoming,2007,0
+Wyoming,2008,0
+Wyoming,2009,0
+Wyoming,2010,0
+Wyoming,2011,0
+Wyoming,2012,0
+Wyoming,2013,0
+Wyoming,2014,0
+Wyoming,2015,1
+Wyoming,2016,0
+Wyoming,2017,0
+Wyoming,2018,0
+Wyoming,2019,0
+Wyoming,2020,0

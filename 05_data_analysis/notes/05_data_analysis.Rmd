@@ -1,11 +1,10 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
-date: "05/12/2019"
+date: "09/12/2021"
 output:
   html_document:
     highlight: tango
-    mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     theme: cerulean
   pdf_document: default
 header-includes:
@@ -129,7 +128,7 @@ pivot_longer(preg, c("male", "female"), names_to = "gender", values_to = "count"
 ## Exercise F
 You want to investigate the relationship between GDP per capita and CO2 emissions per capita across countries. On Canvas, download the dataset `co2gdp.csv`. This dataset has been downloaded from the website "Our World in Data" (https://ourworldindata.org/grapher/co2-emissions-vs-gdp). Investigate the relationship between the dependent variable `CO2_percapita` and the independent variable `GDP_percapita` using a linear regression of the following form:
 
-$$ \text{CO2_percapita}_i = \alpha + \beta \text{GDP_percapita}_i + u_i.$$
+$$\text{CO2_percapita}_i = \alpha + \beta \text{GDP_percapita}_i + u_i.$$
 
 Estimate this linear regression by creating your own function `myols` that takes the following three arguments: ($x$) for the dependent variable, ($y$) for the independent variable, and \textit{matrix}, which takes \texttt{TRUE} if the function estimates the coefficients using matrix algebra, and \texttt{FALSE} if the function estimates the coefficients using the sum operators. Compare the coefficients with the \texttt{R} built-in function `lm()`. Finally, comment and interpret the coefficients. 
 
