@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Ulrich Matter"
-date: "25/11/2021"
+date: "25/11/2022"
 output:
   pdf_document: default
   html_document:
@@ -45,12 +45,22 @@ Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the p
 # Mock Exam Questions
 ```{r echo=FALSE, results='asis', message=FALSE}
 library(pander)
-library(examr)
-# source("/Users/philine/Desktop/data_handling_philine/examr.R")
+# library(examr)
+
+invisible(lapply(list.files(path = "../../examr-master/R/", 
+                                 include.dirs = T, full.names = T), 
+                      source, echo = F))
+
 # load file with questions
-questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
+questions_file <- "../../questions_db.xlsx"
+# questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
 # questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
-my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week5-6")
+
+my_questions <- read_questions(questions_file, 
+                               year = 2018, 
+                               mock = TRUE, 
+                               topic = "week5-6")
+
 
 # select questions
 selection_mock_ex2 <- select_questions(my_questions)
