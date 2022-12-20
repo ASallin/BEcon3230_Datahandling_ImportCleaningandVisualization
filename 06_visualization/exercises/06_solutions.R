@@ -1,21 +1,29 @@
-# Exercise A -------------------
-
+#############################################################################
+#' Data Handling Exercise 6
+#' 
+#' Version 1: Aurélien Sallin, 16.12.2022
+#' - Update: 
+#############################################################################
 
 # install and load packages
 # install.packages("nycflights13")
 library(nycflights13)
 library(tidyverse)
 
+# Set data formats to English
+loc <- Sys.setlocale(locale = "en_US.utf8")
 
-# Inspect the dataset
+
+# Exercise A -------------------
+# Inspect the dataset. The dataset is not saved as an object in the environment yet
+# but it is loaded through the package "nycflight13"
 flights
 str(flights)
 
-
-# select data
+# Filter data: only flight from Boston and to Boston
 boston_flights <- filter(flights, origin == "BOS" | dest == "BOS")
 
-# summarize data
+# Summarize data by group
 bf_by_months <- group_by(boston_flights, month)
 bf_sum <- summarise(bf_by_months,
                     mean_air_time= mean(air_time, na.rm = TRUE),
@@ -25,18 +33,22 @@ bf_sum <- summarise(bf_by_months,
                     max_air_time = max(air_time, na.rm = TRUE)
 )
 
-# format data
-bf_sum[,2:ncol(bf_sum)] <- round(bf_sum[,2:ncol(bf_sum)], digits = 2)
+# Format data: rounding to 2 decimals
+# Using matrix (base-R) notation
+bf_sum[, 2:ncol(bf_sum)] <- round(bf_sum[, 2:ncol(bf_sum)], digits = 2)
+# Using dplyr notation
+bf_sum <- bf_sum %>% 
+  mutate(across(.cols = ends_with("_time"), .fns = round, 2))
 
-# improve data display
+# Improve data display
 # show month names
 library(lubridate)
 bf_sum$month <- months(parse_date_time(bf_sum$month, "m"))
 # Improve column headers
 names(bf_sum) <- c("Month", "Mean", "Median", "Std. Deviation", "Min. Value", "Max. Value")
 
-
-# output as markdown table
+# Output as markdown table
+# This step is for cosmetic purposes
 library(knitr)
 kable(bf_sum,
       row.names = FALSE,
@@ -48,17 +60,14 @@ kable(bf_sum,
 
 
 
-
-
-
-
 # Exercise B -------------------------------
 
 # select subset
 plotdata <- select(flights, month, Destination = dest, arr_delay, dep_delay)
-plotdata <- na.omit(filter(plotdata,
-                           month == 6 | month == 12,
-                           Destination %in% c("BOS", "ORD", "LAX")))
+plotdata <- filter(plotdata,
+                   month == 6 | month == 12,
+                   Destination %in% c("BOS", "ORD", "LAX"))
+plotdata <- na.omit(plotdata)
 
 # format months
 plotdata$month <- months(parse_date_time(plotdata$month, "m"))
