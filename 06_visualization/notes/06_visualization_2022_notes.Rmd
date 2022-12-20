@@ -5,6 +5,7 @@ date: "21/12/2022"
 output:
   html_document:
     highlight: tango
+    mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     theme: cerulean
   pdf_document: default
 header-includes:
@@ -16,7 +17,7 @@ bibliography: ../../references/datahandling.bib
 ---
 
 
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, message=FALSE, warning=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
 library(bookdown)
@@ -30,33 +31,32 @@ Install and load the R package `nycflights13` and load `tidyverse`.
 
 ```{r message=FALSE, warning=FALSE}
 # install and load packages
+# install.packages("nycflights13")
 library(nycflights13)
 library(tidyverse)
-library(haven)
 ```
 
-Loading the `nycflights13`-package automatically imports a large `data.frame`/`tibble` called `flights`. Have a look at the dimensions, data types, variables, and first few observations. Also use `str()` to get a summary overview over the structure of the dataset.
+Have a look at the dimensions, data types, variables, and the first few observations of the dataset `flights`. Use `dim()`, `head()`, `colnames()`, etc. Also use `str()` to get a summary overview over the structure of the dataset.
 
 ```{r}
-flights
 str(flights)
 ```
 
-The dataset is on flights departing from New York City in 2013 (original data provided by the US Bureau of Transportation Statistics). You can have a closer look at what the variables describe by looking at the provided documentation: `?flights`. 
+The dataset is on flights departing from New York City in 2013 (original data provided by the US Bureau of Transportation Statistics). You can have a closer look at what the variables describe by looking at the provided documentation by typing `?flights`. 
 
-The following table summarises and nicely displays one of the key variables in the dataset. Use your data preparation, data analysis, and data display skills to reproduce the table (output in either HTML, LaTeX/PDF, or Word format).
+The dataset includes flights from three origins in New York:
 
-```{r echo=FALSE, purl=FALSE, message=FALSE, warning=FALSE}
-# for date formats
-loc <- Sys.setlocale(locale = "en_US.utf8")
+```{r}
+unique(flights$origin)
 ```
 
+There are several destinations as can be seen by typing `unique(flights$dest)`, whereas we are only interested in flights to "BOS".
 
-```{r echo=FALSE, message=FALSE}
-# filter data: only flight from Boston and to Boston
-boston_flights <- filter(flights, origin == "BOS" | dest == "BOS")
+```{r echo=TRUE, message=FALSE}
+# select flights to BOS
+boston_flights <- filter(flights, dest == "BOS")
 
-# summarize data
+# summarize data by month
 bf_by_months <- group_by(boston_flights, month)
 bf_sum <- summarise(bf_by_months,
                     mean_air_time= mean(air_time, na.rm = TRUE),
@@ -66,38 +66,71 @@ bf_sum <- summarise(bf_by_months,
                     max_air_time = max(air_time, na.rm = TRUE)
                     )
 
-# format data
-bf_sum[,2:ncol(bf_sum)] <- round(bf_sum[,2:ncol(bf_sum)], digits = 2)
+# Format data: rounding to 2 decimals
+# Using matrix (base-R) notation
+bf_sum[, 2:ncol(bf_sum)] <- round(bf_sum[, 2:ncol(bf_sum)], digits = 2)
+# Using dplyr notation
+bf_sum <- bf_sum %>% 
+  mutate(across(.cols = ends_with("_time"), .fns = round, 2))
+```
 
-# improve data display
-# show month names
+In order to improve the data display, the following steps can be undertaken. The package `lubridate` is useful to parse the month column. The function `months()` extracts the months from `Date` variables.
+
+```{r echo = TRUE, purl=FALSE, message=FALSE, warning=FALSE}
+# for date formats (Windows)
+loc <- Sys.setlocale("LC_TIME", "English")
+
+# for date formats (Mac)
+loc <- Sys.setlocale(locale = "en_US.utf8")
+```
+
+```{r echo = TRUE, message = FALSE}
+# load the package 
 library(lubridate)
+
+# apply the function months() to the column month
 bf_sum$month <- months(parse_date_time(bf_sum$month, "m"))
-# Improve column headers
+```
+
+The column headers can be re-written in a better readable way.
+```{r echo=TRUE}
+# change column headers
 names(bf_sum) <- c("Month", "Mean", "Median", "Std. Deviation", "Min. Value", "Max. Value")
 ```
 
+The `kable` function is a table generator for RMarkdown. The function can be further specified to produce code in latex, html, etc. See `?kable` for more information.
 
-```{r echo=FALSE}
-kable(bf_sum, row.names = FALSE, digits = 2, caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)" )
+```{r echo=TRUE}
+kable(bf_sum,
+      row.names = FALSE,
+      digits = 2,
+      caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)" )
 ```
 
-Hint: The `lubridate` package might be helpful to parse the month column. The function `months()` (base package) extracts the months from `Date` variables.
+<br>
+ 
+<br>
 
+<br>
+ 
+<br>
 
 \newpage
 ## Exercise B: R Graphics with `ggplot2`
 
-Again working with the `flights` dataset, reproduce the following figure with `ggplot()`. Hint: Some preparations are needed (filtering, formatting, and removal of missing values). Note that the figure only compares flights in December with flights in June for the destinations "BOS", "ORD", and "LAX".
+First, a subset of the dataset `flights` with the variables needed for the required figure is created. 
 
-```{r echo=FALSE, message=FALSE }
+```{r echo=TRUE, message=FALSE }
 # select subset
 plotdata <- select(flights, month, Destination = dest, arr_delay, dep_delay)
 plotdata <- na.omit(filter(plotdata, month == 6 | month == 12, Destination %in% c("BOS", "ORD", "LAX")))
 
 # format months
 plotdata$month <- months(parse_date_time(plotdata$month, "m"))
+```
 
+Second, the dataset can be plotted with `ggplot2`. 
+```{r echo=TRUE, message = FALSE}
 # plot
 flights_plot <- 
   ggplot(plotdata, aes(x=dep_delay, y=arr_delay)) +
@@ -111,6 +144,16 @@ flights_plot <-
 
 flights_plot
 ```
+
+The plot is saved (e.g., as pdf) by adding `ggsave("departure_and_arrival_delay.pdf")`.
+
+<br>
+ 
+<br>
+
+<br>
+ 
+<br>
 
 \newpage
 
@@ -129,7 +172,7 @@ confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID
 Various cleaning steps are required (gathering data, reformatting date values, calculating the cumulative sum of cases, ...). For plotting, replace the dates by numbers (the first date is day 1, the second date day 2, etc. -- as shown in the graph). This exercise is inspired by https://mdl.library.utoronto.ca/technology/tutorials/covid-19-data-r.
 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo = TRUE, message = FALSE, warning=FALSE}
 confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
 
 confirmed <- confirmedraw %>% 
@@ -158,6 +201,13 @@ ggplot(countryselection, aes(x=days, y=confirmed, colour=Country.Region)) +
   scale_y_continuous(trans="log10")
 ```
 
+<br>
+ 
+<br>
+
+<br>
+ 
+<br>
 
 \newpage
 # Christmas Gift Exercise (advanced)
@@ -198,18 +248,18 @@ data <- data[!is.na(data$total.views.year), ]
  2. You want to see whether the number of UFO seeings in States which have legalized cannabis for medical use is larger than in States which have not. You consider the following linear regression model: $$\text{total.views.year} = \alpha + \beta \text{Legalization\_medical} + u, $$ where *total.views.year* is the number of UFO seeings, and *Legalization_medical* indicates whether the State has legalized cannabis for medical use. $u$ is an error term. Estimate the regression and save your regression model in an object called `regression`.
 
 
-```{r}
+```{r, echo = TRUE}
 regression <- lm(total.views.year ~ Legalization_medical, data = data)
 summary(regression)
 ```
 
 <br>
 
- 3. Use `ggplot()` to plot the coefficient estimates of Legalization_medical and corresponding confidence intervals. Interpret the results.
+3. Use `ggplot()` to plot the coefficient estimates of Legalization_medical and corresponding confidence intervals. Interpret the results.
 
 *Hint (1)*: To draw a plot of regression estimates, transform the regression output into a tibble specifying that you need 95% confidence intervals. A handy way to do this is to use the command `tidy()`from the `broom` package (you'll need to load the package accordingly). The command `tidy()` takes an `lm` object as its argument, and "extracts" all the important information about the linear regression stored in the `lm` object. It works like `summary()`, but it delivers the information in a tibble: each parameter of the linear regression (here, $\alpha$ and $\beta$) is stored as an observation (row), which contains values for the coefficient, the standard errors, the $t$ statistics, and the p-value. Confidence intervals are optional, and must be called with the option `conf.int = T`. You can compare the result of `summary(regression)` above with the result of `tidy()` right below. 
 
-```{r}
+```{r, echo = TRUE}
 library(broom)
 summary.regression <- tidy(regression, conf.int = T, conf.level = 0.95)
 summary.regression
@@ -219,7 +269,7 @@ summary.regression
 
 <br>
 
-```{r echo=TRUE}
+```{r, echo=TRUE}
 # We are not interested in the constant:
 summary.regression <- filter(summary.regression, term == "Legalization_medical")
 
@@ -236,7 +286,7 @@ ggplot(summary.regression, aes(x = term, y = estimate)) +
 
  4. In this analysis, we did not take into account the fact that States are heterogeneous, and that our effect could be driven only by the fact that States with lots of UFO seeings are also States that would be more inclined to have cannabis legalized. Perform the same analysis as before, but this time include State and year controls in your regression: $$total.views.year = \alpha + \beta *\text{Legalization\_medical} + \delta *\text{as.factor(state)} + \gamma *\text{as.factor(year)} + u, $$. This model is called a "Difference-in-Difference" model with many groups and time periods in econometrics. Look at the coefficient of `Legalization_medical`. What happened?
 
-```{r}
+```{r, echo = TRUE}
 regression_2 <- lm(total.views.year ~ Legalization_medical + as.factor(state) + as.factor(year), data = data)
 
 summary.regression_2 <- tidy(regression_2, conf.int = T, conf.level = 0.95)
@@ -253,14 +303,20 @@ ggplot(summary.regression_2, aes(x = term, y = estimate)) +
 
 This time, the effect is negative and not significant anymore. It means that the effect we obtained in the first regression was mostly due to the fact that the number of UFO seeings was more related to particular States rather than to the cannabis legalization. 
 
- <br>
+<br>
+ 
+<br>
+
+<br>
+ 
+<br>
 
 \newpage
 # Advanced visualization exercise
 ## `ggplot2` challenge on corruption
 Import the dataset `EconomistData.csv` (provided in `data.zip`) to R. The underlying data sources have been used by The Economist (2nd December 2011, ['Corrosive Corruption']( https://www.economist.com/graphic-detail/2011/12/02/corrosive-corruption)) to generate the following figure:
 
-```{r echo=FALSE}
+```{r echo = FALSE}
 include_graphics("../../img/economist_corr_hdev.png")
 ```
 
@@ -268,3 +324,4 @@ Given the data, the challenge is to reproduce (or get as close to) the original 
 
 <!-- # References -->
 <!-- http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html -->
+
