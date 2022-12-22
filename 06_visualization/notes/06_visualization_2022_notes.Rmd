@@ -39,6 +39,9 @@ library(tidyverse)
 Have a look at the dimensions, data types, variables, and the first few observations of the dataset `flights`. Use `dim()`, `head()`, `colnames()`, etc. Also use `str()` to get a summary overview over the structure of the dataset.
 
 ```{r}
+# Inspect the dataset. The dataset is not saved as an object in the environment yet
+# but it is loaded through the package "nycflight13"
+flights
 str(flights)
 ```
 
@@ -47,30 +50,35 @@ The dataset is on flights departing from New York City in 2013 (original data pr
 The dataset includes flights from three origins in New York:
 
 ```{r}
+# Summary statistics on destination flights
+count(flights, dest)
+nrow(flights[flights$dest == "BOS", ]) # 15508 flights to Boston
+
+# Check origin
 unique(flights$origin)
 ```
 
 There are several destinations as can be seen by typing `unique(flights$dest)`, whereas we are only interested in flights to "BOS".
 
 ```{r echo=TRUE, message=FALSE}
-# select flights to BOS
+# Filter data: only flight to Boston
 boston_flights <- filter(flights, dest == "BOS")
 
-# summarize data by month
+# Summarize data by group
 bf_by_months <- group_by(boston_flights, month)
 bf_sum <- summarise(bf_by_months,
-                    mean_air_time= mean(air_time, na.rm = TRUE),
-                    median_air_time = median(air_time, na.rm = TRUE),
-                    sd_air_time=sd(air_time, na.rm = TRUE),
-                    min_air_time = min(air_time, na.rm = TRUE),
-                    max_air_time = max(air_time, na.rm = TRUE)
-                    )
+  mean_air_time = mean(air_time, na.rm = TRUE),
+  median_air_time = median(air_time, na.rm = TRUE),
+  sd_air_time = sd(air_time, na.rm = TRUE),
+  min_air_time = min(air_time, na.rm = TRUE),
+  max_air_time = max(air_time, na.rm = TRUE)
+)
 
 # Format data: rounding to 2 decimals
 # Using matrix (base-R) notation
 bf_sum[, 2:ncol(bf_sum)] <- round(bf_sum[, 2:ncol(bf_sum)], digits = 2)
 # Using dplyr notation
-bf_sum <- bf_sum %>% 
+bf_sum <- bf_sum %>%
   mutate(across(.cols = ends_with("_time"), .fns = round, 2))
 ```
 
@@ -85,11 +93,12 @@ loc <- Sys.setlocale(locale = "en_US.utf8")
 ```
 
 ```{r echo = TRUE, message = FALSE}
-# load the package 
+# Improve data display
+# Show month names
 library(lubridate)
 
-# apply the function months() to the column month
-bf_sum$month <- months(parse_date_time(bf_sum$month, "m"))
+bf_sum <- bf_sum %>%
+  mutate(month = months(parse_date_time(month, "m")))
 ```
 
 The column headers can be re-written in a better readable way.
@@ -102,9 +111,10 @@ The `kable` function is a table generator for RMarkdown. The function can be fur
 
 ```{r echo=TRUE}
 kable(bf_sum,
-      row.names = FALSE,
-      digits = 2,
-      caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)" )
+  row.names = FALSE,
+  digits = 2,
+  caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)"
+)
 ```
 
 <br>
@@ -132,11 +142,11 @@ plotdata$month <- months(parse_date_time(plotdata$month, "m"))
 Second, the dataset can be plotted with `ggplot2`. 
 ```{r echo=TRUE, message = FALSE}
 # plot
-flights_plot <- 
-  ggplot(plotdata, aes(x=dep_delay, y=arr_delay)) +
-  geom_point(aes(colour=Destination)) +
-  geom_smooth(colour="black") +
-  facet_wrap(~month) + 
+flights_plot <-
+  ggplot(plotdata, aes(x = dep_delay, y = arr_delay)) +
+  geom_point(aes(colour = Destination)) +
+  geom_smooth(colour = "black") +
+  facet_wrap(~month) +
   theme_minimal() +
   ylab("Arrival Delay (in minutes)") +
   xlab("Departure Delay (in minutes)") +
@@ -171,34 +181,89 @@ confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID
 
 Various cleaning steps are required (gathering data, reformatting date values, calculating the cumulative sum of cases, ...). For plotting, replace the dates by numbers (the first date is day 1, the second date day 2, etc. -- as shown in the graph). This exercise is inspired by https://mdl.library.utoronto.ca/technology/tutorials/covid-19-data-r.
 
+First, read the csv directly from the John Hopkins University github page. If you are working from behind a firewall or without admin privileges, you might not be able to load the csv directly. In this case, you should open the webpage, copy its content, paste it in a text file, save it with the .csv extension, and import it as usual.
 
 ```{r echo = TRUE, message = FALSE, warning=FALSE}
-confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+df_confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+```
 
-confirmed <- confirmedraw %>% 
-  gather(key="date", value="confirmed", -c(Country.Region, Province.State, Lat, Long)) %>% 
-  group_by(Country.Region, date) %>% 
-  summarize(confirmed=sum(confirmed))
-# summary(confirmed)
+Second, we need to make the dataset LONG instead of WIDE. 
 
-# str(confirmed)
-confirmed$date <- confirmed$date %>% 
-  sub("X", "", .) %>% 
-  as.Date("%m.%d.%y")
-# str(confirmed)
-confirmed <- confirmed %>% 
-  group_by(Country.Region) %>% 
-  mutate(cumconfirmed=cumsum(confirmed), days = date - min(date) + 1)
+```{r echo = TRUE, message = FALSE, warning=FALSE}
+# This dataset is in WIDE format and is not tidy
+dim(df_confirmedraw)
 
-countryselection <- confirmed %>% 
-  filter(Country.Region==c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
+df_confirmed <- df_confirmedraw %>%
+  pivot_longer( # Make the dataset LONG
+    cols = -c(Country.Region, Province.State, Lat, Long),
+    names_to = "date", values_to = "confirmed"
+  ) %>%
+  group_by(Country.Region, date) %>% # Group the dataset per country and date
+  summarize(confirmed = sum(confirmed)) # Get the sum of confirmed cases per country per date.
 
-ggplot(countryselection, aes(x=days, y=confirmed, colour=Country.Region)) + 
-  geom_line(size=1) +
+# The dataset is now LONG:
+str(df_confirmed)
+```
+
+Third, we need to convert the variable `date` from character to date format. After this, we compute the cumulative number of cases per country over the time, starting from the first day of the pandemic. To compute the cumulative number of cases, we first arrange (order) the dataset per country and per date, and we then use the function `cumsum`. As the cumulative sum is a large integer, R will return it as NA (see note in code). Make sure you convert integers to numeric values.
+
+```{r echo = TRUE, message = FALSE, warning=FALSE}
+# Make some changes in the date format:
+df_confirmed <- df_confirmed %>%
+  mutate(date = sub("X", "", date)) %>% # remove the "x" and substitute them with nothing ("")
+  mutate(date = as.Date(date, "%m.%d.%y")) # Change the character variable "date" into a date format mm.dd.yy
+
+
+# Compute the cumulated number of cases
+df_confirmed <- df_confirmed %>%
+  mutate(confirmed = as.numeric(confirmed)) %>% # See note below
+  arrange(Country.Region, date) %>%
+  # We need to order the data so that dates are in a chronological order
+  # (this is important for the command "cumsum" below)
+  group_by(Country.Region) %>% # We want the cumulated number per country, thus group by country
+  mutate(
+    cumconfirmed = cumsum(confirmed), # Create a variable with cumulated sum
+    days = date - min(date) + 1 # Create a variable with number of days since beginning of pandemic
+  )
+
+# Note: the variable "confirmed" was an integer before we converted it using "as.numeric"
+typeof(df_confirmed$confirmed)
+# Integers in R have a limited size ()
+.Machine$integer.max
+?as.integer
+#' From the help: "Note that current implementations of R use 32-bit integers for integer
+#' vectors, so the range of representable integers is restricted to about
+#' ±2×10⁹-
+#' Our cumulative sum will go beyond this size. For this reason, we need to transform
+#' our integers into numeric values.
+```
+
+Last step: we need to restrict our dataset to the countries of interest. Our dataset is then ready to plot. 
+
+```{r echo = TRUE, message = FALSE, warning=FALSE}
+# Restrict to the countries of interest
+df_countryselection <- df_confirmed %>%
+  filter(Country.Region == c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
+
+dim(df_countryselection)
+```
+
+We now plot the data using `ggplot`. We convert the number of cases to logs directly in the plot using the command `scale_y_continuous`.
+```{r echo = TRUE, message = FALSE, warning=FALSE}
+# Plot
+ggplot(
+  data = df_countryselection,
+  aes(x = days, y = cumconfirmed, colour = Country.Region)
+) +
+  geom_line(size = 1) +
   theme_classic() +
-  labs(title = "Covid-19 Confirmed Cases by Country", x= "Days", y= "Confirmed cases (log scale)") +
+  labs(
+    title = "Cumulative Covid-19 Confirmed Cases by Country",
+    x = "Days",
+    y = "Confirmed cases (log scale)"
+  ) +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_y_continuous(trans="log10")
+  scale_y_continuous(trans = "log10") # Convert to log scale
 ```
 
 <br>
@@ -237,7 +302,8 @@ ufodata <- read_csv("../data/ufodata_exercise.csv")
 
 # Merge
 data <- left_join(pot, ufodata,
-                  by = c("state" = "State.name", "year"))
+  by = c("state" = "State.name", "year")
+)
 
 # Cleaning: total.views.year is NA for many observations. Remove these observations.
 data <- data[!is.na(data$total.views.year), ]
@@ -274,7 +340,7 @@ summary.regression
 summary.regression <- filter(summary.regression, term == "Legalization_medical")
 
 ggplot(summary.regression, aes(x = term, y = estimate)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=0.2, size=1, color="blue") +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2, size = 1, color = "blue") +
   geom_point(size = 3, color = "red") +
   geom_hline(yintercept = 0, linetype = 2) +
   theme_classic()
@@ -295,7 +361,7 @@ summary.regression_2 <- tidy(regression_2, conf.int = T, conf.level = 0.95)
 summary.regression_2 <- filter(summary.regression_2, term == "Legalization_medical")
 
 ggplot(summary.regression_2, aes(x = term, y = estimate)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=0.2, size=1, color="blue") +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2, size = 1, color = "blue") +
   geom_point(size = 3, color = "red") +
   geom_hline(yintercept = 0, linetype = 2) +
   theme_classic()
