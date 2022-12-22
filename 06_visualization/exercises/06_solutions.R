@@ -20,8 +20,12 @@ loc <- Sys.setlocale(locale = "en_US.utf8")
 flights
 str(flights)
 
-# Filter data: only flight from Boston and to Boston
-boston_flights <- filter(flights, origin == "BOS" | dest == "BOS")
+# Summary statistics on destination flights
+count(flights, dest)
+nrow(flights[flights$dest == "BOS", ]) # 15508 flights to Boston
+
+# Filter data: only flight to Boston
+boston_flights <- filter(flights, dest == "BOS")
 
 # Summarize data by group
 bf_by_months <- group_by(boston_flights, month)
@@ -43,7 +47,9 @@ bf_sum <- bf_sum %>%
 # Improve data display
 # show month names
 library(lubridate)
-bf_sum$month <- months(parse_date_time(bf_sum$month, "m"))
+bf_sum <- bf_sum %>%
+  mutate(month = months(parse_date_time(month, "m")))
+
 # Improve column headers
 names(bf_sum) <- c("Month", "Mean", "Median", "Std. Deviation", "Min. Value", "Max. Value")
 
@@ -90,4 +96,69 @@ flights_plot
 
 # Exercise C: 
 
-# http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html#challenge_solution_:prototype:
+#' Read the csv directly from the John Hopkins University github page.
+#' If you are working from behind a firewall or without admin privileges,
+#' you might not be able to load the csv directly. In this case, you 
+#' should open the webpage, copy its content, paste it in a text file, and 
+#' save it with the .csv extension. 
+confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+
+# This dataset is in WIDE format and is not tidy
+dim(confirmedraw)
+
+df_confirmed <- confirmedraw %>%
+  pivot_longer( # Make the dataset LONG
+    cols = -c(Country.Region, Province.State, Lat, Long),
+    names_to = "date", values_to = "confirmed"
+  )  %>% 
+  group_by(Country.Region, date) %>% # Group the dataset per country and date
+  summarize(confirmed = sum(confirmed)) # Get the sum of confirmed cases per country per date.
+
+# The dataset is now LONG:
+str(df_confirmed)
+
+# Make some changes in the date format:
+df_confirmed <- df_confirmed %>%
+  mutate(date = sub("X", "", date))  %>%  # remove the "x" and substitute them with nothing ("")
+  mutate(date = as.Date(date, "%m.%d.%y")) # Change the character variable "date" into a date format mm.dd.yy
+
+
+# Compute the cumulated number of cases
+df_confirmed <- df_confirmed %>%
+  mutate(confirmed = as.numeric(confirmed))  %>% # See note below
+  arrange(Country.Region, date) %>%
+  # We need to order the data so that dates are in a chronological order
+  # (this is important for the command "cumsum" below)
+  group_by(Country.Region) %>% # We want the cumulated number per country, thus group by country
+  mutate(
+    cumconfirmed = cumsum(confirmed), # Create a variable with cumulated sum
+    days = date - min(date) + 1 # Create a variable with number of days since beginning of pandemic
+  )
+
+# Note: the variable "confirmed" was an integer before we converted it using "as.numeric"
+typeof(df_confirmed$confirmed)
+# Integers in R have a limited size ()
+.Machine$integer.max
+?as.integer
+#' From the help: "Note that current implementations of R use 32-bit integers for integer 
+#' vectors, so the range of representable integers is restricted to about 
+#' ±2×10⁹-
+#' Our cumulative sum will go beyond this size. For this reason, we need to transform
+#' our integers into numeric values.
+
+# Restrict to the countries of interest
+df_countryselection <- df_confirmed %>% 
+  filter(Country.Region==c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
+
+dim(df_countryselection)
+
+ggplot(data = df_countryselection, 
+        aes(x=days, y = cumconfirmed, colour = Country.Region)) + 
+  geom_line(size=1) +
+  theme_classic() +
+  labs(title = "Cumulative Covid-19 Confirmed Cases by Country", 
+       x = "Days", 
+       y = "Confirmed cases (log scale)"
+  ) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_y_continuous(trans="log10") # Convert to log scale
