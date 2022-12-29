@@ -54,20 +54,20 @@ loc <- Sys.setlocale(locale = "en_US.utf8")
 
 ```{r echo=FALSE, message=FALSE}
 # filter data: only flight from Boston and to Boston
-boston_flights <- filter(flights, origin == "BOS" | dest == "BOS")
+boston_flights <- filter(flights, dest == "BOS")
 
 # summarize data
 bf_by_months <- group_by(boston_flights, month)
 bf_sum <- summarise(bf_by_months,
-                    mean_air_time= mean(air_time, na.rm = TRUE),
-                    median_air_time = median(air_time, na.rm = TRUE),
-                    sd_air_time=sd(air_time, na.rm = TRUE),
-                    min_air_time = min(air_time, na.rm = TRUE),
-                    max_air_time = max(air_time, na.rm = TRUE)
-                    )
+  mean_air_time = mean(air_time, na.rm = TRUE),
+  median_air_time = median(air_time, na.rm = TRUE),
+  sd_air_time = sd(air_time, na.rm = TRUE),
+  min_air_time = min(air_time, na.rm = TRUE),
+  max_air_time = max(air_time, na.rm = TRUE)
+)
 
 # format data
-bf_sum[,2:ncol(bf_sum)] <- round(bf_sum[,2:ncol(bf_sum)], digits = 2)
+bf_sum[, 2:ncol(bf_sum)] <- round(bf_sum[, 2:ncol(bf_sum)], digits = 2)
 
 # improve data display
 # show month names
@@ -79,7 +79,7 @@ names(bf_sum) <- c("Month", "Mean", "Median", "Std. Deviation", "Min. Value", "M
 
 
 ```{r echo=FALSE}
-kable(bf_sum, row.names = FALSE, digits = 2, caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)" )
+kable(bf_sum, row.names = FALSE, digits = 2, caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)")
 ```
 
 Hint: The `lubridate` package might be helpful to parse the month column. The function `months()` (base package) extracts the months from `Date` variables.
@@ -99,11 +99,11 @@ plotdata <- na.omit(filter(plotdata, month == 6 | month == 12, Destination %in% 
 plotdata$month <- months(parse_date_time(plotdata$month, "m"))
 
 # plot
-flights_plot <- 
-  ggplot(plotdata, aes(x=dep_delay, y=arr_delay)) +
-  geom_point(aes(colour=Destination)) +
-  geom_smooth(colour="black") +
-  facet_wrap(~month) + 
+flights_plot <-
+  ggplot(plotdata, aes(x = dep_delay, y = arr_delay)) +
+  geom_point(aes(colour = Destination)) +
+  geom_smooth(colour = "black") +
+  facet_wrap(~month) +
   theme_minimal() +
   ylab("Arrival Delay (in minutes)") +
   xlab("Departure Delay (in minutes)") +
@@ -121,41 +121,75 @@ Plot the cumulative confirmed COVID cases (on a log scale) for China, France, Ge
 Hint: download the data as follows:
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
-confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/
-                         master/csse_covid_19_data/csse_covid_19_time_series/
-                         time_series_covid19_confirmed_global.csv")
+df_confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/
+                            master/csse_covid_19_data/csse_covid_19_time_series/
+                            time_series_covid19_confirmed_global.csv")
 ```
 
 Various cleaning steps are required (gathering data, reformatting date values, calculating the cumulative sum of cases, ...). For plotting, replace the dates by numbers (the first date is day 1, the second date day 2, etc. -- as shown in the graph). This exercise is inspired by https://mdl.library.utoronto.ca/technology/tutorials/covid-19-data-r.
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+df_confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
 
-confirmed <- confirmedraw %>% 
-  gather(key="date", value="confirmed", -c(Country.Region, Province.State, Lat, Long)) %>% 
-  group_by(Country.Region, date) %>% 
-  summarize(confirmed=sum(confirmed))
-# summary(confirmed)
+df_confirmed <- df_confirmedraw %>%
+  pivot_longer( # Make the dataset LONG
+    cols = -c(Country.Region, Province.State, Lat, Long),
+    names_to = "date", values_to = "confirmed"
+  ) %>%
+  group_by(Country.Region, date) %>% # Group the dataset per country and date
+  summarize(confirmed = sum(confirmed)) # Get the sum of confirmed cases per country per date.
 
-# str(confirmed)
-confirmed$date <- confirmed$date %>% 
-  sub("X", "", .) %>% 
-  as.Date("%m.%d.%y")
-# str(confirmed)
-confirmed <- confirmed %>% 
-  group_by(Country.Region) %>% 
-  mutate(cumconfirmed=cumsum(confirmed), days = date - min(date) + 1)
 
-countryselection <- confirmed %>% 
-  filter(Country.Region==c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
+# Make some changes in the date format:
+df_confirmed <- df_confirmed %>%
+  mutate(date = sub("X", "", date)) %>% # remove the "x" and substitute them with nothing ("")
+  mutate(date = as.Date(date, "%m.%d.%y")) # Change the character variable "date" into a date format mm.dd.yy
 
-ggplot(countryselection, aes(x=days, y=confirmed, colour=Country.Region)) + 
-  geom_line(size=1) +
+
+# Compute the cumulated number of cases
+df_confirmed <- df_confirmed %>%
+  mutate(confirmed = as.numeric(confirmed)) %>% # See note below
+  arrange(Country.Region, date) %>%
+  # We need to order the data so that dates are in a chronological order
+  # (this is important for the command "cumsum" below)
+  group_by(Country.Region) %>% # We want the cumulated number per country, thus group by country
+  mutate(
+    cumconfirmed = cumsum(confirmed), # Create a variable with cumulated sum
+    days = date - min(date) + 1 # Create a variable with number of days since beginning of pandemic
+  )
+
+# Note: the variable "confirmed" was an integer before we converted it using "as.numeric"
+# typeof(df_confirmed$confirmed)
+# Integers in R have a limited size ()
+# .Machine$integer.max
+# ?as.integer
+#' From the help: "Note that current implementations of R use 32-bit integers for integer
+#' vectors, so the range of representable integers is restricted to about
+#' ±2×10⁹-
+#' Our cumulative sum will go beyond this size. For this reason, we need to transform
+#' our integers into numeric values.
+
+
+# Restrict to the countries of interest
+df_countryselection <- df_confirmed %>%
+  filter(Country.Region == c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
+
+
+# Plot
+ggplot(
+  data = df_countryselection,
+  aes(x = days, y = cumconfirmed, colour = Country.Region)
+) +
+  geom_line(size = 1) +
   theme_classic() +
-  labs(title = "Covid-19 Confirmed Cases by Country", x= "Days", y= "Confirmed cases (log scale)") +
+  labs(
+    title = "Cumulative Covid-19 Confirmed Cases by Country",
+    x = "Days",
+    y = "Confirmed cases (log scale)"
+  ) +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_y_continuous(trans="log10")
+  scale_y_continuous(trans = "log10") # Convert to log scale
 ```
 
 
@@ -187,7 +221,8 @@ ufodata <- read_csv("../data/ufodata_exercise.csv")
 
 # Merge
 data <- left_join(pot, ufodata,
-                  by = c("state" = "State.name", "year"))
+  by = c("state" = "State.name", "year")
+)
 
 # Cleaning: total.views.year is NA for many observations. Remove these observations.
 data <- data[!is.na(data$total.views.year), ]
@@ -224,7 +259,7 @@ summary.regression
 summary.regression <- filter(summary.regression, term == "Legalization_medical")
 
 ggplot(summary.regression, aes(x = term, y = estimate)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=0.2, size=1, color="blue") +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2, size = 1, color = "blue") +
   geom_point(size = 3, color = "red") +
   geom_hline(yintercept = 0, linetype = 2) +
   theme_classic()
@@ -245,7 +280,7 @@ summary.regression_2 <- tidy(regression_2, conf.int = T, conf.level = 0.95)
 summary.regression_2 <- filter(summary.regression_2, term == "Legalization_medical")
 
 ggplot(summary.regression_2, aes(x = term, y = estimate)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=0.2, size=1, color="blue") +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2, size = 1, color = "blue") +
   geom_point(size = 3, color = "red") +
   geom_hline(yintercept = 0, linetype = 2) +
   theme_classic()
