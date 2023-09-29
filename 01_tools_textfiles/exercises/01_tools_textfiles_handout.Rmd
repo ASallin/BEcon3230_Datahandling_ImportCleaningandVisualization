@@ -1,9 +1,9 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: |
-     | Prof. Dr. Ulrich Matter
+     | Dr. Aurélien Sallin
      | (University of St. Gallen)
-date: "30/09/2021"
+date: "29/09/2023"
 output:
   pdf_document: default
   html_document:
@@ -83,7 +83,7 @@ In Exercise B, you printed the phrase "Hello world" to your console. Now, you wi
 2. To make sure you are in the right folder, you can type `getwd()` into the console; it will show your current working directory. You should see `../r_course/code` as an output.
 
 3. Now, let's save the output `"Hello world"` to a file named "hello_world_file.txt". Type the following command into the console:
-```{r echo=FALSE, purl=FALSE}
+```{r eval=FALSE, purl=FALSE}
 cat("Hello world", file = "hello_world_file.txt")
 ```
 
