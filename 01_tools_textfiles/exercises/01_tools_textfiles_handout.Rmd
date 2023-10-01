@@ -3,7 +3,7 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 author: |
      | Dr. Aurélien Sallin
      | (University of St. Gallen)
-date: "29/09/2023"
+date: "01/10/2023"
 output:
   pdf_document: default
   html_document:
@@ -89,32 +89,5 @@ cat("Hello world", file = "hello_world_file.txt")
 
 4. In the file pane, open the folder `../r_course/code`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
 
-Important: throughout our exercise sessions, you will save output to .txt files and upload them to Github Classroom to complete the assignments. Make sure your .txt files are named according to our instructions - otherwise your assignment will fail.
-
-## Exercise D: Completing an assignment on GitHub classrom
-
-1. In case you have not done so yet, create a GitHub account (for instructions, see the Notes to Exercise Session 1).
-
-2. Once you have accepted the assignment (i.e., when you have clicked on the invitation link on Canvas), you will find yourself in your own repository for the current exercise session.
-
-3. In your repository on GitHub, go to the `Add file` button and choose `Upload files`. Upload the "hello_world_file.txt" from the previous exercise and commit.
-
-4. Next, navigate to the `Pull requests` item. If your submission was correct, you should see a green tick next to the `Feedback` icon, otherwise a red cross.
-
-5. Click on `Feedback` to get more detailed info. Scroll down, click on `Merge pull request`, and confirm the merge.
-
-6. Select the `Checks` item to compare your results to the solution.
-
-7. In case your submission was not successful, you can create a new version of "hello_world_file.txt" and go through steps 3. to 6. again.
-
-Important: throughout our exercise sessions, we will send you invitation links to assignments. They will always work in the same way (you upload an output file and can then request feedback automatically).
-
-# Additional Exercises (not exam-relavant)
-
-## Exercise E: Cloning and updating a GitHub repository
-
-Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
-
- - Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
 
 

@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Exercise 1:<br>Tools, Text Files, and Computer Code'
 author: "Dr. Aurélien Sallin"
-date: "29/09/2023"
+date: "01/10/2023"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -80,7 +80,7 @@ Install Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-I
 
 # Exercises
 
-## Exercise A: Start RStudio via Nuvolos {.smaller}
+## Setup
 
 1. Open the Nuvolos website and sign in using your HSG email and password.
 
@@ -89,7 +89,7 @@ Install Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-I
 An RStudio Session should open up on your screen.
 
 
-## Exercise B: Setting up a Working Environment {.smaller}
+## Exercise A: Setting up a Working Environment {.smaller}
 
  1. Get familiar with the file browser pane on the lower right. In Nuvolos navigate to the folder "files". When you work on your PC locally, navigate to a location of your choice.
 
@@ -115,7 +115,7 @@ setwd("your_path")
 
 Heads-up: Be aware that R does not accept "\" in a path (replace "\" with "/"). 
 
-## Exercise C: R Scripts {.smaller}
+## Exercise B: R Scripts {.smaller}
 
 1. Switch to the R console and type the following line of code and hit enter (see example from above).
 
@@ -289,11 +289,6 @@ include_graphics("../../img/script-htmlstore.jpg")
 ```
 
 
-
-
-
-
-
 # Part IV: Point Nemo
 
 ## Setup and Data Import
@@ -333,52 +328,6 @@ head(point_nemo)
 
 ```
 
-
-## Exercise D  {.smaller}
-
- - Repeat what we've just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). 
-
-
-
-## Read Raw ASCII Data
-
-
-```{r echo=FALSE}
-# read the data
-eurasia <- 
-  read.table("../data/Eurasia.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-
-
-```
-
-```{r eval=FALSE, purl=FALSE}
-# read the data
-eurasia <- 
-  read.table("Eurasia.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-
-```
-
-
-```{r}
-
-# inspect the first rows
-head(eurasia)
-
-```
-
-# Part V: GitHub
-
-## Exercise E  {.smaller}
-
-Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
-
- - Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
 
 
 # Q&A

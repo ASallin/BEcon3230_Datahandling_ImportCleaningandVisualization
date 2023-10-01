@@ -11,6 +11,7 @@
 
 <meta name="author" content="Dr. Aurélien Sallin" />
 
+<meta name="date" content="2023-01-10" />
 
 <title>Data Handling: Import, Cleaning and Visualisation</title>
 
@@ -265,11 +266,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } 
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } 
-code span.at { color: #c4a000; } 
+code span.at { color: #204a87; } 
 code span.bn { color: #0000cf; } 
 code span.cf { color: #204a87; font-weight: bold; } 
 code span.ch { color: #4e9a06; } 
-code span.cn { color: #000000; } 
+code span.cn { color: #8f5902; } 
 code span.co { color: #8f5902; font-style: italic; } 
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } 
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } 
@@ -278,14 +279,14 @@ code span.dv { color: #0000cf; }
 code span.er { color: #a40000; font-weight: bold; } 
 code span.ex { } 
 code span.fl { color: #0000cf; } 
-code span.fu { color: #000000; } 
+code span.fu { color: #204a87; font-weight: bold; } 
 code span.im { } 
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } 
 code span.kw { color: #204a87; font-weight: bold; } 
 code span.op { color: #ce5c00; font-weight: bold; } 
 code span.ot { color: #8f5902; } 
 code span.pp { color: #8f5902; font-style: italic; } 
-code span.sc { color: #000000; } 
+code span.sc { color: #ce5c00; font-weight: bold; } 
 code span.ss { color: #4e9a06; } 
 code span.st { color: #4e9a06; } 
 code span.va { color: #000000; } 
@@ -448,7 +449,7 @@ Visualisation</h1>
 <h3 class="subtitle">Exercise/Workshop 1: Tools, Working with Text
 Files</h3>
 <h4 class="author">Dr. Aurélien Sallin</h4>
-<h4 class="date">29/09/2023</h4>
+<h4 class="date">01/10/2023</h4>
 
 </div>
 
@@ -461,8 +462,9 @@ address.</li>
 <li>Nuvolos is a cloud-based service that allows you to use R and the
 IDE RStudio through your browser. In the scope of this course, there is
 no need to install R locally on your machine.</li>
-<li>If you do not have a GitHub account, create one here: <a href="https://github.com/join" class="uri">https://github.com/join</a>.
-Accounts are free. No need to use your Unisg E-Mail address.</li>
+<li>If you do not have a GitHub account, you can create one here (not
+required for exam): <a href="https://github.com/join" class="uri">https://github.com/join</a>. Accounts are free. No need to
+use your Unisg E-Mail address.</li>
 </ul>
 </div>
 <div id="part-i-introduction" class="section level1">
@@ -557,7 +559,7 @@ give it a command this way, is printed in the console as well.</p>
 <p>For example, we can tell R to print the phrase
 <code>Hello world</code> to the console by typing to following command
 in the console and hitting enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
 </div>
 <div id="r-scripts" class="section level2">
@@ -667,26 +669,26 @@ language and how to write simple programs, understanding and applying
 already implemented programs is much easier.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <div id="variables-and-vectors" class="section level2">
 <h2>Variables and Vectors</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simle integer vector</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># give names to vector elements</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># a simle integer vector</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># give names to vector elements</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">names</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>##   Andy  Betty Claire Daniel    Eva 
 ##     10     22     33     22     40</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indexing either via number of vector element (start count with 1)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or by element name</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># indexing either via number of vector element (start count with 1)</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># or by element name</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>a[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## Claire 
 ##     33</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a[<span class="st">&quot;Claire&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>a[<span class="st">&quot;Claire&quot;</span>]</span></code></pre></div>
 <pre><code>## Claire 
 ##     33</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the object you are working with</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a) <span class="co"># returns the class(es) of the object</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Inspect the object you are working with</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">class</span>(a) <span class="co"># returns the class(es) of the object</span></span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></span></code></pre></div>
 <pre><code>##  Named num [1:5] 10 22 33 22 40
 ##  - attr(*, &quot;names&quot;)= chr [1:5] &quot;Andy&quot; &quot;Betty&quot; &quot;Claire&quot; &quot;Daniel&quot; ...</code></pre>
 </div>
@@ -696,56 +698,56 @@ already implemented programs is much easier.<a href="#fn2" class="footnote-ref" 
 handle more advanced mathematical problems. One basic practical
 application of R in academic life is to use it as a sophisticated (and
 programmable) calculator.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic arithmetic </span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># basic arithmetic </span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sum_result <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sum_result</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>sum_result <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>sum_result</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sum_result <span class="sc">-</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>sum_result <span class="sc">-</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span><span class="sc">/</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="dv">20</span><span class="sc">/</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order of operations</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># order of operations</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span><span class="sc">+</span><span class="dv">5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">+</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>(<span class="dv">5</span><span class="sc">+</span><span class="dv">5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">+</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># work with variables</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>a<span class="sc">/</span>b</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># work with variables</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>a<span class="sc">/</span>b</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetic with vectors</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># arithmetic with vectors</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>a <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1]  2  8 12</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>a <span class="sc">*</span> b</span></code></pre></div>
 <pre><code>## [1]  10 160 480</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b </span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>a <span class="sc">+</span> b </span></code></pre></div>
 <pre><code>## [1] 11 44 86</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># other common math operators and functions</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># other common math operators and functions</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6931472</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 22026.47</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">exp</span>(<span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">exp</span>(<span class="dv">10</span>))</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># special numbers</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Euler&#39;s number</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co"># special numbers</span></span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a><span class="co"># Euler&#39;s number</span></span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 2.718282</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pi</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>pi</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="co"># Pi</span></span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a>pi</span></code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
 </div>
 </div>
@@ -772,9 +774,9 @@ Data involved in visiting a website.
 <div id="how-can-we-do-this-in-r" class="section level2">
 <h2>How can we do this in R?</h2>
 <p>Download the website (read its source code into RAM)</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>weatherHTML <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;https://www.nzz.ch/wetter/wetter-heute&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>weatherHTML <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;https://www.nzz.ch/wetter/wetter-heute&quot;</span>)</span></code></pre></div>
 <p>Have a look at the first lines of the webpage’s source code:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(weatherHTML, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">head</span>(weatherHTML, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;!doctype html&gt;&quot;                                                                             
 ## [2] &quot;&lt;html data-n-head-ssr lang=\&quot;de\&quot; data-n-head=\&quot;%7B%22lang%22:%7B%22ssr%22:%22de%22%7D%7D\&quot;&gt;&quot;
 ## [3] &quot;  &lt;head &gt;&quot;</code></pre>
@@ -783,14 +785,14 @@ Data involved in visiting a website.
 <h2>Searching/filtering the webpage</h2>
 <p>Search the source code for the line that contains the part of the
 website with todays maximum temperature:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>line_number <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&#39;weatherlist__temp--max&#39;</span>, weatherHTML)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>line_number <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&#39;weatherlist__temp--max&#39;</span>, weatherHTML)</span></code></pre></div>
 <p>We can now check on which line the text was found.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>line_number</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>line_number</span></code></pre></div>
 <pre><code>## [1] 208 210</code></pre>
 <p>And display those two lines.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>weatherHTML[line_number]</span></code></pre></div>
-<pre><code>## [1] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;recht sonnig&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;25Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;9Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;span class=\&quot;weatherlist__name\&quot;&gt;&quot;                                                                                                                                                                                                                                                                                                           
-## [2] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;freundlich&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;22Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;13Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt; &lt;div class=\&quot;weatherelement weatherelement--paragraph\&quot;&gt;&lt;h2 class=\&quot;weatherelement weatherelement--subtitle weatherlist__subtitle\&quot;&gt;&lt;span class=\&quot;subtitle__text\&quot;&gt;Prognose fÃ¼r die Nordschweiz&lt;/span&gt;&lt;/h2&gt; &lt;p class=\&quot;weatherelement weatherelement--text\&quot;&gt;Heute Freitag im Flachland zuerst gebietsweise etwas Nebel, AuflÃ¶sung bis Mittag. Sonst recht sonnig und lediglich am Nachmittag Wolkenfelder.&quot;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>weatherHTML[line_number]</span></code></pre></div>
+<pre><code>## [1] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;recht sonnig&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;23°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;9°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;span class=\&quot;weatherlist__name\&quot;&gt;&quot;                                                                                                                                                                                                                                                                     
+## [2] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather1.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;sonnig&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;26°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;11°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt; &lt;div class=\&quot;weatherelement weatherelement--paragraph\&quot;&gt;&lt;h2 class=\&quot;weatherelement weatherelement--subtitle weatherlist__subtitle\&quot;&gt;&lt;span class=\&quot;subtitle__text\&quot;&gt;Prognose für die Nordschweiz&lt;/span&gt;&lt;/h2&gt; &lt;p class=\&quot;weatherelement weatherelement--text\&quot;&gt;Heute Sonntag im Flachland zuerst gebietsweise Nebel, Auflösung bis Mittag. Sonst aber aber viel Sonnenschein.&quot;</code></pre>
 <p>At a closer look, we see that the first and second objects correspond
 to the weather today and tomorrow.</p>
 <div class="figure" style="text-align: center">
@@ -812,7 +814,7 @@ Accessing data in RAM, processing it, and storing the result in RAM.
 </div>
 <div id="output-to-local-hard-drive" class="section level2">
 <h2>Output to local hard drive</h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(weatherHTML, <span class="st">&quot;weather.html&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">writeLines</span>(weatherHTML, <span class="st">&quot;weather.html&quot;</span>)</span></code></pre></div>
 </div>
 <div id="output-to-local-hard-drive-1" class="section level2">
 <h2>Output to local hard drive</h2>

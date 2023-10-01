@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Dr. Aurélien Sallin"
-date: "29/09/2023"
+date: "01/10/2023"
 output:
   html_document:
     highlight: tango
@@ -30,7 +30,7 @@ library(bookdown)
 
 - Sign in to Nuvolos here: https://az.nuvolos.cloud/login using your Unisg E-Mail address.
 - Nuvolos is a cloud-based service that allows you to use R and the IDE RStudio through your browser. In the scope of this course, there is no need to install R locally on your machine.
-- If you do not have a GitHub account, create one here: https://github.com/join. Accounts are free. No need to use your Unisg E-Mail address.
+- If you do not have a GitHub account, you can create one here (not required for exam): https://github.com/join. Accounts are free. No need to use your Unisg E-Mail address.
 
 # Part I: Introduction
 

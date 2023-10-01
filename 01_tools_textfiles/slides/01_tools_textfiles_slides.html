@@ -9,6 +9,7 @@
 
 
 
+  <meta name="date" content="2023-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -3070,21 +3071,18 @@ var loadDeck = function(event) {
   });
 };
 
-if (!window.Shiny) {
-  // If Shiny is loaded, the slide deck is initialized in ioslides template
-
-  if (document.readyState !== "loading" &&
-      document.querySelector('slides') === null) {
-    // if the document is done loading but our element hasn't yet appeared, defer
-    // loading of the deck
-    window.setTimeout(function() {
-      loadDeck(null);
-    }, 0);
-  } else {
-    // still loading the DOM, so wait until it's finished
-    document.addEventListener("DOMContentLoaded", loadDeck);
-  }
+if (document.readyState !== "loading" &&
+    document.querySelector('slides') === null) { 
+  // if the document is done loading but our element hasn't yet appeared, defer
+  // loading of the deck
+  window.setTimeout(function() {
+    loadDeck(null);
+  }, 0);
+} else {
+  // still loading the DOM, so wait until it's finished
+  document.addEventListener("DOMContentLoaded", loadDeck);
 }
+
 
 
 </script>
@@ -3145,7 +3143,7 @@ line-height: 1.9;
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">29/09/2023</p>
+            <p style="margin-top: 6px; margin-left: -2px;">01/10/2023</p>
           </hgroup>
   </slide>
 
@@ -3194,7 +3192,7 @@ line-height: 1.9;
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Exercises</h2></hgroup><article  id="exercises">
 
-</article></slide><slide class=""><hgroup><h2>Exercise A: Start RStudio via Nuvolos</h2></hgroup><article  id="exercise-a-start-rstudio-via-nuvolos" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Setup</h2></hgroup><article  id="setup">
 
 <ol>
 <li><p>Open the Nuvolos website and sign in using your HSG email and password.</p></li>
@@ -3203,7 +3201,7 @@ line-height: 1.9;
 
 <p>An RStudio Session should open up on your screen.</p>
 
-</article></slide><slide class=""><hgroup><h2>Exercise B: Setting up a Working Environment</h2></hgroup><article  id="exercise-b-setting-up-a-working-environment" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Exercise A: Setting up a Working Environment</h2></hgroup><article  id="exercise-a-setting-up-a-working-environment" class="smaller">
 
 <ol>
 <li><p>Get familiar with the file browser pane on the lower right. In Nuvolos navigate to the folder &ldquo;files&rdquo;. When you work on your PC locally, navigate to a location of your choice.</p></li>
@@ -3225,7 +3223,7 @@ line-height: 1.9;
 
 <p>Heads-up: Be aware that R does not accept &ldquo;&quot; in a path (replace&rdquo;&quot; with &ldquo;/&rdquo;).</p>
 
-</article></slide><slide class=""><hgroup><h2>Exercise C: R Scripts</h2></hgroup><article  id="exercise-c-r-scripts" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Exercise B: R Scripts</h2></hgroup><article  id="exercise-b-r-scripts" class="smaller">
 
 <ol>
 <li>Switch to the R console and type the following line of code and hit enter (see example from above).</li>
@@ -3409,8 +3407,8 @@ Data involved in visiting a website.
 
 <pre class = 'prettyprint lang-r'>weatherHTML[line_number]</pre>
 
-<pre >## [1] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;recht sonnig&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;25Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;9Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;span class=\&quot;weatherlist__name\&quot;&gt;&quot;                                                                                                                                                                                                                                                                                                           
-## [2] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;freundlich&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;22Â°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;13Â°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt; &lt;div class=\&quot;weatherelement weatherelement--paragraph\&quot;&gt;&lt;h2 class=\&quot;weatherelement weatherelement--subtitle weatherlist__subtitle\&quot;&gt;&lt;span class=\&quot;subtitle__text\&quot;&gt;Prognose fÃ¼r die Nordschweiz&lt;/span&gt;&lt;/h2&gt; &lt;p class=\&quot;weatherelement weatherelement--text\&quot;&gt;Heute Freitag im Flachland zuerst gebietsweise etwas Nebel, AuflÃ¶sung bis Mittag. Sonst recht sonnig und lediglich am Nachmittag Wolkenfelder.&quot;</pre>
+<pre >## [1] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;recht sonnig&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;23°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;9°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;span class=\&quot;weatherlist__name\&quot;&gt;&quot;                                                                                                                                                                                                                                                                     
+## [2] &quot;        &lt;/span&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather1.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;span class=\&quot;weatherlist__text\&quot;&gt;sonnig&lt;/span&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;span class=\&quot;weatherlist__temp--max\&quot;&gt;26°&lt;/span&gt; &lt;span class=\&quot;weatherlist__temp--min\&quot;&gt;11°&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt; &lt;div class=\&quot;weatherelement weatherelement--paragraph\&quot;&gt;&lt;h2 class=\&quot;weatherelement weatherelement--subtitle weatherlist__subtitle\&quot;&gt;&lt;span class=\&quot;subtitle__text\&quot;&gt;Prognose für die Nordschweiz&lt;/span&gt;&lt;/h2&gt; &lt;p class=\&quot;weatherelement weatherelement--text\&quot;&gt;Heute Sonntag im Flachland zuerst gebietsweise Nebel, Auflösung bis Mittag. Sonst aber aber viel Sonnenschein.&quot;</pre>
 
 <p>At a closer look, we see that the first and second objects correspond to the weather today and tomorrow.</p>
 
@@ -3423,9 +3421,9 @@ Data involved in visiting a website.
 ## [2] &quot;&gt; &lt;img src=\&quot;https://assets.static-nzz.ch/nzz/11.18.3/static/images/weather/weather2.svg\&quot; class=\&quot;weatherlist__icon\&quot;&gt; &lt;&quot;
 ## [3] &quot; class=\&quot;weatherlist__text\&quot;&gt;recht sonnig&lt;/&quot;                                                                              
 ## [4] &quot;&gt;&lt;/div&gt; &lt;div class=\&quot;weatherlist__temp\&quot;&gt;&lt;&quot;                                                                               
-## [5] &quot; class=\&quot;weatherlist__temp--max\&quot;&gt;25Â°&lt;/&quot;                                                                                 
+## [5] &quot; class=\&quot;weatherlist__temp--max\&quot;&gt;23°&lt;/&quot;                                                                                  
 ## [6] &quot;&gt; &lt;&quot;                                                                                                                      
-## [7] &quot; class=\&quot;weatherlist__temp--min\&quot;&gt;9Â°&lt;/&quot;                                                                                  
+## [7] &quot; class=\&quot;weatherlist__temp--min\&quot;&gt;9°&lt;/&quot;                                                                                   
 ## [8] &quot;&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=\&quot;weatherlist__item\&quot;&gt;&lt;div class=\&quot;weatherlist__forecast\&quot;&gt;&lt;&quot;                                       
 ## [9] &quot; class=\&quot;weatherlist__name\&quot;&gt;&quot;</pre>
 
@@ -3434,7 +3432,7 @@ Data involved in visiting a website.
 <pre class = 'prettyprint lang-r'>temperature &lt;- strsplit(weatherHTML[line_number[1]], split = &quot;span&quot;)[[1]][5]
 gsub(&quot;\\D&quot;, &quot;&quot;, temperature)</pre>
 
-<pre >## [1] &quot;25&quot;</pre>
+<pre >## [1] &quot;23&quot;</pre>
 
 <!-- Alternatively: -->
 
@@ -3508,42 +3506,6 @@ head(point_nemo)</pre>
 ## 4 01-APR-1990 8.856007
 ## 5 01-MAY-1990 7.257102
 ## 6 01-JUN-1990 5.746335</pre>
-
-</article></slide><slide class=""><hgroup><h2>Exercise D</h2></hgroup><article  id="exercise-d" class="smaller">
-
-<ul>
-<li>Repeat what we’ve just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E).</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Read Raw ASCII Data</h2></hgroup><article  id="read-raw-ascii-data-1">
-
-<pre class = 'prettyprint lang-r'># read the data
-eurasia &lt;- 
-  read.table(&quot;Eurasia.txt&quot;, skip = 9,
-           colClasses = c(&quot;character&quot;,
-                          &quot;NULL&quot;, &quot;numeric&quot;),
-           col.names = c(&quot;date&quot;, &quot;&quot;,  &quot;temp&quot;))</pre>
-
-<pre class = 'prettyprint lang-r'># inspect the first rows
-head(eurasia)</pre>
-
-<pre >##          date       temp
-## 1 01-JAN-1990 -10.023550
-## 2 01-FEB-1990  -7.250003
-## 3 01-MAR-1990   0.440648
-## 4 01-APR-1990   6.208331
-## 5 01-MAY-1990  13.307100
-## 6 01-JUN-1990  21.779000</pre>
-
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Part V: GitHub</h2></hgroup><article  id="part-v-github">
-
-</article></slide><slide class=""><hgroup><h2>Exercise E</h2></hgroup><article  id="exercise-e" class="smaller">
-
-<p>Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.</p>
-
-<ul>
-<li>Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: <a href='https://help.github.com/en/articles/cloning-a-repository' title=''>https://help.github.com/en/articles/cloning-a-repository</a>. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)</li>
-</ul>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Q&amp;A</h2></hgroup><article  id="qa">
 
