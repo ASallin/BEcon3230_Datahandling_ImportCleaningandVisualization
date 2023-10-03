@@ -1,18 +1,18 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-author: "Ulrich Matter"
-date: "14/10/2021"
+author: "Aurélien Sallin"
+date: "06/10/2023"
 output:
+  pdf_document: default
   html_document:
     highlight: tango
     mathjax: //mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML
     theme: cerulean
     css: ../../style/notes_hsg.css
-  pdf_document: default
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
-subtitle: 'Exercise/Workshop 2: Computer Code and Data Storage'
+subtitle: 'Additional notes for Exercise/Workshop 2: Computer Code and Data Storage'
 bibliography: ../../references/datahandling.bib
 ---
 
