@@ -78,16 +78,14 @@ Now you know how to execute R code directly in the console (interactive session)
 
 In Exercise B, you printed the phrase "Hello world" to your console. Now, you will save the phrase to a text file.
 
-1. First, using the browser pane in RStudio, navigate to the sub folder `code` (created in Exercise A).
+1. To make sure you are in the right folder, you can type `getwd()` into the console; it will show your current working directory. You should see `{some path to folder}/r_course` as an output.
 
-2. To make sure you are in the right folder, you can type `getwd()` into the console; it will show your current working directory. You should see `../r_course/code` as an output.
-
-3. Now, let's save the output `"Hello world"` to a file named "hello_world_file.txt". Type the following command into the console:
+2. Now, let's save the output `"Hello world"` to a file named "hello_world_file.txt". Type the following command into the console:
 ```{r eval=FALSE, purl=FALSE}
 cat("Hello world", file = "hello_world_file.txt")
 ```
 
-4. In the file pane, open the folder `../r_course/code`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
+3. In the files pane, open the folder `{some path to folder}/r_course`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
 
 
 
