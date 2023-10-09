@@ -24,7 +24,7 @@ testvector_w_missings <- c(1,2,3,4,NA) # 'NA' denotes a missing value in R
 
 meaN(testvector_w_missings)
 
-# This a frequent problem, which is why the built-in mean function in R allows for removal of 
+# This is a frequent problem, which is why the built-in mean function in R allows for removal of 
 # missing elements with the 'na.rm = TRUE' argument
 
 mean(testvector_w_missings)
@@ -75,7 +75,7 @@ while(Nslow > Nfast){
   Nslow <- (Nslow * 2) * 0.6  # Each year slow sloths double, but 40% die, hence 60% survive
   Nfast <- (Nfast * 2) * 0.7  # Each year fast sloths double, but 30% die, hence 70% survive
   
-  i <- i + 1               # having computed the end of year tallies, we increase the year indicator by one and start over
+  i <- i + 1               # having computed the end-of-year tallies, we increase the year indicator by one and start over
 }
 
 print(i) # this is the first year fast sloths outnumber slow ones

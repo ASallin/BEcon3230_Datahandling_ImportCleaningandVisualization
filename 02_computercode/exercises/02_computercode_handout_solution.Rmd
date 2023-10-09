@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Aurélien Sallin (lecturer) and Matthias Roesti (class tutor)"
-date: "05/10/2023"
+date: "06/10/2023"
 output:
   pdf_document: default
   html_document:
@@ -12,7 +12,7 @@ header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
-subtitle: 'Exercise/Workshop 2: Computer Code and Data Storage'
+subtitle: 'Example Solution for Exercise/Workshop 2: Computer Code and Data Storage'
 bibliography: ../../references/datahandling.bib
 ---
 
@@ -24,11 +24,8 @@ library(bookdown)
 ```
 
 
-# Prerequisites
 
-- A text editor of some sort. Install the latest version of the text editor Sublime Text here: https://www.sublimetext.com/download. Another alternative is Atom: https://atom.io/.
-
-# Exercises
+# Exercises - example solution
 
 ## Exercise A: Loading text files in RStudio
 
@@ -38,12 +35,25 @@ When working with data, a first important step is to load your data, in our case
 
 2. Check out the files `simple_data.txt` and `simple_data.csv` by opening them (outside of RStudio) in a text editor, such as Sublime Text or Atom. Do they look different from each other?
 
+*We can see that the files contain the same information, but do not look the same. The `simple_data.csv`-file contains values separated by a comma (`,`), while in the `simple_data.txt`-file we have data columns that are separated by a tabstop.*  
+
+
 3. Go back to RStudio and load the data in .txt format as follows:
 
 ```{r eval=FALSE}
 df1 <- read.table("data/simple_data.txt", header = FALSE)
 ```
 Type `df1` or `print(df1)` into the console. What do you see?
+
+```{r, include=FALSE}
+df1 <- read.table("../data/simple_data.txt", header = FALSE)
+
+print(df1)
+```
+
+*We see the dataframe printed out in full with 2 observations for 3 variables (note that here `df1` and `print(df1)` produce the same result). We further see that `R` has automatically assigned variable names `V1`, `V2` and `V3` because the file did not provide any variable names.*
+
+
 
 4. Next, turn to the file in .csv format. Run the following code to load it:
 
@@ -52,7 +62,32 @@ df2 <- read.table("data/simple_data.csv", header = FALSE, sep=",")
 ```
 Again, type `df2` or `print(df2)` into the console. Now, what do you see? Compare this output to the output from `print(df1)`.
 
-5. Generate a text file containing the value in the third column of the second row of `df1`. Hint: you can obtain values from dataframes by indexing like this: `df[i,j]`, where i and j indicate row and column numbers, respectively. Save the text file as "df1_value.txt" in your `r_course/data` folder.
+
+```{r include=FALSE}
+df2 <- read.table("../data/simple_data.csv", header = FALSE, sep=",")
+
+print(df2)
+```
+
+*We can see that the dataframes are identical, despite them looking different in the raw format. This is important for our analysis, because to efficiently work with data further down our pipeline, we need to ensure that we can bring it into a format that the software and its functions can reliably work with. In the present case, both input files get converted into a `data.frame` object in `R` - something which you can also verify in the documentation for the reading function we used (`?read.table` will tell you that the function 'Reads a file in table format and creates a data frame from it').*
+
+*You can also check that the dataframes are identical objects (sidenote: this function tests for exact equality of objects, which is even more strict than jsut comparing whether values match)*
+
+```{r}
+identical(df1,df2)
+```
+
+
+
+5. Generate a text file containing the value in the third column of the second row of `df1`. Hint: you can obtain values from dataframes by indexing like this: `df[i,j]`, where i and j indicate row and column numbers, respectively. Save the text file as "df1_value.txt" in your `r_course/data` folder. 
+
+```{r, eval=FALSE}
+cat(df1[2,3], file = "data/exercise2_df1_value.txt")
+```
+
+*The text file should contain a `b`*
+
+
 
 
 ## Exercise B: Downloading and importing data on air quality
@@ -65,12 +100,57 @@ In the following, we are going to download and import data on air quality in New
 
 3. Based on Exercise A, Part 4, how would you open this dataset in RStudio? Hint: In contrast to the files in Exercise A, this file comes with a header row. Complete the following code accordingly:
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 df_airquality <- read.table(...)
 ```
+
+*The completed command reads*
+```{r, eval=FALSE}
+df_airquality <- read.table("data/Air_Quality.csv", header = TRUE)
+```
+
+```{r, include=FALSE}
+df_airquality <- read.table("../data/Air_Quality.csv", header = TRUE, sep = ",")
+```
+
+
 4. Once you have loaded the data into RStudio, you can inspect the first (or last) couple of rows using `head(df_airquality)` (or `tail(df_airquality)`).
 
+```{r}
+head(df_airquality)
+```
+
+
 5. Create a text file with the amount (in variable `Data.Value`) for fine particulate matter pollution (variable `Name == "Fine Particulate Matter (PM2.5)"`) in the winter of 2008/09 (variable `Time.Period == "Winter 2008-09"`) in lower Manhattan (variable `Geo.Place.Name == "Lower Manhattan"`). Save your text file as "airquality_manhattan.txt" in your `r_course/data` folder. Hint: use the `subset()` command, and note that you can link different subsetting conditions with the `&` operator.
+
+*Here, we first need to find the location of the information we are looking for. One option to do this is the built-in `subset()` function, using the `&` logical operator to connect the different conditions needed. The `==` operator is a comparison operator testing for logical equality, returning `TRUE` if the condition holds, and `FALSE` otherwise. Using just one `=` would produce an error because `R` expects a logical statement here.*
+
+
+```{r, eval=FALSE}
+my_info <- subset(df_airquality, 
+    Name == "Fine Particulate Matter (PM2.5)" & 
+    Geo.Place.Name == "Lower Manhattan" & 
+    Time.Period == "Winter 2008-09"
+  )
+
+my_value <- my_info$Data.Value
+
+cat(my_value, file = "data/airquality_manhattan.txt")
+```
+
+```{r, include=FALSE}
+my_info <- subset(df_airquality, 
+    Name == "Fine Particulate Matter (PM2.5)" & 
+    Geo.Place.Name == "Lower Manhattan" & 
+    Time.Period == "Winter 2008-09"
+  )
+
+my_value <- my_info$Data.Value
+
+cat(my_value, file = "../data/airquality_manhattan.txt")
+```
+
+*The resulting file should contain the value `15.79`*
 
 
 ## Exercise C: Exploring computer code - HTML - let's manipulate the media!
@@ -86,9 +166,15 @@ In this exercise, we will explore HTML code, which is the basis of most websites
 For example, I found the following segment in the HTML code relating to an article titled `Republicans sound alarm over CCP-linked businessman's cash offer to Hunter Biden' (no subtle political messaging intended):
 
 ```{html}
-
 <!DOCTYPE html>
 <html>
+
+<head>
+...
+
+</head>
+
+<body>
   
 ...  
   
@@ -150,31 +236,151 @@ sound alarm over CCP-linked businessman's cash offer to Hunter Biden">
   </article>
     
 ...
-    
+
+</body>    
+
 </html>
 ```
 
 
 4. Now it's time for some good old media manipulation. In the HTML-code, replace the chosen news headline with a title of your choice (if you need some inspiration, see [*here*](https://www.theonion.com/)). In most browsers, you can double click the source code to edit it, then confirm your edits by hitting the enter/return key. What can you see? Did the website change?
 
+
+*For example, we could change the displayed story title by changing the text of the <h3 class="title "> element:*
+
+```{html}
+<!DOCTYPE html>
+<html>
+  
+<head>
+...
+
+</head>
+
+<body>
+  
+  ...
+
+      <div class="info ">
+        <header class="info-header">
+          <h3 class="title ">
+            <a href="https://www.foxnews.com/politics/gop-lawmakers-rip-hunter-bidens-cozy
+            -relationship-ccp-linked-businessman-damning-evidence#&amp;_intcmp=fnhpbt3" 
+            data-omtr-intcmp="fnhpbt3">In surprise move, Republicans turn to full support for Joe Biden. Country now in peace and harmony.</a>
+          </h3>
+        </header>
+      </div>
+
+  </article>
+    
+...
+
+</body>
+    
+</html>
+```
+
+
+
+
+
 5. BONUS (not exam relevant): Can you figure out a way to replace the article teaser image as well? Hint: this is easiest if you use online image addresses, e.g. https://static.wikia.nocookie.net/mrbean/images/4/4b/Mr_beans_holiday_ver2.jpg or https://preview.redd.it/bad-luck-brian-meme-hd-upscaled-v0-syiviojoq72a1.jpg?width=1080&crop=smart&auto=webp&s=eace4bc6be838bfe3f30219743d5a5c34c5f4335)
 
 
-<!-- Solution:  change the picture html to the following-->
+*The simplest way of doing this is to replace the link to the image with a link to another image in the <picture> element (note that I also removed all the sub-elements starting with `<source media=?`, these are just what the webpage authors implemented to allow for choosing different image files depending on the screen size - you would have to replace each image link to ensure full replacement in case you were to keep those bit in)*
 
-<!--  <picture> -->
-<!--         <img src="https://preview.redd.it/bad-luck-brian-meme-hd-upscaled-v0-syiviojoq72a1.jpg" width="343" height="193" alt="Republicans sound alarm over CCP-linked businessman's cash offer to Hunter Biden"> -->
-<!--       </picture> -->
+```{html}
+<!DOCTYPE html>
+<html>
+  
+  
+<head>
+...
+
+</head>
+
+<body>
+  
+...
+
+            <picture>
+                <img src="https://cdn.pixabay.com/photo/2016/05/10/21/50/meditation-1384758_1280.jpg" width="343" height="193" alt="In surprise move, Republicans turn to full support for Joe Biden. Country now in peace and harmony.">
+            </picture>
+
+...
+
+</body>
+    
+</html>
+```
+
+
+*As a sidenote, the `alt="In surprise move, Republicans turn to full support for Joe Biden. Country now in peace and harmony."` part is not the same as the title we changed earlier, it defines the alternative text that describes the image, which serves purposes like assisting accessibility and search engine optimization (SEO).*
+
 
       
 
-## Exercise D: Downloading and importing data on air quality (XML format)
+## Exercise D: Importing data on air quality (XML format)
 
 1. I provided you with a data file `Air_Quality.xml` on Canvas. Save it in your `r_course/data` folder. 
 
 2. Load the data in .xml format. Hint: The package `XML` might be of use. You can install new packages as follows: `install.packages("package_name")`.
 
+
+```{r, eval = FALSE}
+
+# installing package if not already installed - the require function here will output TRUE if XML is already installed
+# - the `!` (read 'not') in front of it means that we only want to install it if this is not the case
+if (!require(XML)) {
+  install.packages("XML")
+}
+
+library(XML) # loading the package after install - need to run every time we use it!
+
+# Load the data from the XML file
+xml_data <- xmlParse("data/Air_Quality.xml")
+
+# Convert XML data to a data frame
+air_quality_data <- xmlToDataFrame(xml_data)
+
+str(xml_data) # Checking the structure of our xml_data
+
+```
+
+
+```{r, include = FALSE}
+
+if (!require(XML)) {
+  install.packages("XML")
+}
+
+library(XML) # loading the package after install - need to run every time we use it!
+
+# Load the data from the XML file
+xml_data <- xmlParse("../data/Air_Quality.xml")
+
+str(xml_data)
+
+```
+
+*We can see that we loaded an object, but instead of being a nice neat dataframe, what we got was actually an R structure representing the XML tree, i.e. a structure that contains all the information we need to extract the data we want, but we cannot use this directly like a data frame*
+
+
 3. Once you have loaded the .xml file in Part 2, how can you convert it to an R dataframe?
+
+*Luckily, the `XML` package offers a convenient function to convert our parsed structure into a standard data frame:*
+
+
+```{r}
+# Convert XML data to a data frame
+
+air_quality_data <- xmlToDataFrame(xml_data)
+
+str(air_quality_data) # Checking structure again
+
+```
+
+*We have a data frame now - with the caveat that the reading function defaulted to declaring all variables as strings. In order to be able to work with numerical columns, we would first have to convert them into numeric variables, which can be done like this for example: `air_quality_data$data_value <- as.numeric(air_quality_data$data_value)`. For our purposes, importing data from a .csv or text file is often easier than parsing XML files (note also the file size of the XML data relative to the csv file, in itself not the most compact format either).*
 
 
 ## Exercise E: Read raw text data
@@ -206,14 +412,36 @@ library(readr)
 ta <- read_tsv("data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
 ```
 
-```{r eval=FALSE}
+
+```{r include=FALSE}
+# install the readr package if not yet installed: install.packages("readr")
+library(readr)
+# read the data
+ta <- read_tsv("../data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
+```
+
+
+```{r eval=TRUE}
 # inspect the first rows
 head(ta)
 
 ```
 
 - What is the purpose of the `skip` argument and why is it set to `9`?
+
+*In the raw text file, we see that the first 9 lines contains metadata and are in a different format - therefore we need to skip these lines when reading the data into R. Also note how we specified the column names in our command to read in the data, because the data did not have the variable names included in the columns.*
+
 - Why do we use `read_tsv()` in this situation and not `read_csv()`?
+
+*The raw data shows us that columns are not separated by a comma, but rather by a tab, hence we have what is called a tab-separated values (TSV) file. That said, we could also use the more general `read_delim()` function, specifying the tab `\t` as a separator:
+
+```{r, eval = FALSE}
+
+ta <- read_delim("data/temp_anomaly.txt", skip = 9, delim = "\t", col_names = c("month", "temp_anomaly"))
+
+```
+
+
 
 <!-- # Mock Exam Questions -->
 

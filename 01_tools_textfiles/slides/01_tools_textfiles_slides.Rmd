@@ -1,12 +1,13 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Exercise 1:<br>Tools, Text Files, and Computer Code'
 author: "Dr. Aurélien Sallin (lecturer), Dr. Matthias Roesti (class tutor)"
 date: "01/10/2023"
-output:   
+output:
+  beamer_presentation: default
   ioslides_presentation:
     css: ../../style/ioslides.css
     template: ../../style/nologo_template.html
+subtitle: Exercise 1:<br>Tools, Text Files, and Computer Code
 logo: ../../img/logo.png
 bibliography: ../../references/datahandling.bib
 ---
