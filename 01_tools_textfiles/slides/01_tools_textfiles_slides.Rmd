@@ -1,8 +1,8 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Exercise 1:<br>Tools, Text Files, and Computer Code'
-author: "Prof. Dr. Ulrich Matter"
-date: "30/09/2021"
+author: "Dr. Aurélien Sallin (lecturer), Dr. Matthias Roesti (class tutor)"
+date: "01/10/2023"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -68,7 +68,7 @@ include_graphics("../../img/nuvolos.svg")
 ```
 Sign in [here]("https://az.nuvolos.cloud/login")!
 
-## GitHub
+## GitHub (not required for exam)
 
 ```{r echo=FALSE, fig.align='center', out.width="55%", purl=FALSE}
 
@@ -80,7 +80,7 @@ Install Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-I
 
 # Exercises
 
-## Exercise A: Start RStudio via Nuvolos {.smaller}
+## Setup
 
 1. Open the Nuvolos website and sign in using your HSG email and password.
 
@@ -89,7 +89,7 @@ Install Git as explained [here](https://git-scm.com/book/en/v2/Getting-Started-I
 An RStudio Session should open up on your screen.
 
 
-## Exercise B: Setting up a Working Environment {.smaller}
+## Exercise A: Setting up a Working Environment {.smaller}
 
  1. Get familiar with the file browser pane on the lower right. In Nuvolos navigate to the folder "files". When you work on your PC locally, navigate to a location of your choice.
 
@@ -115,7 +115,7 @@ setwd("your_path")
 
 Heads-up: Be aware that R does not accept "\" in a path (replace "\" with "/"). 
 
-## Exercise C: R Scripts {.smaller}
+## Exercise B: R Scripts {.smaller}
 
 1. Switch to the R console and type the following line of code and hit enter (see example from above).
 
@@ -128,8 +128,35 @@ You should see the words `"Hello world"` printed on screen. This is the usual wa
 
 3. Type `print("Hello world")` to the first line of the script, and click on 'Run' (![](../../img/run.png)) to execute the code in the console.
 
+## Exercise C: Saving output in a file {.smaller}
+
+In Exercise B, you printed the phrase "Hello world" to your console. Now, you will save the phrase to a text file.
+
+1. First, using the browser pane in RStudio, navigate to the sub folder `code` (created in Exercise A).
+
+2. To make sure you are in the right folder, you can type `getwd()` into the console; it will show your current working directory. You should see `../r_course/code` as an output.
+
+3. Now, let's save the output `"Hello world"` to a file named "hello_world_file.txt". Type the following command into the console:
+```{r eval=FALSE, purl=FALSE}
+cat("Hello world", file = "hello_world_file.txt")
+```
+
+4. In the file pane, open the folder `../r_course/code`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
+
+
 
 # Part II: First Steps in R
+
+## HELP ME!!!
+
+If you are unsure what a particular command does, you can look up its documentation by putting a question mark in front of it (works both with and without parentheses).
+
+```{r, eval = FALSE}
+?sum
+?names()
+```
+
+
 
 ## Variables and Vectors
 Assign the numeric value `2` to variable `a`:
@@ -194,191 +221,6 @@ str(a)
 |$\pi$| `pi`|
 
 
-# Part III: Data processing illustration
-
-## Downloading/accessing a website
-
-```{r htmldownload, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Components involved in visiting a website.", purl=FALSE}
-include_graphics("../../img/script-htmldownload.jpg")
-```
-
-
-## Downloading/accessing a website
-
-```{r htmldownloaddata, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Data involved in visiting a website.", purl=FALSE}
-include_graphics("../../img/script-htmldownloaddata.jpg")
-```
-
-
-## How can we do this in R? 
-
-Download the website (read its source code into RAM)
-
-```{r}
-weatherHTML <- readLines("https://www.nzz.ch/wetter/wetter-heute")
-```
-
-Have a look at the first lines at the webpage's source code:
-
-```{r}
-head(weatherHTML, 3)
-```
-You can have a more in-depth look at the webpage's source code by typing:
-```{r, eval = FALSE}
-View(weatherHTML)
-```
-
-
-## Searching/filtering the webpage
-
-Search the source code for the line that contains todays maximum temperature:
-
-```{r}
-line_number <- grep('weatherlist__temp--max', weatherHTML)
-```
-
-We can now check on which line the text was found.
-
-```{r}
-line_number
-weatherHTML[line_number]
-```
-
-At a closer look, we see that the first and second objects correspond to the weather today and tomorrow. 
-
-In the scope of the course, you will learn how we could extract the temperature of today: (not relevant for now)
-
-```{r}
-strsplit(weatherHTML[line_number[1]], split = "span")
-```
-We can pick the corresponding line and filter for the text for numbers:
-```{r}
-temperature <- strsplit(weatherHTML[line_number[1]], split = "span")[[1]][5]
-gsub("\\D", "", temperature)
-```
-<!-- Alternatively: -->
-<!-- ```{r} -->
-<!-- library(rvest) -->
-<!-- a = read_html("https://www.nzz.ch/wetter/wetter-heute") -->
-<!-- b = a %>% html_node("li.weatherlist__item div.weatherlist__temp span.weatherlist__temp--max") %>% html_text() -->
-<!-- b  -->
-<!-- ``` -->
-
-
-## Searching/filtering the webpage
-
-
-```{r ramcalc, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Accessing data in RAM, processing it, and storing the result in RAM.", purl=FALSE}
-include_graphics("../../img/script-ramcalc.jpg")
-```
-
-
-## Output to local hard drive
-
-
-```{r eval=FALSE}
-writeLines(weatherHTML, "weather.html")
-```
-
-
-## Output to local hard drive
-
-
-```{r htmlstore, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Writing data stored in RAM to a Mass Storage device (hard drive).", purl=FALSE}
-include_graphics("../../img/script-htmlstore.jpg")
-```
-
-
-
-
-
-
-
-# Part IV: Point Nemo
-
-## Setup and Data Import
-
-1. Open Nuvolos and start RStudio.
-2. In the lower right corner click on the tab "Files".
-3. Go to the folder "files" and click on the file "PointNemo.txt".
-4. Inspect the data carefully.
-
-PointNemo.txt is an ASCII-file containing time series data on the monthly mean air temperature at [Point Nemo]("https://en.wikipedia.org/wiki/Pole_of_inaccessibility"). If you click on the file, it should open in a new tab. 
-
-## Read Raw ASCII Data
-
-```{r echo=FALSE, purl = FALSE}
-# read the data
-point_nemo <- 
-  read.table("../data/PointNemo.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-```
-
-
-```{r eval=FALSE }
-# read the data
-point_nemo <- 
-  read.table("PointNemo.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-
-```
-
-```{r}
-# inspect the first rows
-head(point_nemo)
-
-```
-
-
-## Exercise D  {.smaller}
-
- - Repeat what we've just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). 
-
-
-
-## Read Raw ASCII Data
-
-
-```{r echo=FALSE}
-# read the data
-eurasia <- 
-  read.table("../data/Eurasia.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-
-
-```
-
-```{r eval=FALSE, purl=FALSE}
-# read the data
-eurasia <- 
-  read.table("Eurasia.txt", skip = 9,
-           colClasses = c("character",
-                          "NULL", "numeric"),
-           col.names = c("date", "",  "temp"))
-
-```
-
-
-```{r}
-
-# inspect the first rows
-head(eurasia)
-
-```
-
-# Part V: GitHub
-
-## Exercise E  {.smaller}
-
-Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
-
- - Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
 
 
 # Q&A

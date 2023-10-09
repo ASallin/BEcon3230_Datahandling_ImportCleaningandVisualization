@@ -3,7 +3,11 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 author: |
      | Dr. Aurélien Sallin
      | (University of St. Gallen)
+<<<<<<< HEAD
 date: "04/09/2023"
+=======
+date: "01/10/2023"
+>>>>>>> 0c5dd79a88f33941d79a1a63af066a916bfc4fa9
 output:
   pdf_document: default
   html_document:
@@ -77,15 +81,14 @@ Now you know how to execute R code directly in the console (interactive session)
 
 In Exercise B, you printed the phrase "Hello world" to your console. Now, you will save the phrase to a text file.
 
-1. First, using the browser pane in RStudio, navigate to the sub folder `code` (created in Exercise A).
+1. To make sure you are in the right folder, you can type `getwd()` into the console; it will show your current working directory. You should see `{some path to folder}/r_course` as an output.
 
-2. To make sure you are in the right folder, you can type `getwd()` into the console; it will show your current working directory. You should see `../r_course/code` as an output.
-
-3. Now, let's save the output `"Hello world"` to a file named "hello_world_file.txt". Type the following command into the console:
-```{r echo=FALSE, purl=FALSE}
+2. Now, let's save the output `"Hello world"` to a file named "hello_world_file.txt". Type the following command into the console:
+```{r eval=FALSE, purl=FALSE}
 cat("Hello world", file = "hello_world_file.txt")
 ```
 
+<<<<<<< HEAD
 4. In the file pane, open the folder `../r_course/code`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
 
 Important: throughout our exercise sessions, you will save output to .txt files and upload them to Github Classroom to complete the assignments. Make sure your .txt files are named according to our instructions - otherwise your assignment will fail.
@@ -98,5 +101,9 @@ Important: throughout our exercise sessions, you will save output to .txt files 
 Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
 
  - Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
+=======
+3. In the files pane, open the folder `{some path to folder}/r_course`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
+
+>>>>>>> 0c5dd79a88f33941d79a1a63af066a916bfc4fa9
 
 

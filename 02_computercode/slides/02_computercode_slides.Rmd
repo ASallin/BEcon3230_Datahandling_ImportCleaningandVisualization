@@ -1,8 +1,8 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Exercise 2:<br>Text Files and Computer Code'
-author: "Prof. Dr. Ulrich Matter"
-date: "14/10/2021"
+author: "Dr. Aurélien Sallin (lecturer), Dr. Matthias Roesti (class tutor)"
+date: "03/10/2023"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -253,6 +253,23 @@ include_graphics("../../img/html_tree.jpg")
 3. Expresses what is what in a document. 
      - Doesn't explicitly 'tell' the computer what to do
      - HTML is a markup language, not a programming language
+
+
+## XML: eXtensible Markup Language
+
+1. Like HTML, it is a Markup Language, it also doesn't 'tell' the computer what to do, hence also is not a programming language
+
+2. XML is a software- and hardware-independent tool for storing and transporting data. You can think of it as a kind of universal data storage and transportation tool that stores data in plain text format so that virtually every device (or person) is able to read it.
+
+3. Difference between XML and HTML:
+    - **XML** was designed to **carry data** - with focus on what data is
+    - **HTML** was designed to **display data** - with focus on how data looks
+    - XML tags are not predefined the way HTML tags are
+    
+
+ <font size="3">  Source: https://www.w3schools.com/xml/xml_whatis.asp </font> 
+ 
+
 
 
 # Q&A

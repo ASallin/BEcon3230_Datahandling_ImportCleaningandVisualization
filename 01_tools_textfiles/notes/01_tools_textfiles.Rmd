@@ -1,18 +1,18 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-author: "Ulrich Matter"
-date: "30/09/2021"
+author: "Dr. Aurélien Sallin"
+date: "01/10/2023"
 output:
+  pdf_document: default
   html_document:
     highlight: tango
     mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     theme: cerulean
-  pdf_document: default
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
-subtitle: 'Exercise/Workshop 1: Tools, Working with Text Files'
+subtitle: 'Notes for Exercise/Workshop 1: Tools, Working with Text Files'
 bibliography: ../../references/datahandling.bib
 ---
 
@@ -30,7 +30,7 @@ library(bookdown)
 
 - Sign in to Nuvolos here: https://az.nuvolos.cloud/login using your Unisg E-Mail address.
 - Nuvolos is a cloud-based service that allows you to use R and the IDE RStudio through your browser. In the scope of this course, there is no need to install R locally on your machine.
-- If you do not have a GitHub account, create one here: https://github.com/join. Accounts are free. No need to use your Unisg E-Mail address.
+- If you do not have a GitHub account, you can create one here (not required for exam): https://github.com/join. Accounts are free. No need to use your Unisg E-Mail address.
 
 # Part I: Introduction
 
@@ -59,10 +59,9 @@ R is the high-level (meaning 'more user friendly') programming language for stat
  
  c. ...using Nuvolos:
 
-```{r rstudio, echo=FALSE, fig.align='center', fig.cap="(ref:rstudio)", out.width="75%", purl=FALSE}
+```{r rstudio, echo=FALSE, fig.align='center', fig.cap="Running R in RStudio (IDE).", out.width="75%", purl=FALSE}
 include_graphics("../../img/rstudio_panels.png")
 ```
-(ref:rstudio) Running R in RStudio (IDE).
 
 The latter is what we will do throughout this course. 
 
@@ -73,10 +72,10 @@ In the following, we have a look at each of the main panels we will use in this 
 
 When working in an interactive session, we simply type R commands directly into the R console. Typically, the output R returns, when we give it a command this way, is printed in the console as well.
 
-```{r console, echo=FALSE, fig.align='center', fig.cap="(ref:console)", out.width="75%", purl=FALSE}
+```{r console, echo=FALSE, fig.align='center', fig.cap="Running R in the Mac/OSX terminal.", out.width="75%", purl=FALSE}
 include_graphics("../../img/rstudio_console.png")
 ```
-(ref:console) Running R in the Mac/OSX terminal.
+
 
 For example, we can tell R to print the phrase `Hello world` to the console by typing to following command in the console and hitting enter:
 
@@ -89,10 +88,9 @@ print("Hello world")
 
 Apart from very short interactive sessions, it usually makes sense to write R code not directly in the command line but to a R-script in the script panel. This way, execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.
 
-```{r rscript, echo=FALSE, fig.align='center', fig.cap="(ref:script)", out.width="75%", purl=FALSE}
+```{r rscript, echo=FALSE, fig.align='center', fig.cap="The R Script window in RStudio.", out.width="75%", purl=FALSE}
 include_graphics("../../img/rstudio_script.png")
 ```
-(ref:script) The R Script window in RStudio.
 
 
 
@@ -100,10 +98,10 @@ include_graphics("../../img/rstudio_script.png")
 
 The environment pane shows what variables, objects, and data are loaded in our current R session. Moreover, it offers functions to open documents and import data.
 
-```{r renvironment, echo=FALSE, fig.align='center', fig.cap="(ref:environment)", out.width="50%", purl=FALSE}
+```{r renvironment, echo=FALSE, fig.align='center', fig.cap="The environment window in RStudio.", out.width="50%", purl=FALSE}
 include_graphics("../../img/rstudio_environment.png")
 ```
-(ref:environment) The environment window in RStudio.
+
 
 
 
@@ -111,10 +109,10 @@ include_graphics("../../img/rstudio_environment.png")
 
 With the File browser window, we can navigate through the folder structure and files on our computer's hard disk, modify files, and set the working directory of our current R session. Moreover, it has a pane to show plots generated in R and a pane with help pages and R documentation.
 
-```{r rfiles, echo=FALSE, fig.align='center', fig.cap="(ref:files)", out.width="50%", purl=FALSE}
+```{r rfiles, echo=FALSE, fig.align='center', fig.cap="The file browser window in RStudio.", out.width="50%", purl=FALSE}
 include_graphics("../../img/rstudio_files.png")
 ```
-(ref:files) The file browser window in RStudio.
+
 
 # A Note on GitHub
 
@@ -141,11 +139,21 @@ As this course shows, GitHub is convenient to store and work on code, but it can
 Before introducing some of the key functions and packages for data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.^[In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.] 
 
 
+## HELP ME!!!
+
+If you are unsure what a particular command does, you can look up its documentation by putting a question mark in front of it (works both with and without parentheses).
+
+```{r, eval = FALSE}
+# This will open the help file/documentation for the respective function
+?sum
+?names()
+```
+
 
 ## Variables and Vectors
 ```{r}
-# a simle integer vector
-a <- c(10,22,33, 22, 40)
+# a simple integer vector
+a <- c(10, 22, 33, 22, 40)
 
 # give names to vector elements
 names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
@@ -159,7 +167,6 @@ a["Claire"]
 # Inspect the object you are working with
 class(a) # returns the class(es) of the object
 str(a) # returns the structure of the object ("what is in variable a?")
-
 ```
 
 ## Math Operators
@@ -206,86 +213,6 @@ exp(1)
 pi
 
 
-```
-
-
-# Part III: Data processing illustration
-
-## Downloading/accessing a website
-
-```{r htmldownload, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Components involved in visiting a website.", purl=FALSE}
-include_graphics("../../img/script-htmldownload_w.jpg")
-```
-
-
-## Downloading/accessing a website
-
-```{r htmldownloaddata, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Data involved in visiting a website.", purl=FALSE}
-include_graphics("../../img/script-htmldownloaddata_w.jpg")
-```
-
-## How can we do this in R? 
-
-Download the website (read its source code into RAM)
-
-```{r}
-weatherHTML <- readLines("https://www.nzz.ch/wetter/wetter-heute")
-```
-
-Have a look at the first lines of the webpage's source code:
-
-```{r}
-head(weatherHTML, 3)
-```
-
-
-
-## Searching/filtering the webpage
-
-Search the source code for the line that contains the part of the website with todays maximum temperature:
-
-```{r}
-line_number <- grep('weatherlist__temp--max', weatherHTML)
-```
-
-We can now check on which line the text was found.
-
-```{r}
-line_number
-```
-
-And display those two lines.
-```{r}
-weatherHTML[line_number]
-```
-At a closer look, we see that the first and second objects correspond to the weather today and tomorrow. 
-
-```{r webpage, echo=FALSE, fig.align='center', fig.cap="(ref:webpage)", out.width="50%", purl=FALSE}
-include_graphics("../../img/webpage.png")
-```
-(ref:webpage) The lines of interest on the webpage.
-
-## Searching/filtering the webpage
-
-
-```{r ramcalc, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Accessing data in RAM, processing it, and storing the result in RAM.", purl=FALSE}
-include_graphics("../../img/script-ramcalc_w.jpg")
-```
-
-
-## Output to local hard drive
-
-
-```{r eval=FALSE}
-writeLines(weatherHTML, "weather.html")
-```
-
-
-## Output to local hard drive
-
-
-```{r htmlstore, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Writing data stored in RAM to a Mass Storage device (hard drive).", purl=FALSE}
-include_graphics("../../img/script-htmlstore_w.jpg")
 ```
 
 
