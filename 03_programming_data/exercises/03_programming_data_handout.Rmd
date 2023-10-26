@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Aurélien Sallin (lecturer) and Matthias Roesti (class tutor)"
-date: "21/10/2023"
+date: "25/10/2023"
 output:
   pdf_document: default
   html_document:
@@ -134,7 +134,8 @@ for (i in 1:n){
       begin <- as.numeric(unlist(strsplit(x = y, split = "[\\–\\-]", perl = TRUE))[1])
       end <- as.numeric(unlist(strsplit(x = y, split =  "[\\–\\-]"))[2])
       
-      tabnew <- data.frame(year=begin:(end-1), president=row$President, senate=row$Senate, house=row$House)
+      tabnew <- data.frame(year=begin:(end-1), president=row$President, senate=row$Senate, 
+                           house=row$House)
       
       all_years[[i]] <- tabnew 
 }
@@ -219,11 +220,11 @@ allyears <- bind_rows(all_years)
 
 ## Exercise E: Standard Error Function
 
-Building on the function written in Exercise C, implement a function to compute (the estimate of) the sample mean standard error as defined here: $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$. Hint: the idea is to use your own implementation (in Exercise C) to compute $SD$ as a first step of your standard error function.
+Building on the function written in Exercise D, implement a function to compute (the estimate of) the sample mean standard error as defined here: $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$. Hint: the idea is to use your own implementation (in Exercise D) to compute $SD$ as a first step of your standard error function.
 
-Exercises C and D should illustrate how you can approach more complex problems by breaking them up in smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$, you see that computing $SD$ is a part of the overall problem, which can be addressed separately.
+Exercises D and E should illustrate how you can approach more complex problems by breaking them up in smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$, you see that computing $SD$ is a part of the overall problem, which can be addressed separately.
 
 ## Exercise F: T-test
 
 Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test):
-$t = \frac{\bar{x} - \mu_0}{\frac{SE}{\sqrt{n}}}$.
+$t = \frac{\bar{x} - \mu_0}{SE}$.
