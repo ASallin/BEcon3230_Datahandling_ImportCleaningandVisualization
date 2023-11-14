@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-author: "Ulrich Matter"
-date: "25/11/2022"
+author: "Aurélien Sallin (lecturer) and Andrea Burro (class tutor)"
+date: "23/11/2023"
 output:
   pdf_document: default
   html_document:
@@ -21,6 +21,7 @@ bibliography: ../../references/datahandling.bib
 options(width = 100)
 library(knitr)
 library(bookdown)
+library(tidyverse)
 ```
 
 
@@ -29,9 +30,10 @@ Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the p
 
 
 ## Exercise B
-1. Download the file `tv_ownership.dat` posted on Canvas and save it in your `r_course/data` folder.
-2. The file is an excerpt of a dataset provided by the US Federal Communications Commission (FCC) with detailed data on TV and Radio stations ownership. The excerpt is in the original format as provided by the FCC. Figure out how to read this dataset into R with the functions provided in the `tidyverse/readr`-packages.
-3. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them (using comments).
+1. Download the file `airquality_data.xlsx` posted on Canvas and save it in your `r_course/data` folder.
+2. The file is a dataset that contains the New York air quality measurements. Familiarize with the data using `print`. Do you think the dataset has problems? (Hint: look at the `type` of each column).
+3. Fix the problem identified in point 2. Save the new dataset as airquality_data_fixed.xlsx using `write_xlsx` from `tidyverse/writexl`.
+4. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them (using comments).
 
 
 ## Exercise C
