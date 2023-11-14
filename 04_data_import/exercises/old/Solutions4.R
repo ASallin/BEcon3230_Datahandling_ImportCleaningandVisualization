@@ -2,11 +2,11 @@
 #' Data Handling Exercise 4
 #' 
 #' Version 1: Aurélien Sallin, 23.11.2022
-#' - Update: 02.12.2022
+#' - Update: 14.11.2023
 #############################################################################
 
 require(pacman)
-pacman::p_load(dplyr, ggplot2, tidyr, readr)
+pacman::p_load(dplyr, ggplot2, tidyr, readr, tidyverse, writexl)
 
 # Exercise A ----------------------------------------------------------------
 #' Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the problem posed in Section
@@ -54,42 +54,34 @@ challenge2 <- read_csv(
 
 
 # Exercise B ----------------------------------------------------------------
-#' 1. Download the file `tv_ownership.dat` posted on Canvas and save it in your `r_course/data` folder.
+#' 1. Download the file `airquality_data.xlsx` posted on Canvas and save it in your `r_course/data` folder.
+#' 2. The file is a dataset that contains the New York air quality measurements. Familiarize with the data using `print`.
+#' Do you think the dataset has problems? (Hint: look at the `type` of each column).
+#' 3. Fix the problem identified in point 2. Save the new dataset as airquality_data_fixed.xlsx using `write_xlsx` from `tidyverse/writexl`.
+#' 4. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them (using comments).
 
-#' 2. The file is an excerpt of a dataset provided by the US Federal Communications Commission (FCC) 
-#' with detailed data on TV and Radio stations ownership. The excerpt is in the original format as 
-#' provided by the FCC. Figure out how to read this dataset into R with the functions provided in the 
-#' `tidyverse/readr`-packages.
+airquality_data <- read_excel("04_data_import/airquality_data.xlsx")
 
-mydata <- read_csv("04_data_import/tv_ownership.dat")
-mydata <- read_delim("04_data_import/tv_ownership.dat", delim = "|", col_names = FALSE)
-mydata
+# Print the data
+print(airquality_data)
+# The type of column "month" is "character", while it should be "double" 
+# (since we are supposed to only have numbers). Let's sort the column.
+print(sort(airquality_data$Month))
 
+# We can see that there is a typo. For one observation we have "five" instead
+# of 5. Let's fix this.
+airquality_data_fixed <- airquality_data
+airquality_data_fixed$Month <- ifelse(airquality_data$Month == "five", 5, airquality_data_fixed$Month)
+print(airquality_data_fixed)
 
-# Some problems persist. 
-problems(mydata)
-# Rows 13 and 14 do not have the expected number of columns.
+# We replaced the value but we still have column "Month" as a "character", 
+# we need to fix this.
+airquality_data_fixed$Month <- as.numeric(airquality_data_fixed$Month)
+print(airquality_data_fixed)
 
-# Explore row 13 and 14, and problematic variables in the raw file
-# End of line 13: no eol |^| ("206425|1464390|GUARANTEE AGREEMENT")
-myrawdata <- read_file("04_data_import/tv_ownership.dat")
-
-
-# The true eols are |^|. We then replace them with \n to make it clear.
-# \n is the standard end of line symbol.
-# remove eol characters
-myrawdata <- gsub("\n", "", myrawdata, fixed = TRUE)
-# replace all `|^|` with eol characters
-myrawdata <- gsub("|^|", "\n", myrawdata, fixed = TRUE)
-
-
-mydata <- read_delim(myrawdata, delim = "|", col_names = FALSE)
-
-# Check
-mydata[10:24,]
-
-#' 3. Write your solution down in an R-Script and document in this script why certain problems occur and 
-#' how you solved them (using comments).
+# Now we can save the new dataset.
+library(writexl)
+write_xlsx(airquality_data_fixed, "04_data_import/airquality_data_fixed.xlsx")
 
 
 

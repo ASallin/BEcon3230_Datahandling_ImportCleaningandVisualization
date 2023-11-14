@@ -43,7 +43,7 @@ Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the p
 
 
 # Mock Exam Questions
-```{r echo=FALSE, results='asis', message=FALSE}
+```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 library(pander)
 # library(examr)
 
