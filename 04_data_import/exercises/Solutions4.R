@@ -2,11 +2,11 @@
 #' Data Handling Exercise 4
 #' 
 #' Version 1: Aurélien Sallin, 23.11.2022
-#' - Update: 14.11.2023
+#' - Update: 23.11.2023 (Andrea)
 #############################################################################
 
 require(pacman)
-pacman::p_load(dplyr, ggplot2, tidyr, readr, tidyverse, writexl)
+pacman::p_load(dplyr, ggplot2, tidyr, readr, tidyverse, writexl, readxl)
 
 # Exercise A ----------------------------------------------------------------
 #' Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the problem posed in Section
@@ -45,13 +45,6 @@ challenge <- read_csv(
   )
 )
 
-# Alternative:
-challenge2 <- read_csv(
-    readr_example("challenge.csv"),
-    guess_max = 1001
-)
-
-
 
 # Exercise B ----------------------------------------------------------------
 #' 1. Download the file `airquality_data.xlsx` posted on Canvas and save it in your `r_course/data` folder.
@@ -60,7 +53,7 @@ challenge2 <- read_csv(
 #' 3. Fix the problem identified in point 2. Save the new dataset as airquality_data_fixed.xlsx using `write_xlsx` from `tidyverse/writexl`.
 #' 4. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them (using comments).
 
-airquality_data <- read_excel("04_data_import/airquality_data.xlsx")
+airquality_data <- read_excel("airquality_data.xlsx")
 
 # Print the data
 print(airquality_data)
@@ -81,7 +74,7 @@ print(airquality_data_fixed)
 
 # Now we can save the new dataset.
 library(writexl)
-write_xlsx(airquality_data_fixed, "04_data_import/airquality_data_fixed.xlsx")
+write_xlsx(airquality_data_fixed, "airquality_data_fixed.xlsx")
 
 
 
