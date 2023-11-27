@@ -2,7 +2,7 @@
 #' Data Handling Exercise 5
 #' 
 #' Version 1: Aurélien Sallin, 02.12.2022
-#' - Update: 
+#' - Update: 27.11.2023 (Andrea)
 #############################################################################
 
 # Set path
@@ -27,7 +27,7 @@ dim(stocks)
 stocks2 <- pivot_wider(stocks, names_from = year, values_from = return)
 
 dim(stocks2)
-# This dataset has 2 rows and 4 columns
+# This dataset has 2 rows and 3 columns
 
 stocks_wide_long = pivot_longer(stocks2,
     cols = `2015`:`2016`,
