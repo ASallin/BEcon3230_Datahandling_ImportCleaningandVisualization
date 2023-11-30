@@ -28,7 +28,7 @@ library(bookdown)
 
 # Exercises^[Adopted from https://r4ds.had.co.nz/tidy-data.html.]
 
-The GitHub repo for Exercise Session 5 contains csv files with data needed to solve the following exercises. These files will also be made available on Canvas. Make sure to store them in your `r_course/data/` folder. Do not forget to load `tidyverse` before you get started!
+The Canvas page contains csv files with data needed to solve the following exercises. Make sure to store them in your `r_course/data/` folder. Do not forget to load `tidyverse` before you get started!
 
 ```{r echo=FALSE, message=FALSE, purl=FALSE, warning=FALSE}
 # generate csvs for exercises (all taken from https://r4ds.had.co.nz/tidy-data.html)
