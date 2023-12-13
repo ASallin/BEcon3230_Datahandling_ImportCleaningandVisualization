@@ -2,7 +2,7 @@
 #' Data Handling Exercise 6
 #' 
 #' Version 1: Aurélien Sallin, 16.12.2022
-#' - Update: Andrea Burro, 13.12.2023
+#' - Update: 
 #############################################################################
 
 # install and load packages
@@ -61,6 +61,11 @@ kable(bf_sum,
       digits = 2,
       caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)" )
 
+
+
+
+
+
 # Exercise B -------------------------------
 
 # select subset
@@ -85,6 +90,9 @@ flights_plot <-
   theme(legend.position = "top")
 
 flights_plot
+
+
+
 
 # Exercise C: 
 
