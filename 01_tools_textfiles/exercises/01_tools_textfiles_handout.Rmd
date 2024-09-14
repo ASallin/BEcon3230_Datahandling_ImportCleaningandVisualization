@@ -3,11 +3,7 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 author: |
      | Dr. Aurélien Sallin
      | (University of St. Gallen)
-<<<<<<< HEAD
-date: "04/09/2023"
-=======
-date: "01/10/2023"
->>>>>>> 0c5dd79a88f33941d79a1a63af066a916bfc4fa9
+
 output:
   pdf_document: default
   html_document:
@@ -17,7 +13,7 @@ output:
 header-includes:
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
-subtitle: 'Exercise/Workshop 1: Tools, Working with Text Files'
+subtitle: 'Exercise/Workshop 1: Tools and functions'
 bibliography: ../../references/datahandling.bib
 ---
 
@@ -29,26 +25,37 @@ library(bookdown)
 ```
 
 
-# Prerequisites
-
-- Nuvolos Account with RStudio
-
-
 # Exercises
 
 ## Exercise A: Setting up a Working Environment
 
- 1. Get familiar with the file browser pane on the lower right. In Nuvolos, navigate to the folder "files". When you work on your PC locally, navigate to a location of your choice.
+Setting Up a Basic Folder Structure and Working Environment in RStudio
 
- 2. Use the 'New Folder'-button to create a new folder. Name this new folder `r_course`. 
+Follow these steps to set up a structured and organized environment for your R project in RStudio:
 
- 3. You should see the new folder listed in the file browser. Click on it to navigate to its contents. Now, click on the 'More' button and select 'Set as Working Directory' in the drop-down menu.
+1.	Create a New Folder on Your Laptop:
+  - Navigate to a location of your choice on your personal laptop (e.g., your Documents folder).
+  -	Right-click and select New Folder to create a new folder.
+  -	Name this new folder r_course.
+  
+2.	Create Subfolders for Data and Code:
+  - Open the newly created r_course folder.   
+  -	Right-click inside the folder and select New Folder again to create two subfolders:
+ 	  - Name the first subfolder data.
+    - Name the second subfolder code.
+    
+3.	Create an RStudio Project in the r_course Folder:
+  -	Open RStudio.
+  -	Click on the Project button in the top-right corner of the RStudio window. 
+  -	Select New Project... from the drop-down menu.
+  -	In the pop-up window, choose Existing Directory.
+  -	Click Browse... and navigate to the r_course folder you created in Step 1.
+  -	Select the r_course folder and click Create Project.
+  
+4.	Confirm Your Working Directory:
+  - When the project is created, RStudio will open it and set the working directory to the r_course     folder automatically.
+  - To check the current working directory, run the following command in the Console:
 
- 4. Again, use the 'New Folder'-button in order to create two new folders called `data` and `code`.
-
- 5. Finally, click on the project button in the top-right corner of the RStudio window and select 'New Project' in the drop-down menu. In the pop-up window, select 'Existing directory', browse to and select your `r_course` folder, then click 'Create Project'.
-
-Now you know how to set up a meaningful basic folder structure and working environment for an R project. The next exercise teaches you how to write R scripts in this environment.
 
 
 ## Exercise B: R Scripts
@@ -88,22 +95,65 @@ In Exercise B, you printed the phrase "Hello world" to your console. Now, you wi
 cat("Hello world", file = "hello_world_file.txt")
 ```
 
-<<<<<<< HEAD
+
 4. In the file pane, open the folder `../r_course/code`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
 
-Important: throughout our exercise sessions, you will save output to .txt files and upload them to Github Classroom to complete the assignments. Make sure your .txt files are named according to our instructions - otherwise your assignment will fail.
+
+## Exercise D: Write a Sum Function
+
+In the lecture on Programming with Data, we have discussed the most basic programming concepts in R. Among other things, you have learned how we can use for-loops to sum up numbers stored in a numeric vector.
+
+1. Use the code example in the respective lecture notes and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
+
+```{r eval=FALSE, purl=FALSE}
+my_sum <- function(x){
+          
+     }
+```
+
+2. Define the vector `numbers = c(1, 2, 3)`. Then, compare your function `my_sum()` with the `sum()` function (the pre-implemented sum function in R) when using `numbers` as the input argument: Do you get the same output for `my_sum(numbers)` and `sum(numbers)`?
 
 
-# Additional Exercises (not exam-relavant)
+## Exercise E: Loop over fast and slow sloth (Supplementary exercise)
 
-## Exercise E: Cloning and updating a GitHub repository
+We can use loops to simulate natural processes over time. Write a program that calculates the populations of two kinds of sloths over time. At the beginning of year 1, there are 1000 slow sloths and 1 fast sloth.
+This one fast sloth is a new mutation that is genetically able to use roller blades. Not surprisingly, being fast gives it an advantage, as it can better escape from predators.
+Each year, each sloth has one offspring. There are no further mutations, soslow sloths beget slow sloths, and fast sloths beget fast sloths. Also, each year 40% of all slow sloths die each year, while only 30% of the fast sloths do.
+So, at the beginning of year one there are 1000 slow sloths. Another 1000 slowsloths are born. But, 40% of these 2000 slow sloths die, leaving a total of 1200at the end of year one. Meanwhile, in the same year, we begin with 1 fast sloth,1 more is born, and 30% of these die, leaving 1.4.
 
-Remember, Git is a revision control system (to manage different versions of your code). GitHub is a hosting service for Git repositories. So Git is a tool, and GitHub a service for projects that use this tool.
+Enter the first year in which the fast sloths outnumber the slow sloths.
 
- - Clone the repository of this course. Cloning means that you create a local copy of the repo on your computer. Follow these instructions: https://help.github.com/en/articles/cloning-a-repository. (Alternatively, you could also download the entire repository as a zip-file using the graphical user interface, GUI, on the GitHub page.)
-=======
-3. In the files pane, open the folder `{some path to folder}/r_course`. Make sure it contains a file named "hello_world_file.txt". You can open it to verify its content.
+```{r eval=FALSE, purl=FALSE}
 
->>>>>>> 0c5dd79a88f33941d79a1a63af066a916bfc4fa9
+# Initialize populations for Year 1
+slow_sloths <- 1000
+fast_sloths <- 1
 
+# Set the rates of death
+slow_death_rate <- 0.40
+fast_death_rate <- 0.30
+
+# Initialize year counter
+year <- 1
+
+# Loop until fast sloths outnumber slow sloths
+while (slow_sloths >= fast_sloths) {
+  # Calculate the new population after births and deaths for slow sloths
+  slow_sloths <- slow_sloths * 2 * (1 - slow_death_rate)
+  
+  # Calculate the new population after births and deaths for fast sloths
+  fast_sloths <- fast_sloths * 2 * (1 - fast_death_rate)
+  
+  # Increment the year
+  year <- year + 1
+}
+
+# Print the first year in which fast sloths outnumber slow sloths
+print(year)
+
+
+# Print
+cat("The fast sloths outnumber the slow sloths in year:", year , "\n")
+
+```
 

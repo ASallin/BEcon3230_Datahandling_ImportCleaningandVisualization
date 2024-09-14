@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-author: "Aurélien Sallin (lecturer) and Matthias Roesti (class tutor)"
-date: "06/10/2023"
+author: "Aurélien Sallin (lecturer) and Federica Mascolo (class tutor)"
+date: "10/10/2024"
 output:
   pdf_document: default
   html_document:
@@ -16,448 +16,519 @@ subtitle: 'Example Solution for Exercise/Workshop 2: Computer Code and Data Stor
 bibliography: ../../references/datahandling.bib
 ---
 
-
 ```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
-library(bookdown)
+library(bookdown) 
+
+
 ```
 
+# Exercise solutions
 
+## Exercise A: Write a Sum Function
 
-# Exercises - example solution
+In the lecture on Programming with Data, we have discussed the most basic programming concepts in R. Among other things, you have learned how we can use for-loops to sum up numbers stored in a numeric vector.
 
-## Exercise A: Loading text files in RStudio
+1. Use the code example in the respective lecture notes and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
 
-When working with data, a first important step is to load your data, in our case in RStudio. As you know, data can come in different formats.
-
-1. Along with the exercise instructions, you will find two datasets on Canvas, `simple_data.txt` and `simple_data.csv`. Download them and save/upload them into the `r_course/data` folder (create data subfolder if not already existing). Further ensure that your working directory is the `r_course` folder.
-
-2. Check out the files `simple_data.txt` and `simple_data.csv` by opening them (outside of RStudio) in a text editor, such as Sublime Text or Atom. Do they look different from each other?
-
-*We can see that the files contain the same information, but do not look the same. The `simple_data.csv`-file contains values separated by a comma (`,`), while in the `simple_data.txt`-file we have data columns that are separated by a tabstop.*  
-
-
-3. Go back to RStudio and load the data in .txt format as follows:
-
-```{r eval=FALSE}
-df1 <- read.table("data/simple_data.txt", header = FALSE)
-```
-Type `df1` or `print(df1)` into the console. What do you see?
-
-```{r, include=FALSE}
-df1 <- read.table("../data/simple_data.txt", header = FALSE)
-
-print(df1)
-```
-
-*We see the dataframe printed out in full with 2 observations for 3 variables (note that here `df1` and `print(df1)` produce the same result). We further see that `R` has automatically assigned variable names `V1`, `V2` and `V3` because the file did not provide any variable names.*
-
-
-
-4. Next, turn to the file in .csv format. Run the following code to load it:
-
-```{r eval=FALSE}
-df2 <- read.table("data/simple_data.csv", header = FALSE, sep=",")
-```
-Again, type `df2` or `print(df2)` into the console. Now, what do you see? Compare this output to the output from `print(df1)`.
-
-
-```{r include=FALSE}
-df2 <- read.table("../data/simple_data.csv", header = FALSE, sep=",")
-
-print(df2)
-```
-
-*We can see that the dataframes are identical, despite them looking different in the raw format. This is important for our analysis, because to efficiently work with data further down our pipeline, we need to ensure that we can bring it into a format that the software and its functions can reliably work with. In the present case, both input files get converted into a `data.frame` object in `R` - something which you can also verify in the documentation for the reading function we used (`?read.table` will tell you that the function 'Reads a file in table format and creates a data frame from it').*
-
-*You can also check that the dataframes are identical objects (sidenote: this function tests for exact equality of objects, which is even more strict than jsut comparing whether values match)*
-
-```{r}
-identical(df1,df2)
-```
-
-
-
-5. Generate a text file containing the value in the third column of the second row of `df1`. Hint: you can obtain values from dataframes by indexing like this: `df[i,j]`, where i and j indicate row and column numbers, respectively. Save the text file as "df1_value.txt" in your `r_course/data` folder. 
-
-```{r, eval=FALSE}
-cat(df1[2,3], file = "data/exercise2_df1_value.txt")
-```
-
-*The text file should contain a `b`*
-
-
-
-## Exercise B: Downloading and importing data on air quality
-
-In the following, we are going to download and import data on air quality in New York. 
-
-1. Using a browser of your choice, navigate to this page by the US data.gov data catalog: https://catalog.data.gov/dataset/air-quality.
-
-2. Scroll down to the Section 'Downloads & Resources' and download the data file in .csv format and put it into your `r_course/data` folder.
-
-3. Based on Exercise A, Part 4, how would you open this dataset in RStudio? Hint: In contrast to the files in Exercise A, this file comes with a header row. Complete the following code accordingly:
-
-```{r, eval=FALSE}
-df_airquality <- read.table(...)
-```
-
-*The completed command reads*
-```{r, eval=FALSE}
-df_airquality <- read.table("data/Air_Quality.csv", header = TRUE, sep = ",")
-```
-
-```{r, include=FALSE}
-df_airquality <- read.table("../data/Air_Quality.csv", header = TRUE, sep = ",")
-```
-
-
-4. Once you have loaded the data into RStudio, you can inspect the first (or last) couple of rows using `head(df_airquality)` (or `tail(df_airquality)`).
-
-```{r}
-head(df_airquality)
-```
-
-
-5. Create a text file with the amount (in variable `Data.Value`) for fine particulate matter pollution (variable `Name == "Fine Particulate Matter (PM2.5)"`) in the winter of 2008/09 (variable `Time.Period == "Winter 2008-09"`) in lower Manhattan (variable `Geo.Place.Name == "Lower Manhattan"`). Save your text file as "airquality_manhattan.txt" in your `r_course/data` folder. Hint: use the `subset()` command, and note that you can link different subsetting conditions with the `&` operator.
-
-*Here, we first need to find the location of the information we are looking for. One option to do this is the built-in `subset()` function, using the `&` logical operator to connect the different conditions needed. The `==` operator is a comparison operator testing for logical equality, returning `TRUE` if the condition holds, and `FALSE` otherwise. Using just one `=` would produce an error because `R` expects a logical statement here.*
-
-
-```{r, eval=FALSE}
-my_info <- subset(df_airquality, 
-    Name == "Fine Particulate Matter (PM2.5)" & 
-    Geo.Place.Name == "Lower Manhattan" & 
-    Time.Period == "Winter 2008-09"
-  )
-
-my_value <- my_info$Data.Value
-
-cat(my_value, file = "data/airquality_manhattan.txt")
-```
-
-```{r, include=FALSE}
-my_info <- subset(df_airquality, 
-    Name == "Fine Particulate Matter (PM2.5)" & 
-    Geo.Place.Name == "Lower Manhattan" & 
-    Time.Period == "Winter 2008-09"
-  )
-
-my_value <- my_info$Data.Value
-
-cat(my_value, file = "../data/airquality_manhattan.txt")
-```
-
-*The resulting file should contain the value `15.79`*
-
-
-## Exercise C: Exploring computer code - HTML - let's manipulate the media!
-
-In this exercise, we will explore HTML code, which is the basis of most websites.
-
-1. Open your preferred web browser (e.g. Firefox, Chrome or Safari. Note that Internet Explorer is never a preferred browser). Go to the following website: `https://www.foxnews.com/`.
-
-2. Now let's look at the HTML source code for this website - see [*here*](https://www.indeed.com/career-advice/career-development/how-to-view-html) for information on how to do this in your browser of choice. Try to recognize parts of the code that correspond to elements of the displayed page. 
-
-3. Pick a news headline on the site and find it in the source code - on Windows, you can use `CTRL + F` to use the search bar to look for it in the source code by copying the first couple of words from the headline and putting it into the search bar. Note: most browsers also have an 'inspect element' option when you right click on/select the element you want to look at. This can take you directly to the corresponding part of the HTML (or at least to the vicinity, sometimes you also have to try a couple of times to get where you want to be). For more information on how to do this (in Safari, you will need to activate developer mode for example), see the following [*link*](https://blog.hubspot.com/website/how-to-inspect)
-
-For example, I found the following segment in the HTML code relating to an article titled `Republicans sound alarm over CCP-linked businessman's cash offer to Hunter Biden' (no subtle political messaging intended):
-
-```{html}
-<!DOCTYPE html>
-<html>
-
-<head>
-...
-
-</head>
-
-<body>
+```{r eval=TRUE, purl=FALSE}
+my_sum <- function(x){
   
-...  
+  # Initialize the total - we start at 0
+  total <- 0
   
-  <article class="article story-2">
-      <div class="m">
-          <a href="https://www.foxnews.com/politics/gop-lawmakers-rip-hunter-bidens-cozy-
-relationship-ccp-linked-businessman-damning-evidence" data-omtr-intcmp="fnhpbt3" data-adv=
-  "hp1bt">
-                
-            <picture>
-                <source media="(max-width: 767px)" srcset="//a57.foxnews.com/prod-hp.fox
-news.com/images/2023/10/343/193/576c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1, //a57.
-foxnews.com/prod-hp.foxnews.com/images/2023/10/686/386/576c017a6f05588ac891d4aa76dbd0e7.
-jpg?tl=1&amp;ve=1 2x">
-                <source media="(min-width: 768px) and (max-width: 1023px)" srcset="//a57
-.foxnews.com/prod-hp.foxnews.com/images/2023/10/335/188/576c017a6f05588ac891d4aa76dbd0e7.
-jpg?tl=1&amp;ve=1, //a57
-.foxnews.com/prod-hp.foxnews.com/images/2023/10/670/376/576c017a6f05588ac891d4aa76dbd0e7.
-jpg?tl=1&amp;ve=1 2x">
-                <source media="(min-width: 1024px) and (max-width: 1279px)" srcset="//a57.
-                foxnews.com/prod-hp.fox
-news.com/images/2023/10/303/170/576c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1, //a57
-.foxnews.com/prod-hp.foxnews.com/images/2023/10/606/340/57
-6c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1 2x">
-                <source media="(min-width: 1280px) and (max-width: 1439px)" srcset="//a57.
-foxnews.com/prod-hp.foxnews.com/images/2023/10/277/156/576c017a6f05588ac891d4aa76dbd0e7.
-jpg?tl=1&amp;ve=1, //a57.foxnews.com/prod-hp.foxnews.com/images/2023/10/554/312/576c017a6f
-05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1 2x">
-                <source media="(min-width: 1440px)" srcset="//a57.foxnews.com/prod-hp.fox
-news.com/images/2023/10/331/186/576c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1, //a57.
-foxnews.com/prod-hp.foxnews.com/images/2023/10/662/372/576c017a6f05588ac891d4aa76dbd0e7.
-jpg?tl=1&amp;ve=1 2x">
-                <img src="//a57.foxnews.com/prod-hp.foxnews.com/images/2023/10/343/193/576
-c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1" width="343" height="193" alt="Republicans
-sound alarm over CCP-linked businessman's cash offer to Hunter Biden">
-            </picture>
-            <div class="kicker default"><span class="kicker-text">'IN THEIR POCKET'</span>
-            </div>
-          </a>
-          <span class="pill is-breaking">EXCLUSIVE</span>
-      </div>
-
-      <div class="info ">
-        <header class="info-header">
-          <h3 class="title ">
-            <a href="https://www.foxnews.com/politics/gop-lawmakers-rip-hunter-bidens-cozy
-            -relationship-ccp-linked-businessman-damning-evidence#&amp;_intcmp=fnhpbt3" 
-            data-omtr-intcmp="fnhpbt3">Republicans sound alarm over CCP-linked business-
-            man's cash offer to Hunter Biden</a>
-          </h3>
-        </header>
-        <div class="content">
-          
-
-
-        </div>
-      </div>
-
-  </article>
-    
-...
-
-</body>    
-
-</html>
-```
-
-
-4. Now it's time for some good old media manipulation. In the HTML-code, replace the chosen news headline with a title of your choice (if you need some inspiration, see [*here*](https://www.theonion.com/)). In most browsers, you can double click the source code to edit it, then confirm your edits by hitting the enter/return key. What can you see? Did the website change?
-
-
-*For example, we could change the displayed story title by changing the text of the <h3 class="title "> element:*
-
-```{html}
-<!DOCTYPE html>
-<html>
+  for (num in x){
+      total <- total + num
+    }
   
-<head>
-...
-
-</head>
-
-<body>
-  
-  ...
-
-      <div class="info ">
-        <header class="info-header">
-          <h3 class="title ">
-            <a href="https://www.foxnews.com/politics/gop-lawmakers-rip-hunter-bidens-cozy
-            -relationship-ccp-linked-businessman-damning-evidence#&amp;_intcmp=fnhpbt3" 
-            data-omtr-intcmp="fnhpbt3">In surprise move, Republicans turn to full support 
-            for Joe Biden. Country now in peace and harmony.</a>
-          </h3>
-        </header>
-      </div>
-
-  </article>
-    
-...
-
-</body>
-    
-</html>
-```
-
-
-
-
-
-5. BONUS (not exam relevant): Can you figure out a way to replace the article teaser image as well? Hint: this is easiest if you use online image addresses, e.g. https://static.wikia.nocookie.net/mrbean/images/4/4b/Mr_beans_holiday_ver2.jpg or https://preview.redd.it/bad-luck-brian-meme-hd-upscaled-v0-syiviojoq72a1.jpg?width=1080&crop=smart&auto=webp&s=eace4bc6be838bfe3f30219743d5a5c34c5f4335)
-
-
-*The simplest way of doing this is to replace the link to the image with a link to another image in the <picture> element (note that I also removed all the sub-elements starting with `<source media=?`, these are just what the webpage authors implemented to allow for choosing different image files depending on the screen size - you would have to replace each image link to ensure full replacement in case you were to keep those bit in)*
-
-```{html}
-<!DOCTYPE html>
-<html>
-  
-  
-<head>
-...
-
-</head>
-
-<body>
-  
-...
-
-  <picture>
-      <img src="https://cdn.pixabay.com/photo/2016/05/10/21/50/meditation-1384758_1280.jpg" 
-      width="343" height="193" alt="In surprise move, Republicans turn to full support 
-      for Joe Biden. Country now in peace and harmony.">
-  </picture>
-
-...
-
-</body>
-    
-</html>
-```
-
-
-*As a sidenote, the `alt="In surprise move, Republicans turn to full support for Joe Biden. Country now in peace and harmony."` part is not the same as the title we changed earlier, it defines the alternative text that describes the image, which serves purposes like assisting accessibility and search engine optimization (SEO).*
-
-
-      
-
-## Exercise D: Importing data on air quality (XML format)
-
-1. I provided you with a data file `Air_Quality.xml` on Canvas. Save it in your `r_course/data` folder. 
-
-2. Load the data in .xml format. Hint: The package `XML` might be of use. You can install new packages as follows: `install.packages("package_name")`.
-
-
-```{r, eval = FALSE}
-
-# installing package if not already installed - the require function here will output TRUE 
-# if XML is already installed - the `!` (read 'not') in front of it means that we only 
-# want to install it if this is not the case
-if (!require(XML)) {
-  install.packages("XML")
+  return(total)
 }
 
-library(XML) # loading the package after install - need to run every time we use it!
+```
 
-# Load the data from the XML file
-xml_data <- xmlParse("data/Air_Quality.xml")
+2. Define the vector `numbers = c(1, 2, 3)`. Then, compare your function `my_sum()` with the `sum()` function (the pre-implemented sum function in R) when using `numbers` as the input argument: Do you get the same output for `my_sum(numbers)` and `sum(numbers)`?
 
-# Convert XML data to a data frame
-air_quality_data <- xmlToDataFrame(xml_data)
 
-str(xml_data) # Checking the structure of our xml_data
+*We get the same result in both cases - our function seems to be working:*
+
+```{r}
+numbers = c(1,2,3)
+
+my_sum(numbers)
+
+sum(numbers)
+```
+## Exercise B: Robustness and Warnings
+
+1. Once you have implemented and successfully tested `my_sum()`, call your function with the following vector as input. What happens?
+
+```{r}
+numbers2 <- c("1", "2", "3")
+```
+
+*In this case We get an error, R will not compute the sum and complains about a non-numeric argument:* `Error in total + num : non-numeric argument to binary operator'
+
+```{r, eval=FALSE}
+my_sum(numbers2)
+```
+
+
+2. Why do we get an error? Investigate by comparing the vector `numbers` from Exercise A with the new vector `numbers2`. Hint: the functions `str()` and `class()` might help you.
+
+
+*We can see that the numbers2 vector we provided does not contain numeric values but strings, i.e. a series of characters:*
+```{r}
+# Investigate the structures
+str(numbers)
+str(numbers2)
+
+# Check the classes
+class_numbers <- class(numbers)
+class_numbers2 <- class(numbers2)
+
+print(paste("Class of 'numbers':", class_numbers))
+print(paste("Class of 'numbers2':", class_numbers2))
+```
+
+
+3. Extend your `my_sum()` function with a control statement that checks whether the input is of the right class for the function to work (Hint: `class(x)!="numeric"`). The goal is to make the function more robust to wrong input. That is, if the input is wrong, issue a warning but don't break down with an error. Use the following code for the warning message:
+
+```{r eval=FALSE, purl=FALSE}
+warning("Wrong input! This function only accepts numeric or integer values!")
+```
+
+
+*We can fix our code by adding an if-statement to make sure we get a warning in case the input is not numeric. The `is.numeric()` command will return `TRUE` if x is numeric (and also if x is an integer, hence it is more flexible than requiring `class == "numeric"` for example)*
+```{r}
+my_sum <- function(x){
+  total <- 0
+  
+  # Check for the right input class
+  if (is.numeric(x)) {
+    for (num in x){
+      total <- total + num
+    }
+  } else {
+    warning("Wrong input! This function only accepts numeric or integer values!")
+    total <- NA_real_ # if no sum can be computed, we return a missing value 
+  }
+  
+  return(total)
+}
+```
+
+
+*Note that we would not want to use our own function to sum stuff up, because on top of not being able to address missing entries (easy to fix, see first exercise), it is a lot slower:*
+
+```{r}
+# Creating vector with 100 million random (normally distributed) numbers
+big_vector = rnorm(100000000)
+# Time the built-in sum function
+time_builtin_sum <- system.time({
+  sum(big_vector)
+})[3]  # Extracting the elapsed time
+
+# Time the custom my_sum function
+time_my_sum <- system.time({
+  my_sum(big_vector)
+})[3]  # Extracting the elapsed time
+
+# Print the results
+print(paste("Execution time of built-in sum:", time_builtin_sum, "seconds"))
+print(paste("Execution time of custom my_sum:", time_my_sum, "seconds"))
 
 ```
 
 
-```{r, include = FALSE}
 
-if (!require(XML)) {
-  install.packages("XML")
+4. Test your enhanced sum function with the two input vectors `numbers` and `numbers2`.
+
+*We can see that we get a warning now when running the function on the second vector. Importantly, the function also returns a missing value for the sum, such that we are aware that no valid result is available. Specifically, the function should not return the value of 0 we initially set for the `total` in the function above, because that may cause a lot of issues if interpreted as a proper result.*
+```{r}
+my_sum(numbers)
+my_sum(numbers2)
+```
+
+## Exercise C: use the sum function and lapply/loop/map on a list of vectors
+
+1. **`lapply()`**: Part of base R's "apply" family of functions, which are used for functional programming.
+2. **`for` loops**: A more traditional, imperative style of programming where you explicitly loop over elements.
+3. **`purrr::map()`**: A function from the `purrr` package that provides a more modern and consistent interface for functional programming in R, part of the tidyverse collection of packages.
+
+```{r}
+
+my_sum <- function(x){
+  
+  # Initialize the total - we start at 0
+  total <- 0
+  
+  for (num in x){
+    total <- total + num
+  }
+  
+  return(total)
 }
 
-library(XML) # loading the package after install - need to run every time we use it!
+list_of_numbers <- list(
+  c(1, 2, 3),
+  c(4, 5, 6),
+  c(7, 8, 9, 10)
+)
 
-# Load the data from the XML file
-xml_data <- xmlParse("../data/Air_Quality.xml")
-
-str(xml_data)
 
 ```
-
-*We can see that we loaded an object, but instead of being a nice neat dataframe, what we got was actually an R structure representing the XML tree, i.e. a structure that contains all the information we need to extract the data we want, but we cannot use this directly like a data frame*
-
-
-3. Once you have loaded the .xml file in Part 2, how can you convert it to an R dataframe?
-
-*Luckily, the `XML` package offers a convenient function to convert our parsed structure into a standard data frame:*
 
 
 ```{r}
-# Convert XML data to a data frame
+# lapply
+sums_lapply <- lapply(list_of_numbers, my_sum)
+print(sums_lapply)
 
-air_quality_data <- xmlToDataFrame(xml_data)
+# loop
+sums_loop <- vector("list", length(list_of_numbers))  # Initialize an empty list
+for (i in seq_along(list_of_numbers)) {
+  sums_loop[[i]] <- my_sum(list_of_numbers[[i]])
+}
+print(sums_loop)
 
-str(air_quality_data) # Checking structure again
-
-```
-
-*We have a data frame now - with the caveat that the reading function defaulted to declaring all variables as strings. In order to be able to work with numerical columns, we would first have to convert them into numeric variables, which can be done like this for example: `air_quality_data$data_value <- as.numeric(air_quality_data$data_value)`. For our purposes, importing data from a .csv or text file is often easier than parsing XML files (note also the file size of the XML data relative to the csv file, in itself not the most compact format either).*
-
-
-## Exercise E: Read raw text data
-
-This exercise guides you through how we can import raw text data into R. Suppose you are writing your BA Thesis on the topic "The Effect of Climate Change on Consumption Behavior in Switzerland". For your empirical analysis you need, inter alia, standardized data on temperature anomalies in Switzerland (as a proxy for the salience of climate change). You identify NASA's Earth System Data Explorer as a promising data source and aim to download and work with this data in R. The exercise guide's you exemplary though how this can be done. 
-
-*Hint*: This exercise is an adapted version of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter for an additional introduction to data stored in text files.
-
-
-
-1. Go to NASA's Earth System Data Explorer: https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm.
-
-2. Click on *Data Set* in the upper left corner and navigate through `Atmosphere/Featured Phenomena/Changing Air Temperatures/Temperatures` and select `Monthly Surface Air Temperature Anomaly`.
-
-3. On the bottom left part of the page, under `Line Plots`, select `Time`.
-
-4. Enter the coordinates 47.25 N and 9.22 W (St. Gallen) and click `Update Plot` in the upper left corner. The page shows a plot of the monthly surface air temperature anomaly time series.
-
-5. Click on `Download Data ...`. In the new tab select `ASCII` as a data format. Click to save.
-
-The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save (`Save page as...`) it as `temp_anomaly.txt` in your `r_course/data` folder.
-
-Now we can read the data into R:
-
-```{r eval=FALSE}
-# install the readr package if not yet installed: install.packages("readr")
-library(readr)
-# read the data
-ta <- read_tsv("data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
-```
-
-
-```{r include=FALSE}
-# install the readr package if not yet installed: install.packages("readr")
-library(readr)
-# read the data
-ta <- read_tsv("../data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
-```
-
-
-```{r eval=TRUE}
-# inspect the first rows
-head(ta)
+# map
+library(purrr)
+sums_map <- map(list_of_numbers, my_sum)
+print(sums_map)
 
 ```
 
-- What is the purpose of the `skip` argument and why is it set to `9`?
+  - lapply() takes a list (or vector) and applies a function to each element, returning a list.You can use it when you want to apply a function to each element of a list and get a list back. Is more concise and faster than loops.
+  
+  - for loops explicitly iterate over each element of a list or vector, applying a function or operation. You can use it when you want to have more control of the operations. The logic is the same in other programming languages.
+  
+  - `map()` is part of the `purrr` package (part of the tidyverse), which provides a consistent set of functions. It applies a function to each element of a list and returns a list. Variants like `map_dbl()`, `map_int()`, etc., return vectors of specific types. You can us it if you are working with tidyverse or you want to return specific types.
 
-*In the raw text file, we see that the first 9 lines contains metadata and are in a different format - therefore we need to skip these lines when reading the data into R. Also note how we specified the column names in our command to read in the data, because the data did not have the variable names included in the columns.*
+## Exercise D: Data structures 
 
-- Why do we use `read_tsv()` in this situation and not `read_csv()`?
+#### Vectors, Factors, and Lists
 
-*The raw data shows us that columns are not separated by a comma, but rather by a tab, hence we have what is called a tab-separated values (TSV) file. That said, we could also use the more general `read_delim()` function, specifying the tab `\t` as a separator:*
+1. **Create a vector** `student_ages` containing the ages of 5 students: `18, 21, 20, 22, 19`.
+    - print its length and type using length() and typeof() functions
 
-```{r, eval = FALSE}
 
-ta <- read_delim("data/temp_anomaly.txt", skip = 9, delim = "\t", 
-                 col_names = c("month", "temp_anomaly"))
+```{r}
+   # Create the vector
+   student_ages <- c(18, 21, 20, 22, 19)
+   
+   # Print the length and type
+   length(student_ages)  # Output: 5
+   typeof(student_ages)  # Output: "double"
+```
+
+
+2. **Create a factor** `student_grades` representing the grades of the same 5 students: "A", "B", "A", "C", "B".
+    - print the factor levels, why do you use factors?
+
+
+```{r}
+   # Create the factor
+   student_grades <- factor(c("A", "B", "A", "C", "B"))
+   
+   # Print the factor levels
+   levels(student_grades)  # Output: "A" "B" "C"
+   
+```
+
+Factors are useful here because grades are categorical data with a limited number of levels.
+
+
+3. **Create a list** `student_info` that combines `student_ages`, `student_grades`, and another vector `student_names`.
+    - access individual elements using both numeric and named indexing.
+
+
+```{r}
+   # Create the vector of student names
+   student_names <- c("Aurelien", "Andrea", "Federica", "Bob", "Eva")
+   
+   # Create the list
+   student_info <- list(names = student_names, ages = student_ages, grades = student_grades)
+   
+   # Access elements in the list
+   student_info$names  
+   student_info[[1]]
+```
+
+4. What is the difference between a vector and a factor? Why do you use a list instead of a vector when dealing with different types of data?
+
+   - **Difference between vector and factor**: A vector is a basic data structure for storing homogeneous data types (e.g., numbers, characters), whereas a factor is specifically designed for categorical data.
+   - **Why use a list instead of a vector?**: A list can store elements of different types (e.g., vectors, factors), making it more flexible than a vector.
+
+#### Matrices and Arrays
+
+1. **Create a matrix** `scores_matrix` representing the scores of 3 students in 3 subjects.
+    - give row and column names using rownames() and colnames().
+    - print the matrix and the score of a student that you prefer.
+  
+
+```{r}
+   # Create the matrix
+   scores_matrix <- matrix(c(75, 82, 78, 88, 90, 92, 60, 65, 70), nrow = 3, byrow = TRUE)
+   
+   # Set row and column names
+   rownames(scores_matrix) <- c("Student 1", "Student 2", "Student 3")
+   colnames(scores_matrix) <- c("Math", "English", "Science")
+   
+   # Print the matrix
+   print(scores_matrix)
+   
+   # Access the score of Student 2 in Science
+   scores_matrix["Student 2", "Science"]  
+```
+
+2. **Create an array** `student_array` to store the same data as in `scores_matrix` but for two semesters.
+    - this 3-dimensional array, access "Student 3" scores in the first subject listed across both semesters.
+
+```{r}
+   # Create the array
+   student_array <- array(c(
+     75, 82, 78, 88, 90, 92, 60, 65, 70,  # Semester 1
+     80, 84, 82, 91, 94, 93, 63, 68, 72   # Semester 2
+   ), dim = c(3, 3, 2), 
+   dimnames = list(
+     c("Student 1", "Student 2", "Student 3"),
+     c("Math", "English", "Science"),
+     c("Semester 1", "Semester 2")
+   ))
+   
+   # Access "Student 3's" scores in "Math" across both semesters
+   student_array["Student 3", "Math", ]  # Output: 60 63
+   
+```
+
+3. What are the differences between a matrix and an array? When would you use an array instead of a matrix?
+    - A matrix is a 2-dimensional structure, while an array can have more than two dimensions.
+    - Use an array when you need to store multi-dimensional data.
+
+#### Data Frames, tibble and data.table
+
+1. **Create a data frame** `students_df` combining all the data for 5 students: student_names, student_ages, student_grades, and another vector attendance containing their class attendance (in percentage): 85, 92, 78, 88, 90.
+   - access the columns of attendance.
+   - access the data for student 3.
+
+```{r}
+   # Create a data frame
+   students_df <- data.frame(
+     names = student_names,
+     ages = student_ages,
+     grades = student_grades,
+     attendance = c(85, 92, 78, 88, 90)
+   )
+   
+   # Access a specific column (student_names)
+   students_df$names  
+
+   # Access the data for "Andrea"
+   students_df[students_df$names == "Andrea", ]  # Output: Data frame row for David
+   
+```
+
+**Difference between a list and a data frame**: A list can contain elements of different types and structures, whereas a data frame is specifically a table where each column can have different types, but each column is a vector.
+   
+2. Why is a data frame more suitable for this kind of structured data than a matrix?
+   -  Data frames are more suitable for structured data because they can contain heterogeneous data types and offer better data manipulation functions.
+
+
+3. Convert the existing students_df data frame into a tibble using the as_tibble() function.
+   - name the tibble students_tibble and print the data frame and the tibble.
+
+```{r}
+# Load the necessary package
+library(tibble)
+
+# Convert to tibble
+students_tibble <- as_tibble(students_df)
+
+# Print the tibble and data frame to observe differences
+print(students_df)       # Standard data frame print
+print(students_tibble)   # More concise print for tibbles
+
+# Access a non-existent column in data frame and tibble
+students_df$nonexistent  # Output: NULL
+students_tibble$nonexistent  # Output: NULL with a warning
+```
+
+Tibbles provide a more readable print format and do not change types or convert strings to factors by default. Trying to access a non-existent column in a tibble gives a clear warning, unlike in data frames.
+
+```{r}
+# Load the necessary package
+library(data.table)
+
+# Convert to data.table
+students_dt <- as.data.table(students_df)
+
+# Selecting a column
+print(students_dt[, ages])  # Output: Vector of ages
+
+# Filtering rows where grades are "A"
+print(students_dt[grades == "A"]) # Output: Rows with grade "A"
+
+# Adding a new column with the average attendance
+students_dt[, average_attendance := mean(attendance)]
+print(students_dt)
+```
+
+data.table has a more concise syntax for data manipulation tasks, such as filtering and adding new columns, and it is significantly faster, especially with large datasets
+
+
+### Additional Exercises for training
+```{r}
+library(dplyr)
+# Filter students with attendance greater than 85
+# Using data.frame
+df_filtered <- students_df[students_df$attendance > 85, ]
+
+# Using tibble
+tb_filtered <- students_tibble %>% filter(attendance > 85)
+
+# Using data.table
+dt_filtered <- students_dt[attendance > 85]
+
+# Calculate mean age of students who passed
+# Using data.frame
+mean(students_df$ages[students_df$grades <= "C"])
+
+# Using tibble
+students_tibble %>% filter(grades <= "C") %>% summarise(mean_age = mean(ages))
+
+# Using data.table
+students_dt[grades <= "C", mean(ages)]
+
+# Add a new column 'grade_numeric'
+# Using data.frame
+students_df$grade_numeric <- as.numeric(
+  factor(students_df$grades, levels = c("A", "B", "C"), labels = c(4, 3, 2)))
+
+# Using tibble
+students_tibble <- students_tibble %>% mutate(
+  grade_numeric = as.numeric(factor(grades, levels = c("A", "B", "C"), labels = c(4, 3, 2))))
+
+# Using data.table
+students_dt[, grade_numeric := as.numeric(
+  factor(grades, levels = c("A", "B", "C"), labels = c(4, 3, 2)))]
+
+```
+
+
+## Exercise E: Standard Deviation Function
+
+1. During the lecture on Programming with Data we have step-by-step implemented our own R function to compute the mean. Now implement an R function called `my_sd` that computes the standard deviation, defined as: $SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$. Hint: revisit the math operators section in the notes on the first exercise session.
+
+```{r}
+my_sd <- function(x) {
+  n <- length(x)
+  
+  # First, check if n is greater than 1
+  if(n <= 1) {
+    warning("At least two numbers are required to compute standard deviation.")
+    return(NA) # NA is returned if computation is not possible
+  }
+  
+  mean_x <- mean(x)
+  sum_squared_diff <- sum((x - mean_x)^2)
+  sd <- sqrt(sum_squared_diff / (n - 1))
+  
+  return(sd)
+}
+
+```
+
+
+2. Test your implementation by comparing its output with the already implemented `sd()` function.
+
+```{r}
+# Create a test vector
+set.seed(2023) # setting seed to reproduce the same results (note that results may still  
+               # vary across different devices and R-versions)
+test_vector <- rnorm(10000)  # a random vector of 10000 numbers with mean zero and sd of 1
+
+# Compare the outputs of the custom function and the built-in function
+custom_sd <- my_sd(test_vector)
+builtin_sd <- sd(test_vector)
+
+print(paste("Custom standard deviation:", custom_sd))
+print(paste("Built-in standard deviation:", builtin_sd))
 
 ```
 
 
 
-<!-- # Mock Exam Questions -->
+## Exercise F: Standard Error Function
 
-<!-- ```{r echo=FALSE, results='asis', message=FALSE} -->
-<!-- library(pander) -->
-<!-- library(examr) -->
-<!-- # load file with questions -->
-<!-- questions_file <- "../../../datahandling-examination/data/questions_db.xlsx" -->
-<!-- my_questions <- read_questions(questions_file, year = 2018, mock = TRUE, topic = "week1-2") -->
+Building on the function written in Exercise D, implement a function to compute (the estimate of) the sample mean standard error as defined here: $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$. Hint: the idea is to use your own implementation (in Exercise D) to compute $SD$ as a first step of your standard error function.
 
-<!-- # select questions -->
-<!-- selection_mock_ex2 <- select_questions(my_questions) -->
-<!-- questions_text <- generate_question_text(selection_mock_ex2)   -->
-<!-- pander(questions_text, sep="\n") -->
-<!-- ``` -->
+Exercises D and E should illustrate how you can approach more complex problems by breaking them up in smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$, you see that computing $SD$ is a part of the overall problem, which can be addressed separately.
+
+
+```{r}
+my_se <- function(x) {
+  # Call the previously defined my_sd function to compute the standard deviation
+  sd <- my_sd(x)
+  
+  n <- length(x)
+  if(n <= 1) {
+    warning("At least two numbers are required to compute standard error.")
+    return(NA) # NA is returned if computation is not possible
+  }
+  
+  se <- sd / sqrt(n)
+  return(se)
+}
+
+
+# Test the function (base R has not built in function for this - we will test the 
+# final output below)
+test_se <- my_se(test_vector)
+print(paste("Standard error computed by my function:", test_se))
+
+```
+
+
+
+## Exercise G: T-test
+
+Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test):
+$t = \frac{\bar{x} - \mu_0}{SE}$.
+
+```{r}
+my_t_test <- function(x, mu_0) {
+  # Calculate the sample mean
+  sample_mean <- mean(x)
+  
+  # Compute standard error using the function from Exercise E
+  se <- my_se(x)
+  
+  n <- length(x)
+  if(n <= 1) {
+    warning("At least two numbers are required to compute the t-statistic.")
+    return(NA) # NA is returned if computation is not possible
+  }
+  
+  # Calculate the t-statistic
+  t_statistic <- (sample_mean - mu_0) / se
+  
+  return(t_statistic)
+}
+
+# Testing against R
+
+# Test the function with a sample vector and a test mean (mu_0)
+mu_0_test <- 0  # This is the hypothesized mean (and the true mean of our data)
+
+# Because our hypothesized value is correct, we should not reject, i.e.
+# get a low t-statistic, well below the 5% significance threshold of +-1.96
+t_test_result <- my_t_test(test_vector, mu_0_test)
+print(paste("T-test result:", t_test_result))
+
+# Now, use the built-in t-test function for comparison
+builtin_t_test_result <- t.test(test_vector, mu = mu_0_test)$statistic
+
+print(paste("Built-in T-test result:", builtin_t_test_result))
+```
+

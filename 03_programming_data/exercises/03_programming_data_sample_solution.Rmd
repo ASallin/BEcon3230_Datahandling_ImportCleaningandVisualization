@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Aurélien Sallin (lecturer) and Matthias Roesti (class tutor)"
-date: "28/10/2023"
+date: "24/10/2024"
 output:
   pdf_document: default
   html_document:
@@ -26,135 +26,368 @@ library(bookdown)
 
 # Exercises
 
-## Exercise A: Write a Sum Function
+## Exercise A: Downloading and importing data on air quality
+In the following, we are going to download and import data on air quality in New York. 
 
-In the lecture on Programming with Data, we have discussed the most basic programming concepts in R. Among other things, you have learned how we can use for-loops to sum up numbers stored in a numeric vector.
+1. Using a browser of your choice, navigate to this page by the US data.gov data catalog: https://catalog.data.gov/dataset/air-quality.
 
-1. Use the code example in the respective lecture notes and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
+2. Scroll down to the Section 'Downloads & Resources' and download the data file in .csv format and put it into your `r_course/data` folder.
 
-```{r eval=TRUE, purl=FALSE}
-my_sum <- function(x){
-  
-  # Initialize the total - we start at 0
-  total <- 0
-  
-  for (num in x){
-      total <- total + num
-    }
-  
-  return(total)
-}
-
-```
-
-2. Define the vector `numbers = c(1, 2, 3)`. Then, compare your function `my_sum()` with the `sum()` function (the pre-implemented sum function in R) when using `numbers` as the input argument: Do you get the same output for `my_sum(numbers)` and `sum(numbers)`?
-
-
-*We get the same result in both cases - our function seems to be working:*
-```{r}
-numbers = c(1,2,3)
-
-my_sum(numbers)
-
-sum(numbers)
-```
-
-
-## Exercise B: Robustness and Warnings
-
-1. Once you have implemented and successfully tested `my_sum()`, call your function with the following vector as input. What happens?
-
-```{r}
-numbers2 <- c("1", "2", "3")
-```
-
-*In this case We get an error, R will not compute the sum and complains about a non-numeric argument:* `Error in total + num : non-numeric argument to binary operator'
+3. Based on Exercise A, Part 4, how would you open this dataset in RStudio? Hint: In contrast to the files in Exercise A, this file comes with a header row. Complete the following code accordingly:
 
 ```{r, eval=FALSE}
-my_sum(numbers2)
+df_airquality <- read.table(...)
+```
+
+*The completed command reads*
+```{r, eval=FALSE}
+df_airquality <- read.table("data/Air_Quality.csv", header = TRUE, sep = ",")
+```
+
+```{r, include=FALSE}
+df_airquality <- read.table("../data/Air_Quality.csv", header = TRUE, sep = ",")
 ```
 
 
+4. Once you have loaded the data into RStudio, you can inspect the first (or last) couple of rows using `head(df_airquality)` (or `tail(df_airquality)`).
 
-2. Why do we get an error? Investigate by comparing the vector `numbers` from Exercise A with the new vector `numbers2`. Hint: the functions `str()` and `class()` might help you.
-
-
-*We can see that the numbers2 vector we provided does not contain numeric values but strings, i.e. a series of characters:*
 ```{r}
-# Investigate the structures
-str(numbers)
-str(numbers2)
-
-# Check the classes
-class_numbers <- class(numbers)
-class_numbers2 <- class(numbers2)
-
-print(paste("Class of 'numbers':", class_numbers))
-print(paste("Class of 'numbers2':", class_numbers2))
+head(df_airquality)
 ```
 
 
-3. Extend your `my_sum()` function with a control statement that checks whether the input is of the right class for the function to work (Hint: `class(x)!="numeric"`). The goal is to make the function more robust to wrong input. That is, if the input is wrong, issue a warning but don't break down with an error. Use the following code for the warning message:
+5. Create a text file with the amount (in variable `Data.Value`) for fine particulate matter pollution (variable `Name == "Fine Particulate Matter (PM2.5)"`) in the winter of 2008/09 (variable `Time.Period == "Winter 2008-09"`) in lower Manhattan (variable `Geo.Place.Name == "Lower Manhattan"`). Save your text file as "airquality_manhattan.txt" in your `r_course/data` folder. Hint: use the `subset()` command, and note that you can link different subsetting conditions with the `&` operator.
 
-```{r eval=FALSE, purl=FALSE}
-warning("Wrong input! This function only accepts numeric or integer values!")
+*Here, we first need to find the location of the information we are looking for. One option to do this is the built-in `subset()` function, using the `&` logical operator to connect the different conditions needed. The `==` operator is a comparison operator testing for logical equality, returning `TRUE` if the condition holds, and `FALSE` otherwise. Using just one `=` would produce an error because `R` expects a logical statement here.*
+
+
+```{r, eval=FALSE}
+my_info <- subset(df_airquality, 
+    Name == "Fine Particulate Matter (PM2.5)" & 
+    Geo.Place.Name == "Lower Manhattan" & 
+    Time.Period == "Winter 2008-09"
+  )
+
+my_value <- my_info$Data.Value
+
+cat(my_value, file = "data/airquality_manhattan.txt")
+```
+
+```{r, include=FALSE}
+my_info <- subset(df_airquality, 
+    Name == "Fine Particulate Matter (PM2.5)" & 
+    Geo.Place.Name == "Lower Manhattan" & 
+    Time.Period == "Winter 2008-09"
+  )
+
+my_value <- my_info$Data.Value
+
+cat(my_value, file = "../data/airquality_manhattan.txt")
+```
+
+*The resulting file should contain the value `15.79`*
+
+
+## Exercise B: Exploring computer code - HTML - let's manipulate the media!
+
+In this exercise, we will explore HTML code, which is the basis of most websites.
+
+1. Open your preferred web browser (e.g. Firefox, Chrome or Safari. Note that Internet Explorer is never a preferred browser). Go to the following website: `https://www.foxnews.com/`.
+
+2. Now let's look at the HTML source code for this website - see [*here*](https://www.indeed.com/career-advice/career-development/how-to-view-html) for information on how to do this in your browser of choice. Try to recognize parts of the code that correspond to elements of the displayed page. 
+
+3. Pick a news headline on the site and find it in the source code - on Windows, you can use `CTRL + F` to use the search bar to look for it in the source code by copying the first couple of words from the headline and putting it into the search bar. Note: most browsers also have an 'inspect element' option when you right click on/select the element you want to look at. This can take you directly to the corresponding part of the HTML (or at least to the vicinity, sometimes you also have to try a couple of times to get where you want to be). For more information on how to do this (in Safari, you will need to activate developer mode for example), see the following [*link*](https://blog.hubspot.com/website/how-to-inspect)
+
+For example, I found the following segment in the HTML code relating to an article titled `Republicans sound alarm over CCP-linked businessman's cash offer to Hunter Biden' (no subtle political messaging intended):
+
+```{html}
+<!DOCTYPE html>
+<html>
+
+<head>
+...
+
+</head>
+
+<body>
+  
+...  
+  
+  <article class="article story-2">
+      <div class="m">
+          <a href="https://www.foxnews.com/politics/gop-lawmakers-rip-hunter-bidens-cozy-
+relationship-ccp-linked-businessman-damning-evidence" data-omtr-intcmp="fnhpbt3" data-adv=
+  "hp1bt">
+                
+            <picture>
+                <source media="(max-width: 767px)" srcset="//a57.foxnews.com/prod-hp.fox
+news.com/images/2023/10/343/193/576c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1, //a57.
+foxnews.com/prod-hp.foxnews.com/images/2023/10/686/386/576c017a6f05588ac891d4aa76dbd0e7.
+jpg?tl=1&amp;ve=1 2x">
+                <source media="(min-width: 768px) and (max-width: 1023px)" srcset="//a57
+.foxnews.com/prod-hp.foxnews.com/images/2023/10/335/188/576c017a6f05588ac891d4aa76dbd0e7.
+jpg?tl=1&amp;ve=1, //a57
+.foxnews.com/prod-hp.foxnews.com/images/2023/10/670/376/576c017a6f05588ac891d4aa76dbd0e7.
+jpg?tl=1&amp;ve=1 2x">
+                <source media="(min-width: 1024px) and (max-width: 1279px)" srcset="//a57.
+                foxnews.com/prod-hp.fox
+news.com/images/2023/10/303/170/576c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1, //a57
+.foxnews.com/prod-hp.foxnews.com/images/2023/10/606/340/57
+6c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1 2x">
+                <source media="(min-width: 1280px) and (max-width: 1439px)" srcset="//a57.
+foxnews.com/prod-hp.foxnews.com/images/2023/10/277/156/576c017a6f05588ac891d4aa76dbd0e7.
+jpg?tl=1&amp;ve=1, //a57.foxnews.com/prod-hp.foxnews.com/images/2023/10/554/312/576c017a6f
+05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1 2x">
+                <source media="(min-width: 1440px)" srcset="//a57.foxnews.com/prod-hp.fox
+news.com/images/2023/10/331/186/576c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1, //a57.
+foxnews.com/prod-hp.foxnews.com/images/2023/10/662/372/576c017a6f05588ac891d4aa76dbd0e7.
+jpg?tl=1&amp;ve=1 2x">
+                <img src="//a57.foxnews.com/prod-hp.foxnews.com/images/2023/10/343/193/576
+c017a6f05588ac891d4aa76dbd0e7.jpg?tl=1&amp;ve=1" width="343" height="193" alt="Republicans
+sound alarm over CCP-linked businessman's cash offer to Hunter Biden">
+            </picture>
+            <div class="kicker default"><span class="kicker-text">'IN THEIR POCKET'</span>
+            </div>
+          </a>
+          <span class="pill is-breaking">EXCLUSIVE</span>
+      </div>
+
+      <div class="info ">
+        <header class="info-header">
+          <h3 class="title ">
+            <a href="https://www.foxnews.com/politics/gop-lawmakers-rip-hunter-bidens-cozy
+            -relationship-ccp-linked-businessman-damning-evidence#&amp;_intcmp=fnhpbt3" 
+            data-omtr-intcmp="fnhpbt3">Republicans sound alarm over CCP-linked business-
+            man's cash offer to Hunter Biden</a>
+          </h3>
+        </header>
+        <div class="content">
+          
+
+
+        </div>
+      </div>
+
+  </article>
+    
+...
+
+</body>    
+
+</html>
 ```
 
 
-*We can fix our code by adding an if-statement to make sure we get a warning in case the input is not numeric. The `is.numeric()` command will return `TRUE` if x is numeric (and also if x is an integer, hence it is more flexible than requiring `class == "numeric"` for example)*
-```{r}
-my_sum <- function(x){
-  total <- 0
+4. Now it's time for some good old media manipulation. In the HTML-code, replace the chosen news headline with a title of your choice (if you need some inspiration, see [*here*](https://www.theonion.com/)). In most browsers, you can double click the source code to edit it, then confirm your edits by hitting the enter/return key. What can you see? Did the website change?
+
+
+*For example, we could change the displayed story title by changing the text of the <h3 class="title "> element:*
+
+```{html}
+<!DOCTYPE html>
+<html>
   
-  # Check for the right input class
-  if (is.numeric(x)) {
-    for (num in x){
-      total <- total + num
-    }
-  } else {
-    warning("Wrong input! This function only accepts numeric or integer values!")
-    total <- NA_real_ # if no sum can be computed, we return a missing value 
-  }
+<head>
+...
+
+</head>
+
+<body>
   
-  return(total)
+  ...
+
+      <div class="info ">
+        <header class="info-header">
+          <h3 class="title ">
+            <a href="https://www.foxnews.com/politics/gop-lawmakers-rip-hunter-bidens-cozy
+            -relationship-ccp-linked-businessman-damning-evidence#&amp;_intcmp=fnhpbt3" 
+            data-omtr-intcmp="fnhpbt3">In surprise move, Republicans turn to full support 
+            for Joe Biden. Country now in peace and harmony.</a>
+          </h3>
+        </header>
+      </div>
+
+  </article>
+    
+...
+
+</body>
+    
+</html>
+```
+
+
+
+
+
+5. BONUS (not exam relevant): Can you figure out a way to replace the article teaser image as well? Hint: this is easiest if you use online image addresses, e.g. https://static.wikia.nocookie.net/mrbean/images/4/4b/Mr_beans_holiday_ver2.jpg or https://preview.redd.it/bad-luck-brian-meme-hd-upscaled-v0-syiviojoq72a1.jpg?width=1080&crop=smart&auto=webp&s=eace4bc6be838bfe3f30219743d5a5c34c5f4335)
+
+
+*The simplest way of doing this is to replace the link to the image with a link to another image in the <picture> element (note that I also removed all the sub-elements starting with `<source media=?`, these are just what the webpage authors implemented to allow for choosing different image files depending on the screen size - you would have to replace each image link to ensure full replacement in case you were to keep those bit in)*
+
+```{html}
+<!DOCTYPE html>
+<html>
+  
+  
+<head>
+...
+
+</head>
+
+<body>
+  
+...
+
+  <picture>
+      <img src="https://cdn.pixabay.com/photo/2016/05/10/21/50/meditation-1384758_1280.jpg" 
+      width="343" height="193" alt="In surprise move, Republicans turn to full support 
+      for Joe Biden. Country now in peace and harmony.">
+  </picture>
+
+...
+
+</body>
+    
+</html>
+```
+
+
+*As a sidenote, the `alt="In surprise move, Republicans turn to full support for Joe Biden. Country now in peace and harmony."` part is not the same as the title we changed earlier, it defines the alternative text that describes the image, which serves purposes like assisting accessibility and search engine optimization (SEO).*
+
+<!-- Solution:  change the picture html to the following-->
+
+<!--  <picture> -->
+<!--         <img src="https://preview.redd.it/bad-luck-brian-meme-hd-upscaled-v0-syiviojoq72a1.jpg" width="343" height="193" alt="Republicans sound alarm over CCP-linked businessman's cash offer to Hunter Biden"> -->
+<!--       </picture> -->
+      
+
+## Exercise C: Importing data on air quality (XML format)
+
+1. I provided you with a data file `Air_Quality.xml` on Canvas. Save it in your `r_course/data` folder. 
+
+2. Load the data in .xml format. Hint: The package `XML` might be of use. You can install new packages as follows: `install.packages("package_name")`.
+
+
+```{r, eval = FALSE}
+
+# installing package if not already installed - the require function here will output TRUE 
+# if XML is already installed - the `!` (read 'not') in front of it means that we only 
+# want to install it if this is not the case
+if (!require(XML)) {
+  install.packages("XML")
 }
+
+library(XML) # loading the package after install - need to run every time we use it!
+
+# Load the data from the XML file
+xml_data <- xmlParse("data/Air_Quality.xml")
+
+# Convert XML data to a data frame
+air_quality_data <- xmlToDataFrame(xml_data)
+
+str(xml_data) # Checking the structure of our xml_data
+
 ```
 
 
-*Note that we would not want to use our own function to sum stuff up, because on top of not being able to address missing entries (easy to fix, see first exercise), it is a lot slower:*
+```{r, include = FALSE}
+
+if (!require(XML)) {
+  install.packages("XML")
+}
+
+library(XML) # loading the package after install - need to run every time we use it!
+
+# Load the data from the XML file
+xml_data <- xmlParse("../data/Air_Quality.xml")
+
+str(xml_data)
+
+```
+
+*We can see that we loaded an object, but instead of being a nice neat dataframe, what we got was actually an R structure representing the XML tree, i.e. a structure that contains all the information we need to extract the data we want, but we cannot use this directly like a data frame*
+
+
+3. Once you have loaded the .xml file in Part 2, how can you convert it to an R dataframe?
+
+*Luckily, the `XML` package offers a convenient function to convert our parsed structure into a standard data frame:*
+
 
 ```{r}
-# Creating vector with 100 million random (normally distributed) numbers
-big_vector = rnorm(100000000)
-# Time the built-in sum function
-time_builtin_sum <- system.time({
-  sum(big_vector)
-})[3]  # Extracting the elapsed time
+# Convert XML data to a data frame
 
-# Time the custom my_sum function
-time_my_sum <- system.time({
-  my_sum(big_vector)
-})[3]  # Extracting the elapsed time
+air_quality_data <- xmlToDataFrame(xml_data)
 
-# Print the results
-print(paste("Execution time of built-in sum:", time_builtin_sum, "seconds"))
-print(paste("Execution time of custom my_sum:", time_my_sum, "seconds"))
+str(air_quality_data) # Checking structure again
+
+```
+
+*We have a data frame now - with the caveat that the reading function defaulted to declaring all variables as strings. In order to be able to work with numerical columns, we would first have to convert them into numeric variables, which can be done like this for example: `air_quality_data$data_value <- as.numeric(air_quality_data$data_value)`. For our purposes, importing data from a .csv or text file is often easier than parsing XML files (note also the file size of the XML data relative to the csv file, in itself not the most compact format either).*
+
+
+## Exercise D: Read raw text data
+
+This exercise guides you through how we can import raw text data into R. Suppose you are writing your BA Thesis on the topic "The Effect of Climate Change on Consumption Behavior in Switzerland". For your empirical analysis you need, inter alia, standardized data on temperature anomalies in Switzerland (as a proxy for the salience of climate change). You identify NASA's Earth System Data Explorer as a promising data source and aim to download and work with this data in R. The exercise guide's you exemplary though how this can be done. 
+
+*Hint*: This exercise is an adapted version of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter for an additional introduction to data stored in text files.
+
+
+
+1. Go to NASA's Earth System Data Explorer: https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm.
+
+2. Click on *Data Set* in the upper left corner and navigate through `Atmosphere/Featured Phenomena/Changing Air Temperatures/Temperatures` and select `Monthly Surface Air Temperature Anomaly`.
+
+3. On the bottom left part of the page, under `Line Plots`, select `Time`.
+
+4. Enter the coordinates 47.25 N and 9.22 W (St. Gallen) and click `Update Plot` in the upper left corner. The page shows a plot of the monthly surface air temperature anomaly time series.
+
+5. Click on `Download Data ...`. In the new tab select `ASCII` as a data format. Click to save.
+
+The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save (`Save page as...`) it as `temp_anomaly.txt` in your `r_course/data` folder.
+
+Now we can read the data into R:
+
+```{r eval=FALSE}
+# install the readr package if not yet installed: install.packages("readr")
+library(readr)
+# read the data
+ta <- read_tsv("data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
+```
+
+
+```{r include=FALSE}
+# install the readr package if not yet installed: install.packages("readr")
+library(readr)
+# read the data
+ta <- read_tsv("../data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
+```
+
+
+```{r eval=TRUE}
+# inspect the first rows
+head(ta)
+
+```
+
+- What is the purpose of the `skip` argument and why is it set to `9`?
+
+*In the raw text file, we see that the first 9 lines contains metadata and are in a different format - therefore we need to skip these lines when reading the data into R. Also note how we specified the column names in our command to read in the data, because the data did not have the variable names included in the columns.*
+
+- Why do we use `read_tsv()` in this situation and not `read_csv()`?
+
+*The raw data shows us that columns are not separated by a comma, but rather by a tab, hence we have what is called a tab-separated values (TSV) file. That said, we could also use the more general `read_delim()` function, specifying the tab `\t` as a separator:*
+
+```{r, eval = FALSE}
+
+ta <- read_delim("data/temp_anomaly.txt", skip = 9, delim = "\t", 
+                 col_names = c("month", "temp_anomaly"))
 
 ```
 
 
 
-4. Test your enhanced sum function with the two input vectors `numbers` and `numbers2`.
-
-*We can see that we get a warning now when running the function on the second vector. Importantly, the function also returns a missing value for the sum, such that we are aware that no valid result is available. Specifically, the function should not return the value of 0 we initially set for the `total` in the function above, because that may cause a lot of issues if interpreted as a proper result.*
-```{r}
-my_sum(numbers)
-my_sum(numbers2)
-```
-
-
-
-## Exercise C: Web Scraping Exercise (advanced): Importing Data from a HTML Table (on a website)
+## Exercise E: Web Scraping Exercise (advanced): Importing Data from a HTML Table (on a website)
 
 Previously, we discussed the *Hypertext Markup Language (HTML)* as code to define the structure/content of a website and HTML-documents as semi-structured data sources. The following exercise contains the basic steps necessary to import data from an HTML table into R.
 
@@ -314,6 +547,7 @@ view(allyears)
 # expression to do so
 allyears$senate <- str_remove_all(allyears$senate, "\\[[^\\]]*\\]")
 allyears$house <- str_remove_all(allyears$house, "\\[[^\\]]*\\]")
+#  remove [] -- [^\\]]* means "match zero or more characters that are not a closing
 
 # write to CSV
 write_csv(allyears, file=OUTPUT_PATH)
@@ -333,240 +567,14 @@ allyears$house <- str_remove_all(allyears$house, "\\[[^\\]]*\\]")
 
 # write to CSV
 write_csv(allyears, file=paste0(OUTPUT_PATH))
-```
 
-
-# Additional Exercises for Training (not exam-relavant)
-
-
-## Exercise D: Standard Deviation Function
-
-1. During the lecture on Programming with Data we have step-by-step implemented our own R function to compute the mean. Now implement an R function called `my_sd` that computes the standard deviation, defined as: $SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$. Hint: revisit the math operators section in the notes on the first exercise session.
-
-```{r}
-my_sd <- function(x) {
-  n <- length(x)
-  
-  # First, check if n is greater than 1
-  if(n <= 1) {
-    warning("At least two numbers are required to compute standard deviation.")
-    return(NA) # NA is returned if computation is not possible
-  }
-  
-  mean_x <- mean(x)
-  sum_squared_diff <- sum((x - mean_x)^2)
-  sd <- sqrt(sum_squared_diff / (n - 1))
-  
-  return(sd)
-}
-
-```
-
-
-2. Test your implementation by comparing its output with the already implemented `sd()` function.
-
-```{r}
-# Create a test vector
-set.seed(2023) # setting seed to reproduce the same results (note that results may still  
-               # vary across different devices and R-versions)
-test_vector <- rnorm(10000)  # a random vector of 10000 numbers with mean zero and sd of 1
-
-# Compare the outputs of the custom function and the built-in function
-custom_sd <- my_sd(test_vector)
-builtin_sd <- sd(test_vector)
-
-print(paste("Custom standard deviation:", custom_sd))
-print(paste("Built-in standard deviation:", builtin_sd))
+# paste0(OUTPUT_PATH) concatenates the string in OUTPUT_PATH without any additional strings. paste0() is used to concatenate strings, but since there is only one argument, it is essentially redundant here
 
 ```
 
 
 
-## Exercise E: Standard Error Function
-
-Building on the function written in Exercise D, implement a function to compute (the estimate of) the sample mean standard error as defined here: $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$. Hint: the idea is to use your own implementation (in Exercise D) to compute $SD$ as a first step of your standard error function.
-
-Exercises D and E should illustrate how you can approach more complex problems by breaking them up in smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$, you see that computing $SD$ is a part of the overall problem, which can be addressed separately.
-
-
-```{r}
-my_se <- function(x) {
-  # Call the previously defined my_sd function to compute the standard deviation
-  sd <- my_sd(x)
-  
-  n <- length(x)
-  if(n <= 1) {
-    warning("At least two numbers are required to compute standard error.")
-    return(NA) # NA is returned if computation is not possible
-  }
-  
-  se <- sd / sqrt(n)
-  return(se)
-}
-
-
-# Test the function (base R has not built in function for this - we will test the 
-# final output below)
-test_se <- my_se(test_vector)
-print(paste("Standard error computed by my function:", test_se))
-
-```
-
-
-
-## Exercise F: T-test
-
-Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test):
-$t = \frac{\bar{x} - \mu_0}{SE}$.
-
-```{r}
-my_t_test <- function(x, mu_0) {
-  # Calculate the sample mean
-  sample_mean <- mean(x)
-  
-  # Compute standard error using the function from Exercise E
-  se <- my_se(x)
-  
-  n <- length(x)
-  if(n <= 1) {
-    warning("At least two numbers are required to compute the t-statistic.")
-    return(NA) # NA is returned if computation is not possible
-  }
-  
-  # Calculate the t-statistic
-  t_statistic <- (sample_mean - mu_0) / se
-  
-  return(t_statistic)
-}
-
-# Testing against R
-
-# Test the function with a sample vector and a test mean (mu_0)
-mu_0_test <- 0  # This is the hypothesized mean (and the true mean of our data)
-
-# Because our hypothesized value is correct, we should not reject, i.e.
-# get a low t-statistic, well below the 5% significance threshold of +-1.96
-t_test_result <- my_t_test(test_vector, mu_0_test)
-print(paste("T-test result:", t_test_result))
-
-# Now, use the built-in t-test function for comparison
-builtin_t_test_result <- t.test(test_vector, mu = mu_0_test)$statistic
-
-print(paste("Built-in T-test result:", builtin_t_test_result))
-```
 
 
 
 
-# Old Exam Questions
-
-## Q1 
-
-"What is the dimension of the tibble that you get with the code below?
-
-```{r, eval=FALSE}
-
-read_csv("1,2,\n3,4,", col_names = c("a","b","c"))
-
-```
-
-<!-- Answer: 2x3 -->
-
-## Q2 (one correct)
-
-Given the vector `numbers` below, which statement will print -17?
-```{r, eval = FALSE}
-numbers <- c(-14, 11, 800, -17, 5)
-```	
-
-`print(numbers[4])`, `print(numbers, 4)`, `print(numbers[-17])`, or `print(numbers[3])`?
-
-
-<!-- Answer: print(numbers[4]) -->
-
-## Q3 (one correct)
-
-"Have a look at the following line of R code:
-
-```{r, eval = FALSE}
-
-a <- data.frame(numbers=1:3, letters=c("y", "z", "x"))
-a$years <- 2017:2019
-
-```
-
-Which of the following statements is correct (after all lines of code have been executed)?
-
-1. The R code will result in an error message when executed.
-2. The code initiates a `data.frame`-object containing three columns, one for each value in `letters`.
-3. The code initiates a `data.frame`-object containing four rows.
-4. The data-frame `a` contains three columns.
-
-<!-- Answer: Option 4` -->
-
-
-## Q4 (one correct)
-
-"Consider the following while-loop.
-
-`while(8>7) {print("TRUE")}`
-
-Which of the following statements about this while loop is correct?
-
-1. The loop will print "TRUE" to the R console 8 times.
-2. The loop will print "TRUE" to the R console 7 times.
-3. The loop's syntax is wrong. Once this loop is executed, an error message will be returned.
-4. Once this loop is executed, it will go on forever (unless we shut down R).
-
-<!-- Answer: Option 4` -->
-
-## Q5 (one correct)
-
-"Consider the following function. Which statement below is correct?
-
-```{r, eval= FALSE}
-my_function <- function(x) {
-  s = 0
-  n = 0
-  for (i in x) {
-    s = s + i
-    n = n + 1
-  }
-  result = s/n
-  return(result)
-}
-```
-
-1. We would get the same result for `result` if we replaced the line `result = s/n` by `result = s/length(x)`.
-2. This piece of code will result in an error.
-3. The output of this function would always be the same irrespective of whether we write `return(s)` or `return(result)`.
-4. Running `my_function(c("1", "3", "2"))` would give us `2` as a result.
-
-
-<!-- Answer: Option 1` -->
-
-## Q6 (multiple choice with 1+ correct)
-
-"Consider the following code:
-
-```{r, eval= FALSE}
-
-success_story <- c(
-"WoW! This exam is soooo easy!",
-"Aw!!! this hurts ",
-"OMG!who would have thought"
-)
-
-split <- strsplit(success_story, split = "!", perl = TRUE)
-
-```
-
-(Hint: `length(x)` gets the length of x, and `lengths(x)` gets the length of each element of x.)
-
-1. lengths(split) = c(3,4,3)
-2. lengths(split) = c(2,4,2)
-3. length(split) = 3
-4. lengths(split) = c(2,2,2)
-
-
-<!-- Answer: Options 2 and 3 are TRUE -> note that str_split behaves differently!!` -->
