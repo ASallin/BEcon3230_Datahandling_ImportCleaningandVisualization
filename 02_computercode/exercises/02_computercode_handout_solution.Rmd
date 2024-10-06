@@ -377,7 +377,12 @@ print(students_dt)
 data.table has a more concise syntax for data manipulation tasks, such as filtering and adding new columns, and it is significantly faster, especially with large datasets
 
 
-### Additional Exercises for training
+## Additional Exercises for training
+
+5. Use the output from the previous exercise. Compare the syntax of common data manipulation tasks (e.g., filtering, grouping, summarizing) between data.frame, tibble, and data.table.
+   - Filter students with attendance greater than 85
+   - Calculate mean age of students who passed
+   
 ```{r}
 library(dplyr)
 # Filter students with attendance greater than 85

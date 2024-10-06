@@ -72,7 +72,7 @@ list_of_numbers <- list(
 )
 ```
 
-3. Use the lapply() function to apply my_sum() to each vector in the list_of_numbers list. Assign the result to a new variable called sums_lapply. Print the result
+3. Use the lapply() function to apply my_sum() to each vector in the list_of_numbers list. Assign the result to a new variable called sums_lapply. Print the result.
 
 4. Use a for loop to achieve the same result as in Step 3. Initialize an empty vector called sums_loop and then iterate over each vector in list_of_numbers, storing the sums in sums_loop. Print the result.
 
@@ -86,40 +86,42 @@ Use the map() function from the purrr package to apply my_sum() to each vector i
    -  print its length and type using length() and typeof() functions
 
 2. Create a factor student_grades representing the grades of the same 5 students: "A", "B", "A", "C", "B".
-  - print the factor levels, why do you use factors?
+   - print the factor levels, why do you use factors?
   
 3. Create a list student_info that combines student_ages, student_grades, and another vector student_names containing the names of the students.
-  - access individual elements using both numeric and named indexing.
+   - access individual elements using both numeric and named indexing.
 
 4. What is the difference between a vector and a factor? Why do you use a list instead of a vector when dealing with different types of data?
 
 ### Matrices and arrays
 1. Create a matrix scores_matrix representing the scores of 3 students in 3 subjects
-  - give row and column names using rownames() and colnames().
-  - print the matrix and the score of a student that you prefer.
+   - give row and column names using rownames() and colnames().
+   - print the matrix and the score of a student that you prefer.
   
 2. Create an array student_array to store the same data as in scores_matrix, but this time, add scores from another semester. Use the same students and subjects but with different scores.
-  - this 3-dimensional array, access "Student 3" scores in the first subject listed across both semesters.
+   - this 3-dimensional array, access "Student 3" scores in the first subject listed across both semesters.
 
 3. What are the differences between a matrix and an array? When would you use an array instead of a matrix?
   
 ### Data Frames, tibble and data.table
 
 1. Create a data frame students_df combining all the data for 5 students: student_names, student_ages, student_grades, and another vector attendance containing their class attendance (in percentage): 85, 92, 78, 88, 90.
-  - access the columns of attendance.
-  - access the data for student 3.
+   - access the columns of attendance.
+   - access the data for student 3.
   
 2. Why is a data frame more suitable for this kind of structured data than a matrix?
 
 3. Convert the existing students_df data frame into a tibble using the as_tibble() function.
-  - name the tibble students_tibble and print the data frame and the tibble.
+   - name the tibble students_tibble and print the data frame and the tibble.
 
 4. Create a data.table named students_dt from students_df using the as.data.table() function from the data.table package.
-  - convert students_df to a data.table
-  - select a column (ages), filter rows (grades equal to "A")
+   - convert students_df to a data.table
+   - select a column (ages), filter rows (grades equal to "A")
 
 # Additional Exercises for Training 
-5. Compare the syntax of common data manipulation tasks (e.g., filtering, grouping, summarizing) between data.frame, tibble, and data.table.
+5. Use the output from the previous exercise. Compare the syntax of common data manipulation tasks (e.g., filtering, grouping, summarizing) between data.frame, tibble, and data.table.
+   - Filter students with attendance greater than 85
+   - Calculate mean age of students who passed
 
 
 ## Exercise E: Standard Deviation Function
