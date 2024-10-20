@@ -1,6 +1,6 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-author: "Aurélien Sallin (lecturer) and Matthias Roesti (class tutor)"
+author: "Aurélien Sallin (lecturer) and Federica Mascolo (class tutor)"
 date: "24/10/2024"
 output:
   pdf_document: default
@@ -17,10 +17,12 @@ bibliography: ../../references/datahandling.bib
 ---
 
 
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
+```{r set-options, echo=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
 library(bookdown)
+library(readr)
+
 ```
 
 
@@ -33,20 +35,22 @@ In the following, we are going to download and import data on air quality in New
 
 2. Scroll down to the Section 'Downloads & Resources' and download the data file in .csv format and put it into your `r_course/data` folder.
 
-3. Based on Exercise A, Part 4, how would you open this dataset in RStudio? Hint: In contrast to the files in Exercise A, this file comes with a header row. Complete the following code accordingly:
+3. How do you open the data set? Try at least two alternatives. Hint: How did you do it in class?
 
-```{r, eval=FALSE}
-df_airquality <- read.table(...)
-```
 
 *The completed command reads*
-```{r, eval=FALSE}
-df_airquality <- read.table("data/Air_Quality.csv", header = TRUE, sep = ",")
+```{r}
+
+# install the readr package if not yet installed: install.packages("readr")
+df_airquality <- read_delim("Air_Quality.csv", delim = ",", col_names = TRUE)
+
+df_airquality <- read.table("Air_Quality.csv", header = TRUE, sep = ",")
+head(df_airquality, 5)
+
+
 ```
 
-```{r, include=FALSE}
-df_airquality <- read.table("../data/Air_Quality.csv", header = TRUE, sep = ",")
-```
+Take a look at the data, do you notice differences?
 
 
 4. Once you have loaded the data into RStudio, you can inspect the first (or last) couple of rows using `head(df_airquality)` (or `tail(df_airquality)`).
@@ -58,10 +62,13 @@ head(df_airquality)
 
 5. Create a text file with the amount (in variable `Data.Value`) for fine particulate matter pollution (variable `Name == "Fine Particulate Matter (PM2.5)"`) in the winter of 2008/09 (variable `Time.Period == "Winter 2008-09"`) in lower Manhattan (variable `Geo.Place.Name == "Lower Manhattan"`). Save your text file as "airquality_manhattan.txt" in your `r_course/data` folder. Hint: use the `subset()` command, and note that you can link different subsetting conditions with the `&` operator.
 
+
+
 *Here, we first need to find the location of the information we are looking for. One option to do this is the built-in `subset()` function, using the `&` logical operator to connect the different conditions needed. The `==` operator is a comparison operator testing for logical equality, returning `TRUE` if the condition holds, and `FALSE` otherwise. Using just one `=` would produce an error because `R` expects a logical statement here.*
 
 
-```{r, eval=FALSE}
+```{r}
+
 my_info <- subset(df_airquality, 
     Name == "Fine Particulate Matter (PM2.5)" & 
     Geo.Place.Name == "Lower Manhattan" & 
@@ -69,8 +76,8 @@ my_info <- subset(df_airquality,
   )
 
 my_value <- my_info$Data.Value
-
-cat(my_value, file = "data/airquality_manhattan.txt")
+ 
+cat(my_value, file = "airquality_manhattan.txt") # concat and save 
 ```
 
 ```{r, include=FALSE}
@@ -82,13 +89,132 @@ my_info <- subset(df_airquality,
 
 my_value <- my_info$Data.Value
 
-cat(my_value, file = "../data/airquality_manhattan.txt")
+cat(my_value, file = "airquality_manhattan.txt")
 ```
 
 *The resulting file should contain the value `15.79`*
 
+## Exercise B: Read raw text data
 
-## Exercise B: Exploring computer code - HTML - let's manipulate the media!
+This exercise guides you through how we can import raw text data into R. Suppose you are writing your BA Thesis on the topic "The Effect of Climate Change on Consumption Behavior in Switzerland". For your empirical analysis you need, inter alia, standardized data on temperature anomalies in Switzerland (as a proxy for the salience of climate change). You identify NASA's Earth System Data Explorer as a promising data source and aim to download and work with this data in R. The exercise guide's you exemplary though how this can be done. 
+
+*Hint*: This exercise is an adapted version of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter for an additional introduction to data stored in text files.
+
+
+1. Go to NASA's Earth System Data Explorer: https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm.
+
+2. Click on *Data Set Selection* in the upper left corner and select Atmosphere (in 1. Select a Sphere of the hearth system), select Temperature (in 2.), select Monthly Surface Air Temperature (in 3.) and select the most recent date (in 4.)
+
+3. On the RHS select `Time Plot` and enter coordinates 47.25 N and 9.22 W (St. Gallen) and click `Generate Plot`. The page shows a plot of the monthly surface air temperature anomaly time series.
+
+5. Click on `Generate Data Table` and save is as .csv. 
+
+Since we already know how to read a csv, I will use the old data for this application and load them as .txt, You can find the old data on Canvas.
+
+
+```{r}
+# install the readr package if not yet installed: install.packages("readr")
+library(readr)
+# read the data
+ta <- read_tsv("temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
+```
+
+
+```{r eval=TRUE}
+# inspect the first rows
+head(ta)
+
+```
+
+6. What is the purpose of the `skip` argument and why is it set to `9`?
+
+*In the raw text file, we see that the first 9 lines contains metadata and are in a different format - therefore we need to skip these lines when reading the data into R. Also note how we specified the column names in our command to read in the data, because the data did not have the variable names included in the columns.*
+
+7. Why do we use `read_tsv()` in this situation and not `read_csv()`?
+
+*The raw data shows us that columns are not separated by a comma, but rather by a tab, hence we have what is called a tab-separated values (TSV) file. That said, we could also use the more general `read_delim()` function, specifying the tab `\t` as a separator:*
+
+```{r}
+
+ta <- read_delim("temp_anomaly.txt", skip = 9, delim = "\t", 
+                 col_names = c("month", "temp_anomaly"))
+
+```
+
+
+## Exercise C: Importing data on air quality (XML format)
+
+1. I provided you with a data file `Air_Quality.xml` on Canvas. Save it in your `r_course/data` folder. 
+
+2. Load the data in .xml format. Hint: The package `xml2` might be of use. You can install new packages as follows: `install.packages("package_name")`.
+
+
+```{r}
+
+# Installing the package if not already installed
+if (!require(xml2)) {
+  install.packages("xml2")
+}
+
+library(xml2) # Loading the package
+
+# Load the data from the XML file
+xml_data <- read_xml("Air_Quality.xml")
+
+
+# understand the structure before transforming to a data frame
+#xml_structure(xml_data)
+#xml_text(xml_data)
+
+
+# Define the variable names and corresponding XPath expressions
+variables <- c("unique_id" = "//unique_id", 
+               "indicator_id" = "//indicator_id", 
+               "name" = "//name", 
+               "measure" = "//measure",
+               "measure_info" = "//measure_info",
+               "geo_type_name" = "//geo_type_name",
+               "geo_join_id" = "//geo_join_id",
+               "geo_place_name"  = "//geo_place_name", 
+               "time_period"  = "//time_period",
+               "start_date" = "//start_date",
+               "data_value" = "//data_value" )
+
+# Use lapply to extract the text for each variable and create a tibble
+air_quality_df <- tibble::as_tibble(lapply(variables, function(xpath) xml_text(xml_find_all(xml_data, xpath = xpath))))
+
+# Set the column names of the tibble
+names(air_quality_df) <- names(variables)
+
+# Print the resulting tibble
+air_quality_df
+
+# check the structure
+str(air_quality_df) # Checking structure again
+
+
+# Alternative with XML package:
+if (!require(XML)) {
+install.packages("XML")
+}
+library(XML) # loading the package after install - need to run every time we use it!
+# Load the data from the XML file
+xml_data <- xmlParse("Air_Quality.xml")
+# Convert XML data to a data frame
+air_quality_data <- xmlToDataFrame(xml_data)
+
+# check the structure
+str(air_quality_data) # Checking structure again
+
+```
+
+
+*We can see that we loaded an object, but instead of being a nice neat dataframe, what we got was actually an R structure representing the XML tree, i.e. a structure that contains all the information we need to extract the data we want, but we cannot use this directly like a data frame*
+
+*We have a data frame now - with the caveat that the reading function defaulted to declaring all variables as strings. In order to be able to work with numerical columns, we would first have to convert them into numeric variables, which can be done like this for example: `air_quality_data$data_value <- as.numeric(air_quality_data$data_value)`. For our purposes, importing data from a .csv or text file is often easier than parsing XML files (note also the file size of the XML data relative to the csv file, in itself not the most compact format either).*
+
+
+## Exercise D: Exploring computer code - HTML - let's manipulate the media!
 
 In this exercise, we will explore HTML code, which is the basis of most websites.
 
@@ -216,10 +342,6 @@ sound alarm over CCP-linked businessman's cash offer to Hunter Biden">
 </html>
 ```
 
-
-
-
-
 5. BONUS (not exam relevant): Can you figure out a way to replace the article teaser image as well? Hint: this is easiest if you use online image addresses, e.g. https://static.wikia.nocookie.net/mrbean/images/4/4b/Mr_beans_holiday_ver2.jpg or https://preview.redd.it/bad-luck-brian-meme-hd-upscaled-v0-syiviojoq72a1.jpg?width=1080&crop=smart&auto=webp&s=eace4bc6be838bfe3f30219743d5a5c34c5f4335)
 
 
@@ -262,130 +384,6 @@ sound alarm over CCP-linked businessman's cash offer to Hunter Biden">
 <!--       </picture> -->
       
 
-## Exercise C: Importing data on air quality (XML format)
-
-1. I provided you with a data file `Air_Quality.xml` on Canvas. Save it in your `r_course/data` folder. 
-
-2. Load the data in .xml format. Hint: The package `XML` might be of use. You can install new packages as follows: `install.packages("package_name")`.
-
-
-```{r, eval = FALSE}
-
-# installing package if not already installed - the require function here will output TRUE 
-# if XML is already installed - the `!` (read 'not') in front of it means that we only 
-# want to install it if this is not the case
-if (!require(XML)) {
-  install.packages("XML")
-}
-
-library(XML) # loading the package after install - need to run every time we use it!
-
-# Load the data from the XML file
-xml_data <- xmlParse("data/Air_Quality.xml")
-
-# Convert XML data to a data frame
-air_quality_data <- xmlToDataFrame(xml_data)
-
-str(xml_data) # Checking the structure of our xml_data
-
-```
-
-
-```{r, include = FALSE}
-
-if (!require(XML)) {
-  install.packages("XML")
-}
-
-library(XML) # loading the package after install - need to run every time we use it!
-
-# Load the data from the XML file
-xml_data <- xmlParse("../data/Air_Quality.xml")
-
-str(xml_data)
-
-```
-
-*We can see that we loaded an object, but instead of being a nice neat dataframe, what we got was actually an R structure representing the XML tree, i.e. a structure that contains all the information we need to extract the data we want, but we cannot use this directly like a data frame*
-
-
-3. Once you have loaded the .xml file in Part 2, how can you convert it to an R dataframe?
-
-*Luckily, the `XML` package offers a convenient function to convert our parsed structure into a standard data frame:*
-
-
-```{r}
-# Convert XML data to a data frame
-
-air_quality_data <- xmlToDataFrame(xml_data)
-
-str(air_quality_data) # Checking structure again
-
-```
-
-*We have a data frame now - with the caveat that the reading function defaulted to declaring all variables as strings. In order to be able to work with numerical columns, we would first have to convert them into numeric variables, which can be done like this for example: `air_quality_data$data_value <- as.numeric(air_quality_data$data_value)`. For our purposes, importing data from a .csv or text file is often easier than parsing XML files (note also the file size of the XML data relative to the csv file, in itself not the most compact format either).*
-
-
-## Exercise D: Read raw text data
-
-This exercise guides you through how we can import raw text data into R. Suppose you are writing your BA Thesis on the topic "The Effect of Climate Change on Consumption Behavior in Switzerland". For your empirical analysis you need, inter alia, standardized data on temperature anomalies in Switzerland (as a proxy for the salience of climate change). You identify NASA's Earth System Data Explorer as a promising data source and aim to download and work with this data in R. The exercise guide's you exemplary though how this can be done. 
-
-*Hint*: This exercise is an adapted version of the tutorial in Chapter 1 of Paul Murell's book (see syllabus). Read the chapter for an additional introduction to data stored in text files.
-
-
-
-1. Go to NASA's Earth System Data Explorer: https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm.
-
-2. Click on *Data Set* in the upper left corner and navigate through `Atmosphere/Featured Phenomena/Changing Air Temperatures/Temperatures` and select `Monthly Surface Air Temperature Anomaly`.
-
-3. On the bottom left part of the page, under `Line Plots`, select `Time`.
-
-4. Enter the coordinates 47.25 N and 9.22 W (St. Gallen) and click `Update Plot` in the upper left corner. The page shows a plot of the monthly surface air temperature anomaly time series.
-
-5. Click on `Download Data ...`. In the new tab select `ASCII` as a data format. Click to save.
-
-The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save (`Save page as...`) it as `temp_anomaly.txt` in your `r_course/data` folder.
-
-Now we can read the data into R:
-
-```{r eval=FALSE}
-# install the readr package if not yet installed: install.packages("readr")
-library(readr)
-# read the data
-ta <- read_tsv("data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
-```
-
-
-```{r include=FALSE}
-# install the readr package if not yet installed: install.packages("readr")
-library(readr)
-# read the data
-ta <- read_tsv("../data/temp_anomaly.txt", skip = 9, col_names = c("month", "temp_anomaly"))
-```
-
-
-```{r eval=TRUE}
-# inspect the first rows
-head(ta)
-
-```
-
-- What is the purpose of the `skip` argument and why is it set to `9`?
-
-*In the raw text file, we see that the first 9 lines contains metadata and are in a different format - therefore we need to skip these lines when reading the data into R. Also note how we specified the column names in our command to read in the data, because the data did not have the variable names included in the columns.*
-
-- Why do we use `read_tsv()` in this situation and not `read_csv()`?
-
-*The raw data shows us that columns are not separated by a comma, but rather by a tab, hence we have what is called a tab-separated values (TSV) file. That said, we could also use the more general `read_delim()` function, specifying the tab `\t` as a separator:*
-
-```{r, eval = FALSE}
-
-ta <- read_delim("data/temp_anomaly.txt", skip = 9, delim = "\t", 
-                 col_names = c("month", "temp_anomaly"))
-
-```
-
-
 
 ## Exercise E: Web Scraping Exercise (advanced): Importing Data from a HTML Table (on a website)
 
@@ -394,13 +392,13 @@ Previously, we discussed the *Hypertext Markup Language (HTML)* as code to defin
 The aim of the exercise is to generate a CSV file containing data on ['divided government'](https://en.wikipedia.org/wiki/Divided_government) in US politics. We use the following Wikipedia page as a data source: https://en.wikipedia.org/wiki/Divided_government_in_the_United_States. The page contains a table indicating the president's party, and the majority party in the US House and the US Senate per Congress (2-year periods). The first few rows of the cleaned data are supposed to look like this:
 
 ```{r echo=FALSE}
-dgov <- data.table::fread("../data/divided_gov.csv")
+dgov <- data.table::fread("divided_gov.csv")
 head(dgov)
 ```
 
 In a first step, we initiate fix variables for paths and load additional R packages needed to handle data stored in HTML documents. NOTE: the `OUTPUT_PATH` specified here assumed that there is a folder called `data` in the current working directory (get your current working directory by running `getwd()`) - adjust it if you that is not the case or if you want to store the output somewhere else.
 
-```{r eval=FALSE, purl=FALSE}
+```{r purl=FALSE}
 # SETUP ------------------
 
 # load packages
@@ -533,7 +531,7 @@ allyears <- bind_rows(all_years) # combining our list of observations into a dat
 
 5. In a last step, inspect the collected data and write it to a CSV file, using the `OUTPUT_PATH` defined at the beginning of this exercise to specify where the file should be stored.
 
-```{r, eval = FALSE}
+```{r}
 # WRITE TO DISK --------------------------------------------------
 
 # inspect

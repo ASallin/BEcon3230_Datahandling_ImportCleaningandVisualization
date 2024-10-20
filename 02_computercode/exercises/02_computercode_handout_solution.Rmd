@@ -21,6 +21,9 @@ options(width = 100)
 library(knitr)
 library(bookdown) 
 
+# pakcages: tidyverse, (tibble), purr, data.table
+
+#install.packages("data.table")
 
 ```
 
@@ -33,6 +36,7 @@ In the lecture on Programming with Data, we have discussed the most basic progra
 1. Use the code example in the respective lecture notes and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
 
 ```{r eval=TRUE, purl=FALSE}
+
 my_sum <- function(x){
   
   # Initialize the total - we start at 0
@@ -53,11 +57,14 @@ my_sum <- function(x){
 *We get the same result in both cases - our function seems to be working:*
 
 ```{r}
+
 numbers = c(1,2,3)
 
 my_sum(numbers)
 
+
 sum(numbers)
+
 ```
 ## Exercise B: Robustness and Warnings
 
@@ -80,7 +87,7 @@ my_sum(numbers2)
 *We can see that the numbers2 vector we provided does not contain numeric values but strings, i.e. a series of characters:*
 ```{r}
 # Investigate the structures
-str(numbers)
+str(numbers)  # a diagnostic function
 str(numbers2)
 
 # Check the classes
@@ -116,6 +123,15 @@ my_sum <- function(x){
   
   return(total)
 }
+
+# Alternative
+my_sum <- function(x) {
+  if (!is.numeric(x)) {
+    warning("Wrong input! This function only accepts numeric or integer values!")
+  } else {
+    return(sum(x))
+  }
+}
 ```
 
 
@@ -140,14 +156,13 @@ print(paste("Execution time of custom my_sum:", time_my_sum, "seconds"))
 
 ```
 
-
-
 4. Test your enhanced sum function with the two input vectors `numbers` and `numbers2`.
 
 *We can see that we get a warning now when running the function on the second vector. Importantly, the function also returns a missing value for the sum, such that we are aware that no valid result is available. Specifically, the function should not return the value of 0 we initially set for the `total` in the function above, because that may cause a lot of issues if interpreted as a proper result.*
 ```{r}
 my_sum(numbers)
 my_sum(numbers2)
+
 ```
 
 ## Exercise C: use the sum function and lapply/loop/map on a list of vectors
@@ -176,6 +191,8 @@ list_of_numbers <- list(
   c(7, 8, 9, 10)
 )
 
+# try to access the first element of the list: numeric vector
+list_of_numbers[[1]] 
 
 ```
 
@@ -186,13 +203,27 @@ sums_lapply <- lapply(list_of_numbers, my_sum)
 print(sums_lapply)
 
 # loop
-sums_loop <- vector("list", length(list_of_numbers))  # Initialize an empty list
-for (i in seq_along(list_of_numbers)) {
+# Initialize an empty list
+
+# alternatives
+sums_loop <- vector("list", length(list_of_numbers))  
+sums_loop <- rep(list(NULL), length(list_of_numbers))  
+
+
+
+sums_loop <- list()
+
+for (i in 1:length(list_of_numbers)) {
   sums_loop[[i]] <- my_sum(list_of_numbers[[i]])
 }
+
+
 print(sums_loop)
 
-# map
+# map: 
+# The map function transforms the input by applying a function to each element
+# of a list or atomic vector and returning an object of the same length as the input.
+
 library(purrr)
 sums_map <- map(list_of_numbers, my_sum)
 print(sums_map)
@@ -203,7 +234,7 @@ print(sums_map)
   
   - for loops explicitly iterate over each element of a list or vector, applying a function or operation. You can use it when you want to have more control of the operations. The logic is the same in other programming languages.
   
-  - `map()` is part of the `purrr` package (part of the tidyverse), which provides a consistent set of functions. It applies a function to each element of a list and returns a list. Variants like `map_dbl()`, `map_int()`, etc., return vectors of specific types. You can us it if you are working with tidyverse or you want to return specific types.
+  - `map()` is part of the `purrr` package (part of the tidyverse), which provides a consistent set of functions. It applies a function to each element of a list and returns a list. Variants like `map_dbl()`, `map_int()`, etc., return vectors of specific types. You can use it if you are working with tidyverse or you want to return specific types.
 
 ## Exercise D: Data structures 
 
@@ -219,7 +250,12 @@ print(sums_map)
    
    # Print the length and type
    length(student_ages)  # Output: 5
-   typeof(student_ages)  # Output: "double"
+   typeof(student_ages)  # Output: "double" - numbers in the vector are stored as double-precision floating-point numbers.
+   
+   # as before you can also use:
+   class(student_ages)
+   str(student_ages)
+   
 ```
 
 
@@ -228,6 +264,7 @@ print(sums_map)
 
 
 ```{r}
+
    # Create the factor
    student_grades <- factor(c("A", "B", "A", "C", "B"))
    
@@ -236,7 +273,9 @@ print(sums_map)
    
 ```
 
-Factors are useful here because grades are categorical data with a limited number of levels.
+Factors are useful here because grades are categorical data with a limited number of levels. Since factors store categorical data as integers, they are more memory-efficient than storing the same data as character strings. tatistical functions in R, such as lm() or glm(), automatically treat factors differently than numeric or character variables. Factors allow for easy inclusion of categorical variables in regression models, treating them as discrete groups.
+
+When to use vectors: When your data does not have a fixed set of categories. When you need flexibility in adding, changing, or manipulating values frequently.
 
 
 3. **Create a list** `student_info` that combines `student_ages`, `student_grades`, and another vector `student_names`.
@@ -244,8 +283,9 @@ Factors are useful here because grades are categorical data with a limited numbe
 
 
 ```{r}
+
    # Create the vector of student names
-   student_names <- c("Aurelien", "Andrea", "Federica", "Bob", "Eva")
+   student_names <- c("Aurelien", "Federica", "Andrea", "Bob", "Eva")
    
    # Create the list
    student_info <- list(names = student_names, ages = student_ages, grades = student_grades)
@@ -253,6 +293,8 @@ Factors are useful here because grades are categorical data with a limited numbe
    # Access elements in the list
    student_info$names  
    student_info[[1]]
+   
+   
 ```
 
 4. What is the difference between a vector and a factor? Why do you use a list instead of a vector when dealing with different types of data?
@@ -279,7 +321,9 @@ Factors are useful here because grades are categorical data with a limited numbe
    print(scores_matrix)
    
    # Access the score of Student 2 in Science
-   scores_matrix["Student 2", "Science"]  
+   scores_matrix["Student 2", "Science"] 
+   
+   
 ```
 
 2. **Create an array** `student_array` to store the same data as in `scores_matrix` but for two semesters.
@@ -298,7 +342,7 @@ Factors are useful here because grades are categorical data with a limited numbe
    ))
    
    # Access "Student 3's" scores in "Math" across both semesters
-   student_array["Student 3", "Math", ]  # Output: 60 63
+   student_array["Student 3", "Math", "Semester 1"]
    
 ```
 
@@ -321,19 +365,19 @@ Factors are useful here because grades are categorical data with a limited numbe
      attendance = c(85, 92, 78, 88, 90)
    )
    
-   # Access a specific column (student_names)
+   # Access a specific column (attendance, student_names...)
    students_df$names  
 
    # Access the data for "Andrea"
-   students_df[students_df$names == "Andrea", ]  # Output: Data frame row for David
+   students_df[students_df$names == "Andrea", "grades"] 
+   
    
 ```
 
-**Difference between a list and a data frame**: A list can contain elements of different types and structures, whereas a data frame is specifically a table where each column can have different types, but each column is a vector.
+**Difference between a list and a data frame**: A list in R is a more general and flexible data structure than a data frame. A list is a one-dimensional collection of objects, and each object can be of any type and length. A data frame is a table-like structure in R, where each column represents a variable, and each row represents an observation (or case). Data frames are one of the most commonly used data structures in R for handling tabular data.
    
 2. Why is a data frame more suitable for this kind of structured data than a matrix?
-   -  Data frames are more suitable for structured data because they can contain heterogeneous data types and offer better data manipulation functions.
-
+   -  Data frames are more suitable for structured data because they can contain heterogeneous data types and offer           better data manipulation functions.
 
 3. Convert the existing students_df data frame into a tibble using the as_tibble() function.
    - name the tibble students_tibble and print the data frame and the tibble.
@@ -342,20 +386,27 @@ Factors are useful here because grades are categorical data with a limited numbe
 # Load the necessary package
 library(tibble)
 
+?tibble
+
 # Convert to tibble
 students_tibble <- as_tibble(students_df)
 
 # Print the tibble and data frame to observe differences
 print(students_df)       # Standard data frame print
-print(students_tibble)   # More concise print for tibbles
+print(students_tibble)   # More concise print for tibbles (not visible here because we have only 3 obs)
 
 # Access a non-existent column in data frame and tibble
 students_df$nonexistent  # Output: NULL
 students_tibble$nonexistent  # Output: NULL with a warning
+
 ```
 
-Tibbles provide a more readable print format and do not change types or convert strings to factors by default. Trying to access a non-existent column in a tibble gives a clear warning, unlike in data frames.
+Tibbles provide a more readable print format and do not change types or convert strings to factors by default (you can for sure address this). Trying to access a non-existent column in a tibble gives a clear warning, unlike in data frames.
 
+4. Create a data.table named students_dt from students_df using the as.data.table() function from the data.table package.
+   - convert students_df to a data.table
+   - select a column (ages), filter rows (grades equal to "A")
+   
 ```{r}
 # Load the necessary package
 library(data.table)
@@ -369,8 +420,9 @@ print(students_dt[, ages])  # Output: Vector of ages
 # Filtering rows where grades are "A"
 print(students_dt[grades == "A"]) # Output: Rows with grade "A"
 
+
 # Adding a new column with the average attendance
-students_dt[, average_attendance := mean(attendance)]
+students_dt[, average_attendance := mean(attendance)]  # modifies the data table in place, meaning the operation does not create a copy of the dataset
 print(students_dt)
 ```
 
@@ -386,24 +438,32 @@ data.table has a more concise syntax for data manipulation tasks, such as filter
 ```{r}
 library(dplyr)
 # Filter students with attendance greater than 85
+
 # Using data.frame
 df_filtered <- students_df[students_df$attendance > 85, ]
+# with subset
+df_filtered <- subset(students_df, attendance > 85)
+
 
 # Using tibble
 tb_filtered <- students_tibble %>% filter(attendance > 85)
 
 # Using data.table
 dt_filtered <- students_dt[attendance > 85]
+# as tidy verse
+dt_filtered <- students_dt %>%
+  .[attendance > 85]
+
 
 # Calculate mean age of students who passed
 # Using data.frame
-mean(students_df$ages[students_df$grades <= "C"])
+mean(students_df$ages[students_df$grades > "C"])
 
 # Using tibble
-students_tibble %>% filter(grades <= "C") %>% summarise(mean_age = mean(ages))
+students_tibble %>% filter(grades > "C") %>% summarise(mean_age = mean(ages))
 
 # Using data.table
-students_dt[grades <= "C", mean(ages)]
+students_dt[grades > "C", mean(ages)]
 
 # Add a new column 'grade_numeric'
 # Using data.frame

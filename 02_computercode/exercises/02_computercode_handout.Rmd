@@ -114,9 +114,6 @@ Use the map() function from the purrr package to apply my_sum() to each vector i
 3. Convert the existing students_df data frame into a tibble using the as_tibble() function.
    - name the tibble students_tibble and print the data frame and the tibble.
 
-4. Create a data.table named students_dt from students_df using the as.data.table() function from the data.table package.
-   - convert students_df to a data.table
-   - select a column (ages), filter rows (grades equal to "A")
 
 # Additional Exercises for Training 
 5. Use the output from the previous exercise. Compare the syntax of common data manipulation tasks (e.g., filtering, grouping, summarizing) between data.frame, tibble, and data.table.
