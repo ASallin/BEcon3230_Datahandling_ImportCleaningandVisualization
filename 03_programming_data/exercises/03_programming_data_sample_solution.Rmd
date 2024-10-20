@@ -181,7 +181,8 @@ variables <- c("unique_id" = "//unique_id",
                "data_value" = "//data_value" )
 
 # Use lapply to extract the text for each variable and create a tibble
-air_quality_df <- tibble::as_tibble(lapply(variables, function(xpath) xml_text(xml_find_all(xml_data, xpath = xpath))))
+air_quality_df <- tibble::as_tibble(
+  lapply(variables, function(xpath) xml_text(xml_find_all(xml_data, xpath = xpath))))
 
 # Set the column names of the tibble
 names(air_quality_df) <- names(variables)
