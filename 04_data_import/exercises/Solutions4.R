@@ -2,11 +2,11 @@
 #' Data Handling Exercise 4
 #' 
 #' Version 1: Aurélien Sallin, 23.11.2022
-#' - Update: 23.11.2023 (Andrea)
+#' - Update: 30.10.2024 (Andrea)
 #############################################################################
 
 require(pacman)
-pacman::p_load(dplyr, ggplot2, tidyr, readr, tidyverse, writexl, readxl)
+p_load(dplyr, ggplot2, tidyr, readr, tidyverse, writexl, readxl)
 
 # Exercise A ----------------------------------------------------------------
 #' Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the problem posed in Section
@@ -23,8 +23,8 @@ head(challenge)
 challenge$x[c(1:50, 1000:1050)]
 challenge$y[c(1:50, 1000:1050)]
 
-# This can be seen using 'tail(challenge)'
-tail(challenge)
+# This can be seen using 'head(challenge)'
+head(challenge)
 
 # Uncorrect: y as logical
 challenge <- read_csv(

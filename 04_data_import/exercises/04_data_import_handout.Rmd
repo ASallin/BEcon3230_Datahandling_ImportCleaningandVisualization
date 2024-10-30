@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Aurélien Sallin (lecturer) and Andrea Burro (class tutor)"
-date: "23/11/2023"
+date: "21/11/2024"
 output:
   pdf_document: default
   html_document:
@@ -37,35 +37,6 @@ Read Section 11.-11.4 in https://r4ds.had.co.nz/data-import.html and solve the p
 
 
 ## Exercise C
-1. Visit the EU Open Data Portal on COVID cases. (Do you remember this website from Exercise Session 2?)
+1. Visit the EU Open Data Portal on COVID cases.
 2. Download the "COVID-19 Cases Worldwide" data in JSON format. However, do not download these data manually (i.e., do not click-and-save). Instead, load the data directly into RStudio from the web. Hint 1: consider the `jsonlite` package. Hint2: the direct link to the JSON file (https://opendata.ecdc.europa.eu/covid19/casedistribution/json/) may be helpful.
 3. Reformat the JSON data that you have imported into RStudio to a rectangular format (such that each record is represented as a row and each field as a column).
-
-
-# Mock Exam Questions
-```{r echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-library(pander)
-# library(examr)
-
-invisible(lapply(list.files(path = "../../examr-master/R/", 
-                                 include.dirs = T, full.names = T), 
-                      source, echo = F))
-
-# load file with questions
-questions_file <- "../../questions_db.xlsx"
-# questions_file <- "../../../datahandling-examination/data/questions_db.xlsx"
-# questions_file = "/Users/philine/Dropbox/datahandling/datahandling-examination/data/questions_db.xlsx"
-
-my_questions <- read_questions(questions_file, 
-                               year = 2018, 
-                               mock = TRUE, 
-                               topic = "week5-6")
-
-
-# select questions
-selection_mock_ex2 <- select_questions(my_questions)
-questions_text <- generate_question_text(selection_mock_ex2)  
-pander(questions_text, sep="\n")
-```
-
-
