@@ -64,7 +64,7 @@ print(sort(airquality_data$Month))
 # We can see that there is a typo. For one observation we have "five" instead
 # of 5. Let's fix this.
 airquality_data_fixed <- airquality_data
-airquality_data_fixed$Month <- ifelse(airquality_data$Month == "five", 5, airquality_data_fixed$Month)
+airquality_data_fixed$Month <- ifelse(airquality_data_fixed$Month == "five", 5, airquality_data_fixed$Month)
 print(airquality_data_fixed)
 
 # We replaced the value but we still have column "Month" as a "character", 
@@ -76,11 +76,8 @@ print(airquality_data_fixed)
 library(writexl)
 write_xlsx(airquality_data_fixed, "airquality_data_fixed.xlsx")
 
-
-
 # Exercise C ----------------------------------------------------------------
-#' 1. Visit the EU Open Data Portal on COVID cases. (Do you remember this website 
-#' from Exercise Session 2?)
+#' 1. Visit the EU Open Data Portal on COVID cases.
 
 #' 2. Download the "COVID-19 Cases Worldwide" data in JSON format. However, do not 
 #' download these data manually (i.e., do not click-and-save). Instead, load the data 
@@ -114,3 +111,5 @@ data <- data_json$records #access first element of list by name
 
 # We have the desired results
 head(data)
+typeof(data$month)
+print(head(data$month))
