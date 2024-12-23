@@ -2,7 +2,7 @@
 #' Data Handling Exercise 6
 #' 
 #' Version 1: Aurélien Sallin, 16.12.2022
-#' - Update: Andrea Burro, 13.12.2023
+#' - Update: Andrea Burro, 23.12.2024
 #############################################################################
 
 # install and load packages
@@ -140,7 +140,7 @@ typeof(df_confirmed$confirmed)
 
 # Restrict to the countries of interest
 df_countryselection <- df_confirmed %>% 
-  filter(Country.Region==c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
+  filter(Country.Region %in% c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
 
 dim(df_countryselection)
 
