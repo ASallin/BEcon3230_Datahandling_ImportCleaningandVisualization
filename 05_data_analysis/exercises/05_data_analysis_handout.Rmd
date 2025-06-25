@@ -1,7 +1,6 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Aurélien Sallin (lecturer) and Andrea Burro (class tutor)"
-date: "05/12/2024"
 output:
   pdf_document: default
   word_document: default
@@ -13,10 +12,8 @@ header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
-subtitle: 'Exercise 5: Data Preparation and Data Analysis with R'
-
+subtitle: 'Exercise 5: Data Reshaping, Cleaning, and Merging'
 ---
-
 
 ```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
@@ -24,184 +21,54 @@ library(knitr)
 library(bookdown)
 ```
 
+## Exercise A: Reshaping Data
 
+In this exercise, we will learn how to reshape data into long format using the built-in `economics` dataset from the `ggplot2` package. Load the dataset into your R session. It contains monthly data on several indicators of the U.S. economy:
 
-# Exercises^[Adopted from https://r4ds.had.co.nz/tidy-data.html.]
+| Variable | Description                                         |
+|----------|-----------------------------------------------------|
+| date     | month of data collection                            |
+| pce      | personal consumption expenditures (billions of USD) |
+| pop      | total population (thousands)                        |
+| psavert  | personal savings rate                               |
+| unempmed | median duration of unemployment (weeks)             |
+| unemploy | number of unemployed (thousands)                    |
 
-The Canvas page contains csv files with data needed to solve the following exercises. Make sure to store them in your `r_course/data/` folder. Do not forget to load `tidyverse` before you get started!
+### A.1 - Convert to Long Format
 
-```{r echo=FALSE, message=FALSE, purl=FALSE, warning=FALSE}
-# generate csvs for exercises (all taken from https://r4ds.had.co.nz/tidy-data.html)
-library(tidyverse)
-# 1.
-stocks <- tibble(
-  year   = c(2015, 2015, 2016, 2016),
-  half  = c(1, 2, 1, 2),
-  return = c(1.88, 0.59, 0.92, 0.17)
-)
-write_csv(stocks, "../data/stocks.csv")
+Reshape the dataset into long format, so that for each date, there are multiple rows — one for each of the other variables. Save the result as `df_long`.
 
-# 2.
-write_csv(table4a, "../data/countries.csv")
+### A.2 - Convert to Wide Format
 
-# 3.
-people <- tribble(
-  ~name, ~key, ~value,
-  #-----------------|--------|------
-  "Phillip Woods", "age", 45,
-  "Phillip Woods", "height", 186,
-  "Phillip Woods", "age", 50,
-  "Jessica Cordero", "age", 37,
-  "Jessica Cordero", "height", 156
-)
-write_csv(people, "../data/people.csv")
+From the new `df_long` dataset, reshape the data back to its original wide format, and save it as `df`.
 
-# 4.
-preg <- tribble(
-  ~pregnant, ~male, ~female,
-  "yes", NA, 10,
-  "no", 20, 12
-)
-write_csv(preg, "../data/preg.csv")
-```
+## Exercise B: Cleaning Data
 
+In this section, we'll practice three important data-cleaning functions from `dplyr`: `filter()`, `select()`, and `mutate()`.
 
-## Exercise A
-Read `stocks.csv` into RStudio (store it in variable `stocks`). The dataset is currently in long format. Use `pivot_wider()` to transform it into wide format (separate columns for different years). Store the resulting `tibble`/`data.frame` in a variable called `stocks2`. Then, run the following code.
+### B.1 - Filter Observations
 
-```{r eval=FALSE}
-pivot_longer(stocks2, `2015`:`2016`, names_to = "year", values_to = "return") == stocks
-```
+Start with data `df`. We are only interested in observations collected after the year 2000. Filter the data accordingly and save the result as `df_reduced`.
 
-Why is the result not identical to the original dataset (`stocks`)? In other words, why are `pivot_longer()` and `pivot_wider()` not perfectly symmetrical? (Hint: look at the variable types and think about column names.)
+### B.2 - Select Observations
 
-```{r echo=FALSE,  purl= FALSE, message=FALSE}
-stocks <- read_csv("../data/stocks.csv")
-stocks2 <- pivot_wider(stocks, names_from = year, values_from = return)
-# gather(stocks2, "year", "return", `2015`:`2016`) == stocks
-```
+Now we are only interested in the evolution of `pce` and `pop` over time. Clean the data accordingly and save the new dataset `df_reduced`.
 
-## Exercise B
-Read `countries.csv` into RStudio (store it in variable `countries`). Then, run the following code.
+### B.3 - Create Indicator Variable
 
-```{r eval=FALSE}
-pivot_longer(countries, 1999, 2000, names_to = "year", values_to = "cases")
-```
+We want to add a variable that marks all observations collected after the year 2000. Create a new variable called `after_2000` and add it to `df_reduced`.
 
-Why does this code fail? How can you fix the problem?
+## Exercise C: Merging Data
 
-```{r echo=FALSE, eval=FALSE, purl= FALSE}
-# sample solution
-countries <- read_csv("../data/countries.csv")
-# pivot_longer(countries, c("1999", "2000"), names_to = "year", values_to = "cases")
-# gather(countries, `1999`, `2000`, key = "year", value = "cases")
-```
+In the final exercise, we will learn how to merge two dataframes using `left_join()` from `dplyr`.
+
+### C.1 - Merge Datasets
+
+We want to flag the original `economics` dataset with a new variable indicating whether each observation was collected after 2000. Use `left_join()` to merge `df` (the original dataset) with `df_reduced` (which contains after_2000). Which dataset should be used as the master (left) table, and which one as the joining (right) table?
+
+### C.2 - Handle Missing Values
+
+The merge created some missing values for the variable `after_2000`. Explain why this could happen, and propose a solution to have a tidy dataset.
 
 
 
-## Exercise C
-Read `people.csv` into RStudio (store it in variable `people`). Try to use `pivot_wider` on `people`. Why does it fail? How could you add a new column to fix the problem?
-
-
-
-## Exercise D
-Read `preg.csv` into RStudio (store it in variable `preg`). Tidy `preg`. Do you need to use `pivot_wider` or `pivot_longer`? What are the variables?
-
-```{r eval=FALSE, echo=FALSE, purl= FALSE}
-# sample solution
-preg <- read_csv("preg.csv")
-pivot_longer(preg, c("male", "female"), names_to = "gender", values_to = "count")
-```
-
-
-
-## Exercise E
-Execute the following commands, which will create a simulated dataset representing four countries, the number of Covid cases in each of these countries in 2020 and 2021, as well as the public spending dedicated to fighting Covid in 2020 and 2021.
-
-```{r eval=FALSE, echo=TRUE, purl= FALSE}
-df <- data.frame("Country" = c("US", "DE", "CH", "FR"),
-                 "Covid_2020" = runif(4, 0, 1),
-                 "AntiCovidExpenses_2020" = runif(4, 500, 1000))
-df <- cbind(df, 
-            "Covid_2021" = df$Covid_2020 + rnorm(4, 0, 0.1),
-            "AntiCovidExpenses_2021" = df$AntiCovidExpenses_2020 + rnorm(4, 0, 100))
-```
-
-You would like to investigate the correlation between public spending and the number of Covid cases across years and across countries. How do you proceed? Is this dataset long or wide? (Note: these data are simulated and are in no way representative of the reality.)
-
-```{r eval=FALSE, echo=FALSE, purl= FALSE}
-# Convert data to long
-df_long <- pivot_longer(df, cols = 2:5, 
-                        names_to = c(".value", "Year"),
-                        values_to = c("n"),
-                        names_sep = "_")
-
-# Compute correlation
-cor(df_long$Covid, df_long$AntiCovidExpenses)
-```
-
-# Additional Exercises (advanced)
-
-## Exercise F
-You want to investigate the relationship between GDP per capita and CO2 emissions per capita across countries. On Canvas, download the dataset `co2gdp.csv`. This dataset has been downloaded from the website "Our World in Data" (https://ourworldindata.org/grapher/co2-emissions-vs-gdp). Investigate the relationship between the dependent variable `CO2_percapita` and the independent variable `GDP_percapita` using a linear regression of the following form:
-
-$$ \text{CO2\_percapita}_i = \alpha + \beta \text{GDP\_percapita}_i + u_i.$$
-
-Estimate this linear regression by creating your own function `myols` that takes the following three arguments: ($x$) for the dependent variable, ($y$) for the independent variable, and \textit{matrix}, which takes \texttt{TRUE} if the function estimates the coefficients using matrix algebra, and \texttt{FALSE} if the function estimates the coefficients using the sum operators. Compare the coefficients with the \texttt{R} built-in function `lm()`. Finally, comment and interpret the coefficients. 
-
-\textbf{Hint 1} (linear regression with sum operator): the slope parameter of the linear regression is expressed as the following formula: 
-$$\hat{\beta} = \frac{\sum{x_{i}y_{i}}-N\bar{y}\bar{x}}{\sum{x_i^2}-N\bar{x}^2},$$ and the constant is given by this formula: $$\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x},$$ where $\bar{x}$ gives the mean of $x$ and $\bar{y}$ gives the mean of $y$.
-
-\textbf{Hint 2} (linear regression with matrix algebra): the formula for the linear regression in matrix algebra is 
-$$\hat{\bf{\beta}} = (\bf{X'X})^{-1} \bf{Xy},$$ where you find the inverse of a matrix with the command 'solve()', the cross-product of two matrices with `crossprod(X,Y)` $= t(X)\%^{*}\% Y$. Also, note that you need a column of 1s in your matrix of covariates to compute the intercept.
-
-(\textbf{Note}: this exercise is about programming and implementing the formula of the linear regression. You don't need to understand the mechanics of linear regression for the exam. This will be covered next semester in the course `Data Analytics II`.)
-
-
-
-```{r echo=FALSE, message=FALSE, purl=FALSE, warning=FALSE}
-# Preparation csv
-co2 <- read_csv("../data/co2gdp_original.csv")
-co2 <- na.omit(co2[, c(1:5)])
-names(co2)[4] <- "CO2_percapita"
-names(co2)[5] <- "GDP_percapita"
-write_csv(co2, "../data/co2gdp.csv")
-```
-
-```{r eval=FALSE, echo=FALSE, purl= FALSE}
-# Create a function for linear regression
-myols <- function(y, x, matrix = F) {
-  if (isFALSE(matrix)) {
-    # Apply formula for the slope coefficient
-    N <- length(y)
-
-    beta <- (sum(y * x) - N * mean(x) * mean(y)) / (sum(x^2) - N * mean(x)^2)
-
-    # Apply formula for the constant
-    alpha <- mean(y) - beta * mean(x)
-
-    return(list("alpha" = alpha, "beta" = beta))
-  }
-
-  if (isTRUE(matrix)) {
-    # compute cross products and inverse
-    x <- cbind(1, x)
-    XXi <- solve(crossprod(x, x))
-    Xy <- crossprod(x, y)
-
-    return(XXi %*% Xy)
-  }
-}
-
-myols(y = co2$CO2_percapita, x = co2$GDP_percapita, matrix = F)
-myols(y = co2$CO2_percapita, x = co2$GDP_percapita, matrix = T)
-
-
-# Check with lm()
-lm(CO2_percapita ~ GDP_percapita, data = co2)
-
-# Graph
-ggplot(co2, aes(x = GDP_percapita, y = CO2_percapita)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = F)
-```
