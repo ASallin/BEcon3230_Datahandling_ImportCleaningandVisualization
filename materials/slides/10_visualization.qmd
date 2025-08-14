@@ -54,9 +54,9 @@ df |>
 df |> 
   mutate(
     agegroup = case_when(
-      age >= 0 & age < 18 ~ "0-18",
-      age >= 18 & age < 64 ~ "19-64",
-      age >= 65 & age < 100 ~ ">64",
+      age >= 0 & age < 19 ~ "0-18",
+      age >= 19 & age < 66 ~ "19-65",
+      age >= 66 & age < 100 ~ ">65",
       .default = "999"
     )
   )
@@ -401,6 +401,9 @@ include_graphics("../../img/yangPOLL.jpg")
 include_graphics("../../img/carlson.png")
 ```
 
+<!-- In reality, the effect is 18.5%  (77/65) -->
+<!-- In the graph, the effect is 9.24 larger (19/7) -->
+
 
 ## Thou shalt not truncate the Y axis.
 
@@ -522,12 +525,14 @@ grid.arrange(p2, p3, p4, p1, ncol = 2)
 ## Only what matters should be reported 
 
 - Data-ink Ratio = $\frac{\text{ink used for data points}}{\text{total ink used to print the graphic
-}}$
+}}$ = proportion of a graphic's ink devoted to the non-redundant display of data-information
 
   - Data ink: data points and measured quantities, such as the dots in a scatter plot 
   - Non-data ink: functional marks such as titles, labels, axes, gridlines and tick points or decorative marks
   
-Limits to this approach: we still need some ink to interpret and understand the data.
+#### Idea: maximize data-ink ratio
+  
+  - Limits to this approach: we still need some ink to interpret and understand the data.
 
 
 ## Only what matters should be reported 
@@ -544,7 +549,7 @@ plot1 <- mtcars |>
   geom_bar(stat = "identity") +
   geom_label(color = "white", fontface = "bold", show.legend = FALSE) +
   labs(
-    title = "Car Cylinder Count with High Data-Ink Ratio",
+    title = "Car Cylinder Count with Low Data-Ink Ratio",
     subtitle = "Detailed representation with color, labels, and gridlines",
     x = "Number of Cylinders",
     y = "Count of Cars"
@@ -566,7 +571,7 @@ plot2 <- mtcars |>
   ggplot(aes(x = as.factor(cyl), y = n)) +
   geom_bar(stat = "identity", fill = "gray50") +
   labs(
-    title = "Car Cylinder Count with Minimalist Design",
+    title = "Car Cylinder Count with High Data-Ink Ratio",
     x = "Number of Cylinders",
     y = "Count of Cars"
   ) +
@@ -593,7 +598,7 @@ plot1 <- mtcars |>
   geom_bar(stat = "identity") +
   geom_label(color = "white", fontface = "bold", show.legend = FALSE) +
   labs(
-    title = "Car Cylinder Count with High Data-Ink Ratio",
+    title = "Car Cylinder Count with Low Data-Ink Ratio",
     subtitle = "Detailed representation with color, labels, and gridlines",
     x = "Number of Cylinders",
     y = "Count of Cars"
@@ -615,7 +620,7 @@ plot2 <- mtcars |>
   ggplot(aes(x = as.factor(cyl), y = n)) +
   geom_bar(stat = "identity", fill = "gray50") +
   labs(
-    title = "Car Cylinder Count with Minimalist Design",
+    title = "Car Cylinder Count with High Data-Ink Ratio",
     x = "Number of Cylinders",
     y = "Count of Cars"
   ) +
@@ -670,8 +675,7 @@ include_graphics("https://img.pagecloud.com/6e1pFdr0cwYRNL4ehktNetsGuCI=/936x0/f
 
 The data density takes the number of data points that are being graphed relative to the physical size of the graphic to capture the principle of aiming to present many numbers in a small space: 
 
-- Data density = $\frac{\text{number of entries in data matrix}}{\text{area of data graphic
-}}$
+- Data density = $\frac{\text{number of entries in data matrix}}{\text{area of data graphic}}$
 
 
 ## Data density
@@ -1124,7 +1128,12 @@ str_extract(corp, "^(\\S+\\s|[[:punct:]]|\\n){5}") # ^serves to anchor at the be
 
 ## From Corpus to Tokens
 
-**Tokens**: Building blocks of text (words, punctuation, etc.).
+**Tokens**: Building blocks of text analysis, smallest unit of text.
+
+- Raw text is divided into smaller units called tokens. 
+  - e.g., words: "The cat sat" becomes a vector of three characters ["The", "cat", "sat"]
+
+- The tokenization process converts raw text into numerical representations that the model can process by mapping each token to an integer ID.
 
 - LLMs operate on tokenized text as input. The tokenization process converts raw text into numerical representations that the model can process.
 
@@ -1136,7 +1145,7 @@ head(toks[[1]], 20)
 
 ## From Corpus to Tokens
 
-**Tokens**: Building blocks of text (words, punctuation, etc.).
+**Tokens**: Building blocks of text analysis, smallest unit of text.
 
   - Remove punctuation and stopwords.
   - Create N-grams (e.g., "not friendly").
@@ -1191,6 +1200,8 @@ head(toks_neg_bigram_select[[1]], 30)
   - **DTM**: Rows = documents, Columns = tokens.
   - Contains count frequencies or indicators.
   - Use domain knowledge to reduce DTM dimensions.
+  - Sparse (most entries are zero). The dimensions need to be reduced.
+
 
 Code Example:
 ```{r dfm}
