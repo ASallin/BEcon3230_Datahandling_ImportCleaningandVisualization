@@ -1,0 +1,633 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Lecture 1: Introduction'
+author: "Dr. Aurélien Sallin"
+date: "2024-12-12"
+code-line-numbers: false
+format:
+  revealjs:
+    template-partials:
+       - ../../style/title-slide.html
+    width: 1280
+    height: 720
+    smaller: true
+    embed-resources: true
+    self-contained: true
+    slide-number: c
+    theme: ../../style/hsgtheme.scss
+highlight-style: dracula 
+cache: false
+echo: false
+execute:
+  echo: true
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE}
+options(width = 100)
+library(knitr)
+library(purrr)
+```
+
+
+
+# Welcome to Data Handling 2024!
+
+## Introduce yourself!
+
+- Go to this app (use the QR code): https://datahandling.shinyapps.io/DataHandlingIntro/
+- Use one row to respond to the questions in the column headers (see the first two rows for examples).
+
+
+```{r , echo=FALSE, out.width = "35%", fig.align='center', purl=FALSE}
+include_graphics("../../img/QR_APP_2024.png")
+```
+
+## 
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds1.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds2.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds3.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds4.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds5.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds6.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds7.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds8.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds9.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds10.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds11.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds12.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds13.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ds14.png")
+```
+
+
+##
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/data_science_pipeline.png")
+```
+
+
+# Background
+
+## 'Data Science'?
+
+*"This coupling of scientific discovery and practice involves the collection, management, processing, analysis, visualization, and interpretation of vast amounts of heterogeneous data associated with a diverse array of scientific, translational, and inter-disciplinary applications."*
+
+University of Michigan 'Data Science Initiative', 2015
+
+
+## But, what about statistics?!
+
+*"Seemingly, statistics is being marginalized here; the implicit message is that statistics is a part of what goes on in data science but not a very big part. At the same time, many of the concrete descriptions of what the DSI will actually do will seem to statisticians to be bread-and-butter statistics. Statistics is apparently the word that dare not speak its name in connection with such an initiative!"*
+
+David Donoho (2015). __50 years of Data Science__
+
+
+
+## What's new about all this?
+
+*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: ..."*
+
+
+
+## What's new about all this?
+
+*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: <br> procedures for analyzing data, techniques for interpreting the results of such procedures, ways of planning the gathering of data to make its analysis easier, more precise or more accurate, and all the machinery and results of (mathematical) statistics which apply to analyzing data."*
+
+
+
+## What's new about all this?
+
+```{r tukey1, echo=FALSE, out.width = "35%", fig.align='center', purl=FALSE}
+include_graphics("../../img/tukey.jpg")
+```
+
+John Tukey (*The Future of Data Analysis*, 1962)
+
+
+
+## Technological change
+
+```{r computers, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
+include_graphics("../../img/computers.jpg")
+```
+
+
+
+## Relevance for modern economic research
+
+```{r css, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/css.png")
+```
+
+
+
+## Relevance for modern economic research
+
+```{r internet, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/internet.png")
+```
+
+
+
+## Relevance for modern economic research
+
+```{r bigdata, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/bigdata.png")
+```
+
+
+
+## Relevance for modern economic research
+
+```{r text, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/text.png")
+```
+
+
+
+## Data science in Economics skill set
+
+```{r venn, echo=FALSE, out.width = "50%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/venn_diagramm.png")
+```
+
+
+
+## Data science as a life skill
+
+```{r sexy, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/datascientistsexy.png")
+```
+
+
+
+## Data science as a life skill
+
+"More than anything, what data scientists do is **make discoveries while swimming in data.** ...  As they make discoveries, they communicate what they’ve learned and suggest its implications for new business directions. Often they are *creative in displaying information visually and making the patterns they find clear and compelling*... 
+
+They advise executives and product managers on the implications of the data for *products, processes, and decisions*.
+
+What kind of person does all this? *Think of him or her as a hybrid of data hacker, analyst, communicator, and trusted adviser. The combination is extremely powerful — and rare.*"
+
+
+## {class="inverse" background-image="../../img/break-picture.png" background-size="100%" background-repeat="cover"}
+
+**Break**
+
+
+
+# Philosophy of the course
+
+<!-- --- -->
+<!-- class: right, bottom -->
+<!-- background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Apprenticeship.jpg/1280px-Apprenticeship.jpg") -->
+<!-- background-size: cover -->
+
+```{css, echo=F}
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.legend-pic {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px; /* Optional: Add some padding */
+  white-space: nowrap; 
+}
+```
+
+<!-- .slide[.legend-pic[.small[.white[A shoemaker and his apprentice c.1914, Emile Adan]]]] -->
+
+
+## At the end of the course, you will be able to...
+
+- **Understand the tools you need when working with data** <br> We will use the programming language R, but principles are similar for any other programming language (👞⚙️)
+
+- **Work independently with data** <br>We will learn how to collect, clean, and analyze data so that you can conduct a data project in Economics (research/consulting/...) from start to finish 
+- **Ask the right questions to a dataset**<br> We will learn how to ask the right questions to a dataset
+
+- **Learn to communicate about data**<br> We will learn to present our results in a clear and compelling way
+
+
+
+## My commitment to these goals and to your learning process
+
+- **Transferrable skills**
+
+- **Hands-on approach**
+
+- **Emphasis on real-world relevance** <br>(caveat: this course is mandatory for Econ students, I have limited freedom in the syllabus)
+
+- **As much fun as possible (as coding can be fun...😎)**
+
+
+
+## Your commitment to the course
+
+- Prepare with reading, visit the lecture, recap key concepts in lecture notes (self-study)
+
+- Work on exercises, come to exercise session, tackle the tricky exercises together!
+
+- Code, code, and code. repeat...
+
+```{r}
+try <- 0
+while(try < 999) {
+  try <- try + 1
+}
+cat("success!")
+```
+
+
+
+## Our Team - At Your Service
+
+<br>
+
+<div class="custom-table">
+
+|                      |                             |                             |
+|----------------------|-----------------------------|-----------------------------|
+| <img src="../../img/fede.jpg" height="250"/> | <img src="../../img/andreaburro.jpg" height="250"/>  | <img src="../../img/aureliensallin.jpg" height="250"/> |
+| Federica Mascolo     | Andrea Burro                 | Aurélien Sallin |
+
+</div>
+<style>
+.custom-table table th {
+    width: 20%;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.custom-table table thead th {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.custom-table thead th, .custom-table tr:nth-child(1) {
+    background-color: white;
+}
+</style>
+
+
+
+
+## Introduction: Aurélien Sallin
+
+- 2022-today: Expert in Health Care Research and Member of Management,  SWICA Health Organization, Winterthur
+- 2022-today: Lecturer, HSG
+- 2018-2022: PhD Economic and Finance, HSG
+
+<br>
+<br>
+<br>
+
+
+<img src="../../img/gsp.png" height="90"/> &nbsp;&nbsp;
+<img src="../../img/unifr.png" height="90"/> &nbsp;&nbsp;
+<img src="../../img/logo.png" height="80"/> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="../../img/swica-logo-e.svg" height="70"/>
+
+
+
+## Introduction: Aurélien Sallin
+
+### Research at SWICA
+
+ - Use Real-World Data from claims to assess effectiveness of health technological tools
+ - Use (Causal) Machine Learning to evaluate the effect of health policies on doctors' prescription behaviors
+ - Develop financing models for mandatory health care in Switzerland
+
+<br>
+
+### Other Research in Economics of Education (during my PhD Economic and Finance)
+
+ - Missclassification rates for gifted students
+ - Evaluation of Special Education programs
+
+
+
+
+# Organisation of the Course
+
+## Course concept: lectures
+
+- Lectures (Thursday morning)
+    - Background/Concepts
+    - Illustration of concepts
+    - Illustration of 'hands-on' approaches
+
+
+
+## Course concept: exercises
+
+- Exercise sheets (handed out every other week)
+  - Some conceptual questions
+  - Hands-on exercises/tutorials in R 
+  - *First Exercises (set up R/RStudio) is available on StudyNet/Canvas today*
+
+
+
+## Course concept: exercise sessions
+
+- In-class exercise sessions (bi-weekly evening sessions)
+    - Discussion of exercises and additional input with Federica and Andrea
+    - Recap of concepts
+    - Q&A, support
+    - time for more coding!
+
+
+
+# The road ahead
+
+## Two special lectures
+
+#### **24.10.2024**: APIs
+
+  - Minna Heim, BA from St. Gallen, student in Data Science at ETH Zurich
+
+<br>
+
+#### **05.12.2024**: Industry and Consulting Insights
+
+  - Rachel Lund, PhD: Data Science Lead at Deloitte
+
+
+
+## Part I: Data (Science) fundamentals 
+
+```{r echo = FALSE, warning=FALSE}
+library(readxl)
+library(knitr)
+library(magrittr)
+library(kableExtra)
+
+sched <- read_xlsx("../../schedule2024.xlsx")
+
+tab <- sched[1:9, c(1, 5)] |> 
+  # dplyr::mutate(ss = c("", "", "💻", "", "", "💻", "", "💡", "💻")) |> 
+  dplyr::select(everything()) 
+
+colnames(tab) <- c("Date", "Topic")
+
+tab |> 
+  kable(format = "html") |> 
+  kable_styling(full_width = T) |>
+  row_spec(c(1,2, 4, 5, 7, 8), bold = T, color = "green") |> 
+  row_spec(c(3, 6), extra_css = "border-bottom: 20px solid white;") 
+```
+
+
+
+## Part II: Data gathering and preparation
+
+```{css, echo=F}
+.remark-slide table {
+    width: 100%;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.remark-slide table thead th {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.remark-slide thead, .remark-slide tr:nth-child(even){
+    background-color: white;
+}
+.remark-slide thead{
+    background-color: grey;
+}
+table{
+    border-collapse: collapse;
+}
+.remark-slide thead:empty {
+    display: none;
+}
+```
+
+
+
+```{r, echo=FALSE} 
+tab <- sched[12:17, c(1, 5)] |> 
+  # dplyr::mutate(ss = c("", "", "", "", "💡", "💻")) |> 
+  dplyr::select(everything()) 
+  
+colnames(tab) <- c("Date", "Topic")
+
+tab |> 
+  kable(format = "html") |> 
+  kable_styling(full_width = T) |>
+  row_spec(c(1,2, 4, 5), bold = T, color = "green") |> 
+  row_spec(c(3, 4, 5), extra_css = "border-bottom: 25px solid white;") 
+```
+
+
+
+## Part III: Analysis, visualisation, output
+
+```{r, echo=FALSE} 
+tab <- sched[18:nrow(sched), c(1, 5)] |> 
+  # dplyr::mutate(ss = c("", "", "💻", "🎁")) |> 
+  dplyr::select( everything()) 
+  
+colnames(tab) <- c("Date", "Topic")
+
+tab |> 
+  kable( format = "html") |> 
+  kable_styling(full_width = T) |>
+  row_spec(c(1, 2, 4), bold = T, color = "green") |> 
+  row_spec(c(2, 3), extra_css = "border-bottom: 25px solid white;") 
+```
+
+## Exam information
+- Central, written examination: *digital, BYOD!*.
+- Multiple choice questions.
+- A few open questions.
+- Theoretical concepts and practical applications in R (questions based on code examples).
+
+
+## Exam information II
+- We will release samples of  multiple choice questions via Quizzes on Canvas/Studynet (exact same format and style of exam questions).
+
+- Exchange students who need to take the exam before the central exam block:
+    - Date, time place, : *19.12.2024, 16:15-18:00, room tbd*.
+    - Questions: *andrea.burro@unisg.ch*
+
+
+# The tools
+
+## Core course resources
+
+- All information and materials (notes, slides, course sheet, syllabus, etc.) are available on StudyNet/Canvas.
+- Use github to be always updated about the course material
+
+  - Install git on your computer as explained [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - Clone the course repository using
+
+
+.code-bg-red[
+```{r eval = FALSE}
+git clone https://github.com/ASallin/datahandling-lecture.git # to clone
+git pull origin main # to update
+```
+]
+
+
+```{css, echo=F}
+.code-bg-red .remark-code, .code-bg-red .remark-code * {
+ background-color:#f8f8f8!important;
+ font-size: 19px;
+ padding: .5em;
+}
+```
+
+
+
+# Why R?
+
+.green[***The* data language**]
+- Widely used in Data Science jobs.
+- Originally designed as a tool for statistical analysis.
+- Particularly useful to program with data.
+
+
+.green[**High-level language**]
+- Relatively easy to learn.
+- A lot of free tutorials and support online.
+
+
+.green[**Free, open-source, large community** ]
+- Used in various fields.
+- Thousands of 'R-packages' covering diverse aspects of data analysis.
+- Learn from open sources.
+
+
+## R
+
+```{r echo=FALSE, fig.align='center', out.width="40%"}
+
+include_graphics("../../img/R_logo.svg.png")
+
+```
+Install R from [here](https://stat.ethz.ch/CRAN/)!
+
+
+## RStudio
+
+```{r echo=FALSE, fig.align='center', out.width="40%"}
+
+include_graphics("../../img/rstudio.png")
+
+```
+Install RStudio from [here](https://www.rstudio.com/products/rstudio/download/#download)!
+
+
+
+## Main textbooks
+
+[Data Handling Pocket Reference](https://umatter.github.io/datahandling/)
+
+[Murrell, Paul (2009). *Introduction to Data Technologies*, London: Chapman & Hall/CRC.](https://www.stat.auckland.ac.nz/~paul/ItDT/)
+
+[Wickham, Hadley and Garred Grolemund (2017). *R for Data Science*, 1st Edition. Sebastopol, CA: O’Reilly.](http://r4ds.had.co.nz/)
+
+[Baumer, Kaplan and Norton (2023). *Modern Data Science with R*, 2nd Edition. ](https://mdsr-book.github.io/mdsr3e/)
+
+
+
+## Further resources
+
+- [Stackoverflow](https://stackoverflow.com/questions)
+- [Get inspired in the R blogsphere](https://www.r-bloggers.com)
+- ChatGPT
+
+
+
+    
+## And now this...
+
+![](../../img/ds_matrix.png)
+
