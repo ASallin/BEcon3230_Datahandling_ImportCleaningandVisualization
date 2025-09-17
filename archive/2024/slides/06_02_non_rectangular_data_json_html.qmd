@@ -1,0 +1,1047 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+author: "Dr. Aurélien Sallin"
+subtitle: 'Lecture 6, part 2:<br>Non-rectangular data'
+date: "2024-11-14"
+echo: false
+code-line-numbers: false
+format:
+  revealjs:
+    template-partials:
+       - ../../style/title-slide.html
+    width: 1280
+    height: 720
+    smaller: true
+    embed-resources: true
+    self-contained: true
+    slide-number: c
+    theme: ../../style/hsgtheme.scss
+highlight-style: dracula 
+cache: false
+---
+
+```{r set-options, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE}
+options(width = 100)
+library(knitr)
+library(dplyr)
+library(readr)
+```
+
+
+# Welcome back!
+
+## Updates
+
+- **Exam for exchange students** 🎁: 19.12.2024 at 16:15 in room 01-207.
+- The reading list has been updated (R4DS Second edition)
+- Walk-ins for the digital exam: 
+
+  - **04.12.2024** (10:30-14:30, Wintergarten 11:111 Square)
+  - **17.12.2024** (10:30-14:30, Wintergarten 11:1111 Square)
+  
+<!-- - Materials on text analysis and image analysis (lecture 6) is for self study -->
+- The *mock exam* is online 💣
+
+
+## Recap
+
+#### Rectangular data
+
+- Import data from text files, csv, tsv, etc.
+- Tibbles, data frames in R
+
+
+#### Non-rectangular data
+
+- Hierarchical data (xml, html, json)
+- Unstructured text data and images/pictures data 
+
+
+#### Non-rectangular data for economic research
+
+- csv, json, API for economic research
+- Link to guest lecture: [here](https://minnaheim.github.io/dh_guest_lecture/lecture.html#/reality-apis)
+
+
+# Today (first period)
+
+
+## Goals 
+- Understand non-rectangular data: xml, json, and html
+- Be familiar with the way we parse these data into R 
+- Scrape a webpage following its html structure
+
+
+# Non-rectangular data structures
+
+## Non-rectangular data
+
+- Hierarchical data (xml, html, json)
+  - <span style="color: gray">XML and JSON (useful for complex/high-dimensional data sets)</span>.
+  - <span style="color: gray">HTML (a markup language to define the structure and layout of webpages)</span>.
+- Unstructured text data
+- Images/Pictures data 
+
+
+
+## A hierarchical data set
+
+```
+father mother  name     age  gender
+               John      33  male
+               Julia     32  female
+John   Julia   Jack       6  male
+John   Julia   Jill       4  female
+John   Julia   John jnr   2  male
+               David     45  male
+               Debbie    42  female
+David  Debbie  Donald    16  male
+David  Debbie  Dianne    12  female
+
+```
+
+# XML
+
+## XML = eXtensible Markup Language
+
+#### Recap (from last time): 
+  
+  - **Human-readable**: XML files can be easily read and understood without needing special tools.
+  - **Self-descriptive**: XML tags describe the data they enclose.
+  - **Hierarchical structure**: Data is organized in a tree-like structure, making it easy to represent complex relationships.
+  
+
+```{xml, echo = TRUE, eval = FALSE}
+#| code-fold: true
+#| code-summary: "See a XML representation of a Word document on [the Wikipedia page on Microsoft Office XML format](https://en.wikipedia.org/wiki/Microsoft_Office_XML_formats)"
+
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?mso-application progid="Word.Document"?>
+<w:wordDocument
+   xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
+   xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+   xmlns:o="urn:schemas-microsoft-com:office:office"
+   w:macrosPresent="no"
+   w:embeddedObjPresent="no"
+   w:ocxPresent="no"
+   xml:space="preserve">
+  <o:DocumentProperties>
+    <o:Title>This is the title</o:Title>
+    <o:Author>Darl McBride</o:Author>
+    <o:LastAuthor>Bill Gates</o:LastAuthor>
+    <o:Revision>1</o:Revision>
+    <o:TotalTime>0</o:TotalTime>
+    <o:Created>2007-03-15T23:05:00Z</o:Created>
+    <o:LastSaved>2007-03-15T23:05:00Z</o:LastSaved>
+    <o:Pages>1</o:Pages>
+    <o:Words>6</o:Words>
+    <o:Characters>40</o:Characters>
+    <o:Company>SCO Group, Inc.</o:Company>
+    <o:Lines>1</o:Lines>
+    <o:Paragraphs>1</o:Paragraphs>
+    <o:CharactersWithSpaces>45</o:CharactersWithSpaces>
+    <o:Version>11.6359</o:Version>
+  </o:DocumentProperties>
+  <w:fonts>
+    <w:defaultFonts
+       w:ascii="Times New Roman"
+       w:fareast="Times New Roman"
+       w:h-ansi="Times New Roman"
+       w:cs="Times New Roman" />
+  </w:fonts>
+
+  <w:styles>
+    <w:versionOfBuiltInStylenames w:val="4" />
+    <w:latentStyles w:defLockedState="off" w:latentStyleCount="156" />
+    <w:style w:type="paragraph" w:default="on" w:styleId="Normal">
+      <w:name w:val="Normal" />
+      <w:rPr>
+        <wx:font wx:val="Times New Roman" />
+        <w:sz w:val="24" />
+        <w:sz-cs w:val="24" />
+        <w:lang w:val="EN-US" w:fareast="EN-US" w:bidi="AR-SA" />
+      </w:rPr>
+    </w:style>
+    <w:style w:type="paragraph" w:styleId="Heading1">
+      <w:name w:val="heading 1" />
+      <wx:uiName wx:val="Heading 1" />
+      <w:basedOn w:val="Normal" />
+      <w:next w:val="Normal" />
+      <w:rsid w:val="00D93B94" />
+      <w:pPr>
+        <w:pStyle w:val="Heading1" />
+        <w:keepNext />
+        <w:spacing w:before="240" w:after="60" />
+        <w:outlineLvl w:val="0" />
+      </w:pPr>
+      <w:rPr>
+        <w:rFonts w:ascii="Arial" w:h-ansi="Arial" w:cs="Arial" />
+        <wx:font wx:val="Arial" />
+        <w:b />
+        <w:b-cs />
+        <w:kern w:val="32" />
+        <w:sz w:val="32" />
+        <w:sz-cs w:val="32" />
+      </w:rPr>
+    </w:style>
+    <w:style w:type="character" w:default="on" w:styleId="DefaultParagraphFont">
+      <w:name w:val="Default Paragraph Font" />
+      <w:semiHidden />
+    </w:style>
+    <w:style w:type="table" w:default="on" w:styleId="TableNormal">
+      <w:name w:val="Normal Table" />
+      <wx:uiName wx:val="Table Normal" />
+      <w:semiHidden />
+      <w:rPr>
+        <wx:font wx:val="Times New Roman" />
+      </w:rPr>
+      <w:tblPr>
+        <w:tblInd w:w="0" w:type="dxa" />
+        <w:tblCellMar>
+          <w:top w:w="0" w:type="dxa" />
+          <w:left w:w="108" w:type="dxa" />
+          <w:bottom w:w="0" w:type="dxa" />
+          <w:right w:w="108" w:type="dxa" />
+        </w:tblCellMar>
+      </w:tblPr>
+    </w:style>
+    <w:style w:type="list" w:default="on" w:styleId="NoList">
+      <w:name w:val="No List" />
+      <w:semiHidden />
+    </w:style>
+  </w:styles>
+  <w:docPr>
+    <w:view w:val="print" />
+    <w:zoom w:percent="100" />
+    <w:doNotEmbedSystemFonts />
+    <w:proofState w:spelling="clean" w:grammar="clean" />
+    <w:attachedTemplate w:val="" />
+    <w:defaultTabStop w:val="720" />
+    <w:punctuationKerning />
+    <w:characterSpacingControl w:val="DontCompress" />
+    <w:optimizeForBrowser />
+    <w:validateAgainstSchema />
+    <w:saveInvalidXML w:val="off" />
+    <w:ignoreMixedContent w:val="off" />
+    <w:alwaysShowPlaceholderText w:val="off" />
+    <w:compat>
+      <w:breakWrappedTables />
+      <w:snapToGridInCell />
+      <w:wrapTextWithPunct />
+      <w:useAsianBreakRules />
+      <w:dontGrowAutofit />
+    </w:compat>
+  </w:docPr>
+  <w:body>
+    <wx:sect>
+      <w:p>
+        <w:r>
+          <w:t>This is the first paragraph</w:t>
+        </w:r>
+      </w:p>
+      <wx:sub-section>
+        <w:p>
+          <w:pPr>
+            <w:pStyle w:val="Heading1" />
+          </w:pPr>
+          <w:r>
+            <w:t>This is a heading</w:t>
+          </w:r>
+        </w:p>
+        <w:sectPr>
+          <w:pgSz w:w="12240" w:h="15840" />
+          <w:pgMar w:top="1440"
+		   w:right="1800"
+		   w:bottom="1440"
+		   w:left="1800"
+		   w:header="720"
+		   w:footer="720"
+		   w:gutter="0" />
+          <w:cols w:space="720" />
+          <w:docGrid w:line-pitch="360" />
+        </w:sectPr>
+      </wx:sub-section>
+    </wx:sect>
+  </w:body>
+</w:wordDocument>
+```
+  
+
+
+<!-- - A predefined set of special characters (here primarily `<`, `>`, and `/` ) give the data structure.  -->
+<!-- - So-called *XML-tags* are used to define variable names and encapsulate data values: `<variablename>value</variablename>`. -->
+<!-- - Tags can be nested, which allows for the definition of hierarchical structures. -->
+
+
+## XML markup is structured by special characters and tags 
+
+- A predefined set of special characters (here primarily `<`, `>`, and `/` ) give the data structure.
+
+```{xml, echo = TRUE}
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <row>
+    <unique_id>216498</unique_id>
+    <indicator_id>386</indicator_id>
+    <name>Ozone (O3)</name>
+    <measure>Mean</measure>
+    <measure_info>ppb</measure_info>
+    <geo_type_name>CD</geo_type_name>
+    <geo_join_id>313</geo_join_id>
+    <geo_place_name>Coney Island (CD13)</geo_place_name>
+    <time_period>Summer 2013</time_period>
+    <start_date>2013-06-01T00:00:00</start_date>
+    <data_value>34.64</data_value>
+  </row>
+  
+  <row>
+    <unique_id>216499</unique_id>
+    <indicator_id>386</indicator_id>
+    ...
+  </row>
+</data>
+```
+
+
+## XML markup is structured by special characters and tags 
+
+##### A xml element:
+```{xml, echo = TRUE}
+<latitude>48.8S</latitude>
+```
+
+<br>
+
+  - start tag: **`<latitude>`**`48.8S</latitude>`
+  - data value:	`<latitude>`**`48.8S`**`</latitude>`
+  - end tag:	`<latitude>48.8S`**`</latitude>`**
+
+::: aside
+Originally, XML element values were limited to a single type: strings. It is however possible to write a schema that assigns data types to the elements of a XML document (referred to as XSD or XML Schema Definition). See [Mundell](https://www.stat.auckland.ac.nz/~paul/ItDT/HTML/node41.html#SECTION00953000000000000000), chapter 5.5.3 and 5.54 for more details. 
+:::
+
+
+## XML markup has a nested syntax... similar to a family-tree structure 🌳
+
+
+Tags can be nested, which allows for the definition of hierarchical structures. Here, the "root-content" is nested between the '`root``'-tags:
+
+```{xml, echo = TRUE}
+<root>
+  <child>
+    <subchild>.....</subchild>
+  </child>
+</root>
+```
+
+
+
+## There are two principal ways to link variable names to values in XML
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+#### Tag/element-defined
+Define opening and closing XML-tags with the variable name and surround the value with them:
+:::
+
+::: {.column width="50%"}
+#### Attribute-defined
+Encapsulate the values within one tag by defining tag-attributes:
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+```{xml, echo = TRUE}
+<filename>ISCCPMonthly_avg.nc</filename>
+```
+:::
+
+::: {.column width="50%"}
+```{xml, echo = TRUE}
+<case date="16-JAN-1994" temperature="9.200012" /> 
+```
+:::
+::::
+
+
+## There are two principal ways to link variable names to values in XML
+
+:::: {.columns}
+
+::: {.column width="45%"}
+#### Tag/element-defined
+
+```{xml, echo = TRUE}
+  <cases>    
+    <case>
+      <date>16-JAN-1994<date/>
+      <temperature>9.200012<temperature/>
+    <case/>
+    <case>
+      <date>16-FEB-1994<date/>
+      <temperature>10.70001<temperature/>
+    <case/>
+    <case>
+      <date>16-MAR-1994<date/>
+      <temperature>7.5<temperature/>
+    <case/>
+    <case>
+      <date>16-APR-1994<date/>
+      <temperature>8.100006<temperature/>
+    <case/>
+  <cases/>
+```
+:::
+
+::: {.column width="50%"}
+#### Attribute-defined
+
+```{xml,echo = TRUE}
+  <case date="16-JAN-1994" temperature="9.200012" />
+  <case date="16-FEB-1994" temperature="10.70001" />
+  <case date="16-MAR-1994" temperature="7.5" />
+  <case date="16-APR-1994" temperature="8.100006" />
+```
+
+:::
+::::
+
+
+
+## Advantages of XML over csv
+
+ - **More complex (multi-dimensional)** in XML-files than what is possible in CSVs.
+ - **Self-explanatory syntax**: machine-readable and human-readable.
+ - **Structured**: give both structure and name variables.
+
+
+## Potential drawback of XML: **inefficient storage**
+
+- Tags are part of the syntax, thus, part of the actual file.
+    - Tags (variable labels) are repeated again and again!
+    - CSV: variable labels are mentioned once.
+- Potential solution: **data compression** (e.g., zip).
+- If the data is actually two-dimensional, a CSV is more practical.
+
+
+# Parsing XML
+
+## XML in R with *The Office*
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{xml, echo = TRUE}
+<?xml version="1.0" encoding="UTF-8"?>
+<company_dundermifflin>
+  <person id="1">
+    <name>Michael Scott</name>
+    <position>Regional Manager</position>
+    <location branch="Scranton"/>
+  </person>
+  <person id="2">
+    <name>Dwight Schrutte</name>
+    <position>Assistant (to the) Regional Manager</position>
+    <location branch="Scranton"/>
+    <orders>
+      <sales>
+        <units>10</units>
+        <product>paper A4</product>
+      </sales>
+    </orders>
+  </person>
+  <person id="3">
+    <name>Jim Halpert</name>
+    <position>Sales Representative</position>
+    <location branch="Scranton"/>
+    <orders>
+      <sales>
+        <units>20</units>
+        <product>paper A4</product>
+      </sales>
+      <sales>
+        <units>5</units>
+        <product>paper A3</product>
+      </sales>
+    </orders>
+  </person>
+</company_dundermifflin>
+```
+:::
+
+::: {.column width="45%"}
+
+  - The root is `company_dundermifflin`
+  - `company_dundermifflin` is the root-node, `persons` are its children
+  - Three persons: Michael Scott, Dwight Schrutte, Jim Halpert
+  - For Dwight and Jim, we have paper sales orders.
+
+:::
+::::
+
+
+## Load a XML file in R
+
+```{r eval=FALSE, echo = TRUE}
+# load packages
+library(xml2) # updated and faster than library `XML` 
+
+# parse XML, represent XML document as R object
+xml_doc <- read_xml("company_dundermifflin.xml")
+xml_doc
+```
+
+
+```{r echo=FALSE, warning=FALSE}
+# load packages
+library(xml2)
+
+# parse XML, represent XML document as R object
+xml_doc <- read_xml("../../data/company_dundermifflin.xml")
+xml_doc
+```
+
+## Identify the root-node and the children
+
+#### 🔽 Navigate downwards (find the children or the first child)
+```{r, echo = TRUE, eval = FALSE}
+persons <- xml_children(xml_doc) 
+xml_child(xml_children(xml_doc), 1)
+```
+<details> <summary>Show output</summary>
+```{r, echo = FALSE}
+persons <- xml_children(xml_doc) 
+xml_child(xml_children(xml_doc), 1)
+```
+</details> 
+
+#### ◀️▶️ Navigate sidewards
+
+```{r, echo = TRUE, eval = FALSE}
+xml_siblings(persons[1])
+```
+<details> <summary>Show output</summary>
+```{r, echo = FALSE}
+xml_siblings(persons[1])
+```
+</details> 
+
+#### 🔼 Navigate upwards: find all the parents (all levels) or the parent (one level)
+```{r, echo = TRUE, eval= FALSE}
+sales <- xml_children(xml_children(xml_children(xml_doc)))
+xml_parents(sales)
+xml_parent(sales)
+```
+<details> <summary>Show output</summary>
+```{r, echo = FALSE}
+sales <- xml_children(xml_children(xml_children(xml_doc)))
+xml_parents(sales)
+xml_parent(sales)
+```
+</details> 
+
+
+## Extract specific parts of the data using XPath 
+
+#### XPath is a language specifically designed for navigating and querying XML documents
+
+```{r, echo = TRUE}
+# find data via XPath
+sales <- xml_find_all(xml_doc, xpath = ".//sales")
+sales
+xml_text(sales) # extract the data as text
+
+position <- xml_find_all(xml_doc, xpath = ".//position")
+position
+```
+
+
+## Exercise: Create a data frame with sales
+
+#### Try to extract the sales data from the xml file at home. 
+
+- What is the difference between // and / in the XPath?
+- This exercise is meant as a challenge for the most motivated 💪 
+
+```{r, echo = TRUE}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Extract all <person> nodes with sales information
+# [orders] is a predicate that filters the <person> elements to only those that contain at least one <orders> child node.
+persons_with_sales <- xml_find_all(xml_doc, "//person[orders]")
+
+# Initialize an empty dataframe to store sales data
+sales_df_final <- data.frame(name = NA, units = NA, product = NA)
+
+for (i in 1:length(persons_with_sales)) { # There are two persons with sales here. 
+  
+  person <- persons_with_sales[i]
+  
+  # Extract person's name
+  name <- xml_text(xml_find_first(person, "./name"))
+  
+  # Extract sales nodes
+  sales <- xml_find_all(person, ".//sales")
+  units <- xml_text(xml_find_all(sales, "./units"))
+  product <- xml_text(xml_find_all(sales, "./product"))
+  
+  # Create a data frame for the person's sales
+  sales_person <- data.frame(
+    name = name,
+    units = as.numeric(units),
+    product = product
+  )
+  
+  sales_df_final <- rbind(sales_df_final, sales_person)
+}
+
+sales_df_final
+```
+
+
+
+# Deciphering JSON
+
+## JSON = JavaScript Object Notation
+
+- Text-based format used for representing structured and based on JavaScript object syntax.
+- Used for data exchange between a server and a web application
+- Used in most APIs.
+
+
+## JSON syntax
+  
+  - Key difference to XML: no tags, but **attribute-value pairs**.
+  - JSON is built on two structures:
+    - **Object**: a collection of properties, i.e. key/value pairs `{"key": value}` 
+    - **Array**: an ordered list of values `[1, 2, 3]`
+  - A substitute for XML (often encountered in similar usage domains).
+
+
+::: aside
+Object properties are accessed using keys. Keys must be strings, and values must be a valid JSON data type (string, number, object, array, boolean or null). Arrays can contain objects.
+:::
+
+## 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### XML:
+```{xml, echo = TRUE}
+<person>
+  <firstName>John</firstName>
+  <lastName>Smith</lastName>
+  <age>25</age>
+  <address>
+    <streetAddress>21 2nd Street</streetAddress>
+    <city>New York</city>
+    <state>NY</state>
+    <postalCode>10021</postalCode>
+  </address>
+  <phoneNumber>
+    <type>home</type>
+    <number>212 555-1234</number>
+  </phoneNumber>
+  <phoneNumber>
+    <type>fax</type>
+    <number>646 555-4567</number>
+  </phoneNumber>
+  <gender>
+    <type>male</type>
+  </gender>
+</person>
+
+```
+
+:::
+
+::: {.column width="50%"}
+
+
+#### JSON:
+```{json, echo = TRUE}
+{"firstName": "John",
+  "lastName": "Smith",
+  "age": 25,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021"
+  },
+  "phoneNumber": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "fax",
+      "number": "646 555-4567"
+    }
+  ],
+  "gender": {
+    "type": "male"
+  }
+}
+```
+
+:::
+::::
+
+<!-- Objects: {} enclose objects, which are key-value pairs (e.g., "name": "John Doe", "age": 30). -->
+<!-- Arrays: [] enclose arrays, such as the "skills" list in the example (["R", "Python", "SQL"]). -->
+<!-- Values: Values can be strings (e.g., "John Doe"), numbers (e.g., 30), booleans (e.g., true), arrays, or other objects (like the nested "address" object). -->
+
+---
+
+## 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### XML:
+```{xml, echo = TRUE}
+<person>
+  <firstName>John</firstName>
+  <lastName>Smith</lastName>
+</person>
+```
+
+:::
+
+::: {.column width="50%"}
+
+#### JSON:
+```{json, echo = TRUE}
+{
+  "firstName": "John",
+  "lastName": "Smith",
+}
+```
+
+:::
+::::
+
+## 
+
+```{r echo=FALSE, fig.align="center", out.width="90%"}
+include_graphics("../../img/hierarch_data_dark.jpg")
+```
+
+
+# Parsing JSON
+
+
+## JSON in R
+
+```{r eval=FALSE, echo = TRUE}
+# load packages
+library(jsonlite)
+
+# parse the JSON-document shown in the example above
+json_doc <- fromJSON("data/person.json")
+
+# look at the structure of the document
+str(json_doc)
+```
+
+```{r echo=FALSE, message=FALSE }
+# load packages
+library(jsonlite)
+
+# parse the JSON-document shown in the example above
+json_doc <- fromJSON("../../data/person.json")
+
+# look at the structure of the document
+str(json_doc)
+```
+
+
+## JSON in R
+
+The nesting structure is represented as a *nested list*:
+
+```{r, echo = TRUE}
+# navigate the nested lists, extract data
+# extract the address part
+json_doc$address
+
+# extract the gender (type)
+json_doc$gender$type
+```
+
+
+# HTML: Websites
+
+## HTML: Code to build webpages
+
+[HyperText Markup Language (HTML)](https://en.wikipedia.org/wiki/HTML), designed to be read by a web browser.
+
+
+```{r echo=FALSE, fig.align="center", out.width="60%"}
+include_graphics("../../img/website_screen.jpg")
+```
+
+
+
+## HTML documents: code and data!
+
+HTML documents/webpages consist of *'semi-structured data'*:
+
+  - A webpage can contain a HTML-table (*structured data*)...
+  - ...but likely also contains just raw text (*unstructured data*).
+
+----
+
+```{html, echo = TRUE}
+     <!DOCTYPE html>
+
+     <html>
+         <head>
+             <title>hello, world</title>
+         </head>
+         <body>
+             <h2> hello, world </h2>
+         </body>
+     </html>
+```
+
+<center>
+#### Similarities to other formats?
+</center>
+
+
+
+
+## HTML document as a 'tree'
+
+```{r dom, echo=FALSE, fig.align="center", out.width="60%"}
+include_graphics("../../img/dom_tree_dark.jpg")
+```
+
+
+## Read a webpage into R
+
+In this example, we look at [Wikipedia's Economy of Switzerland page](https://en.wikipedia.org/wiki/Economy_of_Switzerland).
+
+```{r swiss, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "Source: https://en.wikipedia.org/wiki/Economy_of_Switzerland"}
+include_graphics("../../img/1_SwissGDP.png")
+```
+
+
+## Tutorial (advanced): Importing data from a HTML table
+
+-> Exercise session last week!
+
+
+
+
+# Text as Data and Image Data
+
+## Text as Data became more common as data source
+
+ - Extract text from historical documents (scan, use OCR)
+ - Use machine learning to label text (too costly to do manually)
+ - Extract sentiment (finance for instance)
+
+
+#### Text is unstructured data. Text analysis and feature extraction is the basis for new genAI models!
+
+
+## An example of text mining in R
+
+```{r, echo=FALSE, out.width = "550%", fig.align='center', fig.cap= "Source: https://confessionsofadatascientist.com/text-analysis-with-r-repro-report.html"}
+include_graphics("../../img/textpipeline.jpg")
+```
+
+
+
+## Self-study on text mining
+
+**Read Chapter 6 on text data in [the book by U. Matter](https://umatter.github.io/datahandling/text-data.html)**
+
+<br>
+
+#### Key concepts:
+
+- **regular expressions**: flexible syntax used to detect and describe patterns in strings
+- **corpus**: a collection of authentic text organized into datasets
+- **documents**
+- **tokens** and **N-grams**
+- **document-term-matrix** (dtm)
+
+
+#### Key libraries:
+
+- `quanteda`: see [Quanteda](https://quanteda.io/)
+- `tidytext`: see [Text Mining with R](https://www.tidytextmining.com/)
+
+
+
+
+
+
+
+
+
+
+<!-- ## Handling text data for analysis -->
+
+
+<!-- ```{r nlppipeline, echo=FALSE, out.width = "95%", fig.align='center',  purl=FALSE} -->
+<!-- include_graphics("../../img/nlp_pipeline_dark.jpg") -->
+<!-- ``` -->
+
+<!-- <!-- ## Data structure: text corpus --> -->
+<!-- ## -->
+
+<!-- ```{r corpus, echo=FALSE, out.width = "35%", fig.align='center',  purl=FALSE} -->
+<!-- include_graphics("../../img/text_corpus_dark.jpg") -->
+<!-- ``` -->
+
+
+<!-- ## Working with text data in R: Quanteda -->
+
+
+<!-- ```{r packages, echo=FALSE} -->
+<!-- # Install/load packages -->
+<!-- pacman::p_load( -->
+<!--     tidytext, -->
+<!--     quanteda, -->
+<!--     readtext, -->
+<!--     stringr, -->
+<!--     quanteda.textstats, -->
+<!--     quanteda.textplots -->
+<!-- ) -->
+<!-- ``` -->
+
+
+<!-- # Image Data -->
+
+
+<!-- ## Basic data structures -->
+
+<!--  - *Raster images*: a matrix of pixels, as well as the color of each pixel. -->
+<!--  - *Vector-based images*: text files that store the coordinates of points on a surface and how these dots are connected (or not) by lines. -->
+
+<!-- ## Raster images -->
+
+<!-- ```{r rgb, echo=FALSE, out.width = "75%", fig.align='center', purl=FALSE} -->
+<!-- include_graphics("../../img/rgb_structure.jpg") -->
+<!-- ``` -->
+
+<!-- ## Raster and vector images in R -->
+
+
+<!-- ## Use cases in economic research and beyond -->
+
+<!--  - Extract text from historical documents (scan, use OCR) -->
+<!--  - Use machine learning to label text (too costly to do manually) -->
+<!--  - Extract information from maps -->
+
+
+
+
+# Exercises
+
+
+## JSON files: open-ended question
+
+Consider the following JSON file
+
+```{json, echo = TRUE}
+{
+  "students": [
+    {
+      "id": 19091,
+      "firstName": "Peter",
+      "lastName": "Mueller",
+      "grades": {
+          "micro": 5,
+          "macro": 4.5,
+          "data handling": 5.5
+          }
+    },
+    {
+      "id": 19092,
+      "firstName": "Anna",
+      "lastName": "Schmid",
+      "grades": {
+          "micro": 5.25,
+          "macro": 4,
+          "data handling": 5.75
+          }
+    },
+    {
+      "id": 19093,
+      "firstName": "Noah",
+      "lastName": "Trevor",
+      "grades": {
+          "micro": 4,
+          "macro": 4.5,
+          "data handling": 5
+          }
+    }
+  ]
+}
+```
+
+Write an R code to extract a table with, as a first column, a vector of first names, and as a second column, the average grade per student. The table can be a data frame or a tibble.
+
+
+## XML
+
+```{xml, echo = TRUE}
+<students>
+  <student>
+    <id>19091</id>
+    <firstName>Peter</firstName>
+    <lastName>Mueller</lastName>
+    <grades>
+      <micro>5</micro>
+      <macro>4.5</macro>
+      <dataHandling>5.5</dataHandling>
+    </grades>
+  </student>
+  <student>
+    <id>19092</id>
+    <firstName>Anna</firstName>
+    <lastName>Schmid</lastName>
+    <grades>
+      <micro>5.25</micro>
+      <macro>4</macro>
+      <dataHandling>5.75</dataHandling>
+    </grades>
+  </student>
+  <student>
+    <id>19093</id>
+    <firstName>Noah</firstName>
+    <lastName>Trevor</lastName>
+    <grades>
+      <micro>4</micro>
+      <macro>4.5</macro>
+      <dataHandling>5</dataHandling>
+    </grades>
+  </student>
+</students>
+```
+
+- 'students' is the root-node, 'grades' are its children
+- The siblings of Trevor Noah are Anna Schmid and Peter Mueller
+- The code below would be an alternative, equivalent notation for the third student in the xml file above.
+```{xml}
+<student id="19093" firstName="Noah" lastName="Trevor">
+      <grades micro="4" macro="4.5" dataHandling="5" />
+</student>
+```
+
+
+
+
+
+

@@ -5,7 +5,7 @@ account: datahandling
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 12677361
-bundleId: 9103626
+bundleId: 10913469
 url: https://datahandling.shinyapps.io/DataHandlingIntro/
 version: 1
 asMultiple: FALSE

@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+
+
+body { font-family: 'Open Sans', 'Arial', sans-serif !important; }
+
+h1, h2, h3, h4 {
+  font-family: 'Open Sans', 'Arial', sans-serif !important;
+  font-weight: bold;
+}
+.remark-code, .remark-inline-code { font-family: 'Courier New', monospace !important; }
+
+/* Color and style for output from code */
+code {
+  font-family: 'Courier New', monospace !important;
+  color: #2a382b93 !important;
+  font-weight: bold !important;
+}
+
+/* Color and style for inline code */
+pre {
+  font-family: 'Courier New', monospace !important;
+  color: #1e291f93 !important;
+}

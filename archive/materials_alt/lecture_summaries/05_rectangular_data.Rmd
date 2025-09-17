@@ -1,0 +1,455 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Lecture 5:<br>Rectangular data'
+author: "Prof. Dr. Ulrich Matter, updated by Dr. Aurélien Sallin"
+output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes_hsg.css
+bibliography: ../../references/datahandling.bib
+---
+
+
+
+
+
+```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE}
+options(width = 100)
+library(knitr)
+```
+
+
+
+<br>
+<br> 
+
+# Data formats in economics
+
+*Rectangular data*
+
+- Rectangular data refers to a data structure where information is organized into *rows* and *columns*.
+  - CSV (typical for rectangular/table-like data) and variants of CSV (tab-delimited, fix length etc.)
+  - Excel spreadsheets (`.xls`)
+  - Formats specific to statistical software (SPSS: `.sav`, STATA: `.dat`, etc.)
+  - Built-in R datasets
+  - Binary formats
+
+<br>
+
+*Non rectangular data*
+- XML and JSON (useful for complex/high-dimensional data sets)
+- HTML (a markup language to define the structure and layout of webpages)
+- Binary formats
+- Time series data
+- Unstructed text data
+- Images/Pictures data 
+
+<!-- While we will cover/revisit how to import all of these formats here, it is important to keep in mind that the learned fundamental concepts are as important (or more important) than knowing which function to call in R for each of these cases. New formats might evolve and become more relevant in the future for which no R function yet exists. However, the underlying logic of how formats to structure data work will hardly change. -->
+
+
+<br>
+<br> 
+
+# Working with rectangular data in `R`
+
+<br> 
+
+## Accessing Rectangular Data
+
+*Loading built-in datasets*
+
+In order to load such datasets, simply use the `data()`-function:
+
+```{r eval=TRUE}
+data(swiss)
+```
+
+Inspect the data after loading
+
+```{r eval=TRUE}
+# inspect the structure
+str(swiss)
+
+# look at the first few rows
+head(swiss)
+```
+
+The data is provided in a `data.frame` object. This is the most typical object class to work with datasets in R. Almost all of the common functions to import rectangular/spreadsheet-like data into R will return an object of class `data.frame`.
+
+<br>
+
+## Navigate/work with `data.frames`
+
+There are several ways of selecting rows/columns of a data-frame. For example, to select the `Fertility`-column from the `swiss`-dataset, you can do the following one of the following:
+
+```{r}
+# selection of columns 
+swiss$Fertility # use the $-operator: 
+swiss[,1] # use brackets [] and the column number/index 
+swiss[, "Fertility"] # use the name of the column
+```
+
+```{r}
+# selection of rows
+# select the first row
+swiss[1,] 
+# select the first three rows
+swiss[1:3,] # 1:3 is the same as c(1,2,3)
+# select the cell in row 1, column 4
+swiss[1,4]
+# Based on condition ("filter")
+swiss[swiss$Fertility > 40,]
+```
+
+<br> 
+
+## Data.frames vs tibbles
+
+<img align="right" width="300" height="300" src="../../img/tidyverse.png">
+
+- data frames: base `R`
+- tibbles: `tidyverse`
+
+```{r tidyverse, echo=FALSE, out.width = "55%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/tidyverse_website.png")
+```
+
+Both are similar! 
+
+- Tibbles are used in the tidyverse and ggplot2 packages. 
+- Same information as a data frame.
+- Slight differences in the manipulation and representation of data.
+- See [**Tibble vs. DataFrame**](https://jtr13.github.io/cc21fall1/tibble-vs.-dataframe.html#tibble-vs.-dataframe") for more details.
+
+We can convert a data frame into a tibble using the function `as_tibble()`.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+as_tibble(swiss)
+```
+
+
+<br>
+<br>
+
+# Importing Rectangular Data from Text-Files
+
+
+*Comma Separated Values (CSV)*
+
+The first two lines of the`swiss`-dataset look like this when stored in a CSV-file:
+
+```{}
+"District","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
+"Courtelary",80.2,17,15,12,9.96,22.2
+```
+
+<br> 
+
+## Parsing CSVs in R
+
+- `read.csv()` (basic R distribution)
+- Returns a `data.frame`
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+swiss_imported <- read.csv("../../data/swiss.csv")
+```
+
+
+```{r eval=FALSE, purl=FALSE}
+swiss_imported <- read.csv("data/swiss.csv")
+```
+
+- Alternative: `read_csv()` (`readr`/`tidyr`-package) 
+- Returns a `tibble`. 
+- Used in @wickham_grolemund2017.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, purl=FALSE}
+library(readr)
+swiss_imported <- read_csv("../../data/swiss.csv")
+```
+
+
+```{r eval=FALSE, purl=FALSE}
+swiss_imported <- read_csv("data/swiss.csv")
+```
+
+
+- Why use `read_csv()`, the `readr`-package?
+  - Functions for all common rectangular data formats.
+  - Consistent syntax.
+  - More robust and faster than similar functions in basic R.
+
+`read_csv()` accepts as a first argument either a character string with a path to a csv file, or a character string directly containing data strucured according to the CSV format. For example, we can parse the first lines of the swiss dataset directly like this:
+
+```{r}
+read_csv('"District","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
+"Courtelary",80.2,17,15,12,9.96,22.2')
+
+```
+
+or read the entire `swiss` dataset by pointing to the file:
+
+```{r eval=FALSE}
+swiss <- read_csv("data/swiss.csv")
+```
+
+
+```{r echo=FALSE, purl=FALSE}
+swiss <- read_csv("../../data/swiss.csv")
+```
+
+
+In either case, the result is a `tibble`: 
+```{r}
+swiss
+```
+
+
+- Other `readr` functions have practically the same syntax and behavior.
+    - `read_tsv()` (tab-separated)
+    - `read_fwf()` (fixed-width)
+    - ...
+
+<br> 
+
+## Parsing CSVs: data types
+
+- Recall the introduction to data structures and data types in R
+- How does R represent data in RAM
+    - *Structure*: `data.frame`/`tibble`, etc.
+    - *Types*: `character`, `numeric`, etc.
+- Parsers in `read_csv()` guess the data *types*.
+
+<br> 
+
+## Illustration of data type "guessing"
+
+In the following example, we ask `read_csv` to parse a simple dataset in csv-format (the entire dataset is provided in a character string). For a human reader, both columns A and B likely appear to contain information about time. However, in column B the time information is encoded in an inconsistent way, while the observations in column B follow a consistant format. 
+
+```{r}
+read_csv('A,B
+         12:00, 12:00
+         14:30, midnight
+         20:01, noon')
+```
+
+In the output you see that `read_csv()` recognized the content of column A to be time information and assigned the corresponding data type to it, while column B has been recognized as `character`. Note that this happened without any additional information passed to `read_csv()`. The way this works is that `read_csv()` analyzes for each column what kind of values occur and then decides what data type is most likely fitting to the kind of data contained in each of the columns.
+
+More specifically, under the hood `read_csv()` used the `guess_parser()`- function to determine which type the two vectors likely contain:
+
+```{r}
+guess_parser(c("12:00", "midnight", "noon"))
+guess_parser(c("12:00", "14:30", "20:01"))
+```
+
+This behavior is typical for functions used to import data from CSV into R. Be aware of this default behavior: types are guessed, they can not be determined with a 100% accurracy in many real-life cases. Thus, it is good practice to verify whether the data types assigned to each of the columns of your dataset after import are in line with what you would expect and what you need to further process the data. In practice, this guessing of types is both practical (as it saves time) but it might also be a source of errors if there are some inconsistencies in the raw data. The latter point is of particular relevance when working with large datasets, as it is not trivial to recognize inconsistencies in the raw data.
+
+<br> 
+<br> 
+
+# Other Common Rectangular Formats
+
+<br> 
+
+## Spreadsheets/Excel
+
+Needs additional R-package: `readxl`.
+
+```{r eval=FALSE, warning=FALSE}
+# install the package 
+install.packages("readxl")
+```
+
+Once installed, we load this additional package ('library') and use the package's `read_excel()`-function to import data from an excel-sheet. 
+
+
+```{r echo=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
+# load the package
+library(readxl)
+
+# import data from a spreadsheet
+swiss_imported <- read_excel("../../data/swiss.xlsx")
+```
+
+
+```{r eval=FALSE}
+# load the package
+library(readxl)
+
+# import data from a spreadsheet
+swiss_imported <- read_excel("data/swiss.xlsx")
+```
+
+<br> 
+
+## Data from other data analysis software 
+
+- STATA, SPSS, etc.
+- Additional packages needed:
+    - `foreign`
+    - `haven`
+- Parsers (functions) for many foreign formats.
+
+For example, we can use `read_spss()` for SPSS' `.sav`-format as follows.
+
+```{r echo=FALSE, purl=FALSE, warning=FALSE}
+# install the package (if not yet installed):
+# install.packages("haven")
+
+# load the package
+library(haven)
+
+# read the data
+swiss_imported <- read_spss("../../data/swiss.sav")
+
+```
+
+```{r eval=FALSE}
+# install the package (if not yet installed):
+# install.packages("haven")
+
+# load the package
+library(haven)
+
+# read the data
+swiss_imported <- read_spss("data/swiss.sav")
+
+```
+
+
+<br>
+<br>
+
+# Encoding Issues
+
+Recall our discussion of character encoding. When importing data into R, R per default assumes text files to be encoded in the default encoding of your computer. In practice, it might occur that the file you would like to import into R was written in a different character encoding standard. Below we illustrate such a case with a familiar example. We use `readLines()` to read the content of a text file called `hastamanana.txt` into R.^[`readLines()` simply reads the content of a text file line by line.]
+
+
+```{r echo=FALSE}
+FILE <- "../../data/hastamanana.txt"
+hasta <- readLines(FILE)
+hasta
+```
+
+```{r eval=FALSE}
+FILE <- "data/hastamanana.txt"
+hasta <- readLines(FILE)
+hasta
+```
+
+From looking at the imported data in R, you notice that something is odd. The imported string contains weird characters. 
+
+Recall that text files such as CSVs do not actually contain any information about the standard the file is encoded in. Hence, we need to guess what encoding we are dealing with and then translate the data in the original encoding into our local default encoding.
+
+<br>
+
+## Guess encoding
+
+`readr` provides a function that does the guessing: `guess_encoding()`.
+
+```{r}
+guess_encoding(FILE)
+```
+
+As you see from the output, `guess_encoding()` povides a number of encoding standards names as well as a corresponding "confidence level", indicating how likely it is that the text was stored in that original encoding.
+
+A reasonable next step is thus to first try a conversion based on the most likely encoding standard and see if this leads to the expected result.
+
+<br>
+
+## Handling encoding issues
+
+- `inconv()`: convert a character vector `from` one encoding `to` another encoding.
+- Use the guessed encoding for the `from` argument (UTF-8 is the standard encoding on most Mac/OSX and Linux machines).
+
+```{r}
+iconv(hasta, from = "ISO-8859-2", to = "UTF-8")
+```
+
+This looks better but still not optimal. Let us thus try the second most likely encoding and compare the results.
+
+```{r}
+iconv(hasta, from = "ISO-8859-1", to = "UTF-8")
+```
+
+This looks intuitively better. The take away here is:
+
+1. Recognize whether there is an encoding issue after importing data.
+2. Figure out the original encoding: `guess_encoding()`.
+3. Convert to the local encoding (you might have to try out which of the suggested encodings delivers the best result): `iconv()`.
+
+
+<br>
+<br>
+
+# Data Gathering Procedure
+
+## Organize your data pipeline!
+
+- One R script to gather/import data.
+- The beginning of your data pipeline!
+
+Tell your future self what this script is all about 🤓🔮💻
+
+Here is a template for your script:
+
+```{r eval=FALSE}
+#######################################################################
+# Data Handling Course: Example Script for Data Gathering and Import
+#
+# Imports data from ...
+# Input: import c to data sources (data comes in ... format)
+# Output: cleaned data as CSV
+# 
+# A. Sallin, St. Gallen, 2023
+#######################################################################
+
+
+# SET UP --------------
+# load packages
+library(tidyverse)
+
+# set fix variables
+INPUT_PATH <- "/rawdata"
+OUTPUT_FILE <- "/final_data/datafile.csv"
+
+
+# IMPORT RAW DATA FROM CSVs -------------
+```
+
+
+## Script Template
+
+- Recall: programming tasks can often be split into smaller tasks.
+- Use sections to implement task-by-task and keep order.
+- In RStudio: Use `----------` to indicate the beginning of sections.
+  - CTRL + SHIFT + R
+- Start with a 'meta'-section, or a "set-up" section in which you load the previously installed packages you need for your project.
+- In the set-up section, indicate your path as a string. In this way, you only have to enter your path once. This avoids potential mistakes. 
+- Finally we add sections with the actual code (in the case of a data import script, maybe one section per data source). The title should be as self-explanatory as possible.
+
+
+
+
+
+<br>
+<br>
+
+# References
+
+
+
+
+
+

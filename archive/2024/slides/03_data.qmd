@@ -1,0 +1,903 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+author: "Dr. Aurélien Sallin"
+subtitle: "Lecture 3: A Brief Introduction to Data and Data Processing"
+date: "03/10/2024"
+# pagetitle: Title of Talk
+echo: false
+code-line-numbers: false
+format:
+  revealjs:
+    template-partials:
+       - ../../style/title-slide.html
+    width: 1280
+    height: 720
+    smaller: true
+    embed-resources: true
+    self-contained: true
+    slide-number: c
+    theme: ../../style/hsgtheme.scss
+highlight-style: dracula # style to highlight code. Set background color in theme
+cache: false
+# bibliography: bibliography.bib
+
+---
+
+```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE}
+options(width = 100)
+library(knitr)
+library(purrr)
+# knitr::opts_chunk$set(class.source = "chunkstyle")
+```
+
+
+## {class="inverse"}
+
+Recap
+
+## Goals of last course and exercise session
+
+- Basic programming concepts.
+- Functions and functionals.
+- Working installation of R and first coding exercises.
+
+
+## Basic programming concepts
+
+ - Values, variables
+ - Vectors
+ - Matrices
+ - Loops
+ - Logical statements
+ - Control statements
+ - Functions
+ - Functionals
+
+
+## Three tutorials
+
+ - Compute the mean with your own function      [-> no solution posted]{style="color:#02934a;"}
+ - Evolution in action: fast and slow sloths    [-> solution in the first exercise session]{style="color:#02934a;"}
+ - Append and lists                             [-> solution in the second exercise session]{style="color:#02934a;"}
+
+```{r scratch, echo=FALSE, out.width = "35%", fig.align='center', purl=FALSE}
+include_graphics("../../img/fastsloth.png")
+```
+
+
+## {class="inverse"}
+
+Warm-up
+
+
+## Warm-up
+
+#### Consider the following vector. Which answers are true?
+```{r warmup1, echo=TRUE, eval = FALSE}
+some_numbers <- c(30, 50, 60)
+```
+
+<br>
+
+#### Possible answers
+
+1. `sum(some_numbers[c(2,3)]) == 80`
+2. `some_numbers[some_numbers %in% c(30)] == 30`
+3. `some_numbers * 5 ` will do `30*5 + 50*5 + 60*5`
+
+## Warm-up
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### We create the following matrix
+
+```{r warmup2a, echo=TRUE, eval = TRUE}
+mymatrix <- matrix(c(1,2,3,11,12,13,1,10),
+                   nrow = 2,
+                   ncol = 4,
+                   byrow = FALSE)
+```
+
+Which of the answers are correct?
+:::
+
+::: {.column width="50%"}
+#### Answer 1 (recap lecture 2)
+
+```{r, echo = TRUE, eval = FALSE}
+max(mymatrix[,2]) == 3
+```
+
+<br>
+
+#### Answer 2 (recap lecture 2)
+
+```{r, echo = TRUE, eval = FALSE}
+apply(mymatrix, MARGIN = 2, min) 
+```
+`returns a vector of size 4.`
+:::
+
+::::
+
+
+## Warm-up
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### We create the following matrix
+
+```{r warmup2b, echo=TRUE, eval = FALSE}
+mymatrix <- matrix(c(1,2,3,11,12,13,1,10),
+                   nrow = 2,
+                   ncol = 4,
+                   byrow = FALSE)
+```
+
+Which of the answers are correct?
+:::
+
+::: {.column width="50%"}
+
+#### Answer 3 (🌶️)
+```{r,  echo = TRUE, eval = FALSE}
+m <- apply(mymatrix, MARGIN = 2, min)
+```
+can be coded as
+
+```{r, echo = TRUE, eval = FALSE}
+i <- 1
+m <- c()
+
+while(i < (ncol(mymatrix) + 1)){
+  m <- append(m, min(mymatrix[,i]))
+  i <- i + 1
+}
+```
+:::
+
+::::
+
+
+## Warm-up
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### We create the following matrix
+
+```{r warmup2c, echo=TRUE, eval = FALSE}
+mymatrix <- matrix(c(1,2,3,11,12,13,1,10),
+                   nrow = 2,
+                   ncol = 4,
+                   byrow = FALSE)
+```
+
+Which of the answers are correct?
+:::
+
+::: {.column width="50%"}
+
+#### Answer 4 (🌶️)
+
+In this code:
+  
+```{r, echo = TRUE, eval = FALSE}
+i <- 1
+m <- c()
+
+while(i < (ncol(mymatrix) + 1)){
+  m <- append(m, min(mymatrix[,i]))
+  i <- i + 1
+}
+
+```
+we actually don't need to create an empty vector m. We just need to save the output of the loop as an object, i.e.:
+
+```{r, echo = TRUE, eval = FALSE}
+i <- 1
+
+m <- while(i < (ncol(mymatrix) + 1)){
+append(m, min(mymatrix[,i]))
+i <- i + 1
+}
+```
+:::
+
+::::
+
+
+## Warm-up
+
+What is `total_sum`?
+
+```{r warmup3, echo=TRUE, eval = FALSE}
+numbers <- 1:4
+total_sum <- 0
+n <- length(numbers)
+
+# start loop
+for (i in 1:n) {
+  
+  if(i %% 2 == 0){
+     total_sum <- total_sum + numbers[i]
+  } else {
+    total_sum <- total_sum + 2*numbers[i]
+  }
+
+}
+```
+
+
+## Don't forget...
+```{r rmeme, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
+include_graphics("../../img/Rmeme.jpg")
+```
+
+
+## {class="inverse"}
+
+Data Processing
+
+## Goals for today
+
+1. Have a basic understanding of data processing;
+2. Understand binary and hexadecimal systems;
+3. Understand the importance of encoding for data projects.
+
+
+## Numeral systems as representations 
+
+```{r newabacus, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
+include_graphics("../../img/new_abacus.jpg")
+```
+
+##
+
+```{r abacus, echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/abacus_black_own.png")
+```
+
+##
+
+```{r blackbox, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../../img/cpu_blackbox.png")
+```
+
+
+## The binary sytem
+
+Microprocessors can only represent two signs (states): 
+
+ - 'Off' = `0`
+ - 'On' = `1`
+
+```{r onoff, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
+include_graphics("../../img/on_off.png")
+```
+
+## The binary sytem
+
+```{r matrix, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
+include_graphics("../../img/matrix.gif")
+```
+
+## The binary counting frame
+
+- Only two signs: `0`, `1`.
+- Base 2.
+- Columns: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
+
+
+## The binary counting frame
+
+What is the decimal number *139* in the binary counting frame?
+
+
+## The binary counting frame
+
+What is the decimal number *139* in the binary counting frame?
+ 
+ - Solution:
+ 
+$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
+
+
+
+
+## The binary counting frame
+
+What is the decimal number *139* in the binary counting frame?
+ 
+ - Solution:
+ 
+$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
+
+  - More precisely:
+  
+$$(1 \times 2^7) + (0 \times 2^6) +  (0 \times 2^5) +  (0 \times 2^4) + (1 \times 2^3)\\ + (0 \times 2^2) + (1 \times 2^1) +  (1 \times 2^0)  = 139.$$
+
+  - That is, the number `139` in the decimal system corresponds to `10001011` in the binary system.
+
+
+
+## Conversion between binary and decimal
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+
+
+<!-- ## Conversion between binary and decimal -->
+
+
+<!-- Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1  -->
+<!-- -----|-----|----|----|----|----|----|----|---- -->
+<!-- 0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0   -->
+
+
+<!-- ## Conversion between binary and decimal -->
+
+
+<!-- Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1  -->
+<!-- -----|-----|----|----|----|----|----|----|---- -->
+<!-- 0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0   -->
+<!-- 1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1 -->
+
+
+
+<!-- ## Conversion between binary and decimal -->
+
+
+<!-- Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1  -->
+<!-- -----|-----|----|----|----|----|----|----|---- -->
+<!-- 0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0   -->
+<!-- 1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1 -->
+<!-- 2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0 -->
+
+
+<!-- ## Conversion between binary and decimal -->
+
+
+<!-- Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1  -->
+<!-- -----|-----|----|----|----|----|----|----|---- -->
+<!-- 0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0   -->
+<!-- 1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1 -->
+<!-- 2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0 -->
+<!-- 3  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  1 -->
+
+
+
+## Conversion between binary and decimal
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
+3  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  1
+... |    |   |   |  |  |   |   |  
+139 = | 1   |  0 | 0  |  0 |  1 |  0 | 1  |  1    
+
+
+
+## The binary counting frame
+
+- Sufficient to represent all *natural* numbers in the decimal system.
+
+
+## The binary counting frame
+
+- Sufficient to represent all *natural* numbers in the decimal system.
+- Representing fractions is tricky
+    - e.g. $1/3=0.333..$ actually constitutes an infinite sequence of 0s and 1s.
+    - Solution: 'floating point numbers' (not 100% accurate)
+
+
+
+## Floating point numbers
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, echo=TRUE, eval=TRUE, `code-line-numbers`="1,2,3"}
+# Subtracting two nearly identical floating-point numbers
+x <- 0.3 - 0.2
+y <- 0.1
+
+# Check if they are equal
+result <- x == y
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo = TRUE}
+print(x)       
+print(y)       
+```
+:::
+
+::::
+
+
+## Floating point numbers
+
+A function to convert a decimal number to binary:
+
+```{r, echo=TRUE}
+#| code-fold: true
+#| code-summary: "Show the function"
+
+decimal_to_binary <- function(decimal, precision = 10) {
+  
+  # Separate integer and fractional part
+  integer_part <-  decimal %/% 1 # floor(x) takes the largest integers not greater than the corresponding elements x
+  fractional_part <- decimal %% 1
+  
+  # If integer part is 0, we need to retain "0" rather than removing it
+  if (integer_part == 0) {
+    binary_integer <- "0"
+  } else {
+    # Convert the integer part to binary
+    binary_integer <- as.character(intToBits(integer_part))
+    binary_integer <- rev(binary_integer)
+    binary_integer <- sub("^0", "", binary_integer)  # Remove leading zeros only if integer part is not zero
+    binary_integer <- tail(binary_integer, 8)
+    binary_integer <- paste(binary_integer, collapse = "")
+  }
+  
+  # Convert the fractional part to binary
+  binary_fraction <- ""
+  
+  while(fractional_part > 0 && nchar(binary_fraction) < precision) { 
+    fractional_part <- fractional_part * 2
+    bit <- floor(fractional_part)
+    binary_fraction <- paste0(binary_fraction, bit)
+    fractional_part <- fractional_part - bit
+  }
+  
+  return(paste0(binary_integer, ".", binary_fraction))
+}
+```
+
+
+```{r, echo = TRUE}
+decimal_to_binary(0.1, precision = 100)
+```
+
+
+## Floating point numbers
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, echo=TRUE, eval=TRUE, `code-line-numbers`="5,6"}
+# Subtracting two nearly identical floating-point numbers
+x <- 0.3 - 0.2
+y <- 0.1
+
+# Check if they are equal
+result <- x == y
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo = TRUE}
+print(result)  
+```
+:::
+
+::::
+
+
+
+## Floating point numbers
+
+:::: {.columns}
+
+```{r example2, echo=TRUE, eval=TRUE}
+# prints a more precise value of x
+print(format(x, digits = 20))  
+```
+
+
+
+```{r example3, echo=TRUE, eval=TRUE}
+# prints a more precise value of y
+print(format(y, digits = 20))  
+
+```
+
+<br>
+
+#### ...now...
+
+<br>
+
+```{r, echo = TRUE}
+
+tolerance <- 1e-9
+equal <- abs(x - y) < tolerance
+print(equal)  
+```
+
+::::
+
+
+
+
+
+## Decimal numbers in a computer
+
+If computers only understand `0` and `1`, how can they express decimal numbers like *139*?
+
+
+
+## Decimal numbers in a computer
+
+If computers only understand `0` and `1`, how can they express decimal numbers like *139*?
+
+- *Standards* define how symbols, colors, etc are shown on the screen.
+- Facilitates interaction with a computer (our keyboards do not only consist of a `0`/`1` switch).
+
+
+```{r binarykeyboard, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
+include_graphics("../../img/binary_keyboard.jpg")
+```
+
+
+
+## What time is it?
+
+```{r clock, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../../img/binarySBB.jpg")
+```
+
+
+
+## The hexadecimal system
+
+- Binary numbers can become quite long rather quickly.
+- Computer Science: refer to binary numbers with the *hexadecimal* system.
+
+
+
+## The hexadecimal system
+
+- *16 symbols*:
+    - `0`-`9` (used like in the decimal system)...
+    - and `A`-`F` (for the numbers 10 to 15).
+
+
+
+## The hexadecimal system
+
+- *16 symbols*:
+    - `0`-`9` (used like in the decimal system)...
+    - and `A`-`F` (for the numbers 10 to 15).
+
+- *16 symbols >>> base 16*: each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
+
+
+
+## The hexadecimal system
+
+What is the decimal number 139 expressed in the hexadecimal system?
+
+
+
+## The hexadecimal system
+
+What is the decimal number 139 expressed in the hexadecimal system?
+
+- Solution:
+$$(8\times 16^1) +  (11\times 16^0) = 139.$$
+
+- More precisely:
+$$(8\times 16^1) +  (B\times 16^0) = 8B = 139.$$
+
+<!-- ## The hexadecimal system -->
+
+<!-- What is the decimal number 139 expressed in the hexadecimal system? -->
+
+<!-- - Solution: -->
+<!-- $$(8\times 16^1) +  (11\times 16^0) = 139.$$ -->
+
+<!-- - More precisely: -->
+<!-- $$(8\times 16^1) +  (B\times 16^0) = 8B = 139.$$ -->
+
+- Hence: `10001011` (in binary) = `8B` (in hexadecimal) = `139` in decimal.
+
+
+## The hexadecimal system
+
+Advantages (when working with binary numbers)
+
+1. Shorter than raw binary representation
+2. Much easier to translate back and forth between binary and hexadecimal than binary and decimal.
+
+&nbsp;
+
+<center>
+*WHY?*
+
+😆
+</center>
+
+<!-- ## The hexadecimal system -->
+<!-- Advantages (when working with binary numbers)... -->
+
+<!-- - Hexadecimal digits can always be represented in four-digit binary equivalent. -->
+<!-- -  $8=1000$, $B=11=1011$, thus... -->
+<!-- - `8B` (in hexadecimal) = `10001011` (`1000 1011`) in binary. -->
+
+## {class="inverse"}
+
+Character Encoding
+
+
+## Computers and text
+How can a computer understand text if it only understands `0`s and `1`s?
+
+```{r keyboard, echo=FALSE, out.width = "90%", fig.align='center', fig.cap="A modified version of South Korean Dubeolsik (two-set type) for old hangul letters. (Illustration by Yes0song 2010,  [Creative Commons Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en))", purl=FALSE}
+include_graphics("../../img/keyboard.png")
+```
+
+
+
+## Computers and text
+How can a computer understand text if it only understands `0`s and `1`s?
+
+- *Standards* define how `0`s and `1`s correspond to specific letters/characters of different human languages.
+- These standards are usually called *character encodings*.
+- Coded character sets that map unique numbers (in the end in binary coded values) to each character in the set.
+
+
+## Computers and text
+How can a computer understand text if it only understands `0`s and `1`s?
+
+- *Standards* define how `0`s and `1`s correspond to specific letters/characters of different human languages.
+- These standards are usually called *character encodings*.
+- Coded character sets that map unique numbers (in the end in binary coded values) to each character in the set.
+- For example, ASCII (American Standard Code for Information Interchange), now superseded by **utf-8** (Unicode).
+
+```{r ascii, echo=FALSE, out.width = "30%", fig.align='center', fig.cap='ASCII logo. (public domain).', purl=FALSE}
+include_graphics("../../img/ascii.gif")
+```
+
+
+
+## ASCII Table
+
+
+Binary  | Hexadecimal | Decimal | Character 
+-----|-----|----|----
+0011 1111 | 3F   |  63 | `?`  
+0100 0001 | 41   |  65 | `A`  
+0110 0010 | 62  |  98 | `b`
+
+
+
+## Character encodings: why should we care?
+ 
+ - In practice, Data Science means handling digital data of all formats and shapes.
+    - Diverse sources.
+    - Different standards.
+    - Different languages (Japanese vs English).
+    - *read*/*store* data.
+    
+ - At the lowest level, this means understanding/handling encodings.
+
+
+## {class="inverse"}
+
+Computer Code and Text-Files
+
+
+
+## Putting the pieces together...
+
+Two core themes of this course:
+
+  1. How can *data* be *stored* digitally and be *read* by/imported to a computer?
+  2. How can we give instructions to a computer by writing *computer code*?
+
+
+
+## Putting the pieces together...
+
+Two core themes of this course:
+
+  1. How can *data* be *stored* digitally and be *read* by/imported to a computer?
+  2. How can we give instructions to a computer by writing *computer code*?
+
+In both of these domains we mainly work with one simple type of document: [*text files*]{style="color:#02934a;"}.
+
+
+## Text-files
+
+ - A *collection of characters* stored in a designated part of the computer memory/hard drive.
+ - An easy-to-read representation of the underlying information (`0`s and `1`s)!
+
+
+
+## Text-files
+
+ - A *collection of characters* stored in a designated part of the computer memory/hard drive.
+ - An easy to read representation of the underlying information (`0`s and `1`s)!
+ - Common device to store data:
+    - Structured data (tables)
+    - Semi-structured data (websites)
+    - Unstructured data (plain text)
+ - Typical device to store computer code.
+
+
+
+## Text-editors: RStudio, Atom, VsCode
+
+<p float="left">
+  <img src="../../img/rstudio.png" width="20%" />
+  <img src="../../img/atom.png" width="20%" /> 
+  <img src="../../img/vscode.png" width="18%" />
+  <img src="../../img/sublime_logo.png" width="20%" />
+</p>
+
+
+Install RStudio from [here](https://www.rstudio.com/products/rstudio/download/#download)!
+
+Install Atom from [here](https://flight-manual.atom.io/getting-started/sections/installing-atom/)!
+
+Install VScode from [here](https://code.visualstudio.com/)!
+
+Install Sublime text from [here](https://www.sublimetext.com/)!
+
+
+## {class="inverse"}
+
+Data Processing Basics
+
+
+## The black box of data processing
+
+```{r blackbox2, echo=FALSE, out.width = "75%", fig.align='center', fig.cap= "The 'blackbox' of data processing.", purl=FALSE}
+include_graphics("../../img/cpu_blackbox.png")
+```
+
+
+
+## Components of a standard computing environment
+
+&nbsp;
+
+```{r components, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Basic components of a standard computing environment.", purl=FALSE}
+include_graphics("../../img/script-hardware.jpg")
+```
+
+
+## Central Processing Unit
+
+&nbsp;
+
+```{r cpu2, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
+include_graphics("../../img/cpu.jpg")
+```
+
+- R runs on one *CPU core* by default.
+- All modern CPUs have multiple cores. 
+- *Advanced*: explore parallelization with `plyr`, `doParallel()` and `future`
+
+
+
+## Random Access Memory
+
+&nbsp;
+
+```{r ram2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ram.jpg")
+```
+
+
+
+## Random Access Memory
+
+- Try to create a matrix with $10^8 \times 10^8$ elements:
+
+<br>
+
+```{r, error=TRUE, echo=TRUE}
+large_matrix <- matrix(1, nrow=1e8, ncol=1e8)
+```
+
+<br>
+
+- 💣💥💣💥💣💥
+
+- Assuming each number is stored using 8 bytes, this matrix would require $8\times10^16$ bytes of RAM.
+
+
+## Units of information/data storage
+
+- [*bit*]{style="color:#02934a;"} (abbrev 'b'): smallest unit of information in computing: `0` or `1`. 
+- To store this number, we require a capacity of 8 bits or one [*byte*]{style="color:#02934a;"} (1 byte = 8 bits; abbrev. 'B'). 
+- Historically, one byte encoded a single character of text (ASCII). 4 bytes (32 bits) are called a [*word*]{style="color:#02934a;"}. 
+
+```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/bitbyte.jpg")
+```
+
+
+
+## Bigger units for storage capacity 
+
+ - 1 kilobyte (KB) = $1000^1$ bytes
+ - 1 megabyte (MB) = $1000^2$ bytes
+ - 1 gigabyte (GB) = $1000^3$ bytes
+ 
+ <!-- - `1 \text{ kilobyte (KB)} = 1000^{1} \text{ bytes}` -->
+ <!-- - `1 \text{ megabyte (MB)} = 1000^{2} \text{ bytes}` -->
+ <!-- - `1 \text{ gigabyte (GB)} = 1000^{3} \text{ bytes}` -->
+ 
+<!-- ## Common units for data transfer (over a network) -->
+
+<!--  - $1 \text{ kilobit per second (kbit/s)} = 1000^{1} \text{ bit/s}$ -->
+<!--  - $1 \text{ megabit per second (mbit/s)} = 1000^{2} \text{ bit/s}$ -->
+<!--  - $1 \text{ gigabit per second (gbit/s)} = 1000^{3} \text{ bit/s}$ -->
+
+
+
+## Mass storage: hard drive
+
+&nbsp;
+
+```{r harddrive2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
+include_graphics("../../img/harddrive.jpg")
+```
+
+
+
+## Network: Internet, cloud, etc.
+
+
+```{r www, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
+include_graphics("../../img/www.png")
+```
+
+
+
+## Putting the pieces together...
+
+Recall the initial example (survey) of this course.
+
+  1. Access a website (over the Internet), use keyboard to enter data into a website (a Google sheet in that case). 
+
+  2. R program accesses the data of the Google sheet (again over the Internet), downloads the data, and loads it into RAM.
+
+  3. Data processing: produce output (in the form of statistics/plots), output on screen.
+
+
+
+##
+
+<br>
+<br>
+
+<center>
+*5468616E6B7320616E642073656520796F75206E657874207765656B21*
+
+🤓
+</center>
+
+
+## {class="inverse"}
+
+Q&A
+
+
+
+
+
+
+

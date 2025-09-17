@@ -1,0 +1,351 @@
+/************************************
+ *
+ * Template-independent CSS code for formatting xaringan presentations
+ *
+ * For that extra bit of "hygge"
+ *
+ ************************************/
+
+
+/**************
+ *
+ * Font size and colours
+ *
+ **************/
+
+
+.Large { font-size: 644% }
+.large { font-size: 120% }
+.small { font-size: 90% }
+.footnotesize { font-size: 80% }
+.scriptsize { font-size: 70% }
+.tiny { font-size: 60% }
+
+.black { color: black; }
+.white { color: white; }
+.red { color: red; }
+.blue { color: blue; }
+.green { color: green; }
+.yellow { color: yellow; }
+.orange { color: orange; }
+.purple { color: purple; }
+.gray { color: gray; }
+.grey { color: gray; }
+
+.bold { font-weight: bold; }
+.bolder { font-weight: bolder; }
+
+
+/* Set font size */
+.remark-slide-content {
+    font-size: 24px;
+    padding: 1em 4em 1em 4em;
+}
+
+.remark-slide-content > h1 {
+    font-size: 45px;
+}
+
+.remark-slide-content>h2 {
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom:50px;
+}
+
+
+.inverse {
+    background-color: #02934a;
+    color: #d6d6d6;
+    text-shadow: 0 0 20px #333;
+}
+
+.inverse .remark-slide-number {
+    display: none;
+}
+
+.remark-slide-number {
+    font-size: 14px;
+}
+
+
+/* Add style for announcements*/
+.announcement-style {
+    color: white;
+    font-family: Consolas, monaco, monospace;
+    font-size: 60px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 200;
+    line-height: 26.4px;
+}
+
+
+/*Code */
+.remark-code {
+    display: block;
+    overflow-x: auto;
+    padding: .5em;
+    color: #333;
+    background: #f8f8f8;
+    /*border: 1px solid red;
+    margin: 0 2px;
+    padding: 0 5px;
+    white-space: nowrap;*/
+    border: 0.5px solid rgba(160, 160, 160, 0.534);
+    border-radius: 3px;/*
+    font-size: 19px;*/
+}
+
+.hljs-github .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: .5em;
+    color: #333;
+    background: #f8f8f8;
+}
+
+
+/******************
+ *
+ * Format title slide
+ *
+ ****************/
+/* Apply styles only to the first slide with the title-slide class */
+.title-slide {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    height: 800px;
+    text-align: left;
+}
+
+/* Style for the logo in the title slide */
+.title-slide img {
+    float: left;
+    margin-right: 20px;
+    margin-left: 0px;
+    width: 100px;
+}
+
+/* Style the title */
+.title-slide h1 {
+    color: #15803d;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-left: 0px;
+}
+
+/* Style the subtitle */
+.title-slide h3 {
+    color: #6b7280;
+    font-size: 30px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    /* Ensure padding is consistent */
+    text-align: left;
+    /* Align text to the left */
+}
+
+/* Style the author and date */
+.title-slide p {
+    color: #6b7280;
+    font-size: 18px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    /* Ensure padding is consistent */
+    text-align: left;
+    /* Align text to the left */
+}
+
+
+
+
+/******************
+ *
+ * Format tables
+ *
+ ****************/
+/*td is for cells, th for headers*/
+table.rmdtable {
+    width: 90%;
+    border-collapse: -moz-initial;
+    border-spacing: 2px;
+    font-size: 13px border-bottom: 0px solid #797979;
+}
+
+table {
+    font-size: 20px;
+}
+
+table.rmdtable td,
+th {
+    font-size: 18px;
+    padding: 1em 0.5em;
+}
+
+table.rmdtable th {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(top, #02934a 40%, #02934a 80%) no-repeat;
+
+}
+
+table.rmdtable tr>td:first-child,
+table th {
+    font-weight: normal;
+}
+
+/******************
+ *
+ * Coloured content boxes
+ *
+ ****************/
+
+
+.content-box {
+    box-sizing: content-box;
+    	background-color: #e2e2e2;
+  /* Total width: 160px + (2 * 20px) + (2 * 8px) = 216px
+     Total height: 80px + (2 * 20px) + (2 * 8px) = 136px
+     Content box width: 160px
+     Content box height: 80px */
+}
+
+
+.content-box-blue,
+.content-box-gray,
+.content-box-grey,
+.content-box-army,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow {
+    border-radius: 15px;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+    width: 100%;
+}
+
+.content-box-blue {
+    background-color: #F0F8FF;
+
+}
+
+.content-box-gray {
+    background-color: #e2e2e2;
+}
+
+.content-box-grey {
+	background-color: #F5F5F5;
+}
+
+.content-box-army {
+	background-color: #737a36;
+}
+
+.content-box-green {
+	background-color: #d9edc2;
+}
+
+.content-box-purple {
+	background-color: #e2e2f9;
+}
+
+.content-box-red {
+	background-color: #f9dbdb;
+}
+
+.content-box-yellow {
+	background-color: #fef5c4;
+}
+
+
+.full-width {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+
+
+/***********
+ *
+ * Changed CSS
+ *
+ **************/
+
+.opacity{
+    opacity: 0.5;
+}
+
+
+
+.blur {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+
+.grayscale img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+
+
+
+
+
+/**************
+ *
+ * Fancy stuff
+ *
+ **************/
+
+
+.rotate-left {
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+}
+
+.rotate-right {
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    transform: rotate(2deg);
+}
+
+
+
+/**********
+ *
+ * Image stuff
+ *
+ ************/
+
+
+.polaroid img {
+    border: 10px solid #fff;
+    border-bottom: 45px solid #fff;
+    -webkit-box-shadow: 3px 3px 3px #111;
+    -moz-box-shadow: 3px 3px 3px #111;
+    box-shadow: 3px 3px 3px #111;
+}
+
+
+
+.shadow {
+    -moz-border-radius: 5px;
+    -moz-box-shadow: 5px 5px 5px #aaa;
+    -webkit-box-shadow: 5px 5px 5px #aaa;
+    box-shadow: 5px 5px 5px #aaa;
+    border-radius: 2px;
+}

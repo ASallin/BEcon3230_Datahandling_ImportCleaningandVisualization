@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 1: Introduction'
 author: "Dr. Aurélien Sallin"
-date: "2024-12-12"
+date: "2025-09-16"
 code-line-numbers: false
 format:
   revealjs:
@@ -31,16 +31,14 @@ library(purrr)
 
 
 
-# Welcome to Data Handling 2024!
+# Welcome to Data Handling 2025!
 
 ## Introduce yourself!
 
-- Go to this app (use the QR code): https://datahandling.shinyapps.io/DataHandlingIntro/
-- Use one row to respond to the questions in the column headers (see the first two rows for examples).
-
+- Go to this app (use the QR code): [https://datahandling.shinyapps.io/DataHandlingIntro/](https://datahandling.shinyapps.io/DataHandlingIntro/)
 
 ```{r , echo=FALSE, out.width = "35%", fig.align='center', purl=FALSE}
-include_graphics("../../img/QR_APP_2024.png")
+include_graphics("../../img/QR_APP_2025.gif")
 ```
 
 ## 
@@ -150,16 +148,20 @@ include_graphics("../../img/data_science_pipeline.png")
 
 # Background
 
-## 'Data Science'?
+## Data Science?
 
-*"This coupling of scientific discovery and practice involves the collection, management, processing, analysis, visualization, and interpretation of vast amounts of heterogeneous data associated with a diverse array of scientific, translational, and inter-disciplinary applications."*
+<br>
+
+*"This coupling of scientific discovery and practice involves the **collection, management, processing, analysis, visualization, and interpretation of vast amounts of heterogeneous data** associated with a diverse array of scientific, translational, and inter-disciplinary applications."*
 
 University of Michigan 'Data Science Initiative', 2015
 
 
 ## But, what about statistics?!
 
-*"Seemingly, statistics is being marginalized here; the implicit message is that statistics is a part of what goes on in data science but not a very big part. At the same time, many of the concrete descriptions of what the DSI will actually do will seem to statisticians to be bread-and-butter statistics. Statistics is apparently the word that dare not speak its name in connection with such an initiative!"*
+<br>
+
+*"Seemingly, statistics is being marginalized here; the implicit message is that statistics is a part of what goes on in data science but not a very big part. At the same time, many of the concrete descriptions of [data science] will seem to statisticians to be bread-and-butter statistics. <br> **Statistics is apparently the word that dare not speak its name in connection with such an initiative!**"*
 
 David Donoho (2015). __50 years of Data Science__
 
@@ -173,7 +175,12 @@ David Donoho (2015). __50 years of Data Science__
 
 ## What's new about all this?
 
-*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: <br> procedures for analyzing data, techniques for interpreting the results of such procedures, ways of planning the gathering of data to make its analysis easier, more precise or more accurate, and all the machinery and results of (mathematical) statistics which apply to analyzing data."*
+*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things:*
+
+  - *procedures for analyzing data,*
+  - *techniques for interpreting the results of such procedures,*
+  - *ways of planning the gathering of data to make its analysis easier, more precise or more accurate,* 
+  - *and all the machinery and results of (mathematical) statistics which apply to analyzing data."*
 
 
 
@@ -252,56 +259,45 @@ They advise executives and product managers on the implications of the data for 
 What kind of person does all this? *Think of him or her as a hybrid of data hacker, analyst, communicator, and trusted adviser. The combination is extremely powerful — and rare.*"
 
 
+
+## Data science past its golden age
+
+Between 2014 and 2021, data scientists experienced unprecedented career and salary growth, fueled by the explosion of big data and artificial intelligence.
+
+2022: LLMs made some of the tasks of data scientists obsolete. In this context, the importance of coding skills has become less important. 
+
+<br>
+
+[**But**]{.green-bold}: the importance of understanding data, data creativity, data possibilities, cross-disciplinary skills, and data critical skills is more important than ever! 
+
+
+
+
 ## {class="inverse" background-image="../../img/break-picture.png" background-size="100%" background-repeat="cover"}
 
-**Break**
 
 
 
-# Philosophy of the course
-
-<!-- --- -->
-<!-- class: right, bottom -->
-<!-- background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Apprenticeship.jpg/1280px-Apprenticeship.jpg") -->
-<!-- background-size: cover -->
-
-```{css, echo=F}
-.slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.legend-pic {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 10px; /* Optional: Add some padding */
-  white-space: nowrap; 
-}
-```
-
-<!-- .slide[.legend-pic[.small[.white[A shoemaker and his apprentice c.1914, Emile Adan]]]] -->
+# Vision for this course
 
 
-## At the end of the course, you will be able to...
+## {class="inverse" background-image="../../img/mechanics.webp" background-size="100%" background-repeat="cover"}
 
-- **Understand the tools you need when working with data** <br> We will use the programming language R, but principles are similar for any other programming language (👞⚙️)
 
-- **Work independently with data** <br>We will learn how to collect, clean, and analyze data so that you can conduct a data project in Economics (research/consulting/...) from start to finish 
-- **Ask the right questions to a dataset**<br> We will learn how to ask the right questions to a dataset
+## By the end of the course, you will be able to...
 
-- **Learn to communicate about data**<br> We will learn to present our results in a clear and compelling way
+- **Use essential tools for working with data** <br> We will work with the programming language R, but the concepts apply to any programming language.
+- **Manage a data project from start to finish** <br> You will practice collecting, cleaning, and analyzing data to carry out a complete project in Economics (research, consulting, ...).
+- **Formulate meaningful questions from data** <br> You will learn how to explore datasets and identify relevant questions.
+- **Communicate insights effectively** <br> You will gain experience in presenting results clearly and persuasively.
 
 
 
 ## My commitment to these goals and to your learning process
 
 - **Transferrable skills**
-
 - **Hands-on approach**
-
 - **Emphasis on real-world relevance** <br>(caveat: this course is mandatory for Econ students, I have limited freedom in the syllabus)
-
 - **As much fun as possible (as coding can be fun...😎)**
 
 
@@ -309,10 +305,9 @@ What kind of person does all this? *Think of him or her as a hybrid of data hack
 ## Your commitment to the course
 
 - Prepare with reading, visit the lecture, recap key concepts in lecture notes (self-study)
-
 - Work on exercises, come to exercise session, tackle the tricky exercises together!
-
 - Code, code, and code. repeat...
+- 🤖 Use AI as a learning companion and sparring partner, not as a crutch 🩼! (more on that later)
 
 ```{r}
 try <- 0
@@ -354,35 +349,44 @@ cat("success!")
 
 
 
-## Introduction: Aurélien Sallin
+## Your instructor - Aurélien Sallin
 
+##### Short CV
 - 2022-today: Expert in Health Care Research and Member of Management,  SWICA Health Organization, Winterthur
 - 2022-today: Lecturer, HSG
-- 2018-2022: PhD Economic and Finance, HSG
+- 2017-2022: Research Associate, Swiss Institute for Empirical Economic Research (SEW-HSG)
 
+##### Education
+
+- 2018-2022: PhD Economic and Finance, HSG (Lund and Federal Reserve)
+- 2018: MA in Philosophy, Fribourg
+- 2017: MA in Economics, Fribourg
 <br>
 <br>
-<br>
 
-
+##### Others:
 <img src="../../img/gsp.png" height="90"/> &nbsp;&nbsp;
-<img src="../../img/unifr.png" height="90"/> &nbsp;&nbsp;
-<img src="../../img/logo.png" height="80"/> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="../../img/swica-logo-e.svg" height="70"/>
+<img src="../../img/biking.jpg" height="90"/> &nbsp;&nbsp;
+<!-- <img src="../../img/unifr.png" height="90"/> &nbsp;&nbsp; -->
+<img src="../../img/Logo_GLP.png" height="90"/> &nbsp;&nbsp;
+<img src="../../img/rusergroupzh.png" height="90"/> &nbsp;&nbsp;
+<!-- <img src="../../img/logo.png" height="80"/> &nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- <img src="../../img/swica-logo-e.svg" height="90"/> -->
 
 
 
-## Introduction: Aurélien Sallin
+## Your instructor - Aurélien Sallin
 
-### Research at SWICA
+##### Research at SWICA
 
+ - Evaluate effects of insurance products on health care consumption, costs, and medical behaviors 
  - Use Real-World Data from claims to assess effectiveness of health technological tools
  - Use (Causal) Machine Learning to evaluate the effect of health policies on doctors' prescription behaviors
  - Develop financing models for mandatory health care in Switzerland
 
 <br>
 
-### Other Research in Economics of Education (during my PhD Economic and Finance)
+##### Other Research 
 
  - Missclassification rates for gifted students
  - Evaluation of Special Education programs
@@ -395,9 +399,9 @@ cat("success!")
 ## Course concept: lectures
 
 - Lectures (Thursday morning)
-    - Background/Concepts
-    - Illustration of concepts
-    - Illustration of 'hands-on' approaches
+  - Background/Concepts
+  - Illustration of concepts
+  - Illustration of 'hands-on' approaches
 
 
 
@@ -422,17 +426,20 @@ cat("success!")
 
 # The road ahead
 
+## {class="inverse" background-image="../../img/roadahead2.jpg" background-size="100%" background-repeat="cover"}
+
 ## Two special lectures
-
-#### **24.10.2024**: APIs
-
-  - Minna Heim, BA from St. Gallen, student in Data Science at ETH Zurich
 
 <br>
 
-#### **05.12.2024**: Industry and Consulting Insights
+#### **23.10.2025**: APIs
 
-  - Rachel Lund, PhD: Data Science Lead at Deloitte
+  - Minna Heim, Ex-BEcon in St. Gallen, Data Science at ETH Zurich
+
+
+#### **27.11.2025**: Data Handling @Bank for International Settlements
+
+  - Andrew Li, Ex-MiQeF, Macroeconomic Analyst
 
 
 
@@ -444,10 +451,9 @@ library(knitr)
 library(magrittr)
 library(kableExtra)
 
-sched <- read_xlsx("../../schedule2024.xlsx")
+sched <- read_xlsx("../../schedule2025.xlsx")
 
 tab <- sched[1:9, c(1, 5)] |> 
-  # dplyr::mutate(ss = c("", "", "💻", "", "", "💻", "", "💡", "💻")) |> 
   dplyr::select(everything()) 
 
 colnames(tab) <- c("Date", "Topic")
@@ -455,44 +461,19 @@ colnames(tab) <- c("Date", "Topic")
 tab |> 
   kable(format = "html") |> 
   kable_styling(full_width = T) |>
-  row_spec(c(1,2, 4, 5, 7, 8), bold = T, color = "green") |> 
-  row_spec(c(3, 6), extra_css = "border-bottom: 20px solid white;") 
+  column_spec(1, width = "200px") |>
+  column_spec(2, width = "950px") |>
+  row_spec(c(1, 2, 4, 5, 7, 8), bold = T, color = "green") |> 
+  row_spec(c(1, 3, 4, 6, 7, 9), extra_css = "border-bottom: 20px solid white;") |> 
+  row_spec(c(2, 5, 8), extra_css = "border-bottom: 0px solid white;")
 ```
 
 
 
 ## Part II: Data gathering and preparation
 
-```{css, echo=F}
-.remark-slide table {
-    width: 100%;
-    border-top: 0px;
-    border-bottom: 0px;
-}
-
-.remark-slide table thead th {
-    border-top: 0px;
-    border-bottom: 0px;
-}
-.remark-slide thead, .remark-slide tr:nth-child(even){
-    background-color: white;
-}
-.remark-slide thead{
-    background-color: grey;
-}
-table{
-    border-collapse: collapse;
-}
-.remark-slide thead:empty {
-    display: none;
-}
-```
-
-
-
 ```{r, echo=FALSE} 
 tab <- sched[12:17, c(1, 5)] |> 
-  # dplyr::mutate(ss = c("", "", "", "", "💡", "💻")) |> 
   dplyr::select(everything()) 
   
 colnames(tab) <- c("Date", "Topic")
@@ -500,8 +481,11 @@ colnames(tab) <- c("Date", "Topic")
 tab |> 
   kable(format = "html") |> 
   kable_styling(full_width = T) |>
+  column_spec(1, width = "200px") |>
+  column_spec(2, width = "950px") |>
   row_spec(c(1,2, 4, 5), bold = T, color = "green") |> 
-  row_spec(c(3, 4, 5), extra_css = "border-bottom: 25px solid white;") 
+  row_spec(c(1, 3, 4), extra_css = "border-bottom: 25px solid white;") |> 
+  row_spec(c(2, 5), extra_css = "border-bottom: 0px solid white;")
 ```
 
 
@@ -510,7 +494,6 @@ tab |>
 
 ```{r, echo=FALSE} 
 tab <- sched[18:nrow(sched), c(1, 5)] |> 
-  # dplyr::mutate(ss = c("", "", "💻", "🎁")) |> 
   dplyr::select( everything()) 
   
 colnames(tab) <- c("Date", "Topic")
@@ -518,68 +501,117 @@ colnames(tab) <- c("Date", "Topic")
 tab |> 
   kable( format = "html") |> 
   kable_styling(full_width = T) |>
-  row_spec(c(1, 2, 4), bold = T, color = "green") |> 
-  row_spec(c(2, 3), extra_css = "border-bottom: 25px solid white;") 
+  column_spec(1, width = "200px") |>
+  column_spec(2, width = "950px") |>
+  row_spec(c(2, 3), bold = T, color = "green") |> 
+  row_spec(c(1), bold = T, color = "firebrick4") |> 
+  row_spec(c(2), extra_css = "border-bottom: 25px solid white;") |> 
+  row_spec(c(1, 3, 4, 5), extra_css = "border-bottom: 0px solid white;")
 ```
 
+
 ## Exam information
+
+The examination consists of three parts:
+
+- [Group written project]{.green-bold}, 35% of final grade.
+- [Short examination on the group project]{.green-bold}, 15% of final grade.
+- [Central written examination]{.green-bold}, 50% of final grade.
+
+
+## Exam information: group project 
+
+#### Goals
+- Use real-world data in a project to practice and reinforce the concepts covered in the course.
+
+#### Project timeline
+
+- **October 6**: Release of Part 1 of the project (in lecture) and group formation. 
+
+- **November 6, 23:59**: Intermediate submission (not graded).
+
+- **November 7**: Release of model solution for Part 1 and release of Part 2 of the project.
+
+- **December 11, 10:00**: Final submission (graded).
+
+The entire project will be evaluated after the final submission.
+
+
+
+## Exam information: short examination
+
+#### Goal
+Beyond the critical use of LLMs, students must demonstrate their own grasp of the material and ensure fair collaboration in group work, avoiding free-riding.
+
+<br>
+
+#### Important information
+- Date: **December 11th at the beginning of the lecture**.
+- Written examination: *digital, BYOD!*.
+- Duration: 20mn
+- This short exam consists of 2–3 questions about the homework project. 
+
+
+
+## Central written examination
+
+#### Goal
+Demonstrate your understanding of the concepts and practical applications covered in the course.
+
+#### Important information
 - Central, written examination: *digital, BYOD!*.
 - Multiple choice questions.
-- A few open questions.
-- Theoretical concepts and practical applications in R (questions based on code examples).
+- Duration: 60mn. 
+
+#### What to expect
+- We will release samples of multiple choice questions in the lecture and via Quizzes on Canvas/Studynet (exact same format and style of exam questions).
 
 
-## Exam information II
-- We will release samples of  multiple choice questions via Quizzes on Canvas/Studynet (exact same format and style of exam questions).
 
+## Exam for exchange students
 - Exchange students who need to take the exam before the central exam block:
-    - Date, time place, : *19.12.2024, 16:15-18:00, room tbd*.
+    - Date, time place: **18.12.2025, 16:15-18:00, room tbd**.
     - Questions: *andrea.burro@unisg.ch*
+
 
 
 # The tools
 
 ## Core course resources
 
-- All information and materials (notes, slides, course sheet, syllabus, etc.) are available on StudyNet/Canvas.
+- All information and materials (notes, slides, course sheet, syllabus, etc.) are available on Canvas.
 - Use github to be always updated about the course material
 
   - Install git on your computer as explained [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-  - Clone the course repository using
+  - Clone the course repository using:
 
 
-.code-bg-red[
 ```{r eval = FALSE}
 git clone https://github.com/ASallin/datahandling-lecture.git # to clone
 git pull origin main # to update
 ```
-]
-
-
-```{css, echo=F}
-.code-bg-red .remark-code, .code-bg-red .remark-code * {
- background-color:#f8f8f8!important;
- font-size: 19px;
- padding: .5em;
-}
-```
 
 
 
-# Why R?
 
-.green[***The* data language**]
+## Why R?
+
+
+##### *The* data language
+
 - Widely used in Data Science jobs.
 - Originally designed as a tool for statistical analysis.
 - Particularly useful to program with data.
 
 
-.green[**High-level language**]
+##### High-level language
+
 - Relatively easy to learn.
 - A lot of free tutorials and support online.
 
 
-.green[**Free, open-source, large community** ]
+##### Free, open-source, large community
+
 - Used in various fields.
 - Thousands of 'R-packages' covering diverse aspects of data analysis.
 - Learn from open sources.
@@ -587,7 +619,7 @@ git pull origin main # to update
 
 ## R
 
-```{r echo=FALSE, fig.align='center', out.width="40%"}
+```{r echo=FALSE, fig.align='center', out.width="30%"}
 
 include_graphics("../../img/R_logo.svg.png")
 
@@ -597,7 +629,7 @@ Install R from [here](https://stat.ethz.ch/CRAN/)!
 
 ## RStudio
 
-```{r echo=FALSE, fig.align='center', out.width="40%"}
+```{r echo=FALSE, fig.align='center', out.width="30%"}
 
 include_graphics("../../img/rstudio.png")
 
@@ -608,13 +640,10 @@ Install RStudio from [here](https://www.rstudio.com/products/rstudio/download/#d
 
 ## Main textbooks
 
-[Data Handling Pocket Reference](https://umatter.github.io/datahandling/)
-
-[Murrell, Paul (2009). *Introduction to Data Technologies*, London: Chapman & Hall/CRC.](https://www.stat.auckland.ac.nz/~paul/ItDT/)
-
-[Wickham, Hadley and Garred Grolemund (2017). *R for Data Science*, 1st Edition. Sebastopol, CA: O’Reilly.](http://r4ds.had.co.nz/)
-
-[Baumer, Kaplan and Norton (2023). *Modern Data Science with R*, 2nd Edition. ](https://mdsr-book.github.io/mdsr3e/)
+- [Data Handling Pocket Reference](https://umatter.github.io/datahandling/)
+- [Murrell, Paul (2009). *Introduction to Data Technologies*, London: Chapman & Hall/CRC.](https://www.stat.auckland.ac.nz/~paul/ItDT/)
+- [Wickham, Hadley and Garred Grolemund (2017). *R for Data Science*, 1st Edition. Sebastopol, CA: O’Reilly.](http://r4ds.had.co.nz/)
+- [Baumer, Kaplan and Norton (2023). *Modern Data Science with R*, 2nd Edition. ](https://mdsr-book.github.io/mdsr3e/)
 
 
 
@@ -626,8 +655,117 @@ Install RStudio from [here](https://www.rstudio.com/products/rstudio/download/#d
 
 
 
-    
-## And now this...
+# How to best use AI for this course
 
-![](../../img/ds_matrix.png)
+<br>
+
+## 1. Use AI as your Learning Companion
+
+:::: {.columns}
+::: {.column width="55%"}
+❌ Ask AI to write full programs for you  
+
+✅ Ask **structured questions** based on your own knowledge (idea: knowledge reinforcement)
+
+✅ Use AI to explore unknown and new approaches  
+
+:::
+::: {.column width="45%"}
+
+You want to compute the mean of each element of the list `x`.
+
+```{r}
+x <- list(
+  c(1,2,3), 
+  c(4,5,6)
+  )
+```
+
+- **Ask AI**:
+“I know that the function to compute the mean is `mean()`, and I know that it takes atomic vectors as argument. How do I apply the mean to each vector in the list? Give me two options, and explain pros/cons?”
+:::
+::::
+
+
+
+
+## 2. Use AI to better understand your code
+
+:::: {.columns}
+::: {.column width="55%"}
+
+✅ Use AI as a translator
+
+✅ Ask for explanations in plain language
+
+✅ Get step-by-step descriptions
+
+:::
+::: {.column width="45%"}
+
+You have the following piece of code:
+
+```{r}
+mat <- matrix(c(1,2,3, 11,12,13), nrow = 2, ncol = 3, 
+             byrow = TRUE,
+             dimnames = list(c("row1", "row2"),
+                             c("C.1", "C.2", "C.3")))
+mat[1,] <- mat[1, ] + 10
+mat[1,] == mat[2,]
+```
+
+**Ask AI**:
+“Explain line by line what this R code does in plain English. What does the option `byrow = TRUE` do?”
+:::
+::::
+
+
+
+
+## 3. Use AI to debug
+
+:::: {.columns}
+::: {.column width="55%"}
+
+✅ Share error messages and context
+
+✅ Ask for possible causes
+
+✅ Ask for alternative solutions
+
+:::
+::: {.column width="45%"}
+
+You try:
+
+```r
+log("text")
+```
+
+R sends the following error message: "non-numeric argument to mathematical function"
+
+**Ask AI**:
+“Why does this error occur in R and how can I fix it?”
+:::
+::::
+
+
+## 4. Use AI as your Motivational Coach 🔥
+
+:::: {.columns}
+::: {.column width="55%"}
+✅ Ask for tips to stay motivated and understand **WHY** you're learning what you're learning
+
+✅ Ask for ways to make coding more enjoyable and directly relevant to your goals
+
+✅ Ask for ways to make your code and thinking process more like the product of experts
+
+:::
+::: {.column width="45%"}
+You don't see the point of learning to code functions and loops since AI can do it for you. 
+
+**Ask AI**:
+“Why is learning to program functions important for an economist/data scientist? Give me some real-life examples. ”
+:::
+::::
 

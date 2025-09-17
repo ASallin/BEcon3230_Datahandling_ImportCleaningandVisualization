@@ -1,0 +1,912 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+author: "Dr. Aurélien Sallin"
+subtitle: 'Lecture 2:<br>Programming with Data'
+institute: "HSG"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: libs
+    css: ['default', 'hygge.css', 'xaringanhsg_font.css']
+    # template: ['nologo_template']
+    seal: false
+    nature:
+      ratio: '16:9'
+      slideNumberFormat: '%current%' 
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+bibliography: ../../references/datahandling.bib
+---
+
+
+
+<!-- To compile slides with relative paths, use  -->
+<!-- xaringan::inf_mr(cast_from = '../..') -->
+<!-- For self contained, just knit with markdown -->
+
+
+
+```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE}
+options(width = 100)
+library(knitr)
+library(purrr)
+# knitr::opts_chunk$set(class.source = "chunkstyle")
+```
+
+```{css, echo = FALSE}
+/* Apply styles only to the first slide with the title-slide class */
+.title-slide {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    height: 800px;
+    text-align: left;
+}
+
+/* Style for the logo in the title slide */
+.title-slide img {
+    float: left;
+    margin-right: 20px;
+    margin-left: 0px;
+    width: 100px;
+}
+
+/* Style the title */
+.title-slide h1 {
+    color: #15803d;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-left:0px;
+}
+
+/* Style the subtitle */
+.title-slide h3 {
+    color: #6b7280;
+    font-size: 30px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    padding-left: 0px; /* Ensure padding is consistent */
+    text-align: left;  /* Align text to the left */
+}
+
+/* Style the author and date */
+.title-slide p {
+    color: #6b7280;
+    font-size: 18px;
+    padding-bottom: 10px;
+    padding-left: 0px; /* Ensure padding is consistent */
+    text-align: left;  /* Align text to the left */
+}
+
+.inverse .remark-slide-number {
+  display: none;
+}
+
+.remark-slide-number {
+  font-size: 14px;
+}
+
+
+table {
+  width: 90%;
+  border-collapse: -moz-initial;
+  border-spacing: 2px;
+  font-size: 13px
+  border-bottom: 0px solid #797979;
+  font-size:20px;
+}
+
+```
+
+
+
+.title-slide[
+
+```{r , echo=FALSE, out.width = "40%", fig.align='left', purl=FALSE}
+include_graphics("../../img/logo.png")
+```
+
+#Data Handling: Import, Cleaning and Visualisation
+
+### Lecture 2: Programming with Data
+
+Dr. Aurélien Sallin<br>26/09/2024
+]
+
+---
+class: center, middle, inverse, Large
+
+# Recap
+
+
+---
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/data_science_pipeline.png")
+```
+
+
+---
+## .green[**At the end of the course, you will be able to...**]
+
+- **Understand the tools you need when working with data** 
+
+- **Work independently with data** 
+
+- **Ask the right questions to a dataset**
+
+- **Learn to communicate about data**
+
+
+---
+class: right, bottom
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Apprenticeship.jpg/1280px-Apprenticeship.jpg")
+background-size: cover
+
+```{css, echo=F}
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.legend-pic {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px; /* Optional: Add some padding */
+  white-space: nowrap; 
+}
+```
+
+.slide[.legend-pic[.small[.white[A shoemaker and his apprentice c.1914, Emile Adan]]]]
+
+
+
+---
+class: center, middle, inverse, Large
+# Basic Programming Concepts
+
+---
+
+<p style="text-align: center;font-size: 25pt;position: fixed;top: 50%;left: 50%;
+  transform: translate(-50%, -50%);">Values and variables</p>
+
+---
+  
+<p style="text-align: center;font-size: 25pt;position: fixed;top: 50%;left: 50%;
+transform: translate(-50%, -50%);">Vectors</p>
+
+---
+
+## Vectors
+
+```{r echo=FALSE, fig.align='center', out.width="10%"}
+include_graphics("../../img/numvec.png")
+```
+
+---
+
+## Vectors
+```{r echo=FALSE, fig.align='center', out.width="10%"}
+include_graphics("../../img/charvec.svg")
+```
+
+---
+
+<p style="text-align: center;font-size: 25pt;position: fixed;top: 50%;left: 50%;
+  transform: translate(-50%, -50%);">Matrices</p>
+
+---
+
+## Matrices
+```{r echo=FALSE, fig.align='center', out.width="40%"}
+include_graphics("../../img/matrix.png")
+```
+
+---
+
+## Matrices are combinations of vectors
+
+--
+.pull-left[
+```{r, eval = F}
+cbind(c(1,2,3), c(4,5,6), c(7,8,9)) #<<
+rbind(c(1,4,7), c(2,5,8), c(3,6,9))
+matrix(nrow=3, ncol = 3, 1:9)
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+cbind(c(1,2,3), c(4,5,6), c(7,8,9)) #<<
+```
+]
+
+--
+.pull-left[
+```{r, eval = F}
+cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
+rbind(c(1,4,7), c(2,5,8), c(3,6,9)) #<<
+matrix(nrow=3, ncol = 3, 1:9)
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+rbind(c(1,4,7), c(2,5,8), c(3,6,9))
+```
+]
+
+--
+.pull-left[
+```{r, eval = F}
+cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
+rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
+matrix(nrow=3, ncol = 3, 1:9) #<<
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+rbind(c(1,4,7), c(2,5,8), c(3,6,9))
+```
+]
+
+
+---
+
+<p style="text-align: center;font-size: 25pt;position: fixed;top: 50%;left: 50%;
+  transform: translate(-50%, -50%);">Operators</p>
+
+---
+
+## Math operators: basic arithmetic
+
+.pull-left[
+```{r, eval = F}
+# Basic arithmetic
+2+2
+4*5
+20/5
+sum_result <- 2+2
+sum_result -2
+```
+
+<br>
+
+```{r, eval = F}
+# Modulo (remainder)
+5 %% 3 
+
+# Integral division
+5 %/% 3
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+# basic arithmetic
+2+2
+4*5
+20/5
+sum_result <- 2+2
+sum_result -2
+```
+
+<br>
+
+```{r, echo=FALSE}
+# Modulo (remainder)
+5 %% 3 
+
+# Integral division
+5 %/% 3
+```
+]
+
+
+---
+## Assignment and comparison operators
+
+.pull-left[
+```{r, eval = F}
+# R Assignment Operators
+b <- 1+1
+3 -> my_var
+
+b <<- 1+1 # global operator. Don't use it
+```
+
+<br>
+
+```{r, eval = F}
+# R Comparison Operators
+1 == 2
+1 != 2
+1 > 2
+1 < 2
+1 >= 2
+1 <= 2
+```
+]
+
+.pull-right[
+
+<br>
+<br>
+<br>
+<br>
+
+```{r, echo = F}
+# R Comparison Operators
+1 == 2
+1 != 2
+1 > 2
+1 < 2
+1 >= 2
+1 <= 2
+```
+]
+
+
+---
+## Logical and misc. operators
+
+.pull-left[
+```{r, eval = F}
+# R Logical Operators
+TRUE & FALSE
+TRUE | FALSE
+!TRUE
+```
+
+<br> 
+
+```{r, eval = F}
+# R Miscellaneous Operators
+1:10
+2 %in% c(1,2)
+```
+]
+
+.pull-right[
+```{r, echo = F}
+# R Logical Operators
+TRUE & FALSE
+TRUE | FALSE
+!TRUE
+```
+
+<br> 
+
+```{r, echo = F}
+# R Miscellaneous Operators
+1:10
+2 %in% c(1,2)
+```
+]
+
+
+
+
+---
+
+## Math operators: other operators
+
+```{r other operators, eval=FALSE}
+# Other common math operators and functions
+4^2
+sqrt(4^2)
+log(2)
+exp(10)
+log(exp(10))
+```
+
+
+---
+
+<p style="text-align: center;font-size: 25pt;position: fixed;top: 50%;left: 50%;
+  transform: translate(-50%, -50%);">Loops</p>
+  
+
+---
+
+## for-loop
+  
+```{r echo=FALSE, fig.align='center', out.width="35%"}
+include_graphics("../../img/forloop_black.png")
+```
+
+
+---
+
+## for-loop
+
+```{r eval=FALSE}
+# number of iterations
+
+n <- 100
+
+# start loop
+for (i in 1:n) {
+  
+  # BODY
+  
+}
+
+```
+
+
+---
+
+## while-loop
+
+```{r while, echo= FALSE, fig.align="center", out.width="50%"}
+include_graphics("../../img/while_loop_black_own.png")
+```
+
+---
+## while-loop 
+```{r eval=FALSE}
+# initiate variable for logical statement
+x <- 1
+
+# start loop
+while (x == 1) {
+  
+  # BODY
+  
+}
+
+```
+
+
+---
+
+<p style="text-align: center;font-size: 25pt;position: fixed;top: 50%;left: 50%;
+  transform: translate(-50%, -50%);">Logical statements</p>
+  
+
+---
+
+## Logical statements
+```{r eval=FALSE}
+2+2 == 4 # is equal to
+3+3 == 7
+4!=7 # is not equal to
+6>3 
+6<7
+6<=6
+```
+
+---
+
+<p style="text-align: center;font-size: 25pt;position: fixed;top: 50%;left: 50%;
+  transform: translate(-50%, -50%);">Control statements</p>
+  
+
+---
+
+## Control statements 
+```{r}
+condition <- TRUE
+
+if (condition) {
+  print("This is true!")
+} else {
+  print("This is false!")
+}
+```
+
+
+---
+class: center, middle, inverse, Large
+
+# Functions
+
+---
+
+## Functions
+
+<p style="text-align: center;font-size: 25pt;">$$f:X \rightarrow Y$$</p>
+  
+
+---
+## Functions
+  
+  <p style="text-align: center;font-size: 25pt;">$$2\times X = Y$$</p>
+  
+  
+---
+## Functions in R
+
+Functions in R are either **built-in** or **user-defined**.
+  
+Load built-in functions from a R-package:
+  
+```{r eval=FALSE, purl=FALSE}
+# install a package
+install.packages("<PACKAGE NAME>")
+
+# load a package
+library(<PACKAGE NAME>)
+```
+
+---
+
+## Functions in R
+
+Functions have three elements:
+  
+  1. .green[*formals()*], the list of arguments that control how you call the function 
+  
+  2. .green[*body()*], the code inside the function
+  
+  3. .green[*environment()*], the data structure that determines how the function finds the values associated with the names (not the focus of this course)
+
+
+---
+## Functions in R
+
+```{r eval=TRUE, purl=FALSE}
+myfun <- function(x, y){
+  
+  # BODY
+  z <- x + y
+  
+  # What the function returns
+  return(z)
+}
+
+```
+
+#### Formals
+```{r}
+formals(myfun)
+```
+
+---
+##Functions in R
+
+```{r eval=TRUE, purl=FALSE}
+myfun <- function(x, y){
+  
+  # BODY
+  z <- x + y
+  
+  # What the function returns
+  return(z)
+}
+
+```
+
+#### Body
+```{r}
+body(myfun)
+```
+
+
+---
+##Functions in R
+```{r eval=TRUE, purl=FALSE}
+myfun <- function(x, y){
+  
+  # BODY
+  z <- x + y
+  
+  # What the function returns
+  return(z)
+}
+
+```
+
+#### Environment
+```{r}
+environment(myfun)
+```
+
+---
+## Functions in R
+
+Example of a function: a simple power function
+
+```{r eval=TRUE, echo = TRUE, purl=FALSE, results = 'hide'}
+powerFunction <- function(base, exponent){
+  
+  results <- base ^ exponent
+  
+  return(results)
+}
+
+powerFunction(exponent = 2, base = 3)
+powerFunction(base = 2, exponent = 3)
+powerFunction(2, 3)
+powerFunction(c(2,4,3), 3)
+```
+
+---
+class: center, middle, inverse, Large
+
+# Step-up your game: Functionals
+
+---
+## Functionals
+
+- A functional is a function that takes a function as an input and returns a vector or a list as output. 
+
+- Functionals are alternative to for-loops.
+
+- Functionals can be programmed using the `apply` family (`apply`, `lapply`, `tapply`), or the `purrr::map()` family.
+
+---
+## Functionals: representation with `map()`
+
+```{r functionals, echo= FALSE, fig.align="center", out.width="50%"}
+include_graphics("../../img/functionals.png")
+```
+
+---
+## Example of a functional
+
+```{r eval=TRUE, purl=FALSE}
+# Install purrr and load
+# library(purrr)
+
+# Set a user-defined function
+triple <- function(x) x * 3
+
+# With lapply
+lapply(1:3, triple)
+
+# Apply the function to a vector. map_dbl Returns a vector 
+map_dbl(1:3, triple)
+```
+
+
+---
+## The "apply" functional
+
+`apply` applies a function to columns or rows of a matrix. It loops over rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix. 
+
+.pull-left[
+```{r, eval = F}
+# Empty matrix with 2 rows and 4 columns
+mymatrix <- matrix(c(1,2,3,11,12,13,1,10), 
+                   nrow = 2, 
+                   ncol = 4)
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+mymatrix <- matrix(c(1,2,3, 11,12,13, 1,10), 
+                   nrow = 2, 
+                   ncol = 4)
+print(mymatrix)
+```
+]
+
+
+Apply a sum function on each column
+
+.pull-left[
+```{r, eval = F}
+apply(mymatrix, MARGIN = 2, sum)
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+# Apply the power function on each column
+apply(mymatrix, MARGIN = 2, sum)
+```
+]
+
+
+---
+class: center, middle, inverse, Large
+
+# Recap
+
+---
+## Loops and functionals
+
+<br>
+
+| <div style="width:390px">**for-loops**</div> | **functionals** |
+|:-:|:-:|
+| Gets messy fast | Elegant and readable, allow for better syntax  |
+| Long code | Short code, based on functions  |
+| Standard base R | `apply` family: standard R. `map` family: `purrr` package|
+
+
+---
+class: center, middle, inverse, Large
+
+# Tutorials
+
+---
+class: center
+# Tutorial 1: A Function to Compute the Mean
+
+Starting point: we should be aware of how the mean is defined:
+  
+$$\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}$$
+  
+---
+## Tutorial 1: A Function to Compute the Mean
+  
+```{r}
+#####################################
+# Mean Function:
+# Computes the mean, given a 
+# numeric vector.
+
+meaN <- function(x){
+  
+}
+
+```
+
+
+```{r mean solution, eval=FALSE, include=FALSE}
+
+meaN <- function(x){
+  
+  mean <- (sum(x)/length(x))
+  
+  return(mean)
+  
+}
+
+meaN(c(1,2,3))
+
+vector <- c(1,3,5,3,2)
+meaN(vector)
+
+```
+
+
+---
+## Tutorial 2: on slow and fast sloths
+
+We can use loops to simulate natural processes over time. Write a program that calculates the populations of two kinds of sloths over time. At the beginning of year 1, there are **1000 slow sloths** and **1 fast sloth**. This one fast sloth is a new mutation that is genetically able to use roller blades. Not surprisingly, being fast gives it an advantage, as it can better escape from predators. 
+
+.pull-left[
+.center[
+```{r , echo= FALSE, fig.align="center", out.width="50%", fig.cap = "A slow sloth"}
+include_graphics("../../img/slowsloth.png")
+```
+]
+]
+
+.pull-right[
+.center[
+```{r , echo= FALSE, fig.align="center", out.width="50%",fig.cap = "A fast sloth in its natural element "}
+include_graphics("../../img/fastsloth.png")
+```
+]
+]
+
+  
+  
+---
+## Tutorial 2: on slow and fast sloths
+  
+Each year, each sloth has one offspring. There are no further mutations, so slow sloths beget slow sloths, and fast sloths beget fast sloths. Also, each year 40% of all slow sloths die each year, while only 30% of the fast sloths do.
+
+At the beginning of year one there are 1000 slow sloths. Another 1000 slow sloths are born. But, 40% of these 2000 slow sloths die, leaving a total of 1200 at the end of year one. Meanwhile, in the same year, we begin with 1 fast sloth, 1 more is born, and 30% of these die, leaving 1.4.
+
+|Beginning of Year   |Slow Sloths   |Fast Sloths   |
+|---|---|---|
+|1   |1000   |1   |
+|2   |1200   |1.4  | 
+|3   |1440   |1.96   | 
+  
+**Enter the first year in which the fast sloths outnumber the slow sloths.** 
+  
+  
+```{r sloth solution, eval=FALSE, include=FALSE}
+i <- 1
+Nslow <- 1000
+Nfast <- 1
+
+while(Nslow > Nfast){
+  Nslow <- (Nslow *2)*0.6 
+  Nfast <- (Nfast *2)*0.7 
+  
+  i <- i + 1
+}
+
+print(i)
+
+
+# Check
+Nslow <- 1000
+Nfast <- 1
+for (i in 1:48){
+  Nslow <- c(Nslow, (Nslow[i] *2)*0.6)
+  Nfast <- c(Nfast, (Nfast[i] *2)*0.7)
+  
+  print(i) 
+}
+
+Nslow[44:48]
+Nfast[44:48]
+
+```
+
+---
+## Tutorial 3: A loop function
+
+Be the function
+
+```{r}
+appendsums <- function(lst){
+  
+  #Repeatedly append the sum of the current last three elements 
+  #of lst to lst. 
+}
+```
+
+Create a function that repeatedly appends the sum of the current last three elements of the vector lst to lst. Hint: use the `append` and `tail` functions. Your function should loop 25 times. To check if your function is correct, run:
+  
+```{r, eval = FALSE}
+sum_three = c(0, 1, 2)
+appendsums(sum_three)
+
+# Solution for testing:
+sum_three[10] == 125
+```
+
+
+```{r loop solution, eval=FALSE, include=FALSE}
+appendsums <- function(lst){
+  
+  i <- 1
+  
+  for (i in 1:25){
+    lst <- append(lst, sum(tail(lst, 3)))
+    i <- i + 1
+  }
+  
+  lst
+}
+
+sum_three = c(0, 1, 2)
+sum_three <- appendsums(sum_three)
+
+# Solution for testing:
+sum_three[10] 
+
+```
+
+
+---
+# Q&A
+
+
+<style>
+  slides > slide { overflow: scroll; }
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+
+
+code {
+  color: white;
+}
+
+
+pre {
+  color: white;
+}
+</style>
+  
+  <!-- ## References {.smaller} -->
+  
+  
