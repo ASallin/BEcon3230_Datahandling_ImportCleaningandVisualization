@@ -3,9 +3,10 @@ title: DataHandlingIntro
 username: datahandling
 account: datahandling
 server: shinyapps.io
+envVars: google_key
 hostUrl: https://api.shinyapps.io/v1
 appId: 12677361
-bundleId: 10913469
+bundleId:
 url: https://datahandling.shinyapps.io/DataHandlingIntro/
 version: 1
 asMultiple: FALSE

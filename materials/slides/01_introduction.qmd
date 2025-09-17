@@ -35,7 +35,7 @@ library(purrr)
 
 ## Introduce yourself!
 
-- Go to this app (use the QR code): [https://datahandling.shinyapps.io/DataHandlingIntro/](https://datahandling.shinyapps.io/DataHandlingIntro/)
+- Go to this app (use the QR code): [https://datahandling.shinyapps.io/FormDataHandling/](https://datahandling.shinyapps.io/FormDataHandling/)
 
 ```{r , echo=FALSE, out.width = "35%", fig.align='center', purl=FALSE}
 include_graphics("../../img/QR_APP_2025.gif")
@@ -769,3 +769,4 @@ You don't see the point of learning to code functions and loops since AI can do 
 :::
 ::::
 
+# Questions?  

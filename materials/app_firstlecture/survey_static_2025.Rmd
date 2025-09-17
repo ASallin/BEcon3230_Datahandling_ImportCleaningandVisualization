@@ -288,8 +288,6 @@ renderPlot({
   
   ggplot(df_overall, aes(x = major, y = pct)) +
     geom_col(fill = "dodgerblue2") +
-    # geom_text(aes(label = scales::percent(pct, accuracy = 1)),
-              # vjust = -0.3, size = 3) +
     scale_x_discrete(drop = FALSE) +
     scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
     labs(x = "Literacy", y = "Percent") +
@@ -343,7 +341,7 @@ renderPlot({
   ggplot(df_overall, aes(x = literacy, y = pct)) +
     geom_col(fill = "#02934a") +
     scale_x_discrete(drop = FALSE) +
-    geom_vline(xintercept = m, color = "red", size = 0.8, linetype = 3) +
+    geom_vline(xintercept = m, color = "red", linewidth = 0.8, linetype = 3) +
     scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
     labs(x = "Literacy", y = "Percent", title = "Overall Literacy",
          caption = paste0("SD = ", round(s, 2))) +
@@ -378,7 +376,7 @@ renderPlot({
     geom_text(aes(label = scales::percent(pct, accuracy = 1)),
               vjust = -0.3, size = 3) +
     scale_x_discrete(drop = FALSE) +
-    geom_vline(xintercept = m, color = "red", size = 0.8, linetype = 3) +
+    geom_vline(xintercept = m, color = "red", linewidth = 0.8, linetype = 3) +
     scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
     labs(x = "Literacy", y = "Percent",
          title = paste("Literacy -", input$majors),
@@ -455,7 +453,7 @@ Column
 ### First word that comes to mind when you hear “data”
 
 ```{r}
-plotOutput("assoc_cloud", height = "400px")   # height in px or 'auto'
+plotOutput("assoc_cloud", width = "800px", height = "600px")   # height in px or 'auto'
 ```
 
 ```{r, context="server"}
@@ -474,13 +472,13 @@ output$assoc_cloud <- renderPlot({
   if (length(tokens) == 0) return(NULL)
   
   txt_clean <- gsub(" ", "_", tokens)
-  dfm <- dfm(txt_clean)
+  dfm <- dfm(tokens(txt_clean))
   
   
   # replace underscores in feature names
   featmap <- data.frame(
     from = featnames(dfm),
-    to   = gsub("_", " ", featnames(dfm)),
+    to   = stringr::str_wrap(gsub("_", " ", featnames(dfm)), width = 15),
     stringsAsFactors = FALSE
   )
   
@@ -494,6 +492,7 @@ output$assoc_cloud <- renderPlot({
     max_words = 100,
     min_count = 1,
     color = pal,
+    max_size = 3,
     rotation = 0.15,
     random_color = T
   )

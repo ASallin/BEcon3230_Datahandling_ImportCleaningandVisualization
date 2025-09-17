@@ -17,10 +17,10 @@ library(dplyr)   # you use %>% and data.frame ops
 # If deploying it online, use the relative path to the JSON file.
 authenticate_gs4 <- function() {
   
-  # if (file.exists("C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/app_firstlecture/DataHandlingIntro/datahandlingform-ad828b6b290b.json")) {
-  if (file.exists("datahandlingform-ad828b6b290b.json")) {
-    # gs4_auth(path = "C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/app_firstlecture/DataHandlingIntro/datahandlingform-ad828b6b290b.json")
-    gs4_auth(path = "datahandlingform-ad828b6b290b.json")
+  # if (file.exists("C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/app_firstlecture/DataHandlingIntro/datahandlingform-4a1ada22d5ac.json")) {
+  if (file.exists("datahandlingform-4a1ada22d5ac.json")) {
+    # gs4_auth(path = "C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/app_firstlecture/DataHandlingIntro/datahandlingform-4a1ada22d5ac.json")
+    gs4_auth(path = "datahandlingform-4a1ada22d5ac.json")
     return(invisible(TRUE))
   }
   stop("No Google service account credentials found. Set GCP_SA_JSON or add service-account.json to the app.")
@@ -28,6 +28,7 @@ authenticate_gs4 <- function() {
 
 authenticate_gs4()
 
+# gs4_user()
 
 
 # Set-up ------------------------------------------------------------------
