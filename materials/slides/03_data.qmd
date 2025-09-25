@@ -108,6 +108,7 @@ Which of the answers are correct?
 ```{r, echo = TRUE, eval = FALSE}
 max(mymatrix[,2]) == 3
 ```
+is `TRUE`
 
 <br>
 
@@ -116,7 +117,7 @@ max(mymatrix[,2]) == 3
 ```{r, echo = TRUE, eval = FALSE}
 apply(mymatrix, MARGIN = 2, min) 
 ```
-`returns a vector of size 4.`
+returns a vector of size 4.
 :::
 
 ::::
@@ -414,8 +415,8 @@ result <- x == y
 
 ::: {.column width="50%"}
 ```{r, echo = TRUE}
-print(x)       
-print(y)       
+print(x, digits = 20)       
+print(y, digits = 20)       
 ```
 :::
 
@@ -496,23 +497,6 @@ print(result)
 
 ## Floating point numbers
 
-:::: {.columns}
-
-```{r example2, echo=TRUE, eval=TRUE}
-# prints a more precise value of x
-print(format(x, digits = 20))  
-```
-
-
-
-```{r example3, echo=TRUE, eval=TRUE}
-# prints a more precise value of y
-print(format(y, digits = 20))  
-
-```
-
-<br>
-
 #### ...now...
 
 <br>
@@ -524,29 +508,6 @@ equal <- abs(x - y) < tolerance
 print(equal)  
 ```
 
-::::
-
-
-
-
-
-## Decimal numbers in a computer
-
-If computers only understand `0` and `1`, how can they express decimal numbers like *139*?
-
-
-
-## Decimal numbers in a computer
-
-If computers only understand `0` and `1`, how can they express decimal numbers like *139*?
-
-- *Standards* define how symbols, colors, etc are shown on the screen.
-- Facilitates interaction with a computer (our keyboards do not only consist of a `0`/`1` switch).
-
-
-```{r binarykeyboard, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
-include_graphics("../../img/binary_keyboard.jpg")
-```
 
 
 
@@ -640,10 +601,21 @@ Character Encoding
 
 
 ## Computers and text
+
 How can a computer understand text if it only understands `0`s and `1`s?
 
-```{r keyboard, echo=FALSE, out.width = "90%", fig.align='center', fig.cap="A modified version of South Korean Dubeolsik (two-set type) for old hangul letters. (Illustration by Yes0song 2010,  [Creative Commons Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en))", purl=FALSE}
-include_graphics("../../img/keyboard.png")
+
+
+## Computers and text
+
+How can a computer understand text if it only understands `0`s and `1`s?
+
+- *Standards* define how `0`s and `1`s correspond to specific letters/characters of different human languages.
+- These standards are usually called *character encodings*.
+
+
+```{r binarykeyboard, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
+include_graphics("../../img/binary_keyboard.jpg")
 ```
 
 

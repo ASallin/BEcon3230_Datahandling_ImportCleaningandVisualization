@@ -252,25 +252,37 @@ include_graphics("../../img/datascientistsexy.png")
 
 ## Data science as a life skill
 
-"More than anything, what data scientists do is **make discoveries while swimming in data.** ...  As they make discoveries, they communicate what they’ve learned and suggest its implications for new business directions. Often they are *creative in displaying information visually and making the patterns they find clear and compelling*... 
+"More than anything, what data scientists do is **make discoveries while swimming in data.** ...  As they make discoveries, they communicate what they’ve learned and suggest its implications for new business directions. Often they are **creative in displaying information visually and making the patterns they find clear and compelling**... 
 
 They advise executives and product managers on the implications of the data for *products, processes, and decisions*.
 
-What kind of person does all this? *Think of him or her as a hybrid of data hacker, analyst, communicator, and trusted adviser. The combination is extremely powerful — and rare.*"
+What kind of person does all this? [Think of him or her as a hybrid of data hacker, analyst, communicator, and trusted adviser. The combination is extremely powerful — and rare.]{.green-bold}"
 
 
 
-## Data science past its golden age
+## Data science in 2025: past its golden age?
 
-Between 2014 and 2021, data scientists experienced unprecedented career and salary growth, fueled by the explosion of big data and artificial intelligence.
+Between 2014 and 2021, data scientists saw unprecedented career and salary growth, fueled by the explosion of big data and artificial intelligence.
 
-2022: LLMs made some of the tasks of data scientists obsolete. In this context, the importance of coding skills has become less important. 
+  ➡️ Yet many “data science” projects never reached production or had little impact.
+
+2022: LLMs made some of the tasks of data scientists obsolete. The importance of coding skills has become less important. 
 
 <br>
 
-[**But**]{.green-bold}: the importance of understanding data, data creativity, data possibilities, cross-disciplinary skills, and data critical skills is more important than ever! 
+[**Or So it seems...**]{.green-bold}
 
 
+## Learning programming in 2025: why?
+
+
+  ➡️ ... AI has made **learning to code more enjoyable**: flatter learning curve for beginners 🎢 -> higher returns on effort investment at the beginning -> not stuck -> fun!
+
+  ➡️ ... **AI ≠ mastery**. Everyone can code with AI. But: A data scientist is someone who has developed skills, flair for data, creativity, and solid fundamentals. This has become the talent employers seek after 💸. 
+  
+  ➡️ ... develop a **mindset for data analysis and problem solving 🧩**: solution-oriented and pragmatism, communication and story-telling, algorithmic thinking, debugging and patience with mistakes, attention to detail, etc. 
+
+  ➡️ ... learn the language you need to **prompt LLMs efficiently** 🤖. 
 
 
 ## {class="inverse" background-image="../../img/break-picture.png" background-size="100%" background-repeat="cover"}
@@ -286,10 +298,10 @@ Between 2014 and 2021, data scientists experienced unprecedented career and sala
 
 ## By the end of the course, you will be able to...
 
-- **Use essential tools for working with data** <br> We will work with the programming language R, but the concepts apply to any programming language.
-- **Manage a data project from start to finish** <br> You will practice collecting, cleaning, and analyzing data to carry out a complete project in Economics (research, consulting, ...).
-- **Formulate meaningful questions from data** <br> You will learn how to explore datasets and identify relevant questions.
-- **Communicate insights effectively** <br> You will gain experience in presenting results clearly and persuasively.
+- [**Use essential tools for working with data**]{.green-bold} <br> We will work with the programming language R, but the concepts apply to any programming language.
+- [**Manage a data project from start to finish**]{.green-bold} <br> You will practice collecting, cleaning, and analyzing data to carry out a complete project in Economics (research, consulting, ...).
+- [**Formulate meaningful questions from data**]{.green-bold} <br> You will learn how to explore datasets and identify relevant questions.
+- [**Communicate insights effectively**]{.green-bold} <br> You will gain experience in presenting results clearly and persuasively.
 
 
 
@@ -463,9 +475,9 @@ tab |>
   kable_styling(full_width = T) |>
   column_spec(1, width = "200px") |>
   column_spec(2, width = "950px") |>
-  row_spec(c(1, 2, 4, 5, 7, 8), bold = T, color = "green") |> 
-  row_spec(c(1, 3, 4, 6, 7, 9), extra_css = "border-bottom: 20px solid white;") |> 
-  row_spec(c(2, 5, 8), extra_css = "border-bottom: 0px solid white;")
+  row_spec(c(1, 3, 4, 6, 7, 8), bold = T, color = "green") |> 
+  row_spec(c(1, 2, 4, 6, 7, 9), extra_css = "border-bottom: 20px solid white;") |> 
+  row_spec(c(1, 3, 5, 8), extra_css = "border-bottom: 0px solid white;")
 ```
 
 
@@ -503,8 +515,8 @@ tab |>
   kable_styling(full_width = T) |>
   column_spec(1, width = "200px") |>
   column_spec(2, width = "950px") |>
-  row_spec(c(2, 3), bold = T, color = "green") |> 
-  row_spec(c(1), bold = T, color = "firebrick4") |> 
+  row_spec(c(1, 3), bold = T, color = "green") |> 
+  row_spec(c(2), bold = T, color = "firebrick4") |> 
   row_spec(c(2), extra_css = "border-bottom: 25px solid white;") |> 
   row_spec(c(1, 3, 4, 5), extra_css = "border-bottom: 0px solid white;")
 ```
@@ -526,7 +538,7 @@ The examination consists of three parts:
 
 #### Project timeline
 
-- **October 6**: Release of Part 1 of the project (in lecture) and group formation. 
+- **October 16**: Release of Part 1 of the project (in lecture) and group formation. 
 
 - **November 6, 23:59**: Intermediate submission (not graded).
 
@@ -588,7 +600,8 @@ Demonstrate your understanding of the concepts and practical applications covere
 
 ```{r eval = FALSE}
 git clone https://github.com/ASallin/datahandling-lecture.git # to clone
-git pull origin main # to update
+git checkout 2025 # to switch to the branch "2025*
+git pull origin 2025 # to update
 ```
 
 

@@ -29,8 +29,9 @@ library(knitr)
 library(purrr)
 ```
 
+## {class="inverse"}
 
-# Recap
+Recap
 
 ## 
 
@@ -43,13 +44,11 @@ include_graphics("../../img/data_science_pipeline.png")
 
 **At the end of the course, you will be able to...**
 
-- **Understand the tools you need when working with data** 
+- [**Use essential tools for working with data**]{.green-bold} <br> We will work with the programming language R, but the concepts apply to any programming language.
+- [**Manage a data project from start to finish**]{.green-bold} <br> You will practice collecting, cleaning, and analyzing data to carry out a complete project in Economics (research, consulting, ...).
+- [**Formulate meaningful questions from data**]{.green-bold} <br> You will learn how to explore datasets and identify relevant questions.
+- [**Communicate insights effectively**]{.green-bold} <br> You will gain experience in presenting results clearly and persuasively.
 
-- **Work independently with data** 
-
-- **Ask the right questions to a dataset**
-
-- **Learn to communicate about data**
 
 
 <!-- --- -->
@@ -59,10 +58,39 @@ include_graphics("../../img/data_science_pipeline.png")
 
 
 
-# Basic Programming Concepts
+## {class="inverse"}
+
+Today
+
+## Basic Programming Concepts in R
+
+**Goals: **
+
+- Understand the basic programming concepts in R
+- Write simple R scripts using loops, functions, and conditionals
+- Understand the concept of functionals and how to use them
+
+
+## The R environment
+
+A collection of objects. These may be variables, arrays of numbers, character strings, functions, or more general structures built from such components.
 
 ## Values and Variables
 
+Assign values to objects using `<-`.
+
+
+## Vectors
+
+R has two types of vectors:
+
+  - **atomic vectors**: homogeneous collections of the same type
+  - **lists**: heterogeneous collections of any type of R object, even other lists
+
+## Vectors
+
+The four types of atomic vectors that are used the most are: **logical, integer, double, character**.
+  
 ## Vectors
 
 ```{r echo=FALSE, fig.align='center', out.width="10%"}
@@ -71,6 +99,7 @@ include_graphics("../../img/numvec.png")
 
 
 ## Vectors
+
 ```{r echo=FALSE, fig.align='center', out.width="10%"}
 include_graphics("../../img/charvec.svg")
 ```
@@ -88,34 +117,15 @@ include_graphics("../../img/matrix.png")
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, eval = F}
-cbind(c(1,2,3), c(4,5,6), c(7,8,9)) #<<
-rbind(c(1,4,7), c(2,5,8), c(3,6,9))
-matrix(nrow=3, ncol = 3, 1:9)
-```
-:::
-::: {.column width="50%"}
-```{r echo=FALSE}
-cbind(c(1,2,3), c(4,5,6), c(7,8,9)) #<<
-```
-:::
-::::
-
-## Matrices are combinations of vectors
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```{r, eval = F}
+```{r, eval=FALSE, `code-line-numbers`="1"}
 cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
-rbind(c(1,4,7), c(2,5,8), c(3,6,9)) #<<
+rbind(c(1,4,7), c(2,5,8), c(3,6,9))
 matrix(nrow=3, ncol = 3, 1:9)
 ```
 :::
-
 ::: {.column width="50%"}
 ```{r echo=FALSE}
-rbind(c(1,4,7), c(2,5,8), c(3,6,9))
+cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
 ```
 :::
 ::::
@@ -123,11 +133,12 @@ rbind(c(1,4,7), c(2,5,8), c(3,6,9))
 ## Matrices are combinations of vectors
 
 :::: {.columns}
+
 ::: {.column width="50%"}
-```{r, eval = F}
+```{r, eval=FALSE, `code-line-numbers`="2"}
 cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
 rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
-matrix(nrow=3, ncol = 3, 1:9) #<<
+matrix(nrow=3, ncol = 3, 1:9)
 ```
 :::
 
@@ -137,9 +148,37 @@ rbind(c(1,4,7), c(2,5,8), c(3,6,9))
 ```
 :::
 ::::
+
+## Matrices are combinations of vectors
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r, eval = F, `code-line-numbers`="3"}
+cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
+rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
+matrix(nrow=3, ncol = 3, 1:9) 
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE}
+matrix(nrow=3, ncol = 3, 1:9) 
+```
+:::
+::::
+
+
 
 
 # Operators
+
+## Most Operators are vectorized in R
+
+```{r}
+vect <-  c(1, 2, 3, 4)
+vect + 10
+```
+
 
 ## Math operators: basic arithmetic
 
@@ -175,7 +214,6 @@ sum_result <- 2+2
 sum_result -2
 ```
 
-<br>
 
 ```{r, echo=FALSE}
 # Modulo (remainder)
@@ -188,99 +226,73 @@ sum_result -2
 ::::
 
 
-## Assignment and comparison operators
+## Comparison operators
 
-:::: {.columns}
-::: {.column width="50%"}
-```{r, eval = F}
-# R Assignment Operators
-b <- 1+1
-3 -> my_var
+| Operator | Comparison               | Vectorized?    |
+|----------|--------------------------|----------------|
+| `x < y`  | less than                | Yes            |
+| `x > y`  | greater than             | Yes            |
+| `x <= y` | less than or equal to    | Yes            |
+| `x >= y` | greater than or equal to | Yes            |
+| `x != y` | not equal to             | Yes            |
+| `x == y` | equal to                 | Yes            |
+| `x %in% y` | contains               | Yes (over `x`) |
 
-b <<- 1+1 # global operator. Don't use it
-```
+
+
+## Logical/Booleans operators
+
+| Operator   | Operation      | Vectorized? |
+|------------|----------------|-------------|
+| `x | y`    | or             | Yes         |
+| `x & y`    | and            | Yes         |
+| `!x`       | not            | Yes         |
+| `x || y`   | or             | No          |
+| `x && y`   | and            | No          |
+| `xor(x, y)`| exclusive or   | Yes         |
+
+
+
+## Logical operators
 
 <br>
 
-```{r, eval = F}
-# R Comparison Operators
-1 == 2
-1 != 2
-1 > 2
-1 < 2
-1 >= 2
-1 <= 2
-```
-:::
+**Question:** 
 
-::: {.column width="50%"}
-<br>
-<br>
-<br>
-<br>
-
-```{r, echo = F}
-# R Comparison Operators
-1 == 2
-1 != 2
-1 > 2
-1 < 2
-1 >= 2
-1 <= 2
-```
-:::
-::::
+Given `x = 1` and `y = 6`, what is: `x < 5 & y < 5`?
 
 
-## Logical and misc. operators
-
-:::: {.columns}
-::: {.column width="50%"}
-```{r, eval = F}
-# R Logical Operators
-TRUE & FALSE
-TRUE | FALSE
-!TRUE
-```
-
-<br> 
-
-```{r, eval = F}
-# R Miscellaneous Operators
-1:10
-2 %in% c(1,2)
-```
-:::
-
-::: {.column width="50%"}
-```{r, echo = F}
-# R Logical Operators
-TRUE & FALSE
-TRUE | FALSE
-!TRUE
-```
-
-<br> 
-
-```{r, echo = F}
-# R Miscellaneous Operators
-1:10
-2 %in% c(1,2)
-```
-:::
-::::
-
-
-## Math operators: other operators
+## Other common operators and functions
 
 ```{r other operators, eval=FALSE}
-# Other common math operators and functions
-4^2
 sqrt(4^2)
 log(2)
 exp(10)
 log(exp(10))
 ```
+
+
+## Set operators
+
+Table: Set operators in R 
+
+| Operator   | Operation      | Vectorized? |
+|------------|----------------|-------------|
+| `union(x,y)`        | union             | Yes         |
+| `intersect(x,y)`    | intersection            | Yes         |
+| `setdiff(x, y)`     | difference            | Yes         |
+| `setequal(x, y)`    | equality             | No          |
+
+
+## Sequence operators
+
+The colon operator `:` generates regular sequences. It is equivalent to `seq(from, to)` in the `seq()` function.
+
+```{r}
+1:10
+```
+
+
 
 
 # Loops
@@ -296,7 +308,6 @@ include_graphics("../../img/forloop_black.png")
 
 ```{r eval=FALSE}
 # number of iterations
-
 n <- 100
 
 # start loop
@@ -331,18 +342,32 @@ while (x == 1) {
 ```
 
 
-# Logical and control statements
-  
-## Logical statements
-```{r eval=FALSE}
-2+2 == 4 # is equal to
-3+3 == 7
-4!=7 # is not equal to
-6>3 
-6<7
-6<=6
+## repeat-loop
+
+```{r repeat, echo= FALSE, fig.align="center", out.width="50%"}
+include_graphics("../../img/r-repeat-loop.jpg")
 ```
 
+## repeat-loop
+```{r eval = FALSE}
+# Initiate variable
+x <- 1
+
+# Start repeat loop
+repeat {
+  
+  x = x + 1
+  
+  # Break statement
+  if (x == 6){ 
+    break
+  }
+}
+```
+
+
+# Logical and control statements
+  
 
 ## Control statements 
 ```{r}
@@ -389,11 +414,9 @@ library(<PACKAGE NAME>)
 
 Functions have three elements:
   
-  1. .green[*formals()*], the list of arguments that control how you call the function 
-  
-  2. .green[*body()*], the code inside the function
-  
-  3. .green[*environment()*], the data structure that determines how the function finds the values associated with the names (not the focus of this course)
+  1. [formals()]{.green-bold}, the list of arguments that control how you call the function 
+  2. [body()]{.green-bold}, the code inside the function
+  3. [environment()]{.green-bold}, the data structure that determines how the function finds the values associated with the names (not the focus of this course)
 
 
 
@@ -462,7 +485,7 @@ environment(myfun)
 
 ## Functions in R
 
-Example of a function: a simple power function
+A simple power function
 
 ```{r eval=TRUE, echo = TRUE, purl=FALSE, results = 'hide'}
 powerFunction <- function(base, exponent){
@@ -540,21 +563,26 @@ print(mymatrix)
 :::
 ::::
 
-
-## Apply a sum function on each column
-
 :::: {.columns}
-
 ::: {.column width="50%"}
 ```{r, eval = F}
+# Apply the sum function on each column
 apply(mymatrix, MARGIN = 2, sum)
+```
+
+```{r, eval = F}
+# Apply the sum function on each row
+apply(mymatrix, MARGIN = 1, sum)
 ```
 :::
 
 ::: {.column width="50%"}
-```{r echo=FALSE}
-# Apply the power function on each column
+```{r, echo = F}
 apply(mymatrix, MARGIN = 2, sum)
+```
+
+```{r, echo = F}
+apply(mymatrix, MARGIN = 1, sum)
 ```
 :::
 ::::
@@ -576,6 +604,8 @@ apply(mymatrix, MARGIN = 2, sum)
 # Tutorials
 
 ## Tutorial 1: A Function to Compute the Mean
+
+Write a function `meaN(x)` that computes the mean of a numeric vector. We are not allowed to call it "mean" because `mean()` is already a function in R.
 
 Starting point: we should be aware of how the mean is defined:
   

@@ -1,0 +1,185 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: "Lecture 3: Data Processing Basics"
+author: "Dr. Aurélien Sallin"
+params:
+  show_code: true  # Toggle this to switch between student and solution versions
+format:
+  html:
+    theme: ../../style/hsgtheme.scss
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+highlight-style: dracula
+---
+
+```{r}
+#| label: setup
+#| include: false
+options(width = 100)
+knitr::opts_chunk$set(results = "hold")
+library(knitr)
+library(purrr)
+```
+
+
+# Data Processing Basics
+
+After lecture 3, we already have a much better understanding of what the `0`s and `1`s stand for, how they might enter the computer, where they might be stored on the computer, and where we might see the output of processing data on a computer.
+
+This section briefly summarizes the key components of processing data with a computer, following closely Ulrich Matter's book. The chapter draws on @murrell_2009 (chapter 9, pages 199-204). 
+
+
+
+## Components of a standard computing environment
+
+Figure @fig-components illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).
+
+
+```{r, echo=FALSE, out.width = "70%", fig.align='center', fig.cap= "Basic components of a standard computing environment.", purl=FALSE}
+#| label: fig-components
+include_graphics("../../img/script-hardware_w.jpg")
+```
+
+
+<br>
+
+### Central Processing Unit
+
+The component actually *processing* data is the Central Processing Unit (CPU). When using R to process data, R commands are translated into complex combinations of a small set of basic operations which the *CPU* then executes.
+
+
+```{r cpu2, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
+include_graphics("../../img/cpu.jpg")
+```
+
+The CPU is the heart of the computer. It processes the machine code instructions of your program.
+
+R runs on one CPU core by default, meaning that only one sequence of operations is executed at a time. Modern CPUs, however, have multiple cores, which allows several tasks to be processed in **parallel**. With the right R packages, such as `parallel`, `future`, or `data.table`, you can take advantage of multiple cores to speed up heavy computations like simulations, bootstrapping, or large data manipulations. 
+
+**Vectorized operations:** R is optimized for vectorized computation, which allows the CPU to work on multiple data points at once through SIMD (Single Instruction, Multiple Data) instructions.
+
+The speed of a CPU is often described by its **clock speed**, measured in gigahertz (GHz). A CPU running at 3 GHz can execute roughly three billion cycles per second. This determines how fast a single core can perform computations, which matters because base R computations usually run on a single core.
+
+The CPU works fastest when the data it needs is physically close to it. This is why modern computers have a hierarchy of memory layers, each with different speed and capacity.
+
+At the very top are CPU registers and the L1 cache, which are tiny but extremely fast. They hold only the values the CPU is currently working on. Slightly further away is the L2 and L3 cache, which can store a bit more data but is still very fast. Below that is RAM, which is much larger but slower to access. At the very bottom are hard drives or SSDs, which are far larger still, but dramatically slower than RAM.
+
+An example: when you open a dataset in R, it is read from disk into RAM. When you run a function, parts of the dataset are temporarily moved from RAM into the CPU cache so the CPU can process them. If your dataset is too large to fit into RAM, R will either slow down dramatically or fail with an "out of memory" error.
+
+
+<br>
+
+### Random Access Memory
+
+To work with data (e.g., in R), it first must be loaded into the *memory* of our computer. More specifically, into the Random Access Memory (*RAM*). Typically, data is only loaded in the RAM as long as we work with it.
+
+```{r ram2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
+include_graphics("../../img/ram.jpg")
+```
+
+Holds all the currently needed environments, objects, etc. Provides the currently processed data to the CPU. Is filled, once you start your computer, is emptied once you switch off your computer. Standard data processing techniques rely on the dataset (and more) fitting into RAM (can be an issue when working with large datasets).
+
+<br>
+
+### Illustration
+
+To illustrate the importance of RAM, consider the following example: in `R`, we try to create a matrix with $10^5 \times 10^5$ elements: 
+
+<br>
+
+```{r, error=TRUE, echo=TRUE}
+# This will almost certainly fail on a typical laptop
+large_matrix <- matrix(1, nrow=1e5, ncol=1e5)
+```
+
+<br>
+
+💣💥💣💥💣💥 Assuming each number is stored using 8 bytes, this matrix would require $8\times10^10$ bytes of RAM. This is 80 gigabytes (GB). Most computers today have between 8 and 64 gigabytes (GB) of RAM.
+
+
+## Units of information/data storage
+
+- [*bit*]{style="color:#02934a;"} (abbrev 'b'): smallest unit of information in computing: `0` or `1`. 
+- To store this number, we require a capacity of 8 bits or one [*byte*]{style="color:#02934a;"} (1 byte = 8 bits; abbrev. 'B'). 
+- Historically, one byte encoded a single character of text (ASCII). 4 bytes (32 bits) are called a [*word*]{style="color:#02934a;"}. 
+
+```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/bitbyte.jpg")
+```
+
+
+<br>
+
+### Mass storage: hard drive
+
+&nbsp;
+
+
+```{r harddrive2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
+include_graphics("../../img/harddrive.jpg")
+```
+
+This is where the data (and operating system, software, etc.) is stored in the long run. When you boot your computer, the core programs needed to run the computer are loaded from the hard drive into RAM. When you *import* a dataset into R/RStudio, the data is read from a (text-)file stored on the hard drive into RAM. 
+
+Simple example of difference between RAM and hard drive: When you open a new R-Script (or Word-file, etc.), type something in it, this means you write something to an object located somewhere in RAM. If you close the application without saving the file, it will be lost. Once you "save" the script/document, it will be written to the hard drive.
+
+
+
+<br>
+
+### Network: Internet, cloud, etc.
+
+&nbsp;
+
+```{r www, echo=FALSE, out.width = "25%", fig.align='center', purl=FALSE}
+include_graphics("../../img/www.png")
+```
+
+
+With today's abundance of digital data on all kinds of economic activities, many economic research projects rely on either gathering the raw data from web sources and/or on storing the data for analytics purposes on a database or simple storage service in the web/in the cloud. In practice, datasets for analytics purposes are thus often transferred between a web source and the local hard drive, or directly read from a web source into RAM.
+
+
+
+<br>
+<br>
+
+## Bigger units for storage capacity 
+
+ - 1 kilobyte (KB) = $10^3$ bytes
+ - 1 megabyte (MB) = $10^6$ bytes
+ - 1 gigabyte (GB) = $10^9$ bytes
+ 
+ <!-- - `1 \text{ kilobyte (KB)} = 1000^{1} \text{ bytes}` -->
+ <!-- - `1 \text{ megabyte (MB)} = 1000^{2} \text{ bytes}` -->
+ <!-- - `1 \text{ gigabyte (GB)} = 1000^{3} \text{ bytes}` -->
+ 
+<!-- ## Common units for data transfer (over a network) -->
+
+<!--  - $1 \text{ kilobit per second (kbit/s)} = 1000^{1} \text{ bit/s}$ -->
+<!--  - $1 \text{ megabit per second (mbit/s)} = 1000^{2} \text{ bit/s}$ -->
+<!--  - $1 \text{ gigabit per second (gbit/s)} = 1000^{3} \text{ bit/s}$ -->
+
+The concepts of kilobytes, megabytes, gigabytes, ..., are related to the concepts of kibibytes, mebibytes, gibibytes, ... (based on powers of 2 instead of powers of 10). In practice, the two concepts are often used interchangeably.
+
+ - 1 kibibyte (KiB) = $2^{10} = 1'024$ bytes
+ - 1 megabyte (MiB) = $2^{20} = 1'048'576$ bytes
+ - 1 gigabyte (GiB) = $2^{30} = 1'073'741'824$ bytes
+
+For more information, see the [Wikipedia page on Binary Prefixes](https://en.wikipedia.org/wiki/Binary_prefix). The confusion between the two concepts is a common source of misunderstanding. For example, a computer described to have 512-megabyte of RAM has 512 MiB, which is $512 * 2^{20}$ bytes, and not $512 * 10^6$ bytes of RAM.
+
+
+
+
+
+<br>
+
+## Putting the pieces together...
+
+Recall the initial example (survey) of this course.
+
+  1. Access a website (over the Internet), use keyboard to enter data into a website (a Google sheet in that case). That is, data is typed into RAM and then transferred over a network connection to a web server, and stored on its hard drive.
+
+  2. An R program accesses the data of the Google sheet (again over the Internet), downloads the data, and loads it into RAM.
+
+  3. Data processing: an R program is run through the CPU to produce output (in the form of statistics/plots), the output is shown on screen.

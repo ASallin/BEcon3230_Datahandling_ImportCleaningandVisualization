@@ -5,7 +5,7 @@ account: datahandling
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 15471454
-bundleId: 10913457
+bundleId: 10917756
 url: https://datahandling.shinyapps.io/survey_static_2025/
 version: 1
 asMultiple: FALSE

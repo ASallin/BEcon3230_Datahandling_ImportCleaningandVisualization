@@ -32,6 +32,10 @@ library(ggthemes)
 ```
 
 
+Sources:
+
+https://rdpeng.github.io/RProgDA/customizing-ggplot2-plots.html
+https://perceptualedge.com/example3.php
 
 # Recap: Data cleaning and Data Visualization
 
