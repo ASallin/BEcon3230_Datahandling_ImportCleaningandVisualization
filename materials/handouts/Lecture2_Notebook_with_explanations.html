@@ -3221,10 +3221,10 @@ vertical-align: -.125em;
 </div>
 </section>
 </section>
-<section id="matrices-are-combinations-of-vectors" class="level2">
-<h2 class="anchored" data-anchor-id="matrices-are-combinations-of-vectors">Matrices are combinations of vectors</h2>
-<p>Matrices or more generally arrays are multi-dimensional generalizations of vectors. In fact, they are vectors that can be indexed by two or more indices and will be printed in special ways.</p>
-<p>A Matrix is a 2-dimensional array. You can create a matrix using the <code>matrix()</code> function, or by combining vectors using <code>cbind()</code> (column bind) or <code>rbind()</code> (row bind).</p>
+<section id="matrices-are-atomic-vector-arranged-in-2d-form" class="level2">
+<h2 class="anchored" data-anchor-id="matrices-are-atomic-vector-arranged-in-2d-form">Matrices are atomic vector arranged in 2D form</h2>
+<p>Matrices or more generally arrays are multi-dimensional generalizations of vectors. Like vectors, they are homogeneous. In fact, they are vectors that have a dimension attribute <code>dim</code>. They can be indexed by two or more indices and will be printed in special ways.</p>
+<p>A Matrix is a 2-dimensional data structure. You can create a matrix using the <code>matrix()</code> function, or by combining vectors using <code>cbind()</code> (column bind) or <code>rbind()</code> (row bind).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>)</span>
@@ -3235,7 +3235,10 @@ vertical-align: -.125em;
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(v1, v2)</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>m2</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>) <span class="co"># fills by column by default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(m1)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(m1)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>) <span class="co"># fills by column by default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     v1 v2
 [1,]  1 10
@@ -3245,6 +3248,18 @@ vertical-align: -.125em;
    [,1] [,2] [,3] [,4]
 v1    1    2    3    4
 v2   10    9    8    7
+$dim
+[1] 4 2
+
+$dimnames
+$dimnames[[1]]
+NULL
+
+$dimnames[[2]]
+[1] &quot;v1&quot; &quot;v2&quot;
+
+
+[1] 4 2
      [,1] [,2] [,3]
 [1,]    1    4    7
 [2,]    2    5    8
@@ -3335,7 +3350,8 @@ v2   10    9    8    7
 [1] 1</code></pre>
 </div>
 </div>
-<p>These operators are vectorized (element-wise)</p>
+<p>These operators are vectorized (element-wise).</p>
+<p>ℹ️ When a function or operator is called vectorized, it means that it can take a whole vector as input and apply the operation element by element, without writing an explicit loop.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
@@ -3361,6 +3377,7 @@ v2   10    9    8    7
 [1,]   20</code></pre>
 </div>
 </div>
+<p><br></p>
 </section>
 </section>
 <section id="comparison-operators" class="level2">
@@ -3438,6 +3455,7 @@ v2   10    9    8    7
 [1] FALSE</code></pre>
 </div>
 </div>
+<p><br></p>
 </section>
 <section id="logicalbooleans-operators" class="level2">
 <h2 class="anchored" data-anchor-id="logicalbooleans-operators">Logical/Booleans operators</h2>
@@ -3468,17 +3486,17 @@ v2   10    9    8    7
 </tr>
 <tr class="even">
 <td><code>x || y</code></td>
-<td>or</td>
+<td>or*</td>
 <td>No</td>
 </tr>
 <tr class="odd">
 <td><code>x &amp;&amp; y</code></td>
-<td>and</td>
+<td>and*</td>
 <td>No</td>
 </tr>
 <tr class="even">
 <td><code>xor(x, y)</code></td>
-<td>exclusive or</td>
+<td>exclusive or <code>(x | y) &amp; !(x &amp; y)</code></td>
 <td>Yes</td>
 </tr>
 </tbody>
@@ -3520,12 +3538,15 @@ v2   10    9    8    7
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">||</span> <span class="fu">check</span>()  <span class="co"># check() is not evaluated</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">|</span> <span class="fu">check</span>()  <span class="co"># check() is not evaluated</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;&amp;</span> <span class="fu">check</span>()</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">||</span> <span class="fu">check</span>()  <span class="co"># check() is not evaluated</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">|</span> <span class="fu">check</span>()  <span class="co"># check() is not evaluated</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;&amp;</span> <span class="fu">check</span>()</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE
+Second condition is evaluated!
+[1] FALSE
 Second condition is evaluated!
 [1] TRUE
 [1] FALSE
@@ -3534,6 +3555,7 @@ Second condition is evaluated!
 </div>
 </div>
 <p>Use concise operators. For instance, <code>x %in% c(1, 2, 3)</code> is more concise than <code>x == 1 | x == 2 | x == 3</code>.</p>
+<p><br></p>
 </section>
 </section>
 <section id="other-common-operators-and-functions" class="level2">
@@ -3614,12 +3636,15 @@ Second condition is evaluated!
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
+<p><br></p>
+<p><br></p>
 </section>
 </section>
 </section>
 <section id="loops" class="level1">
 <h1>Loops</h1>
 <p>R supports three types of loops: for, while, and repeat.</p>
+<p><br></p>
 <section id="for-loop" class="level2">
 <h2 class="anchored" data-anchor-id="for-loop">for-loop</h2>
 <p>A for loop is used to iterate over a vector in R.</p>
@@ -3647,6 +3672,7 @@ Second condition is evaluated!
 </div>
 </div>
 <p>In for loops, the output is not automatically printed. You need to use the <code>print()</code> function to display the output.</p>
+<p><br></p>
 </section>
 <section id="while-loop" class="level2">
 <h2 class="anchored" data-anchor-id="while-loop">while-loop</h2>
@@ -3671,6 +3697,7 @@ Second condition is evaluated!
 [1] &quot;88&quot;</code></pre>
 </div>
 </div>
+<p><br></p>
 </section>
 <section id="repeat-loop" class="level2">
 <h2 class="anchored" data-anchor-id="repeat-loop">repeat-loop</h2>
@@ -3699,6 +3726,7 @@ Second condition is evaluated!
 [1] 5</code></pre>
 </div>
 </div>
+<p><br></p>
 </section>
 <section id="loop-helper-functions" class="level2">
 <h2 class="anchored" data-anchor-id="loop-helper-functions">Loop helper functions*</h2>
@@ -3731,6 +3759,7 @@ Second condition is evaluated!
 [1] 50</code></pre>
 </div>
 </div>
+<p><br></p>
 </section>
 <section id="tips-for-loops" class="level2">
 <h2 class="anchored" data-anchor-id="tips-for-loops">Tips for loops*</h2>
@@ -3759,6 +3788,8 @@ Second condition is evaluated!
 <pre><code> [1]    1    8   27   64  125  216  343  512  729 1000</code></pre>
 </div>
 </div>
+<p><br></p>
+<p><br></p>
 </section>
 </section>
 <section id="logical-and-control-statements" class="level1">
@@ -3782,6 +3813,7 @@ Second condition is evaluated!
 <pre><code>[1] &quot;Yes, 1 is not equal to 0.&quot;</code></pre>
 </div>
 </div>
+<p><br></p>
 <section id="multiple-conditions" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-conditions">Multiple conditions*</h2>
 <p>Note that <code>if</code> is not vectorized. The following code returns an error (in the most recent R versions).</p>
@@ -3803,6 +3835,8 @@ Second condition is evaluated!
 <pre><code>[1] &quot;At least one element was equal to 1.&quot;</code></pre>
 </div>
 </div>
+<p><br></p>
+<p><br></p>
 </section>
 </section>
 <section id="functions" class="level1">
@@ -3814,6 +3848,7 @@ Second condition is evaluated!
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;&lt;PACKAGE NAME&gt;&quot;)</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&lt;PACKAGE NAME&gt;)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
 </section>
 <section id="three-components-of-a-function" class="level2">
 <h2 class="anchored" data-anchor-id="three-components-of-a-function">Three components of a function</h2>
@@ -3847,6 +3882,7 @@ $y</code></pre>
 <pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
 </div>
 </div>
+<p><br></p>
 </section>
 <section id="example-a-simple-power-function" class="level2">
 <h2 class="anchored" data-anchor-id="example-a-simple-power-function">Example: a simple power function</h2>
@@ -3867,11 +3903,14 @@ $y</code></pre>
 [1]  8 64 27</code></pre>
 </div>
 </div>
+<p><br></p>
+<p><br></p>
 </section>
 </section>
 <section id="step-up-your-game-functionals" class="level1">
 <h1>Step up your game: functionals</h1>
 <p>A functional is a function that takes a function as input and returns a vector or list. Functionals are alternative to for-loops. They can be programmed using the <code>apply</code> family (<code>apply</code>, <code>lapply</code>, <code>tapply</code>), or the <code>purrr::map()</code> family.</p>
+<p><br></p>
 <section id="example-of-a-functional" class="level2">
 <h2 class="anchored" data-anchor-id="example-of-a-functional">Example of a functional</h2>
 <div class="cell">
@@ -3921,6 +3960,7 @@ $y</code></pre>
 [1] 12</code></pre>
 </div>
 </div>
+<p><br></p>
 </section>
 <section id="the-apply-functional" class="level2">
 <h2 class="anchored" data-anchor-id="the-apply-functional">The “apply” functional</h2>
@@ -3947,6 +3987,8 @@ $y</code></pre>
 [1] 17 36</code></pre>
 </div>
 </div>
+<p><br></p>
+<p><br></p>
 </section>
 </section>
 <section id="appendix-quick-reference" class="level1">

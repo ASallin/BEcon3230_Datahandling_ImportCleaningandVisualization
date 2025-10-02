@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 2: Programming with Data'
 author: "Dr. Aurélien Sallin"
-date: "2024-12-12"
+date: "2025-10-02"
 code-line-numbers: false
 format:
   revealjs:
@@ -57,6 +57,78 @@ include_graphics("../../img/data_science_pipeline.png")
 <!-- background-size: cover -->
 
 
+## When you think of data science, you think of...
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/thoughts_datascience.png")
+```
+
+
+
+## {class="inverse"}
+
+Course organization
+
+
+## Replacement session
+
+📅 To compensate for the session we missed on September 19th, please note the following changes to the schedule:
+
+  - Thursday, October 9th, 10:15–12:00: Lecture
+  - Thursday, October 9th, 16:15–18:00: Lecture (instead of exercises)
+  - **Friday, October 10th, 16:15–18:00, Room 01-011**: Exercise Session 2 with Federica
+
+
+## Examination for HSG students in exchange
+
+For HSG-students currently abroad on an exchange semester (not exchange students at HSG):
+
+  - Decentral exams as announced on the fact sheet are mandatory.
+  - I am allowed to offer an alternative examination as a sign of **goodwill** and **fairness** (**exception**!).
+
+#### Oral exam as alternative
+Exchange students will have the possibility to take an **oral exam** during the central examination period. 
+Students in exchange must email me before **October 10th, 2025** to register.
+
+
+#### Summary of the examination process for exchange students:
+
+  - Central examination (70%): as planned, with all course participants.
+  - Group project (15%): completed remotely with your group.
+  - Decentral exam (15%): oral examination during the central examination period.
+ 
+
+
+
+## Group formation for the group project
+
+❌  **Option 1: Random group formation**
+
+  - Students will be randomly assigned to groups of five.
+
+
+🟢 **Option 2: Students create their own groups **
+
+  - Groups with fewer than five students will be completed by the instructors.
+  - Students who do not join a group will be randomly assigned.
+ 
+<br>
+
+#### Important for both options:
+  - Depending on class size, some groups may have fewer or more than five members.
+  - Groups are **compulsory** for the group project submission.
+  - Once created, groups remain **fixed** for the entire project. No reshuffling is allowed.
+
+ 
+
+## Now, the vote:
+
+```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("../../img/squidgamevoting.png")
+```
+
+
+
 
 ## {class="inverse"}
 
@@ -84,7 +156,7 @@ Assign values to objects using `<-`.
 
 R has two types of vectors:
 
-  - **atomic vectors**: homogeneous collections of the same type
+  - **atomic vectors**: homogeneous collections of the same type ⚛️
   - **lists**: heterogeneous collections of any type of R object, even other lists
 
 ## Vectors
@@ -112,15 +184,19 @@ include_graphics("../../img/matrix.png")
 ```
 
 
-## Matrices are combinations of vectors
+## Matrices are atomic vector arranged in 2D form
+
+Homogeneous vectors with an added `dim` attribute that gives it rows and columns.
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, eval=FALSE, `code-line-numbers`="1"}
+```{r, eval=FALSE, `code-line-numbers`= "1-1"}
 cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
 rbind(c(1,4,7), c(2,5,8), c(3,6,9))
-matrix(nrow=3, ncol = 3, 1:9)
+matrix(nrow = 3, ncol = 3, 1:9)
+
+dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 ```
 :::
 ::: {.column width="50%"}
@@ -130,15 +206,19 @@ cbind(c(1,2,3), c(4,5,6), c(7,8,9))
 :::
 ::::
 
-## Matrices are combinations of vectors
+## Matrices are atomic vector arranged in 2D form
+
+Homogeneous vectors with an added `dim` attribute that gives it rows and columns.
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, eval=FALSE, `code-line-numbers`="2"}
+```{r, eval=FALSE, `code-line-numbers`="2-2"}
 cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
 rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
-matrix(nrow=3, ncol = 3, 1:9)
+matrix(nrow = 3, ncol = 3, 1:9)
+
+dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 ```
 :::
 
@@ -149,20 +229,46 @@ rbind(c(1,4,7), c(2,5,8), c(3,6,9))
 :::
 ::::
 
-## Matrices are combinations of vectors
+## Matrices are atomic vector arranged in 2D form
+
+Homogeneous vectors with an added `dim` attribute that gives it rows and columns.
 
 :::: {.columns}
 ::: {.column width="50%"}
-```{r, eval = F, `code-line-numbers`="3"}
+```{r, eval = F, `code-line-numbers`="3-3"}
 cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
 rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
-matrix(nrow=3, ncol = 3, 1:9) 
+matrix(nrow = 3, ncol = 3, 1:9) 
+
+dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r echo=FALSE}
 matrix(nrow=3, ncol = 3, 1:9) 
+```
+:::
+::::
+
+## Matrices are atomic vector arranged in 2D form
+
+Homogeneous vectors with an added `dim` attribute that gives it rows and columns.
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r, eval = F, `code-line-numbers`="5-5"}
+cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
+rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
+matrix(nrow = 3, ncol = 3, 1:9) 
+
+dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE}
+dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 ```
 :::
 ::::
@@ -178,6 +284,10 @@ matrix(nrow=3, ncol = 3, 1:9)
 vect <-  c(1, 2, 3, 4)
 vect + 10
 ```
+
+<br>
+
+ℹ️ When a function or operator is called vectorized, it means that it can take a whole vector as input and apply the operation element by element, without writing an explicit loop.
 
 
 ## Math operators: basic arithmetic
@@ -228,6 +338,8 @@ sum_result -2
 
 ## Comparison operators
 
+Table: Comparison operators in R (Source: Shawn Santo)
+
 | Operator | Comparison               | Vectorized?    |
 |----------|--------------------------|----------------|
 | `x < y`  | less than                | Yes            |
@@ -242,14 +354,16 @@ sum_result -2
 
 ## Logical/Booleans operators
 
+Table: Logical operators in R (Source: Shawn Santo)
+
 | Operator   | Operation      | Vectorized? |
 |------------|----------------|-------------|
 | `x | y`    | or             | Yes         |
 | `x & y`    | and            | Yes         |
 | `!x`       | not            | Yes         |
-| `x || y`   | or             | No          |
-| `x && y`   | and            | No          |
-| `xor(x, y)`| exclusive or   | Yes         |
+| `x || y`   | or*             | No          |
+| `x && y`   | and*            | No          |
+| `xor(x, y)`| exclusive or `(x | y) & !(x & y)`   | Yes         |
 
 
 
@@ -594,7 +708,7 @@ apply(mymatrix, MARGIN = 1, sum)
 
 <br>
 
-| <div style="width:390px">**for-loops**</div> | **functionals** |
+| **for-loops** | **functionals** |
 |:-:|:-:|
 | Gets messy fast | Elegant and readable, allow for better syntax  |
 | Long code | Short code, based on functions  |

@@ -73,7 +73,9 @@ m2 <- rbind(v1, v2)
 m2
 
 matrix(nrow=3, ncol = 3, 1:9, byrow = FALSE) # fills by column by default
-  
+
+
+# Example at home:
 mymatrix <- matrix(c(1,2,3,11,12,13,1,10), 
                    nrow = 2, 
                    ncol = 4,
@@ -139,7 +141,6 @@ a %in% b
 
 TRUE & FALSE
 TRUE | FALSE
-TRUE || FALSE
 !TRUE
   
 x <- c(TRUE, FALSE, TRUE, TRUE)
@@ -147,9 +148,7 @@ y <- c(FALSE, FALSE, TRUE, FALSE)
 
 x & y
 x | y
-xor(x, y)
   
-
 
 
 # Other common operators and functions ------------------------------------
@@ -219,7 +218,7 @@ x <- 1
 repeat {
   print(x)
   x = x + 1
-  
+
   # Break statement
   if (x == 6){ 
     break

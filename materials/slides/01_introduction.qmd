@@ -270,7 +270,7 @@ Between 2014 and 2021, data scientists saw unprecedented career and salary growt
 
 <br>
 
-[**Or So it seems...**]{.green-bold}
+[**Or so it seems...**]{.green-bold}
 
 
 ## Learning programming in 2025: why?
@@ -373,17 +373,13 @@ cat("success!")
 - 2018-2022: PhD Economic and Finance, HSG (Lund and Federal Reserve)
 - 2018: MA in Philosophy, Fribourg
 - 2017: MA in Economics, Fribourg
-<br>
-<br>
 
-##### Others:
-<img src="../../img/gsp.png" height="90"/> &nbsp;&nbsp;
-<img src="../../img/biking.jpg" height="90"/> &nbsp;&nbsp;
-<!-- <img src="../../img/unifr.png" height="90"/> &nbsp;&nbsp; -->
-<img src="../../img/Logo_GLP.png" height="90"/> &nbsp;&nbsp;
-<img src="../../img/rusergroupzh.png" height="90"/> &nbsp;&nbsp;
-<!-- <img src="../../img/logo.png" height="80"/> &nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- <img src="../../img/swica-logo-e.svg" height="90"/> -->
+
+##### Others
+<img src="../../img/gsp.png" height="70"/> &nbsp;&nbsp;
+<img src="../../img/biking.jpg" height="70"/> &nbsp;&nbsp;
+<img src="../../img/Logo_GLP.png" height="70"/> &nbsp;&nbsp;
+<img src="../../img/rusergroupzh.png" height="70"/> &nbsp;&nbsp;
 
 
 

@@ -116,11 +116,11 @@ vector_double[c(1, 2)]
 ```
 
 
-## Matrices are combinations of vectors
+## Matrices are atomic vector arranged in 2D form
 
-Matrices or more generally arrays are multi-dimensional generalizations of vectors. In fact, they are vectors that can be indexed by two or more indices and will be printed in special ways.
+Matrices or more generally arrays are multi-dimensional generalizations of vectors. Like vectors, they are homogeneous. In fact, they are vectors that have a dimension attribute `dim`. They can be indexed by two or more indices and will be printed in special ways.
 
-A Matrix is a 2-dimensional array. You can create a matrix using the `matrix()` function, or by combining vectors using `cbind()` (column bind) or `rbind()` (row bind).
+A Matrix is a 2-dimensional data structure. You can create a matrix using the `matrix()` function, or by combining vectors using `cbind()` (column bind) or `rbind()` (row bind).
 
 ```{r}
 v1 <- c(1, 2, 3, 4)
@@ -131,6 +131,9 @@ print(m1)
 
 m2 <- rbind(v1, v2)
 m2
+
+attributes(m1)
+dim(m1)
 
 matrix(nrow=3, ncol = 3, 1:9, byrow = FALSE) # fills by column by default
 ```
@@ -192,7 +195,10 @@ sum_result -2
 5 %/% 3
 ```
 
-These operators are vectorized (element-wise)
+These operators are vectorized (element-wise). 
+
+ℹ️ When a function or operator is called vectorized, it means that it can take a whole vector as input and apply the operation element by element, without writing an explicit loop.
+
 
 ```{r, eval = T}
 a <- c(2, 3, 4)
@@ -211,6 +217,7 @@ Matrix multiplication:
 a %*% b
 ```
 
+<br>
 
 ## Comparison operators
 
@@ -242,6 +249,7 @@ a %in% b
 1 %in% 2
 ```
 
+<br>
 
 ## Logical/Booleans operators
 
@@ -252,9 +260,9 @@ Table: Logical operators in R (Source: Shawn Santo)
 | `x | y`    | or             | Yes         |
 | `x & y`    | and            | Yes         |
 | `!x`       | not            | Yes         |
-| `x || y`   | or             | No          |
-| `x && y`   | and            | No          |
-| `xor(x, y)`| exclusive or   | Yes         |
+| `x || y`   | or*             | No          |
+| `x && y`   | and*            | No          |
+| `xor(x, y)`| exclusive or `(x | y) & !(x & y)`   | Yes         |
 
 
 ```{r}
@@ -274,6 +282,7 @@ x | y
 xor(x, y)
 ```
 
+
 ### Short-circuit operators*
 The double operators `&&` and `||` only evaluate the first element of each vector (instead of all elements of the vectors). They are known as **short-circuit** operators. These operators only evaluate the first element of each vector, and then immediately return a result without evaluating the remaining elements, as long as the result can be determined based on the first element.
 
@@ -286,6 +295,7 @@ check <- function() {
 }
 
 TRUE || check()  # check() is not evaluated
+FALSE || check()  # check() is not evaluated
 TRUE | check()  # check() is not evaluated
 
 FALSE && check()
@@ -296,6 +306,8 @@ FALSE & check()
 
 Use concise operators. For instance, `x %in% c(1, 2, 3)` is more concise than `x == 1 | x == 2 | x == 3`. 
 
+
+<br>
 
 
 ## Other common operators and functions
@@ -341,10 +353,16 @@ The colon operator `:` generates regular sequences. It is equivalent to `seq(fro
 ```
 
 
+<br>
+
+<br>
+
 
 # Loops
 
 R supports three types of loops: for, while, and repeat.
+
+<br>
 
 ## for-loop
 
@@ -367,6 +385,7 @@ for (i in vector_loop) {
 
 In for loops, the output is not automatically printed. You need to use the `print()` function to display the output.
 
+<br>
 
 ## while-loop
 
@@ -381,6 +400,7 @@ while (x <= 10) {
 }
 ```
 
+<br>
 
 ## repeat-loop
 
@@ -404,6 +424,7 @@ repeat {
 }
 ```
 
+<br>
 
 ## Loop helper functions*
 
@@ -425,6 +446,8 @@ for (i in (vect)) {
 }
 ```
 
+
+<br>
 
 ## Tips for loops*
 
@@ -450,6 +473,10 @@ for (i in seq_len(10)) {
 ```
 
 
+<br>
+
+<br>
+
 
 # Logical and control statements
 
@@ -468,6 +495,8 @@ if (1 != 0) {
 }
 ```
 
+
+<br>
 
 ## Multiple conditions*
 
@@ -491,6 +520,10 @@ if (all(c(1, 0, 1) == 1)) {
 }
 ```
 
+<br>
+
+<br>
+
 
 # Functions
 
@@ -502,6 +535,8 @@ A function maps inputs to outputs. In R, functions can be built-in (from base or
 # install.packages("<PACKAGE NAME>")
 # library(<PACKAGE NAME>)
 ```
+
+<br>
 
 ## Three components of a function
 
@@ -524,6 +559,8 @@ body(myfun)
 environment(myfun)
 ```
 
+<br>
+
 ## Example: a simple power function
 
 ```{r}
@@ -539,11 +576,16 @@ powerFunction(c(2, 4, 3), 3)
 ```
 
 
+<br>
+
+<br>
+
 
 # Step up your game: functionals
 
 A functional is a function that takes a function as input and returns a vector or list. Functionals are alternative to for-loops. They can be programmed using the `apply` family (`apply`, `lapply`, `tapply`), or the `purrr::map()` family.
 
+<br>
 
 ## Example of a functional
 
@@ -565,6 +607,8 @@ map_dbl(1:4, triple)
 map(1:4, triple)
 ```
 
+<br>
+
 
 ## The "apply" functional
 
@@ -585,6 +629,10 @@ for (i in 1:2) {
 apply(mymatrix, MARGIN = 1, sum)
 ```
 
+
+<br>
+
+<br>
 
 
 
