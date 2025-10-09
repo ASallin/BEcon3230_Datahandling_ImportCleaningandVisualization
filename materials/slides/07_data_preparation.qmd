@@ -149,6 +149,25 @@ include_graphics("../../img/data_science_pipeline.png")
 
 ##
 
+
+## The tidyverse
+
+:::: {.columns}
+
+::: {.column width="60%"}
+"The tidyverse is a collection of open source packages for the R programming language introduced by Hadley Wickham and his team that share an underlying design philosophy, grammar, and data structures" of tidy data." (Wikipedia)
+
+#### In this course, we will use tidyverse AND base R.
+:::
+
+::: {.column width="40%"}
+```{r , echo=FALSE, out.width = "55%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/tidyverse.png")
+```
+:::
+::::
+
+
 ```{r, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE, fig.cap = "Source: https://www.storybench.org/wp-content/uploads/2017/05/tidyverse.png"}
 include_graphics("../../img/tidyverse_pipeline.png")
 ```

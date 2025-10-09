@@ -6,7 +6,6 @@ params:
   show_code: true  # Toggle this to switch between student and solution versions
 format:
   html:
-    theme: ../../style/hsgtheme.scss
     embed-resources: true
     self-contained: true
     self-contained-math: true
@@ -294,9 +293,9 @@ check <- function() {
   FALSE
 }
 
-TRUE || check()  # check() is not evaluated
-FALSE || check()  # check() is not evaluated
-TRUE | check()  # check() is not evaluated
+TRUE || check()
+FALSE || check()  
+TRUE | check()  
 
 FALSE && check()
 FALSE & check()

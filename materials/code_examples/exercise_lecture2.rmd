@@ -1,18 +1,28 @@
 ---
-title: "Data Handling: Exercises to lecture 2"
-author: "Aurélien Sallin"
-date: '2024-09-26'
-output: 
-  html_document:
-    theme: united
-    toc: yes
-    toc_float:
-      collapsed: true
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: "Lecture 2: Students' notebook"
+author: "Dr. Aurélien Sallin"
+params:
+  show_code: true  # Toggle this to switch between student and solution versions
+format:
+  html:
+    theme: ../../style/hsgtheme.scss
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+highlight-style: dracula
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+#| label: setup
+#| include: false
+options(width = 100)
+knitr::opts_chunk$set(results = "hold")
+library(knitr)
+library(purrr)
 ```
+
+
 
 # Exercise 1: Matrices and Matrix Indexing
 

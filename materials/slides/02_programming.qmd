@@ -93,8 +93,8 @@ Students in exchange must email me before **October 10th, 2025** to register.
 
 #### Summary of the examination process for exchange students:
 
-  - Central examination (70%): as planned, with all course participants.
-  - Group project (15%): completed remotely with your group.
+  - Central examination (50%): as planned, with all course participants.
+  - Group project (35%): completed remotely with your group.
   - Decentral exam (15%): oral examination during the central examination period.
  
 
@@ -147,6 +147,7 @@ Today
 
 A collection of objects. These may be variables, arrays of numbers, character strings, functions, or more general structures built from such components.
 
+
 ## Values and Variables
 
 Assign values to objects using `<-`.
@@ -157,7 +158,17 @@ Assign values to objects using `<-`.
 R has two types of vectors:
 
   - **atomic vectors**: homogeneous collections of the same type ⚛️
+    - Atomic Vectors are the most fundamental data structures in R
+    
   - **lists**: heterogeneous collections of any type of R object, even other lists
+
+
+## Vectors
+
+```{r, echo = F, fig.cap = "Source: https://r4ds.had.co.nz/vectors.html",  out.width = "70%"}
+include_graphics("../../img/data-structures-overview.png")
+```
+
 
 ## Vectors
 

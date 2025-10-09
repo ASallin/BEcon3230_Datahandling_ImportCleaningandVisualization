@@ -1,17 +1,25 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: "Exercise to lectures 4 and 5"
+subtitle: "Exercise to lecture 4: Reading Financial Data"
 author: "Dr. Aurélien Sallin"
 params:
   show_code: true  # Toggle this to switch between student and solution versions
 format:
   html:
-    theme: ../../style/hsgtheme.scss
     embed-resources: true
     self-contained: true
     self-contained-math: true
 highlight-style: dracula
 ---
+
+```{r}
+#| label: setup
+#| include: false
+options(width = 100)
+knitr::opts_chunk$set(results = "hold")
+library(knitr)
+library(purrr)
+```
 
 
 # Working with a data frame
