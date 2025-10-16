@@ -121,6 +121,13 @@ Write an R code to extract a table with, as a first column, a vector of first na
 
 
 
+## Exam for exchange students
+
+- Exam for exchange students 🎁: **19.12.2024** at 16:15 in room 01-207.
+- The mock exam is available on Canvas
+- The reading list will be updated in the break
+
+
 
 # Part II: Data preparation, analysis, and visualization
 
@@ -150,6 +157,8 @@ include_graphics("../../img/data_science_pipeline.png")
 ##
 
 
+# Tidyverse
+
 ## The tidyverse
 
 :::: {.columns}
@@ -167,11 +176,49 @@ include_graphics("../../img/tidyverse.png")
 :::
 ::::
 
+## Tidyverse for data handling in R 
 
 ```{r, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE, fig.cap = "Source: https://www.storybench.org/wp-content/uploads/2017/05/tidyverse.png"}
 include_graphics("../../img/tidyverse_pipeline.png")
 ```
 
+
+
+
+## Rectangular data in R and tidyverse
+
+- data frames: base `R`
+- tibbles: `tidyverse`
+
+
+## A note on tibbles and data frames
+
+#### Tibbles are a modern version of data frames
+
+Similar! 
+
+- Tibbles are used in the tidyverse and ggplot2 packages. 
+- Same information as a data frame.
+- Small differences in the manipulation and representation of data.
+- See [**Tibble vs. DataFrame**](https://jtr13.github.io/cc21fall1/tibble-vs.-dataframe.html#tibble-vs.-dataframe") for more details.
+
+
+## Tibbles are a modern version of data frames
+
+```{r, eval=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+as_tibble(swiss)
+```
+
+
+## Tibbles are a modern version of data frames
+
+```{r, eval=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+as.data.frame(swiss)
+```
 
 
 ## Part II: Data preparation, analysis, and visualization
@@ -513,5 +560,18 @@ The errors are due to the requirements of `rbind()`.
 :::
 
 
+# Appendix
+
+## Tibbles vs data frames
+
+- Unlike data frames, tibbles don’t show the entire dataset when you print it
+- Tibbles cannot access a column when you provide a partial name of the column, but data frames can.
+- When you access only one column of a tibble, it will keep the tibble structure. But when you access one column of a data frame, it will become a vector.
+- When assigning a new column to a tibble, the input will not be recycled, which means you have to provide an input of the same length of the other columns. But a data frame will recycle the input.
+- Tibbles preserve all the variable types, while data frames have the option to convert string into factor. (In older versions of R, data frames will convert string into factor by default)
+
+::: aside
+Source: https://jtr13.github.io/cc21fall1/tibble-vs.-dataframe.html
+:::
 
 

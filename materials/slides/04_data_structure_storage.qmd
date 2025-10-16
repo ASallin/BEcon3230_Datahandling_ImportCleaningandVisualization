@@ -56,7 +56,7 @@ include_graphics("../../img/on_off.png")
 
 ## The binary and the hexadecimal counting frames
 
-**Binary:** 
+#### Binary:
 
 - Only two signs: `0`, `1`.
 - Base 2.
@@ -64,11 +64,11 @@ include_graphics("../../img/on_off.png")
 
 <br>
 
-**Hexadecimal:**
+#### Hexadecimal:
 
-  - *16 symbols*:
-  - `0`-`9` (used like in the decimal system)...
-  - and `A`-`F` (for the numbers 10 to 15).
+  - 16 symbols
+  - Base 16.
+  - `0`-`9` (used like in the decimal system) and `A`-`F` (for the numbers 10 to 15).
 
 
 
@@ -232,7 +232,7 @@ Translating between binary and hexadecimal is straightforward: each hexadecimal 
 
 Today
 
-## Goals of today's lecture
+## Goals of today's lecture: from text to data
 
 #### Our story:
   - Computers store data as bits (Bits → Bytes → Encoded Text)
@@ -242,9 +242,9 @@ Today
 
 #### Goals:
 
-  - From text to data: Understand how we import and structure data from text files 
-  - Learn data structures in R
-  - Understand rectangular data formats
+  - Understand how we **import** and structure data from text files 
+  - Learn **data structures** in R
+  - Understand **rectangular data formats**
 
 
 
@@ -271,8 +271,27 @@ From text to data structure
 
 #### Data take different structures depending on their purpose.
 
-- Rectangular data
-- Non-rectangular data
+<br>
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r, echo=FALSE, out.width = "100%"}
+include_graphics("../../img/rectangulardata.webp")
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE, out.width = "80%"}
+include_graphics("../../img/nonrectangulardata.webp")
+```
+:::
+
+::::
+
+
+
+<div class="footnote-pin">*Credits for pictures: [Jasmin Ludolf](https://jasminludolf.medium.com/two-categories-of-structured-data-rectangular-and-non-rectangular-05b6148544dc)</div>
+
 
 
 ## Rectangular data
@@ -298,6 +317,7 @@ From text to data structure
   - XML and JSON (useful for complex/high-dimensional data sets)
   - HTML (a markup language to define the structure and layout of webpages)
 - Unstructured **text** data
+- **Internet-of-Things** data
 - **Images/Pictures** data 
 
 
@@ -349,13 +369,13 @@ year,gdp_chfb
 
 ## Using a simple parser algorithm
 
-#### In this case: CSVs and fixed-width format
+#### In this case: 'Comma-Separated Values' (`.csv`)
 
-  - *'Comma-Separated Values'* (therefore `.csv`)
-    - Commas separate values
-    - Other delimiters (`;`, tabs, etc.) possible
-    - New lines separate rows/observations
-  - Instructions of how to read a `.csv`-file: **CSV parser**.
+  - Commas separate values
+  - Other delimiters (`;`, tabs, etc.) possible
+  - New lines separate rows/observations
+
+Instructions of how to read a `.csv`-file: **CSV parser**.
 
 
 
@@ -586,7 +606,7 @@ guess_parser("1'300'000")
 guess_parser("1'300'000", locale = locale(grouping_mark = "'"))
 ```
 ::: aside
-Check this page for more examples on `guess_parser()`: https://bookdown.org/f_lennert/data-prep_2days/readr.html#rds-and-.rdatafiles
+Check this page from ["Data cleaning for data scientists"](https://bookdown.org/f_lennert/data-prep_2days/readr.html#rds-and-.rdatafiles) for more examples on `guess_parser()`.
 :::
 
 
@@ -594,7 +614,7 @@ Check this page for more examples on `guess_parser()`: https://bookdown.org/f_le
 
 ## {class="inverse"}
 
-`R` data structures in depth
+R data structures in depth
 
 
 
@@ -613,6 +633,8 @@ In the second lecture, we looked at **atomic** vectors as the basic building blo
 
 
 ## Structures to work with (in R)
+
+In the second lecture, we looked at **atomic** vectors as the basic building blocks in `R`. 
 
 We distinguish two basic characteristics:
 

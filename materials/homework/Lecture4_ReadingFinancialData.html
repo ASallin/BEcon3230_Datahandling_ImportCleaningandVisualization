@@ -3171,7 +3171,7 @@ vertical-align: -.125em;
 </section>
 <section id="parse-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="parse-the-data">Parse the data</h2>
-<p>Import the table using the <code>read.csv()</code> function in your environment. Make sure you have the right path to access the .txt document. What does this parser do? Explore the data.frame. What is its structure? What are its dimensions?</p>
+<p>Import the table using the <code>read.csv()</code> function in your environment. This is the basic R function. Make sure you have the right path to access the .txt document. What does this parser do? Explore the data.frame. What is its structure? What are its dimensions?</p>
 <section id="solution-1" class="level3">
 <h3 class="anchored" data-anchor-id="solution-1">Solution</h3>
 <div class="cell">
@@ -3212,14 +3212,14 @@ vertical-align: -.125em;
 30      FirmE:2022:2218:989.080575768091:Health</code></pre>
 </div>
 </div>
-<p>When importing the file with <code>read.csv()</code>, we notice that the output is not correct: R does not understand that the value separator is a “:” and not a comma. For this reason, the file is not correctly read. As said above, we need to specify the character used as separator.</p>
+<p>When importing the file with <code>read.csv()</code>, we notice that the output is not correct: R does not understand that the <strong>delimiter</strong> is a “:” and not a comma. For this reason, the file is not correctly read. As said above, we need to specify the character used as delimiter (or value separator)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>financial_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;financial_data.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec, : invalid multibyte string at &#39;&lt;f6&gt;&#39;</code></pre>
 </div>
 </div>
-<p>When using read.csv(), we notice the following error: <em>“Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec, : invalid multibyte string at ‘<f6>’”</f6></em> This means there is an encoding problem in the file. A visual exploration in the text file shows us that the encoding problem is in row 10, col 3.</p>
+<p>When using read.csv(), we notice the following error: <em>“Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec, : invalid multibyte string at ‘<f6>’”</f6></em>. After googling this error, we find out that it means there is an encoding problem in the file. A visual exploration in the text file shows us that the encoding problem is in row 10, col 3.</p>
 <p>When using read_delim(), there is no error: even though the encoding problem persists, the function is able to read the data and the special character is displayed as simple text. <strong>This is an advantage of the <code>tidyverse</code> functions, which are more robust to encoding issues.</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>financial_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;financial_data.txt&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;:&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3253,20 +3253,21 @@ dbl (2): Year, Profit
 </div>
 <p>Exploring the data with <code>head()</code> and <code>str()</code>, the data looks now like what I expect… except for the variable “Revenue”, which is still a character. I remove the special ö character from the encoding issue and coerce to numeric.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(financial_data, <span class="dv">10</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(financial_data)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove special character</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>financial_data[<span class="dv">10</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1933</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Coerce to numeric</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>financial_data<span class="sc">$</span>Revenue <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(financial_data<span class="sc">$</span>Revenue)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Another way of writing the column selection</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>financial_data[<span class="dv">10</span>, <span class="st">&quot;Revenue&quot;</span>]</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>financial_data[<span class="dv">10</span>, <span class="st">&quot;Revenue&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1933</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>financial_data[, <span class="st">&quot;Revenue&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(financial_data[, <span class="st">&quot;Revenue&quot;</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(financial_data, <span class="dv">10</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(financial_data)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove special character</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>financial_data[<span class="dv">10</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">1933</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Coerce to numeric</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>financial_data<span class="sc">$</span>Revenue <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(financial_data<span class="sc">$</span>Revenue)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Another way of writing the column selection</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>financial_data[<span class="dv">10</span>, <span class="st">&quot;Revenue&quot;</span>]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>financial_data[<span class="dv">10</span>, <span class="st">&quot;Revenue&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1933</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>financial_data[, <span class="st">&quot;Revenue&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(financial_data[, <span class="st">&quot;Revenue&quot;</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data is now ready. We are ready to compute the rest of the exercise.</p>
 <p><br></p>
@@ -3324,7 +3325,7 @@ dbl (2): Year, Profit
 <h2 class="anchored" data-anchor-id="nests">Nests 👻</h2>
 <p>Split your data using the factor variable into three data frames that are contained in a list. Compute the mean profit for each data frame.</p>
 <ul>
-<li>Hint: use the function <code>split</code>.</li>
+<li>Hint: use the function <code>split</code>. Use the help from R or from your favorite LLM to know more about this function.</li>
 <li>Hint: use a <code>for-loop</code> over each list element to compute the mean</li>
 </ul>
 <section id="solution-5" class="level3">

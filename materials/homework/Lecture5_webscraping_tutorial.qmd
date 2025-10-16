@@ -1,6 +1,6 @@
 ---
 title: "Tutorial (advanced): Importing data from a HTML table (on a website)"
-subtitle: "Exercise to lecture 7"
+subtitle: "Exercise to lecture 5"
 format:
   html:
     theme: ../../style/hsgtheme.scss

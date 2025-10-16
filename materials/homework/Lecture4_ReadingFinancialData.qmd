@@ -97,7 +97,7 @@ We notice that the data is separated by `:`, which will require either `read_del
 
 ## Parse the data
 
-Import the table using the `read.csv()` function in your environment. Make sure you have the right path to access the .txt document. What does this parser do? Explore the data.frame. What is its structure? What are its dimensions?
+Import the table using the `read.csv()` function in your environment. This is the basic R function. Make sure you have the right path to access the .txt document. What does this parser do? Explore the data.frame. What is its structure? What are its dimensions?
 
 ### Solution
 ```{r eval = TRUE, error=TRUE, echo=TRUE}
@@ -106,13 +106,13 @@ financial_data <- read.csv("financial_data.txt")
 financial_data
 ```
 
-When importing the file with `read.csv()`, we notice that the output is not correct: R does not understand that the value separator is a ":" and not a comma. For this reason, the file is not correctly read. As said above, we need to specify the character used as separator.
+When importing the file with `read.csv()`, we notice that the output is not correct: R does not understand that the **delimiter** is a ":" and not a comma. For this reason, the file is not correctly read. As said above, we need to specify the character used as delimiter (or value separator)
 
 ```{r eval = TRUE, error=TRUE, echo=TRUE}
 financial_data <- read.csv("financial_data.txt", sep = ":")
 ```
 
-When using read.csv(), we notice the following error: *"Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec,  : invalid multibyte string at '<f6>'"* This means there is an encoding problem in the file. A visual exploration in the text file shows us that the encoding problem is in row 10, col 3.
+When using read.csv(), we notice the following error: *"Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec,  : invalid multibyte string at '<f6>'"*. After googling this error, we find out that it  means there is an encoding problem in the file. A visual exploration in the text file shows us that the encoding problem is in row 10, col 3.
 
 When using read_delim(), there is no error: even though the encoding problem persists, the function is able to read the data and the special character is displayed as simple text. **This is an advantage of the `tidyverse` functions, which are more robust to encoding issues.**
 
@@ -147,6 +147,7 @@ financial_data <- read.csv("financial_data.txt",
 Exploring the data with `head()` and `str()`, the data looks now like what I expect... except for the variable "Revenue", which is still a character. I remove the special ö character from the encoding issue and coerce to numeric.
 
 ```{r eval = TRUE, echo=TRUE, output = FALSE}
+# Explore
 head(financial_data, 10)
 str(financial_data)
 
@@ -210,7 +211,7 @@ It does not make sense to have the firms as factors, as they are unique identifi
 ## Nests  👻
 Split your data using the factor variable into three data frames that are contained in a list. Compute the mean profit for each data frame. 
 
-- Hint: use the function `split`. 
+- Hint: use the function `split`. Use the help from R or from your favorite LLM to know more about this function. 
 - Hint: use a `for-loop` over each list element to compute the mean
 
 

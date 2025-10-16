@@ -16,12 +16,16 @@ highlight-style: dracula
 #| label: setup
 #| include: false
 options(width = 100)
-knitr::opts_chunk$set(results = "hold")
+# knitr::opts_chunk$set(results = "hold")
 library(knitr)
 library(purrr)
+library(readr)
 ```
 
 
+::: {style="font-size: 80%;"}
+**Note**: *Sections and subsections marked with an asterisk (\*) are not exam-relevant. They are meant for deeper understanding.* 
+:::
 
 
 <br>
@@ -29,7 +33,7 @@ library(purrr)
 # `R` data structures in depth
 
 
-## Structures to work with in R
+<br>Structures to work with in R
 
 We distinguish two basic characteristics:
 
@@ -84,6 +88,8 @@ typeof(c); class(c)
 
 
 
+<br>
+
 ## Data types: character
 
 ```{r, echo = TRUE}
@@ -107,6 +113,8 @@ a + b
 ```
 
 
+<br>
+
 ## Data types: special values
 
   - `NA`: "Not available", i.e. missing value for any type
@@ -115,6 +123,8 @@ a + b
   - `NULL`: absence of value
 
 
+
+<br>
 
 ## Data structures: vectors
 
@@ -152,6 +162,7 @@ One of the two vectors is **coerced**. Vectors must be homogeneous in type. If t
 
 Coercion hierarchy: Types from least to most flexible are: logical <- integer <- double <- character.
 
+
 #### Implicit coercion
 
 R will implicitly coerce to the most flexible type.
@@ -163,6 +174,26 @@ mixed2
 x <- c(FALSE, FALSE, TRUE)
 as.numeric(x)
 ```
+
+
+##### Example of implicit coercion with comparison operators*
+
+For instance, comparison operators will coerce their arguments. This is not the case with mathematical operators. This is an interesting and subtle behavior in R, and it is not similar in Python. 
+
+```{r, echo = TRUE}
+2 == "2"
+```
+
+returns `TRUE`. This can only be the case if R coerces one of the two arguments in order to correspond to the type of the other argument. 
+
+Using the `?` to call the help function on the `==` operator:
+```{r, echo = TRUE, eval = FALSE}
+?"=="
+```
+
+We read that *"If the two arguments are atomic vectors of different types, one is coerced to the type of the other, the (decreasing) order of precedence being character, complex, numeric, integer, logical and raw."*
+
+
 
 
 #### Explicit coercion
@@ -221,6 +252,8 @@ dim(my_array)
 my_array + my_array2
 ```
 
+<br>
+
 ## Data frames, tibbles, and data tables
 
   - Each column contains a vector of a given data type (or factor), but all columns need to be of identical length.
@@ -248,6 +281,8 @@ df
 df$gender
 ```
 
+
+<br>
 
 ## Data structures: lists
 
@@ -285,6 +320,8 @@ Most objects in R can have **attributes**. These are extra pieces of information
   - length
 
 
+<br>
+
 ## Data attributes
 
 ```{r, echo = TRUE}
@@ -297,6 +334,8 @@ dimnames(m) <- list(c("row1", "row2"), c("col1", "col2", "col3"))
 m
 ```
 
+
+<br>
 
 ## Factors
 

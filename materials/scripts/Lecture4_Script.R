@@ -16,8 +16,7 @@ library(readr)
 read_csv('"District","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
 "Courtelary",80.2,17,15,12,9.96,22.2')
 
-swiss_imported <- read.csv("data/swiss.csv")
-
+swiss_imported <- read.csv("C:/Users/aurel/Downloads/swiss.csv")
 
 read_csv('A,B
          12:00, 12:00
