@@ -92,6 +92,11 @@ tab_node <- html_element(
   xpath = "//*[@id='mw-content-text']/div/table[2]"
 )
 
+# print the HTML structure of the table
+cat("HTML structure of the table:\n")
+cat(as.character(tab_node))
+cat("\n\n")
+
 # extract the table as data.frame
 tab <- html_table(tab_node)
 tab

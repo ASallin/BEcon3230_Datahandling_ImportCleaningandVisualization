@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Dr. Aurélien Sallin"
 subtitle: 'Lecture 5:<br>Non-rectangular data'
-date: "2025-10-24"
+date: "2025-10-16"
 echo: false
 code-line-numbers: false
 format:
@@ -1274,54 +1274,55 @@ include_graphics("../../img/1_SwissGDP.png")
 -> Exercise session last week!
 
 
+# Q&A
 
 
-# Text as Data and Image Data
+<!-- # Text as Data and Image Data -->
 
-## Text as Data became more common as data source
+<!-- ## Text as Data became more common as data source -->
 
- - Extract text from historical documents (scan, use OCR)
- - Use machine learning to label text (too costly to do manually)
- - Extract sentiment (finance for instance)
-
-
-#### Text is unstructured data. Text analysis and feature extraction is the basis for new genAI models!
+<!--  - Extract text from historical documents (scan, use OCR) -->
+<!--  - Use machine learning to label text (too costly to do manually) -->
+<!--  - Extract sentiment (finance for instance) -->
 
 
-## An example of text mining in R
-
-```{r, echo=FALSE, out.width = "550%", fig.align='center', fig.cap= "Source: https://confessionsofadatascientist.com/text-analysis-with-r-repro-report.html"}
-include_graphics("../../img/textpipeline.jpg")
-```
+<!-- #### Text is unstructured data. Text analysis and feature extraction is the basis for new genAI models! -->
 
 
+<!-- ## An example of text mining in R -->
 
-## Self-study on text mining
-
-**Read Chapter 6 on text data in [the book by U. Matter](https://umatter.github.io/datahandling/text-data.html)**
-
-<br>
-
-#### Key concepts:
-
-- **regular expressions**: flexible syntax used to detect and describe patterns in strings
-- **corpus**: a collection of authentic text organized into datasets
-- **documents**
-- **tokens** and **N-grams**
-- **document-term-matrix** (dtm)
-
-
-#### Key libraries:
-
-- `quanteda`: see [Quanteda](https://quanteda.io/)
-- `tidytext`: see [Text Mining with R](https://www.tidytextmining.com/)
+<!-- ```{r, echo=FALSE, out.width = "550%", fig.align='center', fig.cap= "Source: https://confessionsofadatascientist.com/text-analysis-with-r-repro-report.html"} -->
+<!-- include_graphics("../../img/textpipeline.jpg") -->
+<!-- ``` -->
 
 
 
-## Happy break!!!
-```{r break, echo=FALSE, out.width = "100%", fig.align='center'}
-include_graphics("../../img/midjourney_break.png")
-```
+<!-- ## Self-study on text mining -->
+
+<!-- **Read Chapter 6 on text data in [the book by U. Matter](https://umatter.github.io/datahandling/text-data.html)** -->
+
+<!-- <br> -->
+
+<!-- #### Key concepts: -->
+
+<!-- - **regular expressions**: flexible syntax used to detect and describe patterns in strings -->
+<!-- - **corpus**: a collection of authentic text organized into datasets -->
+<!-- - **documents** -->
+<!-- - **tokens** and **N-grams** -->
+<!-- - **document-term-matrix** (dtm) -->
+
+
+<!-- #### Key libraries: -->
+
+<!-- - `quanteda`: see [Quanteda](https://quanteda.io/) -->
+<!-- - `tidytext`: see [Text Mining with R](https://www.tidytextmining.com/) -->
+
+
+
+<!-- ## Happy break!!! -->
+<!-- ```{r break, echo=FALSE, out.width = "100%", fig.align='center'} -->
+<!-- include_graphics("../../img/midjourney_break.png") -->
+<!-- ``` -->
 
 
 
