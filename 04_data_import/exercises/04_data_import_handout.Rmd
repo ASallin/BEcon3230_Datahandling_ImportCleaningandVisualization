@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Aurélien Sallin (lecturer) and Andrea Burro (class tutor)"
-date: "21/11/2024"
+date: "20/11/2025"
 output:
   pdf_document: default
   html_document:
