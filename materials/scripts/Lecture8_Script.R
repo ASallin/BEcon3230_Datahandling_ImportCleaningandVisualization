@@ -3,7 +3,7 @@
 #
 # This script is the main script for lecture 8 of Data Handling.
 # 
-# A. Sallin, St. Gallen, 2024
+# A. Sallin, St. Gallen, 2025
 #######################################################################
 
 

@@ -1479,7 +1479,13 @@ margin-right: 0; }
 </section>
 <section id="json-files-open-ended-question" class="slide level2">
 <h2>JSON files: open-ended question</h2>
-<p>You import the following json file using fromJSON() and store the file in the object <code>students</code> in R, i.e. <code>students &lt;- fromJSON(&quot;students.json&quot;)</code>.</p>
+<div style="font-size: 70%;">
+<p>You import the following json file using fromJSON() and store the file in the object <code>students</code> in R, i.e. <br> <code>students &lt;- fromJSON(&quot;students.json&quot;)</code>.</p>
+<p>Which statements are TRUE?</p>
+</div>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div style="font-size: 65%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb8-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;students&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
@@ -1516,6 +1522,9 @@ margin-right: 0; }
 <span id="cb8-33"><a href aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
 <span id="cb8-34"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+</div><div class="column" style="width:40%;">
+<div style="font-size: 60%;">
 <ul>
 <li>The object <code>students</code> is a list.</li>
 <li><code>students$students$firstName[2]</code> returns “Anna”</li>
@@ -1526,9 +1535,14 @@ margin-right: 0; }
   &quot;name&quot;: &quot;Anna&quot;,              // a key &quot;name&quot; with a string value &quot;Anna&quot;
   &quot;grades&quot;: [5, 5.5, 6]        // a key &quot;grades&quot; with an array value [5, 5.5, 6]
 }</code></pre>
+</div>
+</div></div>
 </section>
 <section id="xml-1" class="slide level2">
 <h2>XML</h2>
+<p>Which statements are TRUE?</p>
+<div class="columns">
+<div class="column" style="width:60%;">
 <div class="cell" data-max.lines="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb10-1"><a href aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">students</span>&gt;</span>
 <span id="cb10-2"><a href aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">student</span>&gt;</span>
@@ -1563,6 +1577,7 @@ margin-right: 0; }
 <span id="cb10-31"><a href aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">student</span>&gt;</span>
 <span id="cb10-32"><a href aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">students</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div><div class="column" style="width:40%;">
 <div style="font-size: 60%;">
 <ul>
 <li>‘students’ is the root-node, ‘grades’ are its children</li>
@@ -1575,6 +1590,7 @@ margin-right: 0; }
 <span id="cb11-3"><a href aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">student</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</div></div>
 </section></section>
 <section>
 <section id="part-ii-data-preparation-analysis-and-visualization" class="title-slide slide level1 center">
@@ -1927,7 +1943,7 @@ Rive Gauche       42.8        27.7          22        29    58.33             19
 <li>Panel data tracks the same units over multiple time periods: we observe each unit repeatedly across time.<br></li>
 <li><strong>Observation</strong>: One unit at one specific time point (e.g., Person A in 2020, Person A in 2021).</li>
 </ul>
-<div style="margin-top: 1.5em;">
+<div style="margin-top: 1.25em;">
 
 </div>
 <h4 id="cross-sectional-data">Cross-Sectional Data:</h4>
@@ -1935,7 +1951,7 @@ Rive Gauche       42.8        27.7          22        29    58.33             19
 <li>“Snapshot” of different units at the same moment.</li>
 <li><strong>Observation</strong>: One unit at a single point in time (e.g., Person A, Person B, Person C all measured in 2024).</li>
 </ul>
-<div style="margin-top: 1.5em;">
+<div style="margin-top: 1.25em;">
 
 </div>
 <h4 id="time-series-data">Time Series Data:</h4>
@@ -2111,7 +2127,7 @@ Rive Gauche       42.8        27.7          22        29    58.33             19
 <li><strong>Data entry</strong> and manual correction</li>
 <li><strong>Reports and tables</strong> for presentation<br>
 </li>
-<li><strong>Statistical models</strong> like regressions where each predictor should be a separate column (<code>lm</code>), many machine learning functions</li>
+<li><strong>Statistical models</strong> like regressions where each predictor should be a separate column (<code>lm</code>), many machine learning functions, matrix multiplication</li>
 <li><strong>Spreadsheet analysis</strong> (Excel-style operations)</li>
 <li><strong>Human readability</strong> and quick scanning</li>
 </ul>

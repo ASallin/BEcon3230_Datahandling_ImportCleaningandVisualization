@@ -288,8 +288,17 @@ Use APIs to retrieve World Bank Data and OECD Data.
 # Warm-up
 ## JSON files: open-ended question
 
-You import the following json file using fromJSON() and store the file in the object `students` in R, i.e. `students <- fromJSON("students.json")`.
+::: {style="font-size: 70%;"}
+You import the following json file using fromJSON() and store the file in the object `students` in R, i.e. <br> `students <- fromJSON("students.json")`. 
 
+Which statements are TRUE?
+
+::: 
+
+:::: {.columns}
+::: {.column width="60%"}
+
+::: {style="font-size: 65%;"}
 ```{json, echo = TRUE}
 {
   "students": [
@@ -326,6 +335,12 @@ You import the following json file using fromJSON() and store the file in the ob
   ]
 }
 ```
+:::
+:::
+
+::: {.column width="40%"}
+
+::: {style="font-size: 60%;"}
 
 - The object `students` is a list.
 - `students$students$firstName[2]` returns "Anna"
@@ -337,9 +352,17 @@ You import the following json file using fromJSON() and store the file in the ob
   "grades": [5, 5.5, 6]        // a key "grades" with an array value [5, 5.5, 6]
 }
 ```
+:::
+:::
+::::
 
 ## XML
 
+Which statements are TRUE?
+
+:::: {.columns}
+
+::: {.column width="60%"}
 ```{xml, echo = TRUE, max.lines = 10}
 <students>
   <student>
@@ -374,6 +397,9 @@ You import the following json file using fromJSON() and store the file in the ob
   </student>
 </students>
 ```
+:::
+
+::: {.column width="40%"}
 
 ::: {style="font-size: 60%;"}
   - 'students' is the root-node, 'grades' are its children
@@ -385,7 +411,8 @@ You import the following json file using fromJSON() and store the file in the ob
 </student>
 ```
 :::
-
+:::
+::::
 
 
 # Part II: Data preparation, analysis, and visualization
@@ -625,14 +652,14 @@ In Economics, the definition of an *observation* can vary:
   - Panel data tracks the same units over multiple time periods: we observe each unit repeatedly across time.<br>
   - **Observation**: One unit at one specific time point (e.g., Person A in 2020, Person A in 2021).
 
-<div style="margin-top: 1.5em;"></div>
+<div style="margin-top: 1.25em;"></div>
 
 #### Cross-Sectional Data:
 
   - "Snapshot" of different units at the same moment.
   - **Observation**: One unit at a single point in time (e.g., Person A, Person B, Person C all measured in 2024).
 
-<div style="margin-top: 1.5em;"></div>
+<div style="margin-top: 1.25em;"></div>
 
 #### Time Series Data:
 
