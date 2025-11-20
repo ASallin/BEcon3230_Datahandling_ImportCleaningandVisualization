@@ -1479,7 +1479,7 @@ margin-right: 0; }
 </section>
 <section id="json-files-open-ended-question" class="slide level2">
 <h2>JSON files: open-ended question</h2>
-<p>You import the following json file using fromJSON() and store the file in the object students in R.</p>
+<p>You import the following json file using fromJSON() and store the file in the object <code>students</code> in R, i.e. <code>students &lt;- fromJSON(&quot;students.json&quot;)</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb8-2"><a href aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;students&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
@@ -1505,8 +1505,8 @@ margin-right: 0; }
 <span id="cb8-22"><a href aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
 <span id="cb8-23"><a href aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
 <span id="cb8-24"><a href aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">19093</span><span class="fu">,</span></span>
-<span id="cb8-25"><a href aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;firstName&quot;</span><span class="fu">:</span> <span class="st">&quot;Noah&quot;</span><span class="fu">,</span></span>
-<span id="cb8-26"><a href aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;lastName&quot;</span><span class="fu">:</span> <span class="st">&quot;Trevor&quot;</span><span class="fu">,</span></span>
+<span id="cb8-25"><a href aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;firstName&quot;</span><span class="fu">:</span> <span class="st">&quot;Trevor&quot;</span><span class="fu">,</span></span>
+<span id="cb8-26"><a href aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;lastName&quot;</span><span class="fu">:</span> <span class="st">&quot;Noah&quot;</span><span class="fu">,</span></span>
 <span id="cb8-27"><a href aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;grades&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
 <span id="cb8-28"><a href aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;micro&quot;</span><span class="fu">:</span> <span class="dv">4</span><span class="fu">,</span></span>
 <span id="cb8-29"><a href aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;macro&quot;</span><span class="fu">:</span> <span class="fl">4.5</span><span class="fu">,</span></span>
@@ -1517,14 +1517,14 @@ margin-right: 0; }
 <span id="cb8-34"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>The object students is a list.</li>
-<li><code>data$students$firstName[2]</code> returns “Anna”</li>
+<li>The object <code>students</code> is a list.</li>
+<li><code>students$students$firstName[2]</code> returns “Anna”</li>
 <li>In JSON, the value for the “students” key is itself an object (key–value pair).</li>
-<li>In JSON, you have two ways of writing data: arrays and objects. Objects are key-value pairs.</li>
+<li>In JSON, you have two ways of writing data: arrays and objects. Objects are key-value pairs, and arrays are ordered lists.</li>
 </ul>
 <pre><code>{
-  &quot;name&quot;: &quot;Anna&quot;,              // object (key–value pairs)
-  &quot;grades&quot;: [5, 5.5, 6]        // array (ordered list)
+  &quot;name&quot;: &quot;Anna&quot;,              // a key &quot;name&quot; with a string value &quot;Anna&quot;
+  &quot;grades&quot;: [5, 5.5, 6]        // a key &quot;grades&quot; with an array value [5, 5.5, 6]
 }</code></pre>
 </section>
 <section id="xml-1" class="slide level2">
@@ -1553,8 +1553,8 @@ margin-right: 0; }
 <span id="cb10-21"><a href aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">student</span>&gt;</span>
 <span id="cb10-22"><a href aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">student</span>&gt;</span>
 <span id="cb10-23"><a href aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;19093&lt;/<span class="kw">id</span>&gt;</span>
-<span id="cb10-24"><a href aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">firstName</span>&gt;Noah&lt;/<span class="kw">firstName</span>&gt;</span>
-<span id="cb10-25"><a href aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">lastName</span>&gt;Trevor&lt;/<span class="kw">lastName</span>&gt;</span>
+<span id="cb10-24"><a href aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">firstName</span>&gt;Trevor&lt;/<span class="kw">firstName</span>&gt;</span>
+<span id="cb10-25"><a href aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">lastName</span>&gt;Noah&lt;/<span class="kw">lastName</span>&gt;</span>
 <span id="cb10-26"><a href aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">grades</span>&gt;</span>
 <span id="cb10-27"><a href aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">micro</span>&gt;4&lt;/<span class="kw">micro</span>&gt;</span>
 <span id="cb10-28"><a href aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">macro</span>&gt;4.5&lt;/<span class="kw">macro</span>&gt;</span>
@@ -1570,7 +1570,7 @@ margin-right: 0; }
 <li>This code would be an alternative, equivalent notation for the third student in the xml file above.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb11-1"><a href aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">student</span><span class="ot"> id=</span><span class="st">&quot;19093&quot;</span><span class="ot"> firstName=</span><span class="st">&quot;Noah&quot;</span><span class="ot"> lastName=</span><span class="st">&quot;Trevor&quot;</span>&gt;</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb11-1"><a href aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">student</span><span class="ot"> id=</span><span class="st">&quot;19093&quot;</span><span class="ot"> firstName=</span><span class="st">&quot;Trevor&quot;</span><span class="ot"> lastName=</span><span class="st">&quot;Noah&quot;</span>&gt;</span>
 <span id="cb11-2"><a href aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">grades</span><span class="ot"> micro=</span><span class="st">&quot;4&quot;</span><span class="ot"> macro=</span><span class="st">&quot;4.5&quot;</span><span class="ot"> dataHandling=</span><span class="st">&quot;5&quot;</span> /&gt;</span>
 <span id="cb11-3"><a href aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">student</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1927,7 +1927,7 @@ Rive Gauche       42.8        27.7          22        29    58.33             19
 <li>Panel data tracks the same units over multiple time periods: we observe each unit repeatedly across time.<br></li>
 <li><strong>Observation</strong>: One unit at one specific time point (e.g., Person A in 2020, Person A in 2021).</li>
 </ul>
-<div style="margin-top: 2em;">
+<div style="margin-top: 1.5em;">
 
 </div>
 <h4 id="cross-sectional-data">Cross-Sectional Data:</h4>
@@ -1935,7 +1935,7 @@ Rive Gauche       42.8        27.7          22        29    58.33             19
 <li>“Snapshot” of different units at the same moment.</li>
 <li><strong>Observation</strong>: One unit at a single point in time (e.g., Person A, Person B, Person C all measured in 2024).</li>
 </ul>
-<div style="margin-top: 2em;">
+<div style="margin-top: 1.5em;">
 
 </div>
 <h4 id="time-series-data">Time Series Data:</h4>
@@ -2097,24 +2097,23 @@ Rive Gauche       42.8        27.7          22        29    58.33             19
 <h2>When to Use Wide vs Long Format</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h4 id="use-wide-format-for"><strong>Use Wide Format For:</strong></h4>
-<ul>
-<li><strong>Data entry</strong> and manual input</li>
-<li><strong>Reports and tables</strong> for presentation<br>
-</li>
-<li><strong>Some statistical models</strong> (e.g., repeated measures ANOVA)</li>
-<li><strong>Spreadsheet analysis</strong> (Excel-style operations)</li>
-<li><strong>Human readability</strong> and quick scanning</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<h4 id="use-long-format-for"><strong>Use Long Format For:</strong></h4>
+<h4 id="use-long-format-for"><strong>Use Long Format for:</strong></h4>
 <ul>
 <li><strong>Data analysis</strong> with tidyverse/ggplot2</li>
-<li><strong>Statistical modeling</strong> (most R functions)</li>
-<li><strong>Grouping operations</strong> (summarize, mutate by groups)</li>
+<li><strong>Grouping and summarizing operations</strong> (summarize, mutate by groups)</li>
 <li><strong>Time series analysis</strong></li>
 <li><strong>Following tidy data principles</strong></li>
 <li><strong>Creating visualizations</strong> with multiple variables</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="use-wide-format-for"><strong>Use Wide Format for:</strong></h4>
+<ul>
+<li><strong>Data entry</strong> and manual correction</li>
+<li><strong>Reports and tables</strong> for presentation<br>
+</li>
+<li><strong>Statistical models</strong> like regressions where each predictor should be a separate column (<code>lm</code>), many machine learning functions</li>
+<li><strong>Spreadsheet analysis</strong> (Excel-style operations)</li>
+<li><strong>Human readability</strong> and quick scanning</li>
 </ul>
 </div></div>
 <center>

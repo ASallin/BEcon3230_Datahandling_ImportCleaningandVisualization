@@ -288,7 +288,7 @@ Use APIs to retrieve World Bank Data and OECD Data.
 # Warm-up
 ## JSON files: open-ended question
 
-You import the following json file using fromJSON() and store the file in the object students in R.
+You import the following json file using fromJSON() and store the file in the object `students` in R, i.e. `students <- fromJSON("students.json")`.
 
 ```{json, echo = TRUE}
 {
@@ -315,8 +315,8 @@ You import the following json file using fromJSON() and store the file in the ob
     },
     {
       "id": 19093,
-      "firstName": "Noah",
-      "lastName": "Trevor",
+      "firstName": "Trevor",
+      "lastName": "Noah",
       "grades": {
           "micro": 4,
           "macro": 4.5,
@@ -327,14 +327,14 @@ You import the following json file using fromJSON() and store the file in the ob
 }
 ```
 
-- The object students is a list.
-- `data$students$firstName[2]` returns "Anna"
+- The object `students` is a list.
+- `students$students$firstName[2]` returns "Anna"
 - In JSON, the value for the "students" key is itself an object (key–value pair).
-- In JSON, you have two ways of writing data: arrays and objects. Objects are key-value pairs.
+- In JSON, you have two ways of writing data: arrays and objects. Objects are key-value pairs, and arrays are ordered lists.
 ```
 {
-  "name": "Anna",              // object (key–value pairs)
-  "grades": [5, 5.5, 6]        // array (ordered list)
+  "name": "Anna",              // a key "name" with a string value "Anna"
+  "grades": [5, 5.5, 6]        // a key "grades" with an array value [5, 5.5, 6]
 }
 ```
 
@@ -364,8 +364,8 @@ You import the following json file using fromJSON() and store the file in the ob
   </student>
   <student>
     <id>19093</id>
-    <firstName>Noah</firstName>
-    <lastName>Trevor</lastName>
+    <firstName>Trevor</firstName>
+    <lastName>Noah</lastName>
     <grades>
       <micro>4</micro>
       <macro>4.5</macro>
@@ -380,7 +380,7 @@ You import the following json file using fromJSON() and store the file in the ob
   - The siblings of Trevor Noah are Anna Schmid and Peter Mueller
   - This code would be an alternative, equivalent notation for the third student in the xml file above.
 ```{xml, echo = TRUE}
-<student id="19093" firstName="Noah" lastName="Trevor">
+<student id="19093" firstName="Trevor" lastName="Noah">
       <grades micro="4" macro="4.5" dataHandling="5" />
 </student>
 ```
@@ -625,14 +625,14 @@ In Economics, the definition of an *observation* can vary:
   - Panel data tracks the same units over multiple time periods: we observe each unit repeatedly across time.<br>
   - **Observation**: One unit at one specific time point (e.g., Person A in 2020, Person A in 2021).
 
-<div style="margin-top: 2em;"></div>
+<div style="margin-top: 1.5em;"></div>
 
 #### Cross-Sectional Data:
 
   - "Snapshot" of different units at the same moment.
   - **Observation**: One unit at a single point in time (e.g., Person A, Person B, Person C all measured in 2024).
 
-<div style="margin-top: 2em;"></div>
+<div style="margin-top: 1.5em;"></div>
 
 #### Time Series Data:
 
@@ -836,26 +836,25 @@ include_graphics("../../img/longvswideCode.png")
 
 ::: {.column width="50%"}
 
-#### **Use Wide Format For:** 
+#### **Use Long Format for:** 
 
-- **Data entry** and manual input
-- **Reports and tables** for presentation  
-- **Some statistical models** (e.g., repeated measures ANOVA)
-- **Spreadsheet analysis** (Excel-style operations)
-- **Human readability** and quick scanning
+- **Data analysis** with tidyverse/ggplot2
+- **Grouping and summarizing operations** (summarize, mutate by groups)
+- **Time series analysis**
+- **Following tidy data principles**
+- **Creating visualizations** with multiple variables
 
 :::
 
 ::: {.column width="50%"}
 
-#### **Use Long Format For:** 
+#### **Use Wide Format for:** 
 
-- **Data analysis** with tidyverse/ggplot2
-- **Statistical modeling** (most R functions)
-- **Grouping operations** (summarize, mutate by groups)
-- **Time series analysis**
-- **Following tidy data principles**
-- **Creating visualizations** with multiple variables
+- **Data entry** and manual correction
+- **Reports and tables** for presentation  
+- **Statistical models** like regressions where each predictor should be a separate column (`lm`), many machine learning functions, matrix multiplication
+- **Spreadsheet analysis** (Excel-style operations)
+- **Human readability** and quick scanning
 
 :::
 ::::

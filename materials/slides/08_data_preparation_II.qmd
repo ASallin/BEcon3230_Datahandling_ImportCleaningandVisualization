@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 8:<br>Data Preparation, Manipulation, and Cleaning II'
 author: "Dr. Aurélien Sallin"
-date: "2024-11-21"
+date: "2025-11-20"
 echo: false
 code-line-numbers: false
 format:
@@ -80,6 +80,15 @@ include_graphics("../../img/dalle_garbageinout.png")
 - **Clean** data.
 
 
+## Different data structures in Economics
+
+::: {style="margin-top: -5em;"}
+```{r , echo=FALSE, out.width = "100%", fig.align='center'}
+include_graphics("../../img/panel_crosssection_timeseries.svg")
+```
+:::
+
+
 ## A tidy dataset is tidy, when ... 
 
   1. Each <span style="color:red">variable</span> is a <span style="color:red">column</span>; each column is a variable.
@@ -96,6 +105,36 @@ include_graphics("../../img/dalle_garbageinout.png")
 ```{r longvswideCode, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE, fig.cap="Long and wide data. Source: [Hugo Tavares](https://tavareshugo.github.io/r-intro-tidyverse-gapminder/09-reshaping/index.html)"}
 include_graphics("../../img/longvswideCode.png")
 ```
+
+
+## When to Use Wide vs Long Format 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### **Use Long Format for:** 
+
+- **Data analysis** with tidyverse/ggplot2
+- **Grouping and summarizing operations** (summarize, mutate by groups)
+- **Time series analysis**
+- **Following tidy data principles**
+- **Creating visualizations** with multiple variables
+
+:::
+
+::: {.column width="50%"}
+
+#### **Use Wide Format for:** 
+
+- **Data entry** and manual correction
+- **Reports and tables** for presentation  
+- <span style="color:red">**Statistical models**</span> like regressions where each predictor should be a separate column (`lm`), many machine learning functions, matrix multiplication (erratum last time!)
+- **Spreadsheet analysis** (Excel-style operations)
+- **Human readability** and quick scanning
+
+:::
+::::
 
 
 ## Stack/row-bind
@@ -140,31 +179,66 @@ schwiizerChuchiLong <- pivot_longer(schwiizerChuchi,
 ```{r garbage, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
 include_graphics("../../img/schwiizerchuchi.jpg")
 ```
-
 :::
 :::: 
 
-
+::: {style="margin-top: -1em;"}
 Which of the following statements is true?
+:::
+
+::: {style="font-size: 70%;"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
 
 - `nrow(schwiizerChuchiLong) == 12` returns `TRUE`
 - `dim(schwiizerChuchiLong)` returns `c(3, 12)`
+:::
+
+::: {.column width="50%"}
+
 - `dim(schwiizerChuchi)` returns `c(3, 12)`
 - `mean(schwiizerChuchiLong$Raclette) == 8.333`
 
+:::
+:::: 
+:::
 
+## A "weird" dataset
 
-## Tidy data: essay question
+  1. Is this dataset tidy?
+  2. Is this dataset long or wide?
+  3. What are the correct arguments to pivot it?
+  4. Is this structure useful?
 
-Why is this data frame not tidy, and what would you do to make it tidy? Write down your reasoning in numbered steps. You can write down some exact code, some higher-level code concepts, or in plain text.
+```{r, echo = F}
+weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx",
+                                     "Wayne", "Trump", "Marx",
+                                     "Wayne", "Trump", "Marx"),
+                       first_name = c("John", "Melania", "Karl",
+                                      "John", "Melania", "Karl",
+                                      "John", "Melania", "Karl"),
+                       gender = c("male", "female", "male",
+                                  "male", "female", "male",
+                                  "male", "female", "male"),
+                       value = c("150000", "250000", "10000",
+                                 "2000000", "5000000", "NA",
+                                 "50", "25", "NA"),
+                       variable = c("income", "income", "income",
+                                    "assets", "assets", "assets",
+                                    "age", "age", "age"),
+                       stringsAsFactors = FALSE)
+weird_df
+```
 
-```{r}
+<!-- ```{r}
 temp_location_data <- data.frame(
   temperature_location = c("22C_London", "18C_Paris", "25C_Rome")
 )
-```
+``` -->
 
-```{r, echo = FALSE, include=FALSE}
+<!-- ```{r, echo = FALSE, include=FALSE}
 # Tidying the dataset by separating the variables
 tidy_temp_location <- as.data.frame(
   str_split(temp_location_data$temperature_location,
@@ -173,10 +247,10 @@ tidy_temp_location <- as.data.frame(
 )
 
 names(tidy_temp_location) <- c("temperature", "location")
-```
+``` -->
 
 
-## Tidy data: essay question
+<!-- ## Tidy data: essay question
 
 Why is this data frame not tidy, and what would you do to make it tidy? Write down your reasoning in numbered steps. You can write down some exact code, some higher-level code concepts, or in plain text.
 
@@ -189,12 +263,12 @@ grades_data <- data.frame(
 )
 ```
 
-<br>
+<br> -->
 
-```{r, echo = FALSE, include=FALSE}
+<!-- ```{r, echo = FALSE, include=FALSE}
 tidy_grades <- grades_data %>%
   pivot_longer(cols = -Student, names_to = "Subject", values_to = "Grade")
-```
+``` -->
 
 
 
@@ -478,7 +552,7 @@ mydf <- mydf["Examination"]
 - `stringr` to deal with strings and regular expressions.
 
 
-
+# The end -> see you in `R`
 
 <!-- # A primer in linear regression/OLS (if time) -->
 
