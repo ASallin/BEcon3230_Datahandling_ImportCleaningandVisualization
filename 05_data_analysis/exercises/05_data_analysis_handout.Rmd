@@ -34,6 +34,23 @@ In this exercise, we will learn how to reshape data into long format using the b
 | unempmed | median duration of unemployment (weeks)             |
 | unemploy | number of unemployed (thousands)                    |
 
+<div style="margin-top:30px;"></div>
+
+\vspace{0.5cm}
+
+We will also use US gdp data from 2013 to 2017, which we obtained from the [FRED API](https://fred.stlouisfed.org/series/GDP). You can re-create the time series using the following code:
+
+```{r eval=FALSE, echo=TRUE, purl= FALSE}
+gdp <- data.frame(
+  "date" = seq(as.Date("2013-01-01"), as.Date("2017-10-01"), by = "quarter"),
+  "gdp" = c(16648.189, 16728.687, 16953.838, 17192.019,
+            17197.738, 17518.508, 17804.228, 17912.079,
+            18063.529, 18279.784, 18401.626, 18435.137,
+            18525.933, 18711.702, 18892.639, 19089.379,
+            19280.084, 19438.643, 19692.595, 20037.088)
+)
+```
+
 ### A.1 - Convert to Long Format
 
 Reshape the dataset into long format, so that for each date, there are multiple rows — one for each of the other variables. Save the result as `df_long`.
@@ -42,33 +59,85 @@ Reshape the dataset into long format, so that for each date, there are multiple 
 
 From the new `df_long` dataset, reshape the data back to its original wide format, and save it as `df`.
 
-## Exercise B: Cleaning Data
+\vspace{1cm}
 
-In this section, we'll practice three important data-cleaning functions from `dplyr`: `filter()`, `select()`, and `mutate()`.
 
-### B.1 - Filter Observations
+## Exercise B: Cleaning and Preparing Data
 
-Start with data `df`. We are only interested in observations collected after the year 2000. Filter the data accordingly and save the result as `df_reduced`.
+In this section, we'll practice three important data-cleaning functions from `dplyr`: `filter()`, `select()`, and `mutate()`. We'll use the `lubridate` package to help with date manipulation.
 
-### B.2 - Select Observations
+### B.1 - Unemployment rate
+
+Create a new variable called `unemployment_rate` in the `df` dataset, which is calculated as the number of unemployed (`unemploy`) divided by the total population (`pop`). Save the updated dataset as `df`.
+
+### B.2 - Filter Observations
+
+Start with data `df`. We are only interested in observations collected after the year 2000. Extract the year from your date, save it as a new variable called `year` in the `df` dataset. Then filter the data accordingly and save the result as `df_reduced`.
+
+### B.3 - Select Observations
 
 Now we are only interested in the evolution of `pce` and `pop` over time. Clean the data accordingly and save the new dataset `df_reduced`.
 
-### B.3 - Create Indicator Variable
+### B.4 - Create Indicator Variable
 
 We want to add a variable that marks all observations collected after the year 2000. Create a new variable called `after_2000` and add it to `df_reduced`.
 
+\vspace{1cm}
+
 ## Exercise C: Merging Data
 
-In the final exercise, we will learn how to merge two dataframes using `left_join()` from `dplyr`.
+In this exercise, we will learn how to merge two dataframes using `join()` from `dplyr`.
 
 ### C.1 - Merge Datasets
 
-We want to flag the original `economics` dataset with a new variable indicating whether each observation was collected after 2000. Use `left_join()` to merge `df` (the original dataset) with `df_reduced` (which contains after_2000). Which dataset should be used as the master (left) table, and which one as the joining (right) table?
+We want to merge the `economics` dataset with the `gdp` dataset created above. Which dataset should be used as the master (left) table, and which one as the joining (right) table? What are the joining variables? What potential problem do you foresee?
 
-### C.2 - Handle Missing Values
+### C.2 - Left join
 
-The merge created some missing values for the variable `after_2000`. Explain why this could happen, and propose a solution to have a tidy dataset.
+Use `left_join()` to merge `df` (the original dataset) with `gdp`. 
 
+### C.3 - Handle Missing Values
 
+The left-join merge created some missing values for the variable `gdp`. Explain why this could happen, and propose a solution to have a tidy dataset.
+
+### C.4 - Inner join
+
+Then use `inner_join()` to merge the two datasets. What is the difference between the dataset resulting from `left_join` and the one resulting from `inner_join`? Which one would you use in practice?
+
+### C.5 - Summary statistics
+
+Create a table named `summary_stats` with summary statistics (mean, median, standard deviation) of `unemployment_rate` and `gdp` per year. What do you observe?
+
+### C.6 - Arrange your Summary statistics
+
+Arrange the `summary_stats` table in descending year order.
+
+\vspace{1cm}
+
+## Exercise D (additional): Tidy the Pregnancy Dataset
+Execute the following code, which gives you a small dataset about pregnancy counts in a population. Is the dataset tidy? Tidy `preg`. Do you need to use `pivot_wider` or `pivot_longer`? What are the variables?
+
+```{r eval=FALSE, echo=TRUE, purl= FALSE}
+preg <- tribble(
+  ~pregnant, ~male, ~female,
+  "yes", NA, 10,
+  "no", 20, 12
+)
+```
+
+\vspace{1cm}
+
+## Exercise E (additional): Looking at correlations
+Execute the following commands, which will create a simulated dataset representing four countries, the number of Covid cases in each of these countries in 2020 and 2021, as well as the public spending dedicated to fighting Covid in 2020 and 2021.
+
+```{r eval=FALSE, echo=TRUE, purl= FALSE}
+df <- data.frame("Country" = c("US", "DE", "CH", "FR"),
+                 "Covid_2020" = runif(4, 0, 1),
+                 "AntiCovidExpenses_2020" = runif(4, 500, 1000))
+df <- cbind(df, 
+            "Covid_2021" = df$Covid_2020 + rnorm(4, 0, 0.1),
+            "AntiCovidExpenses_2021" = df$AntiCovidExpenses_2020 + rnorm(4, 0, 100))
+```
+
+You would like to investigate the correlation between public spending and the number of Covid cases across years and across countries. How do you proceed? Is this dataset long or wide? (Note: these data are simulated and are in no way representative of the reality.)
 
