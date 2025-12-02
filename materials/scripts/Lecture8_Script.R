@@ -60,42 +60,56 @@ cross_join(df_p, df_c)
 
 
 
-# Check the many-to-manyand the one-to-many behavior -----------------------------------------
+# Check the many-to-many and one-to-many behavior -----------------------------------------
 
-# MTM
-
-df_c <- data.frame(id = c(1:3,1:3,5),
-                   money_spent= c(1000, 2000, 6000, 1500, 3000, 5500,3000),
-                   currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD", "CAD"),
-                   year=c(2017,2017,2017,2018,2018,2018,2018))
-df_c
-
-df_mtm <- data.frame(
-  id = rep(1:3, 2),
-  year = rep(c(2017,2017,2017,2018,2018,2018), 2),
-  first_name = rep(c("Anna", "Betty", "Claire"), 2),
-  profession = rep(c("Economist", "Data Scientist",
-                 "Data Scientist"), 2)
+# Dataset 1: People (with duplicates - person appears multiple times)
+people_mtm <- data.frame(
+  id = c(1, 1, 2, 2),  # Each person appears twice, as student and employee/consultant
+  role = c("Student", "Employee", "Student", "Consultant"),
+  department = c("Economics", "IT", "Math", "Finance")
 )
+people_mtm
 
-df_mtm
+# Dataset 2: Transactions (multiple per person)
+transactions_mtm <- data.frame(
+  id = c(1, 1, 2, 2),  # Person 1 has 2 transactions, Person 2 has 2 transactions
+  amount = c(100, 200, 150, 300),
+  type = c("Purchase", "Refund", "Purchase", "Purchase")
+)
+transactions_mtm
 
-lj <- left_join(df_mtm, df_c, by = "id")
-lj <- left_join(df_mtm, df_c, by = c("id", "year"))
+# Example 1: MANY-TO-MANY (MTM) 
+# Problem: Multiple rows in both datasets with same key. Many-to-many join creates 
+mtm_result <- left_join(people_mtm, transactions_mtm, by = "id")
+mtm_result # print
+
+# We would need an additional unique identifier to properly link the datasets, 
+# for instance the year. 
 
 
-# OTM
-df_c <- bind_rows(
-  df_c,
-  tibble(
-    id = 1,
-    money_spent = 1200,
-    currency = "CHF",
-    year = 2017
-  )
-)               
+# Example 2: ONE-TO-MANY (OTM) - Clean and predictable
+# Proper relationship: One person has many transactions
 
-lj_otm <- left_join(df_p, df_c, by = "id")
+# Dataset 1: People (each person appears only ONCE)
+people_otm <- data.frame(
+  id = c(1, 2, 3),
+  name = c("Anna", "Bob", "Claire"),
+  department = c("Economics", "Math", "Finance")
+)
+people_otm
+
+# Dataset 2: Transactions (multiple per person - the "many" side)
+transactions_otm <- data.frame(
+  id = c(1, 1, 1, 2, 2, 3),  # Anna has 3 transactions, Bob has 2, Claire has 1
+  amount = c(100, 200, 50, 150, 300, 75),
+  date = c("2024-01-01", "2024-01-15", "2024-02-01", 
+           "2024-01-10", "2024-01-20", "2024-02-05")
+)
+transactions_otm
+
+# CLEAN: One-to-many join is predictable and meaningful
+otm_result <- left_join(people_otm, transactions_otm, by = "id")
+
 
 
 
@@ -163,7 +177,7 @@ exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2, 1.4),
                              stringsAsFactors = FALSE)
 
 # join the exchange-rate with the main dataset
-df_selection <- left_join(df_selection, exchange_rates, by="currency")
+df_selection <- left_join(df_selection, exchange_rates, by = "currency")
 
 # add the new variable with money spent in CHF
 df_mutated <- mutate(df_selection, 

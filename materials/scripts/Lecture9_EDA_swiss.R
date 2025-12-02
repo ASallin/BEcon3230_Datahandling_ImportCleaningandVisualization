@@ -30,7 +30,34 @@ swiss[swiss$municipality == "Gruyere", "Agriculture"] <- NA
 
 # Exploration with EDA tools ----------------------------------------------
 
+# Use standard summary
 summary(swiss)
+
+# Use dplyr summarise
+summarise(swiss,
+          mean = mean(Agriculture),
+          sd = sd(Agriculture),
+          median = median(Agriculture),
+          N = n())
+
+# Use dplyr summarise and rbind for a summary table
+bind_rows(
+  summarise(swiss,
+            name = "Agriculture",
+            min = min(Agriculture),
+            mean = mean(Agriculture),
+            sd = sd(Agriculture),
+            median = median(Agriculture),
+            N = n()),
+  summarise(swiss,
+            name = "Examination",
+            min = min(Examination),
+            mean = mean(Examination),
+            sd = sd(Examination),
+            median = median(Examination),
+            N = n()
+            )
+)
 
 # Use skimr
 skim(swiss)
