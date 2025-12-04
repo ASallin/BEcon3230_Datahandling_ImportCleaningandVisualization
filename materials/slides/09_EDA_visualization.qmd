@@ -401,6 +401,8 @@ swiss |>
 - **Complete case analysis** (listwise deletion): remove all observations with missing values.
 
   - `na.omit()` that thing! 💣
+  - `complete.cases(df)` gives the indices of rows that contain NAs
+  - Default behavior in many commands (for instance `mean(., na.rm = T)` or `lm()`)
 
 - **Imputation**: replace missing values with a plausible value.
 - **Multiple imputation**: create multiple datasets with plausible values.
@@ -429,45 +431,58 @@ swiss |>
 
 ## An example of handling missing values
 
-<details> <summary>Show example</summary>
+<details> <summary>Show example (see script)</summary>
 ```{r, echo = TRUE, eval = FALSE}
 data <- data.frame(
   Gender = c("Male", "Female", "Male", "Female", "Male", "Female"),
   Participation = c(1, 0, 1, NA, 0, 1),
-  Age = c(30, NA, 35, 28, 40, NA)
+  Wage = c(30, NA, 35, 28, 40, NA)
 )
 
 data
 
-# Complete case analysis
+# Complete case analysis ---------------------------------
 complete_case <- na.omit(data)
 
-# Mean imputation for missing Age
+
+
+# Imputation ---------------------------------
+# Mean imputation for missing Wage
 mean_impute <- data |> 
-  mutate(Age = ifelse(is.na(Age), mean(Age, na.rm = TRUE), Age)) |> 
-  mutate(Participation = ifelse(is.na(Participation), mean(Participation, na.rm = TRUE), Participation)) 
-  
-# Analyze mean age by gender
-data %>%
-    group_by(Gender) %>%
-    summarize(
-      Mean_Age = mean(Age, na.rm = TRUE),
-      Participation_Rate = mean(Participation, na.rm = TRUE)
-    )
+  mutate(
+    Wage = ifelse(is.na(Wage), mean(Wage, na.rm = TRUE), Wage),
+    Participation = ifelse(
+      is.na(Participation), 
+      round(mean(Participation, na.rm = TRUE), 0), 
+      Participation
+      )
+    ) 
 
-complete_case %>%
-    group_by(Gender) %>%
-    summarize(
-      Mean_Age = mean(Age, na.rm = TRUE),
-      Participation_Rate = mean(Participation, na.rm = TRUE)
-    )
 
-mean_impute %>%
-    group_by(Gender) %>%
-    summarize(
-      Mean_Age = mean(Age, na.rm = TRUE),
-      Participation_Rate = mean(Participation, na.rm = TRUE)
-    )
+
+# Analysis ---------------------------------
+# Analyze mean Wage by gender
+data |>
+  group_by(Gender) |>
+  summarize(
+    Mean_Wage = mean(Wage, na.rm = TRUE),
+    Participation_Rate = mean(Participation, na.rm = TRUE)
+  )
+
+complete_case |>
+  group_by(Gender) |>
+  summarize(
+    Mean_Wage = mean(Wage, na.rm = TRUE),
+    Participation_Rate = mean(Participation, na.rm = TRUE)
+  )
+
+mean_impute |>
+  group_by(Gender) |>
+  summarize(
+    Mean_Wage = mean(Wage, na.rm = TRUE),
+    Participation_Rate = mean(Participation, na.rm = TRUE)
+  )
+
 ```
 </details> 
 
@@ -510,13 +525,13 @@ include_graphics("../../img/trump_vs_biden.jpg")
 
 ## Data visualization through tables and graphs
 
-#### A **chart** typically contains at least one axis, the **values are represented in terms of visual objects** (dots, lines, bars) and axes typically have scales or labels.
+##### A **chart** typically contains at least one axis, the **values are represented in terms of visual objects** (dots, lines, bars) and axes typically have scales or labels.
 
   - If we are interested in exploring, analyzing or communicating **patterns** in the data, charts are more useful than tables.
     
 <br>
 
-#### A **table** typically contains rows and columns, and the **values are represented by text**.
+##### A **table** typically contains rows and columns, and the **values are represented by text**.
 
   - If we are interested in exploring, analyzing or communicating **specific numbers** in the data, tables are more useful than graphs.
 

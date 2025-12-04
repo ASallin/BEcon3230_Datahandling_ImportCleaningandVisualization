@@ -1,0 +1,182 @@
+---
+title: "Exploratory Data Analysis: a challenge on summarizing categorical variables"
+subtitle: "Exercise to lecture 9"
+author: "Aurélien Sallin"
+format:
+  html:
+    theme: ../../style/hsgtheme.scss
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+highlight-style: dracula
+---
+
+# Exercise
+
+Use what we saw in the lecture to solve the following problem 💪. You have the following dataset:
+
+```{r, eval = TRUE}
+df_p <- data.frame(id = 1:5,
+                   first_name = c("Anna", "John", "Claire", "Evan", "Brigitte"),
+                   profession = c("Economist", "Data Scientist", 
+                                  "Data Scientist", "Economist", "Economist"),
+                   salaryK = c("100 ", 120, 90, 110, 105),
+                   experienceY = c(10, 10, 10, 10, 10))
+
+df_p
+```
+
+  1. Clean the data
+  2. Summarize the data. 
+  3. Give summary statistics on the categorical variable "profession". What can you show, and how can you code it?
+  3. You are interested in quantifying the gender pay gap. Prepare the data accordingly and give an estimate of the gender pay gap.
+
+Good luck! 🍀
+
+<br>
+
+# Solution
+
+## Step 1: clean the data
+
+We see that the salary variable is a character variable, and we need to convert it to a numeric variable. We also see that there are some extra spaces in the salary variable: these extra spaces are automatically removed when coercing to numeric with the function `as.numeric()`. However, we might want to use `trimws()` to be sure and remove leading and trailing white spaces .
+
+```{r, warning=FALSE, message=FALSE}
+# Load dplyr and tidyr packages, which are all parts of tidyverse
+library(tidyverse)
+
+df_p <- df_p |> 
+  mutate(
+    salaryK = as.numeric(trimws(salaryK)),  # Remove extra spaces and convert to numeric
+  )
+
+# Show cleaned data
+df_p
+```
+
+<br>
+
+
+## Step 2: summarize the data
+
+As seen in the lecture, we can use the `summary()` function to get a quick overview of the dataset. We can also use the `summarytools::dfSummary()` from `summarytools`.
+
+The `dfSummary()` command provides a comprehensive summary of the dataset (dimensions, number of duplicates) and, for each variable, the distribution and a rudimentary graph with a histogram.
+
+```{r}
+# Summary statistics of the dataset
+summary(df_p)
+
+# use summarytools
+summarytools::dfSummary(df_p)
+```
+
+
+We might also want to check summary statistics per profession. We can use the `group_by()` and `summarize()` functions from the `dplyr` package.
+
+```{r}
+
+# Grouped summary
+df_summary <- df_p |> 
+  group_by(profession) |> 
+  summarize(
+    mean_salary = mean(salaryK, na.rm = TRUE),
+    median_salary = median(salaryK, na.rm = TRUE),
+    count = n()
+  )
+
+# Display the summary
+df_summary
+```
+
+<br>
+
+## Step 3: Summary statistics on the categorical variable "profession"
+
+Statistics on a categorical variable are essentially frequency tables of the variable. It shows how many times each category appears in the dataset.
+
+Here are some ways we can show the summary statistics for a categorical variable.
+
+- We can use the `table()` function to get a frequency table of the profession variable.
+- We can use the `dplyr` package, and especially the function `count()` to count the number of occurrences of each profession and calculate the percentage of each profession. `count()` returns a tibble, which we can use also to compute frequencies in percent.
+- We can use `summarytable()` from the `summarytools` package. This function is specially designed to summarize categorical variables. It displays the raw frequencies, the percentage of each category, and the cumulative percentage for each category.
+
+Finally, we can visualize the distribution of the profession variable using a bar plot.
+
+
+```{r}
+# Frequency table of the profession variable
+table(df_p$profession)
+
+# Count of each profession
+profession_summary <- df_p |> 
+  count(profession) |> 
+  mutate(percentage_profession = n / sum(n) * 100)
+
+# Display the summary
+profession_summary
+
+# Use summarytools
+summarytools::freq(df_p$profession)
+
+# Visualize the distribution
+library(ggplot2)
+ggplot(profession_summary, aes(x = profession, y = percentage_profession, fill = profession)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Distribution of Professions (categorical variable)",
+    x = "Profession",
+    y = "Percentage"
+  ) +
+  theme_minimal()
+
+```
+
+<br>
+
+## Step 4: Estimate the Gender Pay Gap
+
+To estimate the gender pay gap, we need to create a variable that indicates the gender. We create this variable using the names and the function `case_when()` in `mutate`. We can then calculate the mean salary per gender category.
+
+```{r}
+# Create the gender variable with case_when
+df_p <- df_p |> 
+  mutate(
+    gender = case_when(  # Add a gender variable based on first names
+      first_name %in% c("Anna", "Claire", "Brigitte") ~ "Female",
+      first_name %in% c("John", "Evan") ~ "Male",
+      TRUE ~ "Unknown"
+    )
+  )
+
+# Group by gender and calculate mean salary
+gender_summary <- df_p |>
+  group_by(gender) |>
+  summarize(
+    mean_salary = mean(salaryK, na.rm = TRUE),
+  )
+
+gender_summary
+
+# Calculate pay gap using a filter function within summarize
+pay_gap <- gender_summary |>
+  summarize(
+    gap_percentage = (mean_salary[gender == "Male"] - mean_salary[gender == "Female"]) /
+                     mean_salary[gender == "Male"] * 100
+  )
+
+# OR: pivot the summary table and use mutate
+gender_summary |> 
+  pivot_wider(
+    names_from = gender, 
+    values_from = mean_salary, 
+    names_prefix = "salary"
+    ) |> 
+  mutate(gap = (salaryMale - salaryFemale) / salaryMale * 100)
+
+
+# Display the gender pay gap
+pay_gap
+
+```
+We see that **the gender pay gap is 14.5%** in this very simplistic example.

@@ -1,41 +1,54 @@
 # Exercise on missing values
 # Lecture 9 - Data Handling
 # Author: Aurélien Sallin, 2025
+library(dplyr)
 
 data <- data.frame(
   Gender = c("Male", "Female", "Male", "Female", "Male", "Female"),
   Participation = c(1, 0, 1, NA, 0, 1),
-  Age = c(30, NA, 35, 28, 40, NA)
+  Wage = c(30, NA, 35, 28, 40, NA)
 )
 
 data
 
-# Complete case analysis
+# Complete case analysis ---------------------------------
 complete_case <- na.omit(data)
 
-# Mean imputation for missing Age
+
+
+# Imputation ---------------------------------
+# Mean imputation for missing Wage
 mean_impute <- data |> 
-  mutate(Age = ifelse(is.na(Age), mean(Age, na.rm = TRUE), Age)) |> 
-  mutate(Participation = ifelse(is.na(Participation), mean(Participation, na.rm = TRUE), Participation)) 
+  mutate(
+    Wage = ifelse(is.na(Wage), mean(Wage, na.rm = TRUE), Wage),
+    Participation = ifelse(
+      is.na(Participation), 
+      round(mean(Participation, na.rm = TRUE), 0), 
+      Participation
+      )
+    ) 
 
-# Analyze mean age by gender
-data %>%
-  group_by(Gender) %>%
+
+
+# Analysis ---------------------------------
+# Analyze mean Wage by gender
+data |>
+  group_by(Gender) |>
   summarize(
-    Mean_Age = mean(Age, na.rm = TRUE),
+    Mean_Wage = mean(Wage, na.rm = TRUE),
     Participation_Rate = mean(Participation, na.rm = TRUE)
   )
 
-complete_case %>%
-  group_by(Gender) %>%
+complete_case |>
+  group_by(Gender) |>
   summarize(
-    Mean_Age = mean(Age, na.rm = TRUE),
+    Mean_Wage = mean(Wage, na.rm = TRUE),
     Participation_Rate = mean(Participation, na.rm = TRUE)
   )
 
-mean_impute %>%
-  group_by(Gender) %>%
+mean_impute |>
+  group_by(Gender) |>
   summarize(
-    Mean_Age = mean(Age, na.rm = TRUE),
+    Mean_Wage = mean(Wage, na.rm = TRUE),
     Participation_Rate = mean(Participation, na.rm = TRUE)
   )
