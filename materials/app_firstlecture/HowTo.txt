@@ -5,8 +5,7 @@ How to create an app using Shiny, Google Docs and Flexboard
 Sources: https://deanattali.com/2015/06/14/mimicking-google-form-shiny/
 https://deanattali.com/blog/shiny-persistent-data-storage/#gsheets
 
-Use the library(googlesheets4) and authenticate with Google Sheets (run once interactively if needed). The authentication comes
-from
+Use the library(googlesheets4) and authenticate with Google Sheets (run once interactively if needed). 
 
 To create a Shiny app that collects input from participants and saves it to a Google Sheet, you'll need to follow these steps:
 
