@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 11:<br>Wrap up'
 author: "Dr. Aurélien Sallin"
-date: "2024-12-19"
+date: "2025-12-18"
 echo: false
 code-line-numbers: false
 format:
@@ -36,8 +36,7 @@ library(ggthemes)
 ## Plan for today
 
 1. Recap
-2. Example of a Shiny app
-3. Wrap up
+3. Wrap up course and group project
 4. Exam Info
 5. Suggested Improvements
 6. Concluding remarks
@@ -49,55 +48,130 @@ library(ggthemes)
 
 ## Data visualization
 
-Two ways: display data through *tables* or *graphs*.
+Two ways: display data through **tables** or **graphs**. Depends on the purpose.
 
-Depends on the purpose.
+Use `ggplot()` and the grammar of graphics to produce effective graphs.
 
 
-## `ggplot2` basics
+## A Design Problem (self-study)
 
-Using `ggplot2` to generate a basic plot in R is quite simple. Three key points:
+What is wrong with the graph below? Create your own version of the graph. 
 
-  1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
-  2. The starting point of a plot is always the function `ggplot()`.
-  3. The first line of plot code declares the data and the 'aesthetics' (e.g., which variables are mapped to the x-/y-axes):
-
-```{r echo=TRUE, eval=FALSE}
-ggplot(data = my_dataframe, aes(x= xvar, y= yvar))
+```{r echo= FALSE, out.width="120%", fig.align="center", fig.cap = "Source: [perceptual edge](https://perceptualedge.com/example3.php)" }
+include_graphics("../../img/example3problem.gif")
 ```
 
-
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-# load the data
-data(swiss)
-
-# via tidyverse/mutate
-swiss <- swiss |> 
-    mutate(Religion = ifelse(50 < Catholic, 'Catholic', 'Protestant'))
-
-# set to factor
-swiss$Religion <- as.factor(swiss$Religion)
+```{r, echo = FALSE}
+dataChallenge <- data.frame(
+  Location = rep(c("Bahamas Beach", "French Riviera", "Hawaiian Club"), each = 3),
+  Fiscal_Year = rep(c("FY93", "FY94", "FY95"), times = 3),
+  Revenue = c(
+    250000, 275000, 350000,  # Bahamas Beach (FY93, FY94, FY95)
+    260000, 200000, 210000,  # French Riviera (FY93, FY94, FY95)
+    450000, 500000, 400000   # Hawaiian Club (FY93, FY94, FY95)
+  )
+)
 ```
 
+## A first solution: comparative performance
 
+:::: {.columns}
 
-## `ggplot2`: building plots layer by layer
-
-```{r echo=TRUE, fig.height=2.8, fig.width=6, message=FALSE, warning=FALSE, out.width="85%"}
-ggplot(data = swiss, aes(x = Education, y = Examination))
+::: {.column width="60%"}
+```{r echo=FALSE, out.width="85%", fig.width=4.9, fig.height=3.5, message=FALSE}
+ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, fill = Location)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(
+    title = "Resort Revenues by Location and Year",
+    x = "",
+    y = "Revenue (in USD)"
+  ) +
+  scale_y_continuous(labels = scales::dollar) +
+  scale_x_discrete(labels = c("1993", "1994", "1995")) +
+  theme_classic() +
+  theme(legend.position = "bottom")
 ```
+:::
 
+::: {.column width="40%"}
 
-## `ggplot2`: building plots layer by layer
+- The three resorts have been arranged in order of rank, based on revenue, to highlight their comparative performance.
+- The years have been arranged from left to right, which is intuitive.
+- The legend has been placed below the bars. 
 
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
-  geom_point(aes(color = Agriculture)) +
-  geom_smooth(method = 'lm') +
-  facet_wrap(~Religion)
-
+:::
+::::
+<details> <summary>Show code</summary>
+```{r echo=TRUE, eval = FALSE, message=FALSE}
+ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, fill = Location)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(
+    title = "Resort Revenues by Location and Year",
+    x = "Year",
+    y = "Revenue (in USD)"
+  ) +
+  scale_y_continuous(labels = scales::dollar) +
+  scale_x_discrete(labels = c("1993", "1994", "1995")) +
+  theme_classic() +
+  theme(legend.position = "bottom")
 ```
+</details>
+
+
+
+## A second solution: change of revenue over time
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r echo=FALSE, out.width="85%", fig.width=4.9, fig.height=3.5, message=FALSE}
+ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
+                          group = Location)) +
+  geom_line(size = 2) +
+  geom_text(data = dataChallenge[dataChallenge$Fiscal_Year == "FY95", ],
+            aes(label = Location), hjust = 0, nudge_x = 0.1, nudge_y = 0) +
+  labs(
+    title = "Resort Revenues by Location and Year",
+    x = "",
+    y = "Revenue (in USD)"
+  ) +
+  scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
+  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+                   expand = expansion(add = c(0.5, 1))) +
+  theme_classic() +
+  theme(legend.position = "none")  +
+  scale_color_brewer(palette = "Set1")
+```
+:::
+
+::: {.column width="40%"}
+
+- This design makes it easy to see how revenue has changed from year to year at each of these resorts. 
+
+:::
+::::
+<details> <summary>Show code</summary>
+```{r echo=TRUE, eval = FALSE, message=FALSE}
+ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
+                          group = Location)) +
+  geom_line(size = 2) +
+  geom_text(data = dataChallenge[dataChallenge$Fiscal_Year == "FY95", ],
+            aes(label = Location), hjust = 0, nudge_x = 0.1, nudge_y = 0) +
+  labs(
+    title = "Resort Revenues by Location and Year",
+    x = "",
+    y = "Revenue (in USD)"
+  ) +
+  scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
+  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+                   expand = expansion(add = c(0.5, 1))) +
+  theme_classic() +
+  theme(legend.position = "none")  +
+  scale_color_brewer(palette = "Set1")
+```
+</details>
+
+
 
 
 ## Tufte's principles of data visualization
@@ -176,10 +250,13 @@ ggplot(two_by_two_matrix, aes(x = Candidate, y = results, fill = Candidate)) +
   theme(legend.position = "none")
 ```
 <details> <summary>Lie Factor</summary>
-The Lie Factor is 3.7 (((10/2.5))/((100/92.5)))
+The Lie Factor is 3.7 ((10/2.5)/(100/92.5))
 </details>
 :::
 
+:::aside
+Do you recognize the theme?
+:::
 ::::
 
 
@@ -330,6 +407,7 @@ include_graphics("../../img/viz_density.png")
 
 #### 4 data points: 0.39, 0.56, 0.3, 2000 😱
 
+
 <!-- ##  Text analysis -->
 
 <!-- - Text as data has become increasingly available due to the Internet and text digitization. -->
@@ -337,7 +415,7 @@ include_graphics("../../img/viz_density.png")
 <!-- - Main challenge: **Text is unstructured**. -->
 
 
-## Eight Steps in Text Analysis
+<!-- ## Eight Steps in Text Analysis
 
 Focus on steps 1-4 in this course.
 ```{r nlppipeline, echo=FALSE, out.width = "95%", fig.align='center',  purl=FALSE}
@@ -346,7 +424,7 @@ include_graphics("../../img/nlp_pipeline.jpg")
 
 - In `R`, we use `quanteda`: Comprehensive package for preprocessing, visualization, and statistical analysis of text data.
 
-```{r packages, echo=FALSE}
+```{r packages, echo=FALSE, eval = FALSE}
 pacman::p_load(
     tidytext,
     quanteda,
@@ -355,14 +433,14 @@ pacman::p_load(
     quanteda.textstats,
     quanteda.textplots
 )
-```
+``` 
+-->
 
 
 
 
 
-# Today
-
+<!-- 
 ## Shiny app
 
 - **Shiny** is an R package that makes it easy to build interactive web apps straight from R.
@@ -389,13 +467,45 @@ eqi <- read_csv("C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lec
   select(cname, year, Ed_qual, Hel_qual, Law_qual, Helimpart1, Hel_ask)
 
 head(eqi)
-```
+``` 
+-->
+
+
+# Exam
+
+
+## 📢 Decentral exam and LockDown browser
+
+#### Exam for exchange students
+- 18.12.2025 at 16:15.
+- **BYO + cord🔌 + 🖱️**
+
+#### Lockdown browser
+- Exam and LockDown Browser: check Sharepoint on [StudentWeb](https://universitaetstgallen.sharepoint.com/sites/PruefungenDE/SitePages/en/Digitale-Pr%C3%BCfungen-(BYOD).aspx#how-to-prepare-for-a-digital-exam) and test on Canvas. 
+
+
+## Exam questions
+
+  - True/False questions, multiple-choice questions, and multiple-correct options. These are designed to test your understanding of the material.
+  - ❗Exactly same style  and structure as quizzes and mock exam❗
+  - We do not invent wrong function parameters or misspell function names etc to mislead you!
+  - 'Passive' knowledge of key R syntax and most important functions of core lecture contents are important!
+
+<br>
+
+  - Work step-by-step through the code example. What happens in each parenthesis, on each line? 
+  - From the inner part to the outer part, from top to bottom.
+  - Use pencil/paper to keep track of values, data structures (how does a data-frame look like?), classes.
+  - Importantly, if a code-example question refers to specific functions, you can always assume that the corresponding package is also loaded.
+
+
+## Questions on the examination?
+
 
 
 # Wrap up
 
-## {class="inverse" background-image="../../img/1280px-Apprenticeship.jpg" background-size="100%" background-repeat="cover"}
-
+## {class="inverse" background-image="../../img/mechanics.webp" background-size="100%" background-repeat="cover"}
  
 
 
@@ -424,30 +534,30 @@ include_graphics("../../img/data_science_pipeline.png")
 
 ::: {.incremental}
 
-- Understand the very basics of how computers process data.
-  - Binary code.
-  - Representation of binary code as text (encodings/standards!).
-  - Text files to store data: special characters (comma, semicolon, etc.) define the structure (following a standard!)
+- **Understand the very basics of how computers process data.**
+  - Computers store data as bits (Bits → Bytes → Encoded Text)
+  - Text encodes meaning using encodings and standards
+  - Files encode structure (→ Structured Files with special characters) 
     - CSV: two-dimensional/table-like structure
     - JSON/XML: hierarchical data (high-dimensional)
-  - Data in text file: how is data structured when stored on the hard disk (mass storage device).
-  - Data structures in R (objects): How data is structured/represented when loaded into RAM (via a 'parser')
+  - R *parses* structure into RAM. (→ R Parsing → R Data Structures)
+
+- **Deal with data from all possible sources.**
+  - APIs, Webscrapers, JSON, etc. 
 
 :::
 
-## Wrap up: Applied part: import, cleaning, analysis/visualisation.
+## Wrap up: Applied part
 
 ```{r, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE, fig.cap = "Source: https://www.storybench.org/wp-content/uploads/2017/05/tidyverse.png"}
 include_graphics("../../img/tidyverse_pipeline.png")
 ```
 
 
-## Wrap up: Applied part: import, cleaning, analysis/visualisation.
+## Wrap up: Applied part
 
 ::: {.incremental}
 
-- Get from the data source to the final data product:
-  - `tidyverse`: tools to help you with every part of the data pipeline.
 - Import data into R. What to do if the parsing fails?
 - Clean/prepare data in R. Aim: tidy data set (rows:observations, columns:variables).
 - Filter, select, mutate, summarise.
@@ -457,104 +567,75 @@ include_graphics("../../img/tidyverse_pipeline.png")
 :::
 
 
+## Wrap up: Group Project
 
+####  First of all...
 
-
-# Exam
-
-
-## 📢 Decentral exam and LockDown browser
-
-#### Exam for exchange students
-- 19.12.2024 at 16:15 in room 01-207.
-- **BYO + cord🔌 + 🖱️**
-
-#### Lockdown browser
-- Exam and LockDown Browser: check Sharepoint on [StudentWeb](https://universitaetstgallen.sharepoint.com/sites/PruefungenDE/SitePages/en/Digitale-Pr%C3%BCfungen-(BYOD).aspx#how-to-prepare-for-a-digital-exam) and test on Canvas. <br>**Password**: DataHandling2023
-
-
-## Code questions
-
-  - True/False questions, multiple-choice questions, and multiple-correct options. These are designed to test your understanding of the material.
-  - ❗Exactly same style  and structure as quizzes and mock exam❗
-  - We do not invent wrong function parameters or misspell function names etc to mislead you!
-  - 'Passive' knowledge of key R syntax and most important functions of core lecture contents are important!
-
-<br>
-
-  - Work step-by-step through the code example. What happens in each parenthesis, on each line? 
-  - From the inner part to the outer part, from top to bottom.
-  - Use pencil/paper to keep track of values, data structures (how does a data-frame look like?), classes.
-  - Importantly, if a code-example question refers to specific functions, you can always assume that the corresponding package is also loaded.
-
-
-## Essay/open questions
+  - I am **impressed** by your performance, interest, and dedication.
+  - The project was challenging, and part of the project was navigating **frustration** and **uncertainty**. 
+  - This is **close to a real job or research project**, where there is often more than one correct answer.
+  - With LLMs, navigating the full data handling pipeline is becoming a **basic skill** rather than an advanced one.
   
-  - There will also be 3-4 essay-style questions aimed at evaluating your ability to apply your knowledge to new situations.
-    
-    - E.g., you might be asked to explain particular steps of the data analysis process in a given situation. You can use code, R concepts, or you can explain in plain English. The more precise the better.
+
+#### From my side
+  - First year, first try, first experience.
+  - I had fun. I hope you did too.
   
-  - **You will not be required to write exact R code**, but you should be able to interpret and understand the code provided in the exam. 
-  - I expect you to be familiar with all R commands and concepts covered in the lectures, exercises, in-class code, and additional practice exercises.
-  - The readings are not mandatory for the exam. The focus will be on the material discussed in class and during the exercises.
+  
+###### Congrats!
+
+
+## Wrap up: Group Project
+
+```{r, echo=FALSE, out.width = "95%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/groupproject_corr_lifeexpectancy.jpeg")
+```
+
+
+## Wrap up: Group Project
+```{r, echo=FALSE, out.width = "95%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/groupproject_overtime.jpeg")
+```
 
 
 
+## Wrap up: Group Project
+
+```{r pipeline2, echo=FALSE, out.width = "85%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/data_science_pipeline.png")
+```
 
 
+
+## Wrap up
+
+  - You went from first steps into programming to managing an entire data science pipeline 💪
+  - You can now work with APIs, clean data, and communicate results through visualisations
+  - You had first examples on how this is applied in the finance industry
 
 
 # Course Evaluation and Feedback
 
-## Course Evaluation
-
-### Very good overall evaluation. Thanks!!!😊😊
+## Course evaluation
 
 <br>
 
-#### Positive feedback
-
-  - Quizzes, warm-up, exercises are helpful.
-  - In-class coding.
-  - Slides are nice.
-
-
-#### Negative feedback
-
-  - Slides are too minimalistic.
-  - The pace was too fast.
-  -  Objectives were not well-defined and clarified.
+  - This course was designed to be challenging and close to real research and work settings. Your feedback helps improve it for the next cohort.
+  - This was the first year in this format. Some things worked very well, others can be improved.
 
 
 
-## Suggested Improvements
-- **Learning Progress**
-  - "*some lectures are a little slow (e.g. binary number systems) and others are really fast. it would be nice if the pace evened out a bit.*"
-  - For some, the course is too fast, for some too slow (dsf program). Suggestions? 
-  
-<br>
-  
-- **Course Objectives**
-  - Clearer objectives and learning outcomes at the beginning of the course, clearer expectations for the exam. Suggestions? <br>
+## Evaluation link
+
+```{r, echo=FALSE, out.width = "45%", fig.align='center'}
+include_graphics("../../img/qr_evaluation_2025.png")
+```
+
+[Link 🔗](https://go.blueja.io/irtnIL3QI0OgSPRQeOEAVw)
 
 
-## Suggested Improvements
-
-- **More quizzes, more old exams, more mock exams** : 😵
-
-- **Recordings** of the class: not an  option for me.
-
-- **html/pdf** issues in the slides. Sorry for this! 😞
-
-- **Examination**: will be improved.
-
-
-# Q&A
-
-## Questions?
 
 # Final Remarks
-
 
 ## Final Remarks
 
@@ -564,11 +645,10 @@ include_graphics("../../img/tidyverse_pipeline.png")
 
 - Join the **`R` User Group in Zürich**!
 
-  - Past events at Datahouse, SNB, Helsana, Swiss, etc. 
-  - Presentations from R-Users in the industry and in academia
+  - Next event: **29.01.2026, 18:00 - 21:30** at the ETH (DevOps for Data Science at KOF Institute).
   - Apéro + networking 🍕🍺
-  - Next event: **23.01.2025, 18:30 - 21:00** at the Swiss Federal Institute for Forest, Snow, and Landscape Research on Geodata and Landscape Insights with R.
-  - [Free Registration on Meetup](https://www.meetup.com/zurich-r-user-group/events/304647040/?notificationId=1450607390017687552&eventOrigin=notifications)
+  - [Free Registration on Meetup](DevOps for Data Science at KOF Institu)
+  - Presentations from R-Users in the industry and in academia. Past events at Datahouse, SNB, Helsana, Swiss, etc. 
 
 
 ## Final Remarks
@@ -577,7 +657,7 @@ include_graphics("../../img/tidyverse_pipeline.png")
 
 - I had a lot of fun 🙏
 - All the best for your exams! 👍
-- All the best for your studies and careers, *and finally, of course, ...*
+- See you very soon 👀🔜
 
 :::
 
