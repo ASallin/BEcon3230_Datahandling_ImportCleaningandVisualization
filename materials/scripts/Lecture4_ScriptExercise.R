@@ -4,7 +4,7 @@
 # Imports data from ...
 # Input: import c to data sources (data comes in ... format)
 # Output: cleaned data as CSV
-# 
+#
 # A. Sallin, St. Gallen, 2024
 #######################################################################
 
@@ -32,7 +32,7 @@ financial_data <- read.csv(paste0(path, "financial_data.txt"), sep = ":")
 
 stringi::stri_enc_detect("\xF6")
 
-financial_data <- read.csv(paste0(path, "financial_data.txt"), 
+financial_data <- read.csv(paste0(path, "financial_data.txt"),
                            sep = ":",
                            fileEncoding = "ISO-8859-1")
 
@@ -94,7 +94,7 @@ for (i in 1:length(list_financial_data)){
   print(mean(list_financial_data[[i]]$Profit))
 }
 
-# Or, using lapply 
+# Or, using lapply
 lapply(list_financial_data, function(x) mean(x$Profit))
 
 
@@ -102,7 +102,7 @@ lapply(list_financial_data, function(x) mean(x$Profit))
 
 # Using map ---------------------------------------------------------------
 
-# Or (advanced!) with a nested tibble and map 
+# Or (advanced!) with a nested tibble and map
 library(tidyr)
 library(dplyr)
 library(purrr)

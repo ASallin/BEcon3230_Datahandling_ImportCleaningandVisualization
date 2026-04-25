@@ -254,7 +254,7 @@ Which of these statements are TRUE?
 - `dataCHframe$PartyCenter <- c(25, 20, 15)` creates a new variable called "PartyCenter"
 - 🌶️🌶️`dim(dataCHframe[, dataCHframe$PartyLeft > 40])` returns the same as `dim(dataCHframe[, c(2,3)])`
 - `dim(dataCHframe[dataCHframe$PartyLeft > 40 | dataCHframe$PartyLeft < 40, ])` returns `c(3,3)`
-- `dataCHframe` is a data.frame, which is a list consisting of one named character vector and two named integer vectors.
+- `dataCHframe` is a data.frame, which is a list consisting of one named character vector and two named numeric vectors.
 
 <!-- The second question is about recycling of logical vectors... -->
 <!-- ```{r echo = TRUE} -->
