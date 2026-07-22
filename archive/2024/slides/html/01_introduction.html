@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data Handling: Import, Cleaning and Visualisation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Aurélien Sallin" />
+    <meta name="date" content="2024-09-21" />
+    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="hygge.css" type="text/css" />
+    <link rel="stylesheet" href="xaringanhsg_font.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+&lt;!-- To compile slides with relative paths, use  --&gt;
+&lt;!-- xaringan::inf_mr(cast_from = '../..') --&gt;
+&lt;!-- For self contained, just knit with markdown --&gt;
+
+
+
+
+
+&lt;style type="text/css"&gt;
+/* Apply styles only to the first slide with the title-slide class */
+.title-slide {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    height: 800px;
+    text-align: left;
+}
+
+/* Style for the logo in the title slide */
+.title-slide img {
+    float: left;
+    margin-right: 20px;
+    width: 100px;
+}
+
+/* Style the title */
+.title-slide h1 {
+    color: #15803d;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Style the subtitle */
+.title-slide h3 {
+    color: #6b7280;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/* Style the author and date */
+.title-slide p {
+    color: #6b7280;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.inverse .remark-slide-number {
+  display: none;
+}
+
+.remark-slide-number {
+  font-size: 14px;
+}
+
+&lt;/style&gt;
+
+&lt;!-- &lt;div class="title-slide"&gt; --&gt;
+
+&lt;!--   &lt;!-- &lt;img src="../../img/logo.png" alt="Logo" class="title-logo" width="40px"&gt; --&gt;
+&lt;!--   &lt;img src="logo.png" alt="Logo" class="title-logo" width="40px"&gt; --&gt;
+
+&lt;!--   &lt;h1&gt;Data Handling: Import, Cleaning and Visualisation&lt;/h1&gt; --&gt;
+
+&lt;!--   &lt;h3&gt;Lecture 1: Introduction&lt;/h3&gt; --&gt;
+
+&lt;!--   &lt;p&gt;Dr. Aurélien Sallin&lt;br&gt;01/10/2023&lt;/p&gt; --&gt;
+
+&lt;!-- &lt;/div&gt; --&gt;
+
+
+.title-slide[
+&lt;img src="../../img/logo.png" width="35%" style="display: block; margin: auto;" /&gt;
+#Data Handling: Import, Cleaning and Visualisation
+
+### Lecture 1: Introduction
+
+Dr. Aurélien Sallin&lt;br&gt;01/10/2023
+]
+ 
+
+---
+
+## Welcome to Data Handling 2024!
+
+- Go to this app (use the QR code): https://datahandling.shinyapps.io/DataHandlingIntro/
+- Use one row to respond to the questions in the column headers (see the first two rows for examples).
+
+
+&lt;img src="../../img/QR_APP_2024.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds2.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds3.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds4.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds5.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds6.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds7.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds8.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds9.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds10.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds11.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds12.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds13.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/ds14.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../../img/data_science_pipeline.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle, inverse, Large
+
+# Background
+
+---
+
+## 'Data Science'?
+
+&lt;!-- &lt;br&gt; --&gt;
+
+*"This coupling of scientific discovery and practice involves the collection, management, processing, analysis, visualization, and interpretation of vast amounts of heterogeneous data associated with a diverse array of scientific, translational, and inter-disciplinary applications."*
+
+University of Michigan 'Data Science Initiative', 2015
+
+---
+
+## But, what about statistics?!
+
+*"Seemingly, statistics is being marginalized here; the implicit message is that statistics is a part of what goes on in data science but not a very big part. At the same time, many of the concrete descriptions of what the DSI will actually do will seem to statisticians to be bread-and-butter statistics. Statistics is apparently the word that dare not speak its name in connection with such an initiative!"*
+
+David Donoho (2015). __50 years of Data Science__
+
+
+---
+
+## What's new about all this?
+
+*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: ..."*
+
+---
+
+## What's new about all this?
+
+*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: &lt;br&gt; procedures for analyzing data, techniques for interpreting the results of such procedures, ways of planning the gathering of data to make its analysis easier, more precise or more accurate, and all the machinery and results of (mathematical) statistics which apply to analyzing data."*
+
+---
+
+## What's new about all this?
+
+&lt;img src="../../img/tukey.jpg" width="35%" style="display: block; margin: auto;" /&gt;
+
+.center[.small[John Tukey (_The Future of Data Analysis_, 1962!)]]
+
+
+---
+
+## Technological change
+
+&lt;img src="../../img/computers.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Relevance for modern economic research
+
+&lt;img src="../../img/css.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Relevance for modern economic research
+
+&lt;img src="../../img/internet.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Relevance for modern economic research
+
+&lt;img src="../../img/bigdata.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Relevance for modern economic research
+
+&lt;img src="../../img/text.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Data science in Economics skill set
+
+&lt;img src="../../img/venn_diagramm.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Data science as a life skill
+
+&lt;img src="../../img/datascientistsexy.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Data science as a life skill
+
+"More than anything, what data scientists do is **make discoveries while swimming in data.** ...  As they make discoveries, they communicate what they’ve learned and suggest its implications for new business directions. Often they are *creative in displaying information visually and making the patterns they find clear and compelling*... 
+
+They advise executives and product managers on the implications of the data for *products, processes, and decisions*.
+
+What kind of person does all this? *Think of him or her as a hybrid of data hacker, analyst, communicator, and trusted adviser. The combination is extremely powerful — and rare.*"
+
+---
+class: center, bottom
+background-image: url("../../img/break-picture.png")
+background-size: cover
+
+.announcement-style[::Break::]
+
+---
+
+class: inverse, center, middle
+
+# Philosophy of this course
+
+---
+class: right, bottom
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Apprenticeship.jpg/1280px-Apprenticeship.jpg")
+background-size: cover
+
+&lt;style type="text/css"&gt;
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.legend-pic {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px; /* Optional: Add some padding */
+  white-space: nowrap; 
+}
+&lt;/style&gt;
+
+.slide[.legend-pic[.small[.white[A shoemaker and his apprentice c.1914, Emile Adan]]]]
+
+---
+## .green[**At the end of the course, you will be able to...**]
+
+- **Understand the tools you need when working with data** &lt;br&gt; We will use the programming language R, but principles are similar for any other programming language (👞⚙️)
+
+- **Work independently with data** &lt;br&gt;We will learn how to collect, clean, and analyze data so that you can conduct a data project in Economics (research/consulting/...) from start to finish 
+- **Ask the right questions to a dataset**&lt;br&gt; We will learn how to ask the right questions to a dataset
+
+- **Learn to communicate about data**&lt;br&gt; We will learn to present our results in a clear and compelling way
+
+---
+## My commitment to these goals and to your learning process
+- **Transferrable skills**
+
+- **Hands-on approach**
+
+- **Emphasis on real-world relevance** &lt;br&gt;(caveat: this course is mandatory for Econ students, I have limited freedom in the syllabus)
+
+- **As much fun as possible (as coding can be fun...😎)**
+
+
+---
+## Your commitment to the course
+
+- Prepare with reading, visit the lecture, recap key concepts in lecture notes (self-study)
+
+- Work on exercises, come to exercise session, tackle the tricky exercises together!
+
+- Code, code, and code. repeat...
+
+
+``` r
+try &lt;- 0
+while(try &lt; 999) {
+  try &lt;- try + 1
+}
+cat("success!")
+```
+
+```
+## success!
+```
+
+
+---
+## Our Team - At Your Service
+
+&lt;div class="custom-table"&gt;
+
+|                      |                             |                             |
+|----------------------|-----------------------------|-----------------------------|
+| &lt;img src="../../img/fede.jpg" height="150"/&gt; | &lt;img src="../../img/andreaburro.jpg" height="150"/&gt;  | &lt;img src="../../img/aureliensallin.jpg" height="150"/&gt; |
+| Federica Mascolo     | Andrea Burro                 | Aurélien Sallin |
+
+&lt;/div&gt;
+&lt;style&gt;
+.custom-table table th {
+    width: 20%;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.custom-table table thead th {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.custom-table thead th, .custom-table tr:nth-child(1) {
+    background-color: white;
+}
+&lt;/style&gt;
+
+
+
+---
+
+## Introduction: Aurélien Sallin
+
+- 2022-today: Expert in Health Care Research and Member of Management,  SWICA Health Organization, Winterthur
+- 2022-today: Lecturer, HSG
+- 2018-2022: PhD Economic and Finance, HSG
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;!-- Previously:  --&gt;
+
+&lt;img src="../../img/gsp.png" height="90"/&gt; &amp;nbsp;&amp;nbsp;
+&lt;img src="../../img/unifr.png" height="90"/&gt; &amp;nbsp;&amp;nbsp;
+&lt;img src="../../img/logo.png" height="80"/&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;img src="../../img/swica-logo-e.svg" height="70"/&gt;
+
+
+---
+
+## Introduction: Aurélien Sallin
+
+.green[Research at SWICA]
+
+ - Use Real-World Data from claims to assess effectiveness of health technological tools
+ - Use (Causal) Machine Learning to evaluate the effect of health policies on doctors' prescription behaviors
+ - Develop financing models for mandatory health care in Switzerland
+
+&lt;br&gt;
+
+.green[Other Research in Economics of Education (during my PhD Economic and Finance)]
+
+ - Missclassification rates for gifted students
+ - Evaluation of Special Education programs
+
+
+---
+
+class: inverse, center, middle
+
+# Organisation of the Course
+
+---
+
+## Course concept: lectures
+
+- Lectures (Thursday morning)
+    - Background/Concepts
+    - Illustration of concepts
+    - Illustration of 'hands-on' approaches
+
+
+
+---
+
+## Course concept: exercises
+
+- Exercise sheets (handed out every other week)
+  - Some conceptual questions
+  - Hands-on exercises/tutorials in R 
+  - *First Exercises (set up R/RStudio) is available on StudyNet/Canvas today*
+
+---
+
+## Course concept: exercise sessions
+
+- In-class exercise sessions (bi-weekly evening sessions)
+    - Discussion of exercises and additional input with Federica and Andrea
+    - Recap of concepts
+    - Q&amp;A, support
+    - time for more coding!
+
+
+---
+
+class: inverse, center, middle
+&lt;!-- background-image: url("../../img/roadahead.jpg") --&gt;
+&lt;!-- background-size: cover --&gt;
+
+# The road ahead
+
+---
+
+## Two special lectures
+
+- .green[**24.10.2024**: R from a student's perspective]
+    - Minna Heim, BA from St. Gallen, student in Data Science at ETH Zurich
+
+&lt;br&gt;
+
+- .green[**05.12.2024**: Industry and Consulting Insights]
+    - Rachel Lund, PhD: Data Science Lead at Deloitte
+
+
+---
+
+## Part I: Data (Science) fundamentals 
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Topic &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 19.09.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Introduction: Big Data/Data Science, course overview &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 26.09.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Programming with R &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 20px solid white;"&gt; 26.09.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;border-bottom: 20px solid white;"&gt; Exercises 1: Tools, programming &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 03.10.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; An introduction to data and data processing &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 10.10.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Data storage and data structures &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 20px solid white;"&gt; 10.10.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;border-bottom: 20px solid white;"&gt; Exercises/Workshop 2: Data storage and data structures &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 17.10.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Rectangular data &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 24.10.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Non-rectangular data. Guest spot: Minna Heim &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 24.10.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Exercises/Workshop 3: Web data, text, and images &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Part II: Data gathering and preparation
+
+&lt;style type="text/css"&gt;
+.remark-slide table {
+    width: 100%;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.remark-slide table thead th {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.remark-slide thead, .remark-slide tr:nth-child(even){
+    background-color: white;
+}
+.remark-slide thead{
+    background-color: grey;
+}
+table{
+    border-collapse: collapse;
+}
+.remark-slide thead:empty {
+    display: none;
+}
+&lt;/style&gt;
+
+
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Topic &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 14.11.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Data preparation and manipulation &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 21.11.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Basic statistics and data analysis with R &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 25px solid white;"&gt; 21.11.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;border-bottom: 25px solid white;"&gt; Exercises/Workshop 4: Data gathering, data import &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;border-bottom: 25px solid white;"&gt; 28.11.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;border-bottom: 25px solid white;"&gt; Visualisation &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;border-bottom: 25px solid white;"&gt; 05.12.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;border-bottom: 25px solid white;"&gt; Guest Lecture: Data Handling @Deloitte (Rachel Lund, Senior Economist) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 05.12.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Exercises/Workshop 5: Data preparation and applied data analysis with R &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+---
+## Part III: Analysis, visualisation, output
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Topic &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 12.12.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Analytics, more visualisation, and data products &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;border-bottom: 25px solid white;"&gt; 19.12.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;border-bottom: 25px solid white;"&gt; Summary, Wrap-up, Final workshop &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 25px solid white;"&gt; 19.12.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;border-bottom: 25px solid white;"&gt; Exercises/Workshop 6: Visualization, dynamic documents &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; 19.12.2024 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; Exam for Exchange Students &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Exam information
+- Central, written examination: *digital, BYOD!*.
+- Multiple choice questions.
+- A few open questions.
+- Theoretical concepts and practical applications in R (questions based on code examples).
+
+---
+## Exam information II
+- We will release samples of  multiple choice questions via Quizzes on Canvas/Studynet (exact same format and style of exam questions).
+
+- Exchange students who need to take the exam before the central exam block:
+    - Date, time place, : *19.12.2024, 16:15-18:00, room tbd*.
+    - Questions: *andrea.burro@unisg.ch*
+
+
+---
+class: inverse, center, middle
+
+# The tools
+
+---
+## Core course resources
+
+- All information and materials (notes, slides, course sheet, syllabus, etc.) are available on StudyNet/Canvas.
+- Use github to be always updated about the course material
+
+  - Install git on your computer as explained [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - Clone the course repository using
+
+
+.code-bg-red[
+
+``` r
+git clone https://github.com/ASallin/datahandling-lecture.git # to clone
+git pull origin main # to update
+```
+]
+
+
+&lt;style type="text/css"&gt;
+.code-bg-red .remark-code, .code-bg-red .remark-code * {
+ background-color:#f8f8f8!important;
+ font-size: 19px;
+ padding: .5em;
+}
+&lt;/style&gt;
+
+
+
+---
+
+# Why R?
+
+.green[***The* data language**]
+- Widely used in Data Science jobs.
+- Originally designed as a tool for statistical analysis.
+- Particularly useful to program with data.
+
+
+.green[**High-level language**]
+- Relatively easy to learn.
+- A lot of free tutorials and support online.
+
+
+.green[**Free, open-source, large community** ]
+- Used in various fields.
+- Thousands of 'R-packages' covering diverse aspects of data analysis.
+- Learn from open sources.
+
+
+---
+## R
+
+&lt;img src="../../img/R_logo.svg.png" width="40%" style="display: block; margin: auto;" /&gt;
+Install R from [here](https://stat.ethz.ch/CRAN/)!
+
+
+---
+## RStudio
+
+&lt;img src="../../img/rstudio.png" width="40%" style="display: block; margin: auto;" /&gt;
+Install RStudio from [here](https://www.rstudio.com/products/rstudio/download/#download)!
+
+
+
+---
+## Main textbooks
+
+[Data Handling Pocket Reference](https://umatter.github.io/datahandling/)
+
+[Murrell, Paul (2009). *Introduction to Data Technologies*, London: Chapman &amp; Hall/CRC.](https://www.stat.auckland.ac.nz/~paul/ItDT/)
+
+[Wickham, Hadley and Garred Grolemund (2017). *R for Data Science*, 1st Edition. Sebastopol, CA: O’Reilly.](http://r4ds.had.co.nz/)
+
+[Baumer, Kaplan and Norton (2023). *Modern Data Science with R*, 2nd Edition. ](https://mdsr-book.github.io/mdsr3e/)
+
+---
+## Further resources
+
+- [Stackoverflow](https://stackoverflow.com/questions)
+- [Get inspired in the R blogsphere](https://www.r-bloggers.com)
+- ChatGPT
+
+
+
+    
+---
+## And now this...
+
+![](../../img/ds_matrix.png)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"slideNumberFormat": "%current%",
+"highlightStyle": "ir-black",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

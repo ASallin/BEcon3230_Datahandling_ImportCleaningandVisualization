@@ -1,0 +1,503 @@
+---
+title: "Who is in this class?"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+<style> 
+
+
+.section.sidebar {
+background-color: #e6fff2;
+}
+selectize-control.single{
+background-color: #0da861;
+border-color: #0da861;
+
+}
+
+.navbar-inverse {
+  background-color: #02934a;
+  border-color: #0da861;
+}
+.navbar-inverse .navbar-brand {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #ffffff;
+  background-color: none;
+}
+.navbar-inverse .navbar-text {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: #0da861;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #0da861;
+}
+.navbar-inverse .navbar-nav > .disabled > a,
+.navbar-inverse .navbar-nav > .disabled > a:hover,
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+  border-color: transparent;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #0da861;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #1a6ecc;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #0da861;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
+    border-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+    background-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ffffff;
+    background-color: transparent;
+  }
+}
+.navbar-inverse .navbar-link {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-link:hover {
+  color: #ffffff;
+}
+
+.navbar-inverse .btn-link {
+  color: #ffffff;
+}
+.navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link:focus {
+  color: #ffffff;
+}
+.navbar-inverse .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-inverse .btn-link:focus {
+  color: #ffffff;
+}
+
+</style>      
+
+```{r setup, include=FALSE}
+# This code is based on Christopher Gandrud's Shiny examples:
+# https://github.com/christophergandrud/datafest2017_dashboard_shiny/tree/3256125240d09bac933ed359c879036fcbeb9be5
+
+# devtools::install_github("lchiffon/wordcloud2")
+
+# Load required packages. Install if needed.
+library(flexdashboard)
+library(gsheet)
+library(ggmap)
+library(dplyr)
+library(leaflet)
+library(sp)
+library(rworldmap)
+library(networkD3)
+library(geosphere)
+library(plotly)
+library(shiny)
+
+library(quanteda)
+library("quanteda.textplots")
+
+
+# fix vars
+#  API key needed here
+# KEY <- readLines("../../admin/2021/keys/datahandling_survey_static.txt") # key UM
+KEY <- "AIzaSyASzCqktyaJwksvy9Oi3i50gHKuiAFOP5g"
+
+# Download survey data
+# Download data
+URL <- 'https://docs.google.com/spreadsheets/d/13jZFfQHdqN5fI4PqGZZCvHGSgPbDPKBhdSmQ4WClyME/edit?gid=0#gid=0'
+student_data <- gsheet2tbl(URL)
+
+### If access to google drive does not work, use the following code to load the data locally
+# path_local <- "C:/Users/aurel/Downloads/Data Handling @HSG 2024.xlsx"
+# student_data <- read_excel(path_local)
+
+# Simplify variable names
+names(student_data) <- c('home_town', 'literacy', 'used_R', "major", "enrolled_dsf", "assoc_data", "id")
+
+# Relevel factors
+r_skills <- 0:10
+student_data$literacy <- factor(student_data$literacy, levels = r_skills)
+
+# Majors
+majors <- c('VWL', 'BWL', 'BIA', 'BLaw', 'BLE','other')
+student_data$major <- factor(student_data$major, levels = majors)
+
+# Used R
+student_data$used_R <- factor(student_data$used_R, levels = c('TRUE', 'FALSE'))
+
+# Enrolled in dsf
+student_data$enrolled_dsf <- factor(student_data$enrolled_dsf, levels = c('TRUE', 'FALSE'))
+
+# Free text assoc_data
+student_data$assoc_data <- as.character(student_data$assoc_data)
+
+
+# Find home_town longitude and latitude -----
+home_towns <- student_data$home_town
+home_towns <- home_towns[!is.na(home_towns)]
+register_google(key = KEY)
+home_town_coords <- geocode(home_towns) # problem: might reach limit!
+
+home_town_coords <- na.omit(home_town_coords)
+
+```
+
+
+Hometown and major
+===========
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Map of home_towns
+
+```{r home_town-map}
+# Map student home_towns
+leaflet() %>% 
+  addTiles() %>%
+  addCircleMarkers(data = home_town_coords, lng = ~lon, lat = ~lat, color = "#02934a")
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+
+### Home Countries
+
+```{r}
+# Function to find countries that each home_town is in
+coords2country = function(points)
+{  
+    # Function from: http://stackoverflow.com/a/14342127
+    countriesSP <- getMap(resolution='low')
+
+    #setting CRS directly to that from rworldmap
+    pointsSP = SpatialPoints(points, proj4string=CRS(proj4string(countriesSP)))  
+
+    # use 'over' to get indices of the Polygons object containing each point 
+    indices = over(pointsSP, countriesSP)
+
+    # return the ADMIN names of each country
+    indices$ISO3  
+}
+countries <- coords2country(na.omit(home_town_coords))
+
+# Find country counts
+countries_count <- table(countries)
+countries_count <- countries_count[countries_count > 0] 
+countries_count <- as.data.frame(table(countries), stringsAsFactors = FALSE)
+names(countries_count) <- c("countries", "Freq")
+countries_count <- subset(countries_count, Freq > 0)
+
+
+# Plot counts
+ggplot(countries_count, aes(x = countries, y = Freq)) +
+  geom_col(fill = "#02934a") +
+  scale_x_discrete(drop = FALSE) +
+  # scale_y_continuous(limits = c(0, )) +
+  labs(x = "", y = "Frequency") +
+  theme_classic()
+```
+
+
+### Choice of major
+
+```{r}
+# # Maximum distance for relationship
+# max_distance <- 1e6  # 10'000 km in meters
+# 
+# # Find distances between each home town
+# distances <- vector()
+# for (i in 1:nrow(home_town_coords)) {
+#     temp_indv <- home_town_coords[i, ]
+#     
+#     temp_distances <- distm(home_town_coords, temp_indv) %>% data.frame
+#     temp_distances$id <- i
+#     temp_distances$other_id <- 1:nrow(home_town_coords)
+#     names(temp_distances)[1] <- 'distance'
+#     distances <- rbind(distances, temp_distances)
+# }
+# distances <- distances[, c(2, 3, 1)]
+# 
+# # remove self edges and filter without the if-guard
+# distances <- subset(distances, id != other_id & distance <= max_distance)
+# 
+# # simpleNetwork expects two columns: source, target
+# edges <- distances[, c("id","other_id")]
+# names(edges) <- c("source","target")
+# 
+# networkD3::simpleNetwork(edges, zoom = TRUE,
+#                          linkColour = "#02934a", nodeColour = "#02934a", charge = 0)
+
+renderPlot({
+  df_overall <- student_data %>%
+    count(major, .drop = FALSE) %>%
+    mutate(pct = n / sum(n))
+  
+  ggplot(df_overall, aes(x = major, y = pct)) +
+    geom_col(fill = "dodgerblue2") +
+    scale_x_discrete(drop = FALSE) +
+    scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+    labs(x = "Literacy", y = "Percent") +
+    theme_classic()
+})
+```
+
+
+
+
+Programming Literacy
+=================
+
+
+Choose your filter {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+radioButtons("view_type", 
+             label = "View:", 
+             choices = c("Overall", "Per Major"),
+             selected = "Overall")
+
+conditionalPanel(
+  condition = "input.view_type == 'Per Major'",
+  selectInput("majors", label = "Select Participants' Major",
+              choices = majors, selected = '')
+)
+```
+
+
+
+Column {data-width=50}
+------------------------------------------
+
+### Overall Literacy {data-height=50}
+
+```{r}
+renderPlot({
+  df_overall <- student_data %>%
+    count(literacy, .drop = FALSE) %>%
+    mutate(pct = n / sum(n))
+  
+  vals <- as.numeric(as.character(df_overall$literacy))
+  vals <- vals[!is.na(vals)]
+  if (length(vals) == 0) return(NULL)
+  
+  m <- mean(vals, na.rm = TRUE)
+  s <- sd(vals, na.rm = TRUE)
+  
+  ggplot(df_overall, aes(x = literacy, y = pct)) +
+    geom_col(fill = "#02934a") +
+    scale_x_discrete(drop = FALSE) +
+    geom_vline(xintercept = m, color = "red", linewidth = 0.8, linetype = 3) +
+    scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+    labs(x = "Literacy", y = "Percent", title = "Overall Literacy",
+         caption = paste0("SD = ", round(s, 2))) +
+    theme_classic()
+})
+```
+
+
+### Literacy per Major (bars) {data-height=50}
+
+```{r}
+renderPlot({
+  req(input$view_type == "Per Major")
+  
+  data_sub <- student_data %>%
+    filter(major == input$majors) %>%
+    mutate(literacy = factor(literacy, levels = r_skills))  # keep all levels
+  
+  df_major <- data_sub %>%
+    count(literacy, .drop = FALSE) %>%
+    mutate(pct = if (sum(n) > 0) n / sum(n) else 0)
+  
+  vals <- rep(as.numeric(as.character(df_major$literacy)), df_major$n)
+  vals <- vals[!is.na(vals)]
+  if (length(vals) == 0) return(NULL)
+  
+  m <- mean(vals, na.rm = TRUE)
+  s <- sd(vals, na.rm = TRUE)
+  
+  ggplot(df_major, aes(x = literacy, y = pct)) +
+    geom_col(fill = "#02934a") +
+    geom_text(aes(label = scales::percent(pct, accuracy = 1)),
+              vjust = -0.3, size = 3) +
+    scale_x_discrete(drop = FALSE) +
+    geom_vline(xintercept = m, color = "red", linewidth = 0.8, linetype = 3) +
+    scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+    labs(x = "Literacy", y = "Percent",
+         title = paste("Literacy -", input$majors),
+         caption = paste0("SD = ", round(s, 2))) +
+    theme_classic()
+})
+```
+
+
+
+
+
+
+R and DSF program
+=======================
+
+Column {data-width=50}
+-----------------------------------------------------------------------
+
+### Share of students who have already used R {data-height=100}
+
+```{r}
+renderPlot({
+    # Find major counts
+    r_exp <- table(student_data$used_R)
+
+    # Calculate percentages
+    r_exp_percents <- prop.table(r_exp)
+    r_exp_percents <- as.data.frame(r_exp_percents)
+    names(r_exp_percents) <- c("Used R", "Pct")
+
+    # Bar plot
+    ggplot(r_exp_percents, aes(x = `Used R`, y = Pct)) +
+      geom_bar(stat = "identity", fill = "#02934a") +
+      scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+      theme_classic()  
+    
+})
+```
+
+
+Column {data-width=50}
+------------------------------------------
+
+### Share of students enrolled in the DSF program {data-height=100}
+
+```{r}
+renderPlot({
+    # Find major counts
+    dsf <- table(student_data$enrolled_dsf)
+
+    # Calculate percentages
+    dsf_percents <- prop.table(dsf)
+    dsf_percents <- as.data.frame(dsf_percents)
+    names(dsf_percents) <- c("Enrolled in DSF", "Pct")
+
+    # Bar plot
+    ggplot(dsf_percents, aes(x = `Enrolled in DSF`, y = Pct)) +
+        geom_bar(stat = "identity", fill = "dodgerblue4") +
+      scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+      theme_classic()  
+    
+})
+```
+
+
+
+When you hear the word "data", you think of:
+=================
+
+Column
+-----------------------------------------------------------------------
+
+### First word that comes to mind when you hear “data”
+
+```{r}
+plotOutput("assoc_cloud", width = "800px", height = "600px")   # height in px or 'auto'
+```
+
+```{r, context="server"}
+output$assoc_cloud <- renderPlot({
+  
+  txt <- tolower(na.omit(student_data$assoc_data))
+  if (length(txt) == 0) return(NULL)
+
+  tokens <- gsub("[^[:alnum:]\\säöüÄÖÜéèêàâîôûçß]", " ", txt)
+  tokens  <- tokens[nchar(tokens) > 0]
+
+  stop <- c("the","and","a","an","to","of","in","on","for","is","are",
+            "mit","und","der","die","das","de","la","le","et","des",
+            "data","dataset","données","daten")
+  tokens <- tokens[!tokens %in% stop]
+  if (length(tokens) == 0) return(NULL)
+  
+  txt_clean <- gsub(" ", "_", tokens)
+  dfm <- dfm(tokens(txt_clean))
+  
+  
+  # replace underscores in feature names
+  featmap <- data.frame(
+    from = featnames(dfm),
+    to   = stringr::str_wrap(gsub("_", " ", featnames(dfm)), width = 15),
+    stringsAsFactors = FALSE
+  )
+  
+  dfm <- dfm_replace(dfm, pattern = featmap$from, replacement = featmap$to)
+  
+  pal <- colorRampPalette(RColorBrewer::brewer.pal(11, "Spectral"))(50)
+  
+  # plot wordcloud
+  textplot_wordcloud(
+    dfm,
+    max_words = 100,
+    min_count = 1,
+    color = pal,
+    max_size = 3,
+    rotation = 0.15,
+    random_color = T
+  )
+})
+```
+
+
+

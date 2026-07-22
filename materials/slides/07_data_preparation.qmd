@@ -1,8 +1,8 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Dr. Aurélien Sallin"
-subtitle: 'Lecture 7:<br>Data Preparation'
-date: "2024-11-14"
+subtitle: 'Lecture 7:<br>Data Preparation, Manipulation, and Cleaning I'
+date: "2025-11-13"
 echo: false
 code-line-numbers: false
 format:
@@ -28,11 +28,277 @@ library(tidyr)
 library(stringr)
 ```
 
+# Welcome back!
+
+# Recap of Part I
+
+## {class="inverse" background-image="../../img/roadahead2.jpg" background-size="100%" background-repeat="cover"}
+
+## Part I: Data, data processing, data structures
+```{r pipeline 1, echo=FALSE, fig.align='center', out.width="80%", purl = FALSE}
+include_graphics("../../img/data_science_pipeline.png")
+```
+
+
+## Part I: Data, data processing, data structures
+
+#### Our story so far:
+
+  - 🖥️Computers store data as bits (Bits → Bytes → Encoded Text)<br>
+  - ✍🏻Text encodes meaning<br>
+  - 📝Files encode structure (→ Structured Files like CSV, JSON, XML)<br>
+  - 🗂️Structure is more or less flexible (→ rectangular data, hierarchical data)<br>
+  - 🔄✋Structure is obtained automatically or manually (→ APIs vs local files)<br>
+  - 💾R parses structure into memory. (→ R Parsing → R Data Structures)
+
+
+## Part I: Your own Group Project
+
+\
+
+\
+
+<center>
+🎉
+</center>
+
+
+## Part I: Your own Group Project{.nostretch}
+
+![](../../img/lois_chatgpt.jpg){width="40%" fig-align="center"}
+
+
+# Recap: non-rectangular data
+
+## XML vs JSON: Structure and Syntax
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### XML:
+```{xml, echo = TRUE}
+<person>
+  <firstName>John</firstName>
+  <lastName>Smith</lastName>
+  <age>25</age>
+  <address>
+    <streetAddress>21 2nd Street</streetAddress>
+    <city>New York</city>
+    <state>NY</state>
+    <postalCode>10021</postalCode>
+  </address>
+  <phoneNumber>
+    <type>home</type>
+    <number>212 555-1234</number>
+  </phoneNumber>
+  <phoneNumber>
+    <type>fax</type>
+    <number>646 555-4567</number>
+  </phoneNumber>
+</person>
+```
+
+::: {style="font-size: 60%;"}
+  - **Tags**: `<element>value</element>` or `<element attribute="value"/>`
+  - **Repetition**: Multiple `<phoneNumber>` elements  
+  - **Verbose**: More characters for structure
+:::
+
+:::
+
+::: {.column width="50%"}
+
+#### JSON:
+```{json, echo = TRUE}
+{"firstName": "John",
+  "lastName": "Smith",
+  "age": 25,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021"
+  },
+  "phoneNumber": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "fax",
+      "number": "646 555-4567"
+    }
+  ]
+}
+```
+
+::: {style="font-size: 60%;"}
+  - **Objects**: `{}` for key-value pairs
+  - **Arrays**: `[]` for sequences  
+  - **Compact**: Less verbose syntax
+:::
+
+:::
+::::
+
+## Working with XML and JSON in R
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### XML in R:
+```{r, echo = TRUE, eval = FALSE}
+library(xml2)
+
+# Read XML file
+xml_data <- read_xml("data/person.xml")
+
+# Extract specific elements with Xpath
+name <- xml_text(xml_find_all(xml_data, ".//firstName"))
+phone_numbers <- xml_text(xml_find_all(xml_data, ".//phoneNumber/number"))
+phone_numbers <- xml_text(xml_children(xml_children(xml_data)[c(5,6)])[c(2,4)])
+
+# Convert to data frame
+person_df <- data.frame(
+  firstName = name,
+  phone = c(phone_numbers[1], phone_numbers[2])
+)
+```
+
+```{r, echo = F, eval = T}
+library(xml2)
+
+# Read XML file
+xml_data <- read_xml("../../data/person.xml")
+
+# Extract specific elements with Xpath
+name <- xml_text(xml_find_all(xml_data, ".//firstName"))
+phone_numbers <- xml_text(xml_find_all(xml_data, ".//phoneNumber/number"))
+phone_numbers <- xml_text(xml_children(xml_children(xml_data)[c(5,6)])[c(2,4)])
+
+# Convert to data frame
+person_df <- data.frame(
+  firstName = name,
+  phone = c(phone_numbers[1], phone_numbers[2])
+)
+person_df
+```
+:::
+
+::: {.column width="50%"}
+
+#### JSON in R:
+```{r, echo = TRUE, eval = FALSE}
+library(jsonlite)
+
+# Read JSON file  
+json_doc <- fromJSON("data/person.json")
+
+# Access elements directly
+name <- json_doc$firstName
+phones <- json_doc$phoneNumber$number
+
+# Convert to data frame (automatic!)
+person_df <- as.data.frame(json_doc)
+```
+
+```{r, echo = FALSE, eval = TRUE}
+library(jsonlite)
+
+# Read JSON file  
+json_doc <- fromJSON("../../data/person.json")
+
+# Access elements directly
+name <- json_doc$firstName
+phones <- json_doc$phoneNumber$number
+
+# Convert to data frame (automatic!)
+person_df <- as.data.frame(json_doc)
+person_df 
+```
+:::
+::::
+
+
+## HTML: Semi-structured Web Data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### HTML documents/webpages consist of *'semi-structured data'*:
+
+  - A webpage can contain HTML tables (*structured data*)...
+  - ...but likely also contains just raw text (*unstructured data*).
+
+#### **Web scraping**
+  - Extract data from HTML using XPath
+  - Example in class: parser for a Wikipedia table (webscraper) with `rvest`
+
+:::
+
+::: {.column width="50%"}
+
+#### Raw HTML structure:
+
+```{html, echo = TRUE}
+<table class="wikitable">
+<tbody>
+<tr>
+  <th>Year</th>
+  <th>GDP (billions of 
+    <a href="/wiki/Swiss_franc">CHF</a>)
+  </th>
+  <th>US dollar exchange</th>
+</tr>
+<tr>
+  <td>1980</td>
+  <td>184</td>
+  <td>1.67 Francs</td>
+</tr>
+...
+</tbody>
+</table>
+```
+
+
+:::
+::::
+
+## REST APIs: Programmatic Data Access
+
+#### REST APIs
+
+  - **Structured data**: APIs return data in JSON/XML format
+  - **HTTP requests**: Use GET, POST, PUT, DELETE methods
+  - **Real-time data**: Access current information (stock prices, weather, economic indicators)
+  - (**Authentication**: Often require API keys or tokens)
+  - **Rate limiting**: Restrictions on number of requests per time period
+
+#### **In R**: Use `httr2`, `jsonlite` packages to consume APIs
+
+
+## Your group project
+
+Use APIs to retrieve World Bank Data and OECD Data.
+
+
 # Warm-up
 ## JSON files: open-ended question
 
-Be the JSON file
+::: {style="font-size: 70%;"}
+You import the following json file using fromJSON() and store the file in the object `students` in R, i.e. <br> `students <- fromJSON("students.json")`. 
 
+Which statements are TRUE?
+
+::: 
+
+:::: {.columns}
+::: {.column width="60%"}
+
+::: {style="font-size: 65%;"}
 ```{json, echo = TRUE}
 {
   "students": [
@@ -58,8 +324,8 @@ Be the JSON file
     },
     {
       "id": 19093,
-      "firstName": "Noah",
-      "lastName": "Trevor",
+      "firstName": "Trevor",
+      "lastName": "Noah",
       "grades": {
           "micro": 4,
           "macro": 4.5,
@@ -69,13 +335,35 @@ Be the JSON file
   ]
 }
 ```
+:::
+:::
 
-Write an R code to extract a table with, as a first column, a vector of first names, and as a second column, the average grade per student. The table can be a data frame or a tibble.
+::: {.column width="40%"}
 
+::: {style="font-size: 60%;"}
+
+- The object `students` is a list.
+- `students$students$firstName[2]` returns "Anna"
+- In JSON, the value for the "students" key is itself an object (key–value pair).
+- In JSON, you have two ways of writing data: arrays and objects. Objects are key-value pairs, and arrays are ordered lists.
+```
+{
+  "name": "Anna",              // a key "name" with a string value "Anna"
+  "grades": [5, 5.5, 6]        // a key "grades" with an array value [5, 5.5, 6]
+}
+```
+:::
+:::
+::::
 
 ## XML
 
-```{xml, echo = TRUE}
+Which statements are TRUE?
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{xml, echo = TRUE, max.lines = 10}
 <students>
   <student>
     <id>19091</id>
@@ -99,8 +387,8 @@ Write an R code to extract a table with, as a first column, a vector of first na
   </student>
   <student>
     <id>19093</id>
-    <firstName>Noah</firstName>
-    <lastName>Trevor</lastName>
+    <firstName>Trevor</firstName>
+    <lastName>Noah</lastName>
     <grades>
       <micro>4</micro>
       <macro>4.5</macro>
@@ -109,17 +397,22 @@ Write an R code to extract a table with, as a first column, a vector of first na
   </student>
 </students>
 ```
+:::
 
-- 'students' is the root-node, 'grades' are its children
-- The siblings of Trevor Noah are Anna Schmid and Peter Mueller
-- The code below would be an alternative, equivalent notation for the third student in the xml file above.
+::: {.column width="40%"}
+
+::: {style="font-size: 60%;"}
+  - 'students' is the root-node, 'grades' are its children
+  - The siblings of Trevor Noah are Anna Schmid and Peter Mueller
+  - This code would be an alternative, equivalent notation for the third student in the xml file above.
 ```{xml, echo = TRUE}
-<student id="19093" firstName="Noah" lastName="Trevor">
+<student id="19093" firstName="Trevor" lastName="Noah">
       <grades micro="4" macro="4.5" dataHandling="5" />
 </student>
 ```
-
-
+:::
+:::
+::::
 
 
 # Part II: Data preparation, analysis, and visualization
@@ -142,28 +435,21 @@ Write an R code to extract a table with, as a first column, a vector of first na
 
 
 
-## Part II: Data gathering and preparation
+## The dataset is imported, now what?
 ```{r pipeline, echo=FALSE, fig.align='center', out.width="80%", purl = FALSE}
 include_graphics("../../img/data_science_pipeline.png")
 ```
 
-##
-
-```{r, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE, fig.cap = "Source: https://www.storybench.org/wp-content/uploads/2017/05/tidyverse.png"}
-include_graphics("../../img/tidyverse_pipeline.png")
-```
 
 
-
-## Part II: Data preparation, analysis, and visualization
-
+## Part II: Schedule & Organization
 ```{r echo = FALSE, warning=FALSE, message = FALSE}
 library(readxl)
 library(knitr)
 library(magrittr)
 library(kableExtra)
 
-sched <- read_xlsx("../../schedule2024.xlsx", col_types = "text")
+sched <- read_xlsx("../../schedule2025.xlsx", col_types = "text")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -171,35 +457,109 @@ kable(sched[12:15, c(1,5)], format = "markdown")
 ```
 
 
-
-## Part II: Data preparation, analysis, and visualization
-
+## Part II: Schedule & Organization
 ```{r echo = FALSE, warning = FALSE}
 kable(sched[16:nrow(sched), c(1,5)], format = "markdown") 
 ```
 
 
+## Part II: Schedule & Organization
+
+<div style="margin-top: 2em;"></div>
+
+##### Exam for exchange students 🎁
+
+  - **18.12.2024 at 16:15** in room 09-112 (library building).
+
+<div style="margin-top: 1.5em;"></div>
+
+##### Walk-ins for the digital exam: 
+  
+  - **Wednesday, 3 December 2025** from 10:30 to 14:00 in Room 23-104 (A 23 Lehr-Pavillon)
+  - **Tuesday, 16 December 2025** from 10:30 to 14:00 in 23-203 (A 23 Lehr-Pavillon)
+
+<div style="margin-top: 1.5em;"></div>
+
+##### Second part of the project: online today. 
+  
+  - Recommendation: wait for week 9 to start, as we will cover the necessary concepts in class until then.
 
 
-# Part II: Data gathering and preparation
-
-<!-- ## Part II: Data gathering and preparation -->
-
-<!-- ```{r venn, echo=FALSE, fig.align='center', out.width="55%", purl = FALSE} -->
-<!-- include_graphics("../../img/venn_diagramm.png") -->
-<!-- ``` -->
 
 
-## Data preparation: Beware of the "Garbage in garbage out" problem
+# The Tidyverse
+
+## Our main tool in part II: the tidyverse
+
+:::: {.columns}
+
+::: {.column width="60%"}
+"The tidyverse is a collection of open source packages for the R programming language introduced by Hadley Wickham and his team that share an underlying design philosophy, grammar, and data structures" of tidy data." (Wikipedia)
+
+#### In this course, we will use tidyverse AND base R.
+:::
+
+::: {.column width="40%"}
+```{r , echo=FALSE, out.width = "55%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/tidyverse.png")
+```
+:::
+::::
+
+## Tidyverse for data handling in R 
+
+```{r, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE, fig.cap = "Source: https://www.storybench.org/wp-content/uploads/2017/05/tidyverse.png"}
+include_graphics("../../img/tidyverse_pipeline.png")
+```
+
+
+
+
+## Rectangular data in R and tidyverse
+
+- data frames: base `R`
+- tibbles: `tidyverse`
+
+
+## A note on tibbles and data frames
+
+#### Tibbles are a modern version of data frames
+
+Similar! 
+
+- Tibbles are used in the tidyverse and ggplot2 packages. 
+- Same information as a data frame.
+- Small differences in the manipulation and representation of data.
+- See [**Tibble vs. DataFrame**](https://jtr13.github.io/cc21fall1/tibble-vs.-dataframe.html#tibble-vs.-dataframe") for more details.
+
+
+## Tibbles are a modern version of data frames
+
+```{r, eval=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+as.data.frame(swiss)
+```
+
+## Tibbles are a modern version of data frames
+
+```{r, eval=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+as_tibble(swiss)
+```
+
+
+
+# Data cleaning
+
+## 
 
 :::: {.columns}
 
 ::: {.column width="60%"}
 
-#### Key conditions:
-  1. Data values are consistent/clean within each variable.
-  2. Variables are of proper data types.
-  3. Dataset is in 'tidy' (long) format.
+#### Garbage in, garbage ... ?
 
 
 :::
@@ -215,26 +575,45 @@ include_graphics("../../img/dalle_garbageinout.png")
 :::: 
 
 
-## Goals for today and next time: master data preparation
+## Beware of the "Garbage in garbage out" problem
 
-<br>
+:::: {.columns}
 
-#### Data preparation can be understood as consisting of five main actions:
+::: {.column width="60%"}
+
+#### Key conditions:
+  1. Data values are consistent/clean within each variable.
+  2. Variables are of proper data types.
+  3. Dataset is in 'tidy' (long) format.
+
+
+:::
+
+::: {.column width="40%"}
+
+```{r garbage2, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/dalle_garbageinout.png")
+```
+
+
+:::
+:::: 
+
+
+## Data preparation can be understood as consisting of five main actions
 
 - **Tidy** data.
 - **Reshape** datasets from wide to long (and vice versa).
 - **Bind** or stack rows in datasets.
-- **Join** datasets (covered next time).
+- **Join** datasets.
 - **Clean** data.
 
-<!-- Data Cleaning: This step usually involves handling missing values, correcting errors, and standardizing formats, ensuring the data is accurate and reliable before moving to other steps. -->
 <!-- Tidying Data: This step focuses on structuring data to be analysis-ready, often using principles from tidy data. -->
 <!-- Reshaping: Converting data formats (wide-to-long or long-to-wide) to fit specific analytical needs. -->
 <!-- Row Binding/Stacking: Combining datasets by stacking rows, often when data comes in separate parts. -->
 <!-- Joining: Merging datasets by columns, combining information based on a shared key. -->
+<!-- Data Cleaning: This step usually involves handling missing values, correcting errors, and standardizing formats, ensuring the data is accurate and reliable before moving to other steps. -->
 
-
-# Tidy data
 
 ## Tidy data: some vocabulary
 
@@ -269,21 +648,23 @@ In Economics, the definition of an *observation* can vary:
 ## Tidy data is not trivial
 
 #### Panel Data (Longitudinal Data):
-Panel data tracks the **same units over time**: each unit has multiple observations across time periods.<br>
-Observation: a measurement for a specific unit at a particular point in time.
+  
+  - Panel data tracks the same units over multiple time periods: we observe each unit repeatedly across time.<br>
+  - **Observation**: One unit at one specific time point (e.g., Person A in 2020, Person A in 2021).
 
-<br>
+<div style="margin-top: 1.25em;"></div>
 
 #### Cross-Sectional Data:
-"Snapshot" of **different units at the same moment**.<br>
-Observation: single measurement for each unit at a single point in time.
 
-<br>
+  - "Snapshot" of different units at the same moment.
+  - **Observation**: One unit at a single point in time (e.g., Person A, Person B, Person C all measured in 2024).
+
+<div style="margin-top: 1.25em;"></div>
 
 #### Time Series Data:
 
-**Single unit tracked over time**. <br> 
-Observation: measurement of a single variable for a single unit (or aggregate) over multiple points in time.
+  - Single unit tracked over time
+  - **Observation**: One measurement of the unit at each time period (e.g., Switzerland's GDP in 1990, 1991, 1992...).
 
 
 ## Three examples of non-tidy data (1)
@@ -411,6 +792,52 @@ tidy_grades
 include_graphics("../../img/longvswide.png")
 ```
 
+## Wide vs Long Format: Key Differences
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### **Long Format** 
+- **Structure**: Each measurement = one row
+- **Variables**: Stacked vertically
+- **Dimensions**: More rows, fewer columns  
+- **Analysis**: Better for statistical operations
+- **Example**: Database-normalized format
+
+```{r, echo = FALSE}
+grades_wide <- data.frame(
+  Student = c("Johannes", "Hannah", "Igor"),
+  Econ = c(5.0, 5.25, 4.0),
+  DataHandling = c(4.0, 4.5, 5.0),
+  Management = c(5.5, 6.0, 6.0)
+)
+grades_long <- grades_wide %>%
+  pivot_longer(cols = -Student, names_to = "Subject", values_to = "Grade")
+grades_long
+```
+
+:::
+
+::: {.column width="50%"}
+
+#### **Wide Format** 
+- **Structure**: Each observation = one row
+- **Variables**: Spread across multiple columns  
+- **Dimensions**: More columns, fewer rows
+- **Analysis**: Easy for humans to read
+- **Example**: Spreadsheet-style layout
+
+```{r, echo = FALSE}
+grades_wide
+```
+
+:::
+
+::::
+
+
+
 ## Reshaping: implementation in `R`
 
 - From wide to long: `melt()`, `gather()`,
@@ -428,6 +855,41 @@ include_graphics("../../img/longvswide.png")
 ```{r longvswideCode, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE, fig.cap="Long and wide data with code. Source: [Hugo Tavares](https://tavareshugo.github.io/r-intro-tidyverse-gapminder/09-reshaping/index.html)"}
 include_graphics("../../img/longvswideCode.png")
 ```
+
+
+## When to Use Wide vs Long Format
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### **Use Long Format for:** 
+
+- **Data analysis** with tidyverse/ggplot2
+- **Grouping and summarizing operations** (summarize, mutate by groups)
+- **Time series analysis**
+- **Following tidy data principles**
+- **Creating visualizations** with multiple variables
+
+:::
+
+::: {.column width="50%"}
+
+#### **Use Wide Format for:** 
+
+- **Data entry** and manual correction
+- **Reports and tables** for presentation  
+- **Statistical models** like regressions where each predictor should be a separate column (`lm`), many machine learning functions, matrix multiplication
+- **Spreadsheet analysis** (Excel-style operations)
+- **Human readability** and quick scanning
+
+:::
+::::
+
+
+<center>
+##### Rule of thumb: Wide format for presentation, long format for analysis
+</center>
 
 
 # Stack and row-bind
@@ -494,5 +956,18 @@ The errors are due to the requirements of `rbind()`.
 :::
 
 
+# Appendix
+
+## Tibbles vs data frames
+
+- Unlike data frames, tibbles don’t show the entire dataset when you print it
+- Tibbles cannot access a column when you provide a partial name of the column, but data frames can.
+- When you access only one column of a tibble, it will keep the tibble structure. But when you access one column of a data frame, it will become a vector.
+- When assigning a new column to a tibble, the input will not be recycled, which means you have to provide an input of the same length of the other columns. But a data frame will recycle the input.
+- Tibbles preserve all the variable types, while data frames have the option to convert string into factor. (In older versions of R, data frames will convert string into factor by default)
+
+::: aside
+Source: https://jtr13.github.io/cc21fall1/tibble-vs.-dataframe.html
+:::
 
 

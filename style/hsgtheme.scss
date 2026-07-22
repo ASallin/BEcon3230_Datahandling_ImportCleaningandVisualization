@@ -24,6 +24,11 @@ $code-color: #530aa7 !default; // color for inline code
 $code-block-bg: #04041bc2 !default; // background code chunks. Overrides highlight-style
 $code-block-border-color: rgb(255, 255, 255) !default;
 
+// add green-bold for emphasis
+.green-bold {
+  color: #008000;   /* or your HSG green variable if defined */
+  font-weight: bold;
+}
 
 // headings. presentation-heading changes all headings, independently of their level!
 $presentation-heading-font: 'Open Sans' !default;
@@ -76,7 +81,15 @@ code {
     padding: 20px;
 }
 
-
+// add footnote-style 
+.footnote-pin {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.3rem;
+  color: #6b7280; 
+}
 
 
 // if you want to specify headings with more details than what is available with sass variables above
@@ -108,6 +121,16 @@ code {
 .reveal h4 {
     margin: 30px 0 10px 0;
     color: #6b7280;
+    //font-family: 'Arial', sans-serif ;
+    //line-height: 0.9em;
+    //letter-spacing: 0.02em;
+    //text-transform: uppercase;
+    //text-shadow: none;
+}
+
+.reveal h5 {
+    margin: 30px 0 10px 0;
+    color: #02934a;
     //font-family: 'Arial', sans-serif ;
     //line-height: 0.9em;
     //letter-spacing: 0.02em;

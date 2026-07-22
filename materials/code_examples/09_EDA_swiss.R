@@ -1,6 +1,6 @@
 # Exercise on EDA
 # Lecture 9 - Data Handling
-# Author: Aurélien Sallin, 2024
+# Author: Aurélien Sallin, 2025
 
 
 
@@ -51,5 +51,10 @@ swiss |>
 
 swiss |> 
   group_by(Catholic > 50) |> 
-  summarize(across(.cols = c(Fertility, Education),
-                   .fns = list("min" = min, "mean" = mean, "max" = max))) 
+  summarize(
+    across(
+      .cols = c(Fertility, Education),
+      .fns = list("min" = min, "mean" = mean, "median" = median, "max" = max,
+                   "n_na" = ~sum(is.na(.)))
+          )
+        ) 

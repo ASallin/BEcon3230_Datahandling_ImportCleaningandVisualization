@@ -1,58 +1,92 @@
+
+# Packages ----------------------------------------------------------------
+
 library(shiny)
-library(googlesheets4)
 library(shinyjs)
 library(DT)
-
-# Authenticate with Google Sheets (run once interactively if needed)
-# This line can be omitted if you've already authenticated using service accounts
-gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets", 
-         path = "datahandlingform-e3748c92a518.json")
-         # path = "C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture2023/materials/app_firstlecture/DataHandlingIntro/datahandlingform-e3748c92a518.json")
-
-# Define the Google Sheet URL (replace with your actual sheet URL)
-sheet_url <- "https://docs.google.com/spreadsheets/d/13jZFfQHdqN5fI4PqGZZCvHGSgPbDPKBhdSmQ4WClyME/edit?gid=0#gid=0"
+library(googlesheets4)
+library(gargle)
+library(dplyr)   # you use %>% and data.frame ops
 
 
-fieldsMandatory <- c("used_R", "literacy", "major")
+
+# One-time auth for google sheets -----------------------------------------
+
+# one-time auth at startup.
+# Trick: when using it locally to test, use the full path C:(/Users.)
+# If deploying it online, use the relative path to the JSON file.
+authenticate_gs4 <- function() {
+  
+  # if (file.exists("C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/app_firstlecture/DataHandlingIntro/datahandlingform-4a1ada22d5ac.json")) {
+  if (file.exists("datahandlingform-4a1ada22d5ac.json")) {
+    # gs4_auth(path = "C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/app_firstlecture/DataHandlingIntro/datahandlingform-4a1ada22d5ac.json")
+    gs4_auth(path = "datahandlingform-4a1ada22d5ac.json")
+    return(invisible(TRUE))
+  }
+  stop("No Google service account credentials found. Set GCP_SA_JSON or add service-account.json to the app.")
+}
+
+authenticate_gs4()
+
+# gs4_user()
+
+
+# Set-up ------------------------------------------------------------------
+
+sheet_id <- "13jZFfQHdqN5fI4PqGZZCvHGSgPbDPKBhdSmQ4WClyME"
+ss <- as_sheets_id(sheet_id)
+
+fieldsMandatory <- c("used_R", "literacy", "major", "enrolled_dsf")
+fieldsAll <- c("home_town", "literacy", "used_R", "major",  "enrolled_dsf", "assoc_data")  
+
 humanTime <- function() format(Sys.time(), "%Y%m%d-%H%M%OS")
+epochTime  <- function() as.integer(Sys.time())
+
+appCSS <- ".mandatory_star { color: red; }"
+
+labelMandatory <- function(label) {
+  tagList(label, span("*", class = "mandatory_star"))
+}
 
 loadData <- function() {
-  gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets", 
-           path = "datahandlingform-e3748c92a518.json")
-           # path = "C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture2023/materials/app_firstlecture/DataHandlingIntro/datahandlingform-e3748c92a518.json")
-  ss <- "https://docs.google.com/spreadsheets/d/13jZFfQHdqN5fI4PqGZZCvHGSgPbDPKBhdSmQ4WClyME/edit?gid=0#gid=0"
+  # already authed above
   read_sheet(ss)
 }
 
-labelMandatory <- function(label) {
-  tagList(
-    label,
-    span("*", class = "mandatory_star")
-  )
+saveData <- function(data) {
+  # coerce to one-row data frame with correct types
+  data <- as.data.frame(as.list(data), stringsAsFactors = FALSE)
+  sheet_append(ss, data = data, sheet = 1)
 }
-
-fieldsAll <- c("home_town", "used_R", "literacy", "major")
-responsesDir <- file.path("responses")
-epochTime <- function() {
-  as.integer(Sys.time())
-}
-
-appCSS <- ".mandatory_star { color: red; }"
 
 shinyApp(
   ui = fluidPage(
     shinyjs::useShinyjs(),
     shinyjs::inlineCSS(appCSS),
     titlePanel("Tell us about yourself!"),
-    # DT::dataTableOutput("responsesTable"),
-    # downloadButton("downloadBtn", "Download responses"),
     div(
       id = "form",
       textInput("home_town", labelMandatory("What do you consider to be your 'home town' (enter the home town in English)?")),
-      sliderInput("literacy", "How would you describe your programming literacy from 1 (low) to 10 (expert)", 0, 10, 1, ticks = TRUE),
-      checkboxInput("used_R", "I've used R before", FALSE),
-      selectInput("major", "Which Major are you in?",
-                  c("BWL", "VWL", "BIA", "BLaw", "BLE", "other")),
+      sliderInput("literacy", 
+                  "How would you describe your programming literacy from 1 (low) to 10 (expert)",
+                  0, 10, 1, ticks = TRUE),
+      tags$div(
+        tags$label(labelMandatory("Have you used R before?")),
+        tags$div("For example: in another course, in self-study, or at work"),
+        checkboxInput("used_R", "I've used R before", FALSE),
+      ),
+      tags$div(
+        tags$label(labelMandatory("Are you enrolled in the Data Science Fundamental program at the HSG?")),
+        checkboxInput("enrolled_dsf", "Yes", FALSE),
+      ),
+      selectInput(
+        "major", "Which Major are you in?",
+        c("BWL", "VWL", "BIA", "BLaw", "BLE", "other")
+        ),
+      textInput(
+        "assoc_data",
+        "First word (or idea) that comes to mind when you think of ‘data science’?"
+      ),
       actionButton("submit", "Submit", class = "btn-primary"),
       shinyjs::hidden(
         span(id = "submit_msg", "Submitting..."),
@@ -67,38 +101,34 @@ shinyApp(
         h3("Thanks, your response was submitted successfully!"),
         actionLink("submit_another", "Submit another response")
       )
-    )  
+    )
+    # if you want the table and download back, re-enable these and ensure your Sheet allows read
+    # , DT::dataTableOutput("responsesTable")
+    # , downloadButton("downloadBtn", "Download responses")
   ),
   server = function(input, output, session) {
+    
     observe({
-      mandatoryFilled <-
-        vapply(fieldsMandatory,
-               function(x) {
-                 !is.null(input[[x]]) && input[[x]] != ""
-               },
-               logical(1))
-      mandatoryFilled <- all(mandatoryFilled)
-      
+      # handle checkbox and numeric mandatory fields correctly
+      mandatoryFilled <- all(vapply(fieldsMandatory, function(x) {
+        val <- input[[x]]
+        if (is.logical(val)) return(!is.null(val))          # checkbox present
+        if (is.numeric(val)) return(!is.null(val))          # slider present
+        !is.null(val) && nzchar(as.character(val))          # text/select
+      }, logical(1)))
       shinyjs::toggleState(id = "submit", condition = mandatoryFilled)
-    })    
+    })
+    
     formData <- reactive({
       data <- sapply(fieldsAll, function(x) input[[x]])
       data <- c(data, timestamp = epochTime())
-      data <- t(data)
-      data
+      t(data)
     })
-    saveData <- function(data) {
-      data <- data %>% as.list() %>% data.frame()
-      gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets", 
-               path = "datahandlingform-e3748c92a518.json")
-      ss <- "https://docs.google.com/spreadsheets/d/13jZFfQHdqN5fI4PqGZZCvHGSgPbDPKBhdSmQ4WClyME/edit?gid=0#gid=0"
-      googlesheets4::sheet_append(ss, data = data, sheet = 1)
-    }
+    
     observeEvent(input$submit, {
       shinyjs::disable("submit")
       shinyjs::show("submit_msg")
       shinyjs::hide("error")
-      
       tryCatch({
         saveData(formData())
         shinyjs::reset("form")
@@ -114,23 +144,22 @@ shinyApp(
         shinyjs::hide("submit_msg")
       })
     })
+    
     observeEvent(input$submit_another, {
       shinyjs::show("form")
       shinyjs::hide("thankyou_msg")
-    })   
-    output$responsesTable <- DT::renderDataTable(
-      loadData(),
-      rownames = FALSE,
-      options = list(searching = FALSE, lengthChange = FALSE)
-    ) 
-    output$downloadBtn <- downloadHandler(
-      filename = function() { 
-        sprintf("mimic-google-form_%s.csv", humanTime())
-      },
-      content = function(file) {
-        write.csv(loadData(), file, row.names = FALSE)
-      },
-      contentType = "csv"
-    )
+    })
+    
+    # If you re-enable the table:
+    # output$responsesTable <- DT::renderDataTable(
+    #   loadData(),
+    #   rownames = FALSE,
+    #   options = list(searching = FALSE, lengthChange = FALSE)
+    # )
+    # output$downloadBtn <- downloadHandler(
+    #   filename = function() sprintf("responses_%s.csv", humanTime()),
+    #   content = function(file) write.csv(loadData(), file, row.names = FALSE),
+    #   contentType = "csv"
+    # )
   }
 )

@@ -1,0 +1,1051 @@
+cname,region_code,name,year,EQIregion,nuts_level,NUTS0_code,NUTS1_code,NUTS2_code,NUTS0_name,NUTS1_name,NUTS2_name,EQI,EQI_me,EQI_low_me,EQI_high_me,qualityp,impartialityp,corruptionp,corruption_subPer,corruption_subExp
+Austria,AT11,Burgenland (AT),2021,401,2,AT,AT1,AT11,Österreich,Ostösterreich,Burgenland,.949,.16956,.7794399999999999,1.11856,.852,1.117,.773,.990161,1.18742
+Austria,AT11,Burgenland (AT),2024,401,2,AT,AT1,AT11,Österreich,Ostösterreich,Burgenland,.928,.148895,.779105,1.076895,.6860000000000001,1.367,.6,.837699,1.03163
+Austria,AT11,Burgenland (AT),2017,401,2,AT,AT1,AT11,Österreich,Ostösterreich,Burgenland,.868,.141545,.726455,1.009545,.452,1.4,.665,.801242,.141545
+Austria,AT11,Burgenland (AT),2013,401,2,AT,AT1,AT11,Österreich,Ostösterreich,Burgenland,1.173,.308507,.8644930000000001,1.481507,.767,1.723,.929,,
+Austria,AT11,Burgenland (AT),2010,401,2,AT,AT1,AT11,Österreich,Ostösterreich,Burgenland,1.23,.179447,1.050553,1.409447,.847,1.443,1.277,,
+Austria,AT12,Niederösterreich,2017,402,2,AT,AT1,AT12,Österreich,Ostösterreich,Niederösterreich,.801,.22312,.5778800000000001,1.02412,.514,1.14,.67,.891188,.22312
+Austria,AT12,Niederösterreich,2021,402,2,AT,AT1,AT12,Österreich,Ostösterreich,Niederösterreich,1.132,.146335,.9856649999999999,1.278335,.874,1.5,.898,1.22457,1.17791
+Austria,AT12,Niederösterreich,2013,402,2,AT,AT1,AT12,Österreich,Ostösterreich,Niederösterreich,1.225,.212109,1.012891,1.437109,1.194,1.771,.608,,
+Austria,AT12,Niederösterreich,2010,402,2,AT,AT1,AT12,Österreich,Ostösterreich,Niederösterreich,1.272,.204623,1.067377,1.476623,1.257,1.256,1.174,,
+Austria,AT12,Niederösterreich,2024,402,2,AT,AT1,AT12,Österreich,Ostösterreich,Niederösterreich,.874,.128284,.745716,1.002284,.798,1.394,.306,.707117,.61355
+Austria,AT13,Wien,2010,403,2,AT,AT1,AT13,Österreich,Ostösterreich,Wien,1.154,.2349,.9190999999999999,1.3889,.733,1.191,1.423,,
+Austria,AT13,Wien,2013,403,2,AT,AT1,AT13,Österreich,Ostösterreich,Wien,.649,.235401,.413599,.884401,.649,1.165,.078,,
+Austria,AT13,Wien,2021,403,2,AT,AT1,AT13,Österreich,Ostösterreich,Wien,.726,.197935,.528065,.923935,.513,.975,.61,.8619,1.01644
+Austria,AT13,Wien,2024,403,2,AT,AT1,AT13,Österreich,Ostösterreich,Wien,.757,.198088,.5589120000000001,.9550879999999999,.993,.85,.323,.666202,.687072
+Austria,AT13,Wien,2017,403,2,AT,AT1,AT13,Österreich,Ostösterreich,Wien,.9350000000000001,.218619,.716381,1.153619,.773,1.125,.8139999999999999,.920444,.218619
+Austria,AT21,Kärnten,2024,404,2,AT,AT2,AT21,Österreich,Südösterreich,Kärnten,.879,.19817,.68083,1.07717,.946,1.158,.409,.724308,.788828
+Austria,AT21,Kärnten,2010,404,2,AT,AT2,AT21,Österreich,Südösterreich,Kärnten,1.309,.253106,1.055894,1.562106,.715,1.576,1.505,,
+Austria,AT21,Kärnten,2013,404,2,AT,AT2,AT21,Österreich,Südösterreich,Kärnten,1.013,.321656,.691344,1.334656,.63,1.454,.87,,
+Austria,AT21,Kärnten,2021,404,2,AT,AT2,AT21,Österreich,Südösterreich,Kärnten,.902,.169858,.7321420000000001,1.071858,.6870000000000001,1.177,.743,.927872,1.19522
+Austria,AT21,Kärnten,2017,404,2,AT,AT2,AT21,Österreich,Südösterreich,Kärnten,.73,.195885,.534115,.925885,.422,1.065,.631,.953203,.195885
+Austria,AT22,Steiermark,2017,405,2,AT,AT2,AT22,Österreich,Südösterreich,Steiermark,.836,.213615,.622385,1.049615,.677,1.023,.725,.921879,.213615
+Austria,AT22,Steiermark,2021,405,2,AT,AT2,AT22,Österreich,Südösterreich,Steiermark,1.051,.105454,.9455459999999999,1.156454,.752,1.579,.707,1.04143,1.01221
+Austria,AT22,Steiermark,2013,405,2,AT,AT2,AT22,Österreich,Südösterreich,Steiermark,1.235,.205223,1.029777,1.440223,.945,1.825,.83,,
+Austria,AT22,Steiermark,2010,405,2,AT,AT2,AT22,Österreich,Südösterreich,Steiermark,1.047,.196998,.8500019999999999,1.243998,1.017,.93,1.089,,
+Austria,AT22,Steiermark,2024,405,2,AT,AT2,AT22,Österreich,Südösterreich,Steiermark,.976,.161971,.814029,1.137971,.794,1.448,.549,.954162,.821141
+Austria,AT31,Oberösterreich,2010,406,2,AT,AT3,AT31,Österreich,Westösterreich,Oberösterreich,1.166,.165636,1.000364,1.331636,1.098,1.245,1.039,,
+Austria,AT31,Oberösterreich,2024,406,2,AT,AT3,AT31,Österreich,Westösterreich,Oberösterreich,.854,.173331,.680669,1.027331,1.022,1.141,.279,.785192,.485575
+Austria,AT31,Oberösterreich,2013,406,2,AT,AT3,AT31,Österreich,Westösterreich,Oberösterreich,1.119,.204299,.914701,1.323299,1.029,1.735,.5,,
+Austria,AT31,Oberösterreich,2017,406,2,AT,AT3,AT31,Österreich,Westösterreich,Oberösterreich,.777,.28043,.49657,1.05743,.778,.762,.712,.93914,.28043
+Austria,AT31,Oberösterreich,2021,406,2,AT,AT3,AT31,Österreich,Westösterreich,Oberösterreich,.961,.157403,.803597,1.118403,.62,1.381,.776,1.06915,1.1111
+Austria,AT32,Salzburg,2024,407,2,AT,AT3,AT32,Österreich,Westösterreich,Salzburg,1.119,.228579,.890421,1.347579,1.282,1.198,.72,1.08654,1.00755
+Austria,AT32,Salzburg,2013,407,2,AT,AT3,AT32,Österreich,Westösterreich,Salzburg,1.014,.422149,.591851,1.436149,.52,1.777,.659,,
+Austria,AT32,Salzburg,2010,407,2,AT,AT3,AT32,Österreich,Westösterreich,Salzburg,1.025,.204921,.8200789999999999,1.229921,.61,1.183,1.181,,
+Austria,AT32,Salzburg,2017,407,2,AT,AT3,AT32,Österreich,Westösterreich,Salzburg,.969,.229952,.7390479999999999,1.198952,.896,1.105,.8090000000000001,.995999,.229952
+Austria,AT32,Salzburg,2021,407,2,AT,AT3,AT32,Österreich,Westösterreich,Salzburg,1.021,.15518,.8658199999999999,1.17618,.9320000000000001,1.351,.669,1.0378,.9450809999999999
+Austria,AT33,Tirol,2017,408,2,AT,AT3,AT33,Österreich,Westösterreich,Tirol,1.106,.296198,.8098020000000001,1.402198,1.331,1.141,.734,1.0174,.296198
+Austria,AT33,Tirol,2013,408,2,AT,AT3,AT33,Österreich,Westösterreich,Tirol,1.462,.247455,1.214545,1.709455,1.331,2.275,.656,,
+Austria,AT33,Tirol,2010,408,2,AT,AT3,AT33,Österreich,Westösterreich,Tirol,1.485,.247883,1.237117,1.732883,1.388,1.534,1.384,,
+Austria,AT33,Tirol,2024,408,2,AT,AT3,AT33,Österreich,Westösterreich,Tirol,.993,.169692,.8233079999999999,1.162692,1.193,1.325,.321,.802379,.547305
+Austria,AT33,Tirol,2021,408,2,AT,AT3,AT33,Österreich,Westösterreich,Tirol,.998,.187739,.810261,1.185739,1.046,1.051,.787,1.00206,1.20168
+Austria,AT34,Vorarlberg,2024,409,2,AT,AT3,AT34,Österreich,Westösterreich,Vorarlberg,.925,.209174,.7158260000000001,1.134174,1.093,1.005,.548,.775633,.996825
+Austria,AT34,Vorarlberg,2021,409,2,AT,AT3,AT34,Österreich,Westösterreich,Vorarlberg,1.071,.25075,.8202499999999999,1.32175,1.168,1.099,.829,1.03548,1.2432
+Austria,AT34,Vorarlberg,2017,409,2,AT,AT3,AT34,Österreich,Westösterreich,Vorarlberg,1.162,.152184,1.009816,1.314184,.908,1.46,1.001,.961062,.152184
+Austria,AT34,Vorarlberg,2010,409,2,AT,AT3,AT34,Österreich,Westösterreich,Vorarlberg,1.148,.24244,.9055599999999999,1.39044,.327,1.493,1.51,,
+Austria,AT34,Vorarlberg,2013,409,2,AT,AT3,AT34,Österreich,Westösterreich,Vorarlberg,.704,.5057160000000001,.1982839999999999,1.209716,.225,1.654,.174,,
+Belgium,BE1,Region Brussels ,2024,1101,1,BE,BE1,,Belgique/België,Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest,NA,-.13,.373376,-.503376,.243376,.05,-.201,-.221,-.103907,-.921558
+Belgium,BE1,Region Brussels ,2021,1101,1,BE,BE1,,Belgique/België,Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest,NA,-.108,.300539,-.408539,.192539,-.179,-.065,-.068,.120706,-.649265
+Belgium,BE1,Region Brussels ,2010,1101,1,BE,BE1,,Belgique/België,Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest,NA,-.259,.389306,-.648306,.130306,.033,-.841,.056,,
+Belgium,BE1,Region Brussels ,2017,1101,1,BE,BE1,,Belgique/België,Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest,NA,-.033,.398321,-.431321,.365321,-.278,-.426,.607,.282342,.398321
+Belgium,BE1,Region Brussels ,2013,1101,1,BE,BE1,,Belgique/België,Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest,NA,.102,.393716,-.291716,.495716,-.078,-.321,.697,,
+Belgium,BE2,Flanders,2021,1102,1,BE,BE2,,Belgique/België,Vlaams Gewest,NA,.719,.330283,.388717,1.049283,.569,.61,.899,.631177,.621703
+Belgium,BE2,Flanders,2013,1102,1,BE,BE2,,Belgique/België,Vlaams Gewest,NA,1.1,.434073,.6659270000000002,1.534073,1.391,.974,.843,,
+Belgium,BE2,Flanders,2017,1102,1,BE,BE2,,Belgique/België,Vlaams Gewest,NA,1.05,.371866,.678134,1.421866,1.179,.977,.887,.51988,.371866
+Belgium,BE2,Flanders,2010,1102,1,BE,BE2,,Belgique/België,Vlaams Gewest,NA,.837,.453505,.383495,1.290505,.764,.976,.6889999999999999,,
+Belgium,BE2,Flanders,2024,1102,1,BE,BE2,,Belgique/België,Vlaams Gewest,NA,.837,.397241,.439759,1.234241,.876,.6879999999999999,.83,.418791,.505615
+Belgium,BE3,Wallonie,2024,1103,1,BE,BE3,,Belgique/België,Région wallonne,NA,.602,.227781,.374219,.829781,.254,.704,.763,.442987,.365276
+Belgium,BE3,Wallonie,2017,1103,1,BE,BE3,,Belgique/België,Région wallonne,NA,.293,.366464,-.073464,.6594640000000001,.144,-.154,.858,.543145,.366464
+Belgium,BE3,Wallonie,2010,1103,1,BE,BE3,,Belgique/België,Région wallonne,NA,.045,.334552,-.289552,.379552,.265,-.382,.247,,
+Belgium,BE3,Wallonie,2013,1103,1,BE,BE3,,Belgique/België,Région wallonne,NA,.064,.378877,-.314877,.442877,.184,-.319,.323,,
+Belgium,BE3,Wallonie,2021,1103,1,BE,BE3,,Belgique/België,Région wallonne,NA,.447,.210961,.236039,.657961,.063,.456,.773,.461673,.563535
+Bulgaria,BG31,Severozapaden,2013,1701,2,BG,BG3,BG31,Bulgaria,Severna i Yugoiztochna Bulgaria,Severozapaden,-2.116,.438126,-2.554126,-1.677874,-1.873,-2.419,-1.876,,
+Bulgaria,BG31,Severozapaden,2024,1701,2,BG,BG3,BG31,Bulgaria,Severna i Yugoiztochna Bulgaria,Severozapaden,-2.418,.411748,-2.829748,-2.006252,-2.703,-1.648,-2.563,-2.4869,-3.97126
+Bulgaria,BG31,Severozapaden,2021,1701,2,BG,BG3,BG31,Bulgaria,Severna i Yugoiztochna Bulgaria,Severozapaden,-1.565,.323609,-1.888609,-1.241391,-1.717,-1.876,-.93,-2.34021,-1.09504
+Bulgaria,BG31,Severozapaden,2010,1701,2,BG,BG3,BG31,Bulgaria,Severna i Yugoiztochna Bulgaria,Severozapaden,-2.507,.406329,-2.913329,-2.100671,-2.414,-2.743,-2.115,,
+Bulgaria,BG31,Severozapaden,2017,1701,2,BG,BG3,BG31,Bulgaria,Severna i Yugoiztochna Bulgaria,Severozapaden,-2.145,.309433,-2.454433,-1.835567,-2.002,-2.686,-1.531,-1.12603,.309433
+Bulgaria,BG32,Severen tsentralen,2017,1702,2,BG,BG3,BG32,Bulgaria,Severna i Yugoiztochna Bulgaria,Severen tsentralen,-.867,.423518,-1.290518,-.443482,-1.474,-.791,-.248,.055534,.423518
+Bulgaria,BG32,Severen tsentralen,2021,1702,2,BG,BG3,BG32,Bulgaria,Severna i Yugoiztochna Bulgaria,Severen tsentralen,-1.223,.319623,-1.542623,-.9033770000000001,-1.336,-1.369,-.83,-2.4024,-.8450839999999999
+Bulgaria,BG32,Severen tsentralen,2010,1702,2,BG,BG3,BG32,Bulgaria,Severna i Yugoiztochna Bulgaria,Severen tsentralen,-2.087,.512931,-2.599931,-1.574069,-3.145,-1.711,-1.197,,
+Bulgaria,BG32,Severen tsentralen,2024,1702,2,BG,BG3,BG32,Bulgaria,Severna i Yugoiztochna Bulgaria,Severen tsentralen,-.5600000000000001,.241551,-.801551,-.3184490000000001,-1.392,-.1,-.11,-1.00204,-.882372
+Bulgaria,BG32,Severen tsentralen,2013,1702,2,BG,BG3,BG32,Bulgaria,Severna i Yugoiztochna Bulgaria,Severen tsentralen,-1.552,.411246,-1.963246,-1.140754,-1.327,-1.952,-1.247,,
+Bulgaria,BG33,Severoiztochen,2017,1703,2,BG,BG3,BG33,Bulgaria,Severna i Yugoiztochna Bulgaria,Severoiztochen,-1.235,.347083,-1.582083,-.8879170000000001,-1.212,-1.381,-.989,-.939223,.347083
+Bulgaria,BG33,Severoiztochen,2024,1703,2,BG,BG3,BG33,Bulgaria,Severna i Yugoiztochna Bulgaria,Severoiztochen,-.973,.346,-1.319,-.627,-1.406,-.325,-1.049,-1.44514,-2.1903
+Bulgaria,BG33,Severoiztochen,2021,1703,2,BG,BG3,BG33,Bulgaria,Severna i Yugoiztochna Bulgaria,Severoiztochen,-1.579,.250652,-1.829652,-1.328348,-1.21,-1.815,-1.538,-2.45737,-2.105
+Bulgaria,BG33,Severoiztochen,2010,1703,2,BG,BG3,BG33,Bulgaria,Severna i Yugoiztochna Bulgaria,Severoiztochen,-1.098,.248255,-1.346255,-.8497450000000001,-.517,-1.523,-1.145,,
+Bulgaria,BG33,Severoiztochen,2013,1703,2,BG,BG3,BG33,Bulgaria,Severna i Yugoiztochna Bulgaria,Severoiztochen,-.403,.566762,-.969762,.163762,-.481,-.254,-.44,,
+Bulgaria,BG34,Yugoiztochen,2024,1704,2,BG,BG3,BG34,Bulgaria,Severna i Yugoiztochna Bulgaria,Yugoiztochen,-1.334,.314578,-1.648578,-1.019422,-1.712,-.948,-1.153,-1.77342,-2.05557
+Bulgaria,BG34,Yugoiztochen,2013,1704,2,BG,BG3,BG34,Bulgaria,Severna i Yugoiztochna Bulgaria,Yugoiztochen,-1.729,.377098,-2.106098,-1.351902,-1.913,-2.009,-1.121,,
+Bulgaria,BG34,Yugoiztochen,2017,1704,2,BG,BG3,BG34,Bulgaria,Severna i Yugoiztochna Bulgaria,Yugoiztochen,-2.052,.519092,-2.571092,-1.532908,-1.705,-1.831,-2.412,-3.01848,.519092
+Bulgaria,BG34,Yugoiztochen,2021,1704,2,BG,BG3,BG34,Bulgaria,Severna i Yugoiztochna Bulgaria,Yugoiztochen,-1.387,.309287,-1.696287,-1.077713,-1.033,-1.571,-1.404,-2.52408,-1.78762
+Bulgaria,BG34,Yugoiztochen,2010,1704,2,BG,BG3,BG34,Bulgaria,Severna i Yugoiztochna Bulgaria,Yugoiztochen,-2.151,.368965,-2.519965,-1.782035,-2.656,-2.033,-1.551,,
+Bulgaria,BG41,Yugozapaden,2013,1705,2,BG,BG4,BG41,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yugozapaden,-2.634,.506331,-3.140331,-2.127669,-2.208,-3.02,-2.452,,
+Bulgaria,BG41,Yugozapaden,2010,1705,2,BG,BG4,BG41,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yugozapaden,-1.886,.348244,-2.234244,-1.537756,-1.144,-2.127,-2.199,,
+Bulgaria,BG41,Yugozapaden,2024,1705,2,BG,BG4,BG41,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yugozapaden,-1.926,.349698,-2.275698,-1.576302,-2.16,-1.541,-1.806,-2.21674,-2.82923
+Bulgaria,BG41,Yugozapaden,2017,1705,2,BG,BG4,BG41,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yugozapaden,-1.746,.47601,-2.22201,-1.26999,-1.67,-1.539,-1.854,-2.58763,.47601
+Bulgaria,BG41,Yugozapaden,2021,1705,2,BG,BG4,BG41,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yugozapaden,-1.793,.354986,-2.147986,-1.438014,-1.646,-1.515,-2.021,-2.38645,-3.07463
+Bulgaria,BG42,Yuzhen tsentralen,2017,1706,2,BG,BG4,BG42,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yuzhen tsentralen,-1.423,.302845,-1.725845,-1.120155,-1.167,-2.149,-.8090000000000001,-.781139,.302845
+Bulgaria,BG42,Yuzhen tsentralen,2010,1706,2,BG,BG4,BG42,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yuzhen tsentralen,-1.253,.299152,-1.552152,-.9538479999999999,-1.485,-1.224,-.924,,
+Bulgaria,BG42,Yuzhen tsentralen,2013,1706,2,BG,BG4,BG42,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yuzhen tsentralen,-1.145,.489159,-1.634159,-.655841,-1.516,-1.135,-.6870000000000001,,
+Bulgaria,BG42,Yuzhen tsentralen,2024,1706,2,BG,BG4,BG42,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yuzhen tsentralen,-2.262,.332206,-2.594206,-1.929794,-2.694,-2.293,-1.481,-2.69322,-1.74686
+Bulgaria,BG42,Yuzhen tsentralen,2021,1706,2,BG,BG4,BG42,Bulgaria,Yugozapadna i Yuzhna tsentralna Bulgaria,Yuzhen tsentralen,-1.169,.314443,-1.483443,-.854557,-1.202,-1.244,-.9320000000000001,-2.15793,-1.2865
+Cyprus,CY,Cyprus,2021,2801,0,CY,,,Kýpros,NA,NA,-.302,.487248,-.7892479999999999,.185248,-.007,-.428,-.438,-1.15615,.90769
+Cyprus,CY,Cyprus,2010,2801,0,CY,,,Kýpros,NA,NA,.321,,,,.404,.145,.382,,
+Cyprus,CY,Cyprus,2024,2801,0,CY,,,Kýpros,NA,NA,-.556,.54384,-1.09984,-.0121600000000001,-.415,-.488,-.6860000000000001,-1.55546,-1.83715
+Cyprus,CY,Cyprus,2017,2801,0,CY,,,Kýpros,NA,NA,-.011,,,,-.057,-.117,.142,,
+Cyprus,CY,Cyprus,2013,2801,0,CY,,,Kýpros,NA,NA,.07,,,,.454,-.117,-.134,,
+Czech Republic,CZ01,Praha,2021,1901,2,CZ,CZ0,CZ01,Česko,Česko,Praha,-.06,.280254,-.340254,.220254,-.084,.462,-.551,.064162,.196376
+Czech Republic,CZ01,Praha,2024,1901,2,CZ,CZ0,CZ01,Česko,Česko,Praha,.029,.277995,-.248995,.306995,.527,-.057,-.386,.053454,.034131
+Czech Republic,CZ01,Praha,2010,1901,2,CZ,CZ0,CZ01,Česko,Česko,Praha,-.882,.415127,-1.297127,-.466873,-.591,-.484,-1.484,,
+Czech Republic,CZ01,Praha,2013,1901,2,CZ,CZ0,CZ01,Česko,Česko,Praha,-.455,.215415,-.670415,-.239585,-.215,-.078,-1.034,,
+Czech Republic,CZ01,Praha,2017,1901,2,CZ,CZ0,CZ01,Česko,Česko,Praha,-.067,.39102,-.45802,.32402,.225,.207,-.626,-.6290790000000001,.39102
+Czech Republic,CZ02,Strední Cechy,2017,1902,2,CZ,CZ0,CZ02,Česko,Česko,Střední Čechy,-.5620000000000001,.449433,-1.011433,-.112567,-.001,-.877,-.751,-.803647,.449433
+Czech Republic,CZ02,Strední Cechy,2010,1902,2,CZ,CZ0,CZ02,Česko,Česko,Střední Čechy,-.3,.398656,-.6986559999999999,.098656,.014,-.034,-.849,,
+Czech Republic,CZ02,Strední Cechy,2024,1902,2,CZ,CZ0,CZ02,Česko,Česko,Střední Čechy,-.043,.223236,-.266236,.180236,.133,.018,-.273,.283935,.013753
+Czech Republic,CZ02,Strední Cechy,2021,1902,2,CZ,CZ0,CZ02,Česko,Česko,Střední Čechy,-.282,.217546,-.4995459999999999,-.064454,-.397,.16,-.577,.162366,.046984
+Czech Republic,CZ02,Strední Cechy,2013,1902,2,CZ,CZ0,CZ02,Česko,Česko,Střední Čechy,-.41,.145505,-.5555049999999999,-.264495,-.227,-.191,-.776,,
+Czech Republic,CZ03,Jihozápad,2021,1903,2,CZ,CZ0,CZ03,Česko,Česko,Jihozápad,-.309,.191492,-.5004919999999999,-.117508,-.295,-.089,-.51,.007838,.3316
+Czech Republic,CZ03,Jihozápad,2013,1903,2,CZ,CZ0,CZ03,Česko,Česko,Jihozápad,-.276,.179188,-.455188,-.096812,-.102,-.081,-.621,,
+Czech Republic,CZ03,Jihozápad,2024,1903,2,CZ,CZ0,CZ03,Česko,Česko,Jihozápad,-.188,.212684,-.400684,.024684,.175,-.376,-.337,.116356,.063783
+Czech Republic,CZ03,Jihozápad,2010,1903,2,CZ,CZ0,CZ03,Česko,Česko,Jihozápad,-.107,.335505,-.442505,.228505,.348,-.145,-.515,,
+Czech Republic,CZ03,Jihozápad,2017,1903,2,CZ,CZ0,CZ03,Česko,Česko,Jihozápad,-.195,.332022,-.527022,.137022,-.175,.218,-.608,-.285391,.332022
+Czech Republic,CZ04,Severozápad,2024,1904,2,CZ,CZ0,CZ04,Česko,Česko,Severozápad,-.67,.137064,-.807064,-.5329360000000001,-.639,-.679,-.598,-.21414,-.093941
+Czech Republic,CZ04,Severozápad,2017,1904,2,CZ,CZ0,CZ04,Česko,Česko,Severozápad,-.902,.291723,-1.193723,-.610277,-.661,-.804,-1.152,-.765794,.291723
+Czech Republic,CZ04,Severozápad,2010,1904,2,CZ,CZ0,CZ04,Česko,Česko,Severozápad,-.881,.461249,-1.342249,-.419751,-1.165,-.508,-.883,,
+Czech Republic,CZ04,Severozápad,2013,1904,2,CZ,CZ0,CZ04,Česko,Česko,Severozápad,-.888,.166472,-1.054472,-.7215279999999999,-.746,-.6,-1.243,,
+Czech Republic,CZ04,Severozápad,2021,1904,2,CZ,CZ0,CZ04,Česko,Česko,Severozápad,-.598,.179949,-.777949,-.418051,-.601,-.391,-.739,-.14603,.06473
+Czech Republic,CZ05,Severovýchod,2010,1905,2,CZ,CZ0,CZ05,Česko,Česko,Severovýchod,-.192,.300577,-.492577,.108577,.337,-.265,-.631,,
+Czech Republic,CZ05,Severovýchod,2013,1905,2,CZ,CZ0,CZ05,Česko,Česko,Severovýchod,-.317,.174405,-.491405,-.142595,-.209,-.093,-.623,,
+Czech Republic,CZ05,Severovýchod,2021,1905,2,CZ,CZ0,CZ05,Česko,Česko,Severovýchod,-.104,.196354,-.300354,.092354,-.107,.208,-.402,.319143,.210679
+Czech Republic,CZ05,Severovýchod,2024,1905,2,CZ,CZ0,CZ05,Česko,Česko,Severovýchod,-.1,.179222,-.279222,.079222,.187,-.34,-.133,.147045,.412233
+Czech Republic,CZ05,Severovýchod,2017,1905,2,CZ,CZ0,CZ05,Česko,Česko,Severovýchod,-.074,.32153,-.39553,.24753,-.172,.389,-.431,-.126424,.32153
+Czech Republic,CZ06,Jihovýchod,2017,1906,2,CZ,CZ0,CZ06,Česko,Česko,Jihovýchod,.111,.312788,-.201788,.423788,.139,.495,-.313,.022506,.312788
+Czech Republic,CZ06,Jihovýchod,2010,1906,2,CZ,CZ0,CZ06,Česko,Česko,Jihovýchod,-.481,.321247,-.8022469999999999,-.159753,-.176,-.314,-.905,,
+Czech Republic,CZ06,Jihovýchod,2013,1906,2,CZ,CZ0,CZ06,Česko,Česko,Jihovýchod,-.212,.175242,-.387242,-.036758,-.125,.132,-.624,,
+Czech Republic,CZ06,Jihovýchod,2024,1906,2,CZ,CZ0,CZ06,Česko,Česko,Jihovýchod,-.092,.250744,-.342744,.158744,.325,-.167,-.422,.022428,-.001558
+Czech Republic,CZ06,Jihovýchod,2021,1906,2,CZ,CZ0,CZ06,Česko,Česko,Jihovýchod,-.204,.191815,-.395815,-.012185,-.21,.007,-.387,.362905,.194219
+Czech Republic,CZ07,Strední Morava,2017,1907,2,CZ,CZ0,CZ07,Česko,Česko,Střední Morava,.073,.293461,-.220461,.366461,-.008,.425,-.207,-.055226,.293461
+Czech Republic,CZ07,Strední Morava,2021,1907,2,CZ,CZ0,CZ07,Česko,Česko,Střední Morava,-.325,.201308,-.526308,-.123692,-.147,-.158,-.634,.014431,.093044
+Czech Republic,CZ07,Strední Morava,2013,1907,2,CZ,CZ0,CZ07,Česko,Česko,Střední Morava,-.378,.196511,-.574511,-.181489,-.218,-.169,-.715,,
+Czech Republic,CZ07,Strední Morava,2010,1907,2,CZ,CZ0,CZ07,Česko,Česko,Střední Morava,-.555,.364571,-.919571,-.1904290000000001,-.361,-.519,-.73,,
+Czech Republic,CZ07,Strední Morava,2024,1907,2,CZ,CZ0,CZ07,Česko,Česko,Střední Morava,-.257,.248656,-.505656,-.008344,.224,-.549,-.411,-.064364,.106573
+Czech Republic,CZ08,Moravskoslezsko,2021,1908,2,CZ,CZ0,CZ08,Česko,Česko,Moravskoslezsko,-.418,.209367,-.627367,-.208633,-.243,-.183,-.781,-.059174,-.10426
+Czech Republic,CZ08,Moravskoslezsko,2017,1908,2,CZ,CZ0,CZ08,Česko,Česko,Moravskoslezsko,-.182,.328329,-.510329,.146329,-.011,.066,-.581,-.322506,.328329
+Czech Republic,CZ08,Moravskoslezsko,2024,1908,2,CZ,CZ0,CZ08,Česko,Česko,Moravskoslezsko,-.179,.21999,-.39899,.04099,.278,-.27,-.519,-.089693,-.070108
+Czech Republic,CZ08,Moravskoslezsko,2013,1908,2,CZ,CZ0,CZ08,Česko,Česko,Moravskoslezsko,-.575,.179157,-.754157,-.3958429999999999,-.099,-.41,-1.169,,
+Czech Republic,CZ08,Moravskoslezsko,2010,1908,2,CZ,CZ0,CZ08,Česko,Česko,Moravskoslezsko,-.412,.392317,-.8043169999999999,-.019683,-.197,-.215,-.783,,
+Germany,DE1,Baden-Württemberg,2017,101,1,DE,DE1,,Deutschland,Baden-Württemberg,NA,1.144,.243052,.9009479999999999,1.387052,1.29,.905,1.123,1.00386,.243052
+Germany,DE1,Baden-Württemberg,2021,101,1,DE,DE1,,Deutschland,Baden-Württemberg,NA,.92,.192321,.7276790000000001,1.112321,.9389999999999999,.704,1.016,1.00979,.578941
+Germany,DE1,Baden-Württemberg,2024,101,1,DE,DE1,,Deutschland,Baden-Württemberg,NA,.959,.216906,.742094,1.175906,1.037,.912,.792,.921439,.275067
+Germany,DE1,Baden-Württemberg,2010,101,1,DE,DE1,,Deutschland,Baden-Württemberg,NA,1,.297312,.702688,1.297312,.529,1.202,1.169,,
+Germany,DE1,Baden-Württemberg,2013,101,1,DE,DE1,,Deutschland,Baden-Württemberg,NA,.914,.226516,.687484,1.140516,.87,.8139999999999999,.982,,
+Germany,DE2,Bayern,2013,102,1,DE,DE2,,Deutschland,Bayern,NA,.971,.230556,.740444,1.201556,1.198,.849,.782,,
+Germany,DE2,Bayern,2010,102,1,DE,DE2,,Deutschland,Bayern,NA,.787,.322901,.464099,1.109901,.74,.387,1.156,,
+Germany,DE2,Bayern,2021,102,1,DE,DE2,,Deutschland,Bayern,NA,1.17,.165721,1.004279,1.335721,1.179,.995,1.206,1.20042,.736297
+Germany,DE2,Bayern,2017,102,1,DE,DE2,,Deutschland,Bayern,NA,1.408,.277826,1.130174,1.685826,1.97,.88,1.232,1.10858,.277826
+Germany,DE2,Bayern,2024,102,1,DE,DE2,,Deutschland,Bayern,NA,1.188,.234249,.9537509999999999,1.422249,1.377,.987,1.032,1.12799,.515626
+Germany,DE3,Berlin,2024,103,1,DE,DE3,,Deutschland,Berlin,NA,.444,.30244,.14156,.74644,.31,.403,.556,.736163,.019903
+Germany,DE3,Berlin,2021,103,1,DE,DE3,,Deutschland,Berlin,NA,.319,.303716,.015284,.622716,-.071,.188,.804,.699217,.504829
+Germany,DE3,Berlin,2017,103,1,DE,DE3,,Deutschland,Berlin,NA,.6820000000000001,.364151,.317849,1.046151,.069,.8110000000000001,1.097,1.08718,.364151
+Germany,DE3,Berlin,2010,103,1,DE,DE3,,Deutschland,Berlin,NA,.991,.35037,.64063,1.34137,.494,1.447,.9340000000000001,,
+Germany,DE3,Berlin,2013,103,1,DE,DE3,,Deutschland,Berlin,NA,.458,.277019,.180981,.7350190000000001,.306,.421,.608,,
+Germany,DE4,Brandenburg,2013,104,1,DE,DE4,,Deutschland,Brandenburg,NA,.552,.350025,.2019750000000001,.9020250000000001,.086,.6889999999999999,.835,,
+Germany,DE4,Brandenburg,2017,104,1,DE,DE4,,Deutschland,Brandenburg,NA,.8110000000000001,.292572,.5184280000000001,1.103572,.43,.947,.973,1.03662,.292572
+Germany,DE4,Brandenburg,2010,104,1,DE,DE4,,Deutschland,Brandenburg,NA,.987,.366064,.6209359999999999,1.353064,.536,1.516,.8100000000000001,,
+Germany,DE4,Brandenburg,2021,104,1,DE,DE4,,Deutschland,Brandenburg,NA,1.004,.273651,.730349,1.277651,.412,1.228,1.263,1.10723,.936468
+Germany,DE4,Brandenburg,2024,104,1,DE,DE4,,Deutschland,Brandenburg,NA,.9419999999999999,.329622,.6123779999999999,1.271622,.223,1.099,1.372,1.09595,1.18065
+Germany,DE5,Bremen,2021,105,1,DE,DE5,,Deutschland,Bremen,NA,.471,.393726,.077274,.864726,-.063,.312,1.114,.9352549999999999,.837163
+Germany,DE5,Bremen,2024,105,1,DE,DE5,,Deutschland,Bremen,NA,.513,.446029,.066971,.959029,-.442,.832,1.077,1.0961,.63042
+Germany,DE5,Bremen,2017,105,1,DE,DE5,,Deutschland,Bremen,NA,1.172,.317837,.854163,1.489837,.6879999999999999,1.501,1.207,1.07155,.317837
+Germany,DE5,Bremen,2010,105,1,DE,DE5,,Deutschland,Bremen,NA,.975,.293321,.6816789999999999,1.268321,.78,1.129,.92,,
+Germany,DE5,Bremen,2013,105,1,DE,DE5,,Deutschland,Bremen,NA,.784,.354119,.429881,1.138119,.578,.734,.973,,
+Germany,DE6,Hamburg,2017,106,1,DE,DE6,,Deutschland,Hamburg,NA,1.317,.239323,1.077677,1.556323,1.367,1.178,1.272,1.03662,.239323
+Germany,DE6,Hamburg,2021,106,1,DE,DE6,,Deutschland,Hamburg,NA,.977,.16406,.81294,1.14106,1.099,.8129999999999999,.911,.920936,.475144
+Germany,DE6,Hamburg,2010,106,1,DE,DE6,,Deutschland,Hamburg,NA,.982,.282478,.699522,1.264478,.853,1.122,.873,,
+Germany,DE6,Hamburg,2013,106,1,DE,DE6,,Deutschland,Hamburg,NA,.723,.242879,.480121,.9658789999999999,.629,.67,.8090000000000001,,
+Germany,DE6,Hamburg,2024,106,1,DE,DE6,,Deutschland,Hamburg,NA,.881,.3208,.5602,1.2018,.97,.446,1.102,1.02436,.749694
+Germany,DE7,Hessen,2021,107,1,DE,DE7,,Deutschland,Hessen,NA,1.041,.176427,.8645729999999999,1.217427,.825,.911,1.273,1.06666,.997135
+Germany,DE7,Hessen,2024,107,1,DE,DE7,,Deutschland,Hessen,NA,1.155,.264854,.8901460000000001,1.419854,.946,1.051,1.306,1.16812,.985609
+Germany,DE7,Hessen,2013,107,1,DE,DE7,,Deutschland,Hessen,NA,.788,.254513,.533487,1.042513,.908,.546,.843,,
+Germany,DE7,Hessen,2010,107,1,DE,DE7,,Deutschland,Hessen,NA,.708,.261913,.446087,.969913,.776,.556,.722,,
+Germany,DE7,Hessen,2017,107,1,DE,DE7,,Deutschland,Hessen,NA,1.138,.272067,.8659329999999998,1.410067,.9419999999999999,1.229,1.128,1.05451,.272067
+Germany,DE8,Mecklenburg-Vorpommern,2017,108,1,DE,DE8,,Deutschland,Mecklenburg-Vorpommern,NA,1.242,.229798,1.012202,1.471798,1.029,1.424,1.149,.910408,.229798
+Germany,DE8,Mecklenburg-Vorpommern,2024,108,1,DE,DE8,,Deutschland,Mecklenburg-Vorpommern,NA,.82,.339945,.480055,1.159945,.248,.821,1.275,1.06119,1.03498
+Germany,DE8,Mecklenburg-Vorpommern,2021,108,1,DE,DE8,,Deutschland,Mecklenburg-Vorpommern,NA,1.131,.186954,.9440459999999999,1.317954,.828,1.109,1.332,1.16885,1.00264
+Germany,DE8,Mecklenburg-Vorpommern,2013,108,1,DE,DE8,,Deutschland,Mecklenburg-Vorpommern,NA,.781,.296003,.484997,1.077003,.648,.6830000000000001,.946,,
+Germany,DE8,Mecklenburg-Vorpommern,2010,108,1,DE,DE8,,Deutschland,Mecklenburg-Vorpommern,NA,.968,.278621,.689379,1.246621,.744,1.265,.796,,
+Germany,DE9,Niedersachsen,2010,109,1,DE,DE9,,Deutschland,Niedersachsen,NA,.957,.286405,.6705949999999999,1.243405,.635,1.287,.854,,
+Germany,DE9,Niedersachsen,2017,109,1,DE,DE9,,Deutschland,Niedersachsen,NA,1.32,.247481,1.072519,1.567481,1.252,1.375,1.2,.9583120000000001,.247481
+Germany,DE9,Niedersachsen,2013,109,1,DE,DE9,,Deutschland,Niedersachsen,NA,.987,.242241,.7447589999999999,1.229241,1.006,.977,.896,,
+Germany,DE9,Niedersachsen,2021,109,1,DE,DE9,,Deutschland,Niedersachsen,NA,1.148,.193707,.9542929999999999,1.341707,.968,1.024,1.326,1.27165,.885477
+Germany,DE9,Niedersachsen,2024,109,1,DE,DE9,,Deutschland,Niedersachsen,NA,1.1,.283749,.8162510000000001,1.383749,.776,1.119,1.251,1.21442,.837715
+Germany,DEA,Nordrhein-Westfalen,2021,110,1,DE,DEA,,Deutschland,Nordrhein-Westfalen,NA,.97,.196758,.773242,1.166758,.83,.856,1.117,1.07856,.695123
+Germany,DEA,Nordrhein-Westfalen,2010,110,1,DE,DEA,,Deutschland,Nordrhein-Westfalen,NA,.785,.334334,.450666,1.119334,.548,.569,1.158,,
+Germany,DEA,Nordrhein-Westfalen,2024,110,1,DE,DEA,,Deutschland,Nordrhein-Westfalen,NA,.854,.305818,.5481819999999999,1.159818,.529,.781,1.132,1.07192,.75749
+Germany,DEA,Nordrhein-Westfalen,2017,110,1,DE,DEA,,Deutschland,Nordrhein-Westfalen,NA,.827,.380345,.446655,1.207345,.541,.771,1.085,1.03311,.380345
+Germany,DEA,Nordrhein-Westfalen,2013,110,1,DE,DEA,,Deutschland,Nordrhein-Westfalen,NA,.673,.303482,.3695180000000001,.9764820000000001,.526,.652,.783,,
+Germany,DEB,Rheinland-Pfalz,2010,111,1,DE,DEB,,Deutschland,Rheinland-Pfalz,NA,.869,.229492,.639508,1.098492,.956,.921,.641,,
+Germany,DEB,Rheinland-Pfalz,2013,111,1,DE,DEB,,Deutschland,Rheinland-Pfalz,NA,.955,.26952,.68548,1.22452,.991,.835,.958,,
+Germany,DEB,Rheinland-Pfalz,2017,111,1,DE,DEB,,Deutschland,Rheinland-Pfalz,NA,1.199,.23681,.9621900000000001,1.43581,1.257,1.104,1.116,1.10081,.23681
+Germany,DEB,Rheinland-Pfalz,2021,111,1,DE,DEB,,Deutschland,Rheinland-Pfalz,NA,1.274,.220834,1.053166,1.494834,1.096,1.038,1.548,1.40679,1.15899
+Germany,DEB,Rheinland-Pfalz,2024,111,1,DE,DEB,,Deutschland,Rheinland-Pfalz,NA,1.063,.291693,.771307,1.354693,.761,.997,1.28,1.27871,.826653
+Germany,DEC,Saarland,2010,112,1,DE,DEC,,Deutschland,Saarland,NA,1.054,.316413,.737587,1.370413,.716,1.411,.929,,
+Germany,DEC,Saarland,2024,112,1,DE,DEC,,Deutschland,Saarland,NA,.8179999999999999,.334219,.483781,1.152219,.295,.823,1.221,1.18665,.808914
+Germany,DEC,Saarland,2021,112,1,DE,DEC,,Deutschland,Saarland,NA,1.043,.194345,.8486549999999999,1.237345,.864,1.061,1.09,1.04882,.676685
+Germany,DEC,Saarland,2013,112,1,DE,DEC,,Deutschland,Saarland,NA,.95,.357668,.592332,1.307668,.758,1.023,.987,,
+Germany,DEC,Saarland,2017,112,1,DE,DEC,,Deutschland,Saarland,NA,1.105,.28928,.81572,1.39428,1.037,.92,1.246,1.0423,.28928
+Germany,DED,Sachsen,2010,113,1,DE,DED,,Deutschland,Sachsen,NA,1.093,.278492,.814508,1.371492,.986,1.347,.836,,
+Germany,DED,Sachsen,2021,113,1,DE,DED,,Deutschland,Sachsen,NA,1.006,.208714,.7972859999999999,1.214714,.825,.752,1.331,1.1281,1.04213
+Germany,DED,Sachsen,2017,113,1,DE,DED,,Deutschland,Sachsen,NA,.889,.283778,.605222,1.172778,.672,.857,1.049,1.07941,.283778
+Germany,DED,Sachsen,2013,113,1,DE,DED,,Deutschland,Sachsen,NA,.743,.258296,.484704,1.001296,.55,.756,.86,,
+Germany,DED,Sachsen,2024,113,1,DE,DED,,Deutschland,Sachsen,NA,1.011,.279866,.731134,1.290866,.594,.93,1.367,1.00653,1.26188
+Germany,DEE,Sachsen-Anhalt,2013,114,1,DE,DEE,,Deutschland,Sachsen-Anhalt,NA,.373,.33532,.03768,.7083200000000001,.057,.436,.596,,
+Germany,DEE,Sachsen-Anhalt,2010,114,1,DE,DEE,,Deutschland,Sachsen-Anhalt,NA,.896,.332955,.563045,1.228955,.282,1.323,.992,,
+Germany,DEE,Sachsen-Anhalt,2024,114,1,DE,DEE,,Deutschland,Sachsen-Anhalt,NA,.723,.377671,.345329,1.100671,.023,.803,1.24,.971675,1.05884
+Germany,DEE,Sachsen-Anhalt,2021,114,1,DE,DEE,,Deutschland,Sachsen-Anhalt,NA,.868,.271223,.596777,1.139223,.433,.83,1.245,1.13566,.875089
+Germany,DEE,Sachsen-Anhalt,2017,114,1,DE,DEE,,Deutschland,Sachsen-Anhalt,NA,.658,.296726,.361274,.954726,.347,.701,.86,1.0757,.296726
+Germany,DEF,Schleswig-Holstein,2017,115,1,DE,DEF,,Deutschland,Schleswig-Holstein,NA,1.181,.25938,.9216200000000001,1.44038,.929,1.336,1.158,1.12215,.25938
+Germany,DEF,Schleswig-Holstein,2021,115,1,DE,DEF,,Deutschland,Schleswig-Holstein,NA,1.263,.195761,1.067239,1.458761,1.035,1.303,1.313,1.35947,.770769
+Germany,DEF,Schleswig-Holstein,2010,115,1,DE,DEF,,Deutschland,Schleswig-Holstein,NA,1.244,.340003,.9039969999999999,1.584003,.912,1.553,1.143,,
+Germany,DEF,Schleswig-Holstein,2013,115,1,DE,DEF,,Deutschland,Schleswig-Holstein,NA,1.015,.317634,.6973659999999999,1.332634,.918,1.015,1.026,,
+Germany,DEF,Schleswig-Holstein,2024,115,1,DE,DEF,,Deutschland,Schleswig-Holstein,NA,1.242,.296218,.945782,1.538218,.876,1.253,1.422,1.36772,.986673
+Germany,DEG,Thüringen,2021,116,1,DE,DEG,,Deutschland,Thüringen,NA,1.08,.173616,.9063840000000001,1.253616,.788,1.093,1.241,.909641,1.09909
+Germany,DEG,Thüringen,2010,116,1,DE,DEG,,Deutschland,Thüringen,NA,1.285,.365582,.9194179999999998,1.650582,.9429999999999999,1.769,1.014,,
+Germany,DEG,Thüringen,2013,116,1,DE,DEG,,Deutschland,Thüringen,NA,.473,.316885,.156115,.7898849999999999,.487,.167,.724,,
+Germany,DEG,Thüringen,2024,116,1,DE,DEG,,Deutschland,Thüringen,NA,.859,.31314,.54586,1.17214,.488,.698,1.272,1.01567,1.07445
+Germany,DEG,Thüringen,2017,116,1,DE,DEG,,Deutschland,Thüringen,NA,1.02,.262921,.7570790000000001,1.282921,.925,.958,1.073,1.02299,.262921
+Denmark,DK01,Hovedstaden,2017,901,2,DK,DK0,DK01,Danmark,Danmark,Hovedstaden,1.404,.335832,1.068168,1.739832,1.145,1.26,1.667,1.12438,.335832
+Denmark,DK01,Hovedstaden,2010,901,2,DK,DK0,DK01,Danmark,Danmark,Hovedstaden,1.577,.339034,1.237966,1.916034,1.72,.959,1.894,,
+Denmark,DK01,Hovedstaden,2013,901,2,DK,DK0,DK01,Danmark,Danmark,Hovedstaden,1.522,.230747,1.291253,1.752747,1.603,1.116,1.718,,
+Denmark,DK01,Hovedstaden,2024,901,2,DK,DK0,DK01,Danmark,Danmark,Hovedstaden,1.557,.265305,1.291695,1.822305,1.781,1.157,1.513,1.3965,.093197
+Denmark,DK01,Hovedstaden,2021,901,2,DK,DK0,DK01,Danmark,Danmark,Hovedstaden,1.278,.203959,1.074041,1.481959,1.447,1.233,1.015,1.2699,-.024205
+Denmark,DK02,Sjælland,2021,902,2,DK,DK0,DK02,Danmark,Danmark,Sjælland,1.238,.263853,.974147,1.501853,.775,1.146,1.658,1.29032,1.14821
+Denmark,DK02,Sjælland,2010,902,2,DK,DK0,DK02,Danmark,Danmark,Sjælland,1.691,.347507,1.343493,2.038507,1.31,1.442,2.151,,
+Denmark,DK02,Sjælland,2024,902,2,DK,DK0,DK02,Danmark,Danmark,Sjælland,1.67,.244267,1.425733,1.914267,1.185,1.548,2.042,1.46992,1.00659
+Denmark,DK02,Sjælland,2013,902,2,DK,DK0,DK02,Danmark,Danmark,Sjælland,1.358,.259959,1.098041,1.617959,1.238,1.072,1.651,,
+Denmark,DK02,Sjælland,2017,902,2,DK,DK0,DK02,Danmark,Danmark,Sjælland,1.295,.338593,.956407,1.633593,.91,1.207,1.636,1.24273,.338593
+Denmark,DK03,Syddanmark,2024,903,2,DK,DK0,DK03,Danmark,Danmark,Syddanmark,1.856,.249676,1.606324,2.105676,1.785,1.487,2.034,1.64263,.818951
+Denmark,DK03,Syddanmark,2021,903,2,DK,DK0,DK03,Danmark,Danmark,Syddanmark,1.535,.16597,1.36903,1.70097,1.524,1.3,1.612,1.38561,.966265
+Denmark,DK03,Syddanmark,2010,903,2,DK,DK0,DK03,Danmark,Danmark,Syddanmark,1.682,.241564,1.440436,1.923564,1.681,1.383,1.812,,
+Denmark,DK03,Syddanmark,2017,903,2,DK,DK0,DK03,Danmark,Danmark,Syddanmark,1.426,.294842,1.131158,1.720842,1.285,1.274,1.575,1.1615,.294842
+Denmark,DK03,Syddanmark,2013,903,2,DK,DK0,DK03,Danmark,Danmark,Syddanmark,1.576,.254259,1.321741,1.830259,1.369,1.506,1.72,,
+Denmark,DK04,Midtjylland,2024,904,2,DK,DK0,DK04,Danmark,Danmark,Midtjylland,1.941,.201198,1.739802,2.142198,1.778,1.791,1.981,1.5923,.770244
+Denmark,DK04,Midtjylland,2017,904,2,DK,DK0,DK04,Danmark,Danmark,Midtjylland,1.714,.269906,1.444094,1.983906,1.716,1.604,1.649,1.09731,.269906
+Denmark,DK04,Midtjylland,2021,904,2,DK,DK0,DK04,Danmark,Danmark,Midtjylland,1.708,.118129,1.589871,1.826129,1.77,1.443,1.725,1.38127,1.17969
+Denmark,DK04,Midtjylland,2010,904,2,DK,DK0,DK04,Danmark,Danmark,Midtjylland,1.892,.260237,1.631763,2.152237,1.839,1.616,2.03,,
+Denmark,DK04,Midtjylland,2013,904,2,DK,DK0,DK04,Danmark,Danmark,Midtjylland,1.638,.226006,1.411994,1.864006,1.919,1.122,1.734,,
+Denmark,DK05,Nordjylland,2024,905,2,DK,DK0,DK05,Danmark,Danmark,Nordjylland,2.104,.155005,1.948995,2.259005,1.864,2.009,2.143,1.52356,1.14049
+Denmark,DK05,Nordjylland,2017,905,2,DK,DK0,DK05,Danmark,Danmark,Nordjylland,1.416,.278504,1.137496,1.694504,1.21,1.39,1.505,1.17277,.278504
+Denmark,DK05,Nordjylland,2013,905,2,DK,DK0,DK05,Danmark,Danmark,Nordjylland,1.635,.196682,1.438318,1.831682,1.634,1.469,1.662,,
+Denmark,DK05,Nordjylland,2021,905,2,DK,DK0,DK05,Danmark,Danmark,Nordjylland,1.652,.154405,1.497595,1.806405,1.722,1.479,1.575,1.49196,.786593
+Denmark,DK05,Nordjylland,2010,905,2,DK,DK0,DK05,Danmark,Danmark,Nordjylland,1.582,.317117,1.264883,1.899117,1.442,1.163,1.984,,
+Estonia,EE,Estonia,2021,2301,0,EE,,,Eesti,NA,NA,.49,.263895,.226105,.753895,.309,.369,.739,.9515670000000001,.955996
+Estonia,EE,Estonia,2010,2301,0,EE,,,Eesti,NA,NA,.014,,,,.023,.107,-.09,,
+Estonia,EE,Estonia,2013,2301,0,EE,,,Eesti,NA,NA,.008,,,,.057,.051,-.084,,
+Estonia,EE,Estonia,2024,2301,0,EE,,,Eesti,NA,NA,.736,.306112,.429888,1.042112,.605,.736,.762,.565889,-.115778
+Estonia,EE,Estonia,2017,2301,0,EE,,,Eesti,NA,NA,.32,,,,.131,.337,.461,,
+Greece,EL30,Attiki,2013,2101,2,EL,EL3,EL30,Elláda,Attiki,Attiki,-1.195,.380164,-1.575164,-.8148360000000001,-1.169,-.746,-1.568,,
+Greece,EL30,Attiki,2024,2101,2,EL,EL3,EL30,Elláda,Attiki,Attiki,-1.298,.348841,-1.646841,-.9491590000000001,-.851,-1.412,-1.448,-1.02306,-1.77378
+Greece,EL30,Attiki,2017,2101,2,EL,EL3,EL30,Elláda,Attiki,Attiki,-1.528,.202283,-1.730283,-1.325717,-1.61,-1.548,-1.273,-.747721,.202283
+Greece,EL30,Attiki,2010,2101,2,EL,EL3,EL30,Elláda,Attiki,Attiki,-.247,.523888,-.770888,.276888,-.208,.434,-.9419999999999999,,
+Greece,EL30,Attiki,2021,2101,2,EL,EL3,EL30,Elláda,Attiki,Attiki,-1.157,.344247,-1.501247,-.8127530000000001,-.909,-1.21,-1.226,-.485177,-1.09399
+Greece,EL41,Voreio Aigaio,2017,2102,2,EL,EL4,EL41,Elláda,"Nisia Aigaiou, Kriti",Voreio Aigaio,-1.051,.261784,-1.312784,-.7892159999999999,-1.04,-.855,-1.152,-.96672,.261784
+Greece,EL41,Voreio Aigaio,2024,2102,2,EL,EL4,EL41,Elláda,"Nisia Aigaiou, Kriti",Voreio Aigaio,-.517,.37288,-.88988,-.14412,-.09,-.556,-.833,-.281787,-1.36796
+Greece,EL41,Voreio Aigaio,2010,2102,2,EL,EL4,EL41,Elláda,"Nisia Aigaiou, Kriti",Voreio Aigaio,-.786,.459379,-1.245379,-.3266210000000001,-.622,-.604,-1.055,,
+Greece,EL41,Voreio Aigaio,2013,2102,2,EL,EL4,EL41,Elláda,"Nisia Aigaiou, Kriti",Voreio Aigaio,-.821,.293451,-1.114451,-.5275489999999999,-.418,-.788,-1.188,,
+Greece,EL41,Voreio Aigaio,2021,2102,2,EL,EL4,EL41,Elláda,"Nisia Aigaiou, Kriti",Voreio Aigaio,-1.121,.392979,-1.513979,-.728021,-.337,-1.248,-1.655,-.620408,-1.75143
+Greece,EL42,Notio Aigaio,2017,2103,2,EL,EL4,EL42,Elláda,"Nisia Aigaiou, Kriti",Notio Aigaio,-1.051,.261784,-1.312784,-.7892159999999999,-1.04,-.855,-1.152,-.96672,.261784
+Greece,EL42,Notio Aigaio,2021,2103,2,EL,EL4,EL42,Elláda,"Nisia Aigaiou, Kriti",Notio Aigaio,-1.245,.433084,-1.678084,-.8119160000000001,-.551,-1.2,-1.849,-.549775,-2.18473
+Greece,EL42,Notio Aigaio,2010,2103,2,EL,EL4,EL42,Elláda,"Nisia Aigaiou, Kriti",Notio Aigaio,-.786,.459379,-1.245379,-.3266210000000001,-.622,-.604,-1.055,,
+Greece,EL42,Notio Aigaio,2013,2103,2,EL,EL4,EL42,Elláda,"Nisia Aigaiou, Kriti",Notio Aigaio,-.821,.293451,-1.114451,-.5275489999999999,-.418,-.788,-1.188,,
+Greece,EL42,Notio Aigaio,2024,2103,2,EL,EL4,EL42,Elláda,"Nisia Aigaiou, Kriti",Notio Aigaio,-.907,.456781,-1.363781,-.450219,-.829,-.604,-1.161,-.674718,-1.58663
+Greece,EL43,Kriti,2021,2104,2,EL,EL4,EL43,Elláda,"Nisia Aigaiou, Kriti",Kriti,-1.178,.340442,-1.518442,-.8375579999999999,-.49,-1.448,-1.468,-.711588,-1.30971
+Greece,EL43,Kriti,2010,2104,2,EL,EL4,EL43,Elláda,"Nisia Aigaiou, Kriti",Kriti,-.786,.459379,-1.245379,-.3266210000000001,-.622,-.604,-1.055,,
+Greece,EL43,Kriti,2013,2104,2,EL,EL4,EL43,Elláda,"Nisia Aigaiou, Kriti",Kriti,-.821,.293451,-1.114451,-.5275489999999999,-.418,-.788,-1.188,,
+Greece,EL43,Kriti,2017,2104,2,EL,EL4,EL43,Elláda,"Nisia Aigaiou, Kriti",Kriti,-1.051,.261784,-1.312784,-.7892159999999999,-1.04,-.855,-1.152,-.96672,.261784
+Greece,EL43,Kriti,2024,2104,2,EL,EL4,EL43,Elláda,"Nisia Aigaiou, Kriti",Kriti,-.8,.41616,-1.21616,-.3838400000000001,-.591,-.709,-.986,-.812225,-1.12337
+Greece,EL51,"Anatoliki Makedonia, Thraki",2017,2105,2,EL,EL5,EL51,Elláda,Voreia Elláda,"Anatoliki Makedonia, Thraki",-1.031,.216812,-1.247812,-.8141879999999999,-1.16,-.9409999999999999,-.887,-.436705,.216812
+Greece,EL51,"Anatoliki Makedonia, Thraki",2013,2105,2,EL,EL5,EL51,Elláda,Voreia Elláda,"Anatoliki Makedonia, Thraki",-1.047,.298746,-1.345746,-.748254,-.775,-1.09,-1.186,,
+Greece,EL51,"Anatoliki Makedonia, Thraki",2010,2105,2,EL,EL5,EL51,Elláda,Voreia Elláda,"Anatoliki Makedonia, Thraki",-1.197,.452979,-1.649979,-.744021,-1.277,-.8179999999999999,-1.377,,
+Greece,EL51,"Anatoliki Makedonia, Thraki",2021,2105,2,EL,EL5,EL51,Elláda,Voreia Elláda,"Anatoliki Makedonia, Thraki",-.756,.223659,-.9796590000000001,-.532341,-.052,-1.332,-.802,-.443145,-.348838
+Greece,EL51,"Anatoliki Makedonia, Thraki",2024,2105,2,EL,EL5,EL51,Elláda,Voreia Elláda,"Anatoliki Makedonia, Thraki",-.918,.325309,-1.243309,-.5926910000000001,-.204,-1.331,-1.089,-.8716120000000001,-1.25604
+Greece,EL52,Kentriki Makedonia,2024,2106,2,EL,EL5,EL52,Elláda,Voreia Elláda,Kentriki Makedonia,-.891,.371711,-1.262711,-.519289,-.654,-1.031,-.863,-.835279,-.8705889999999999
+Greece,EL52,Kentriki Makedonia,2013,2106,2,EL,EL5,EL52,Elláda,Voreia Elláda,Kentriki Makedonia,-1.047,.298746,-1.345746,-.748254,-.775,-1.09,-1.186,,
+Greece,EL52,Kentriki Makedonia,2021,2106,2,EL,EL5,EL52,Elláda,Voreia Elláda,Kentriki Makedonia,-1.072,.375151,-1.447151,-.6968490000000001,-1.037,-1.193,-.869,-.584955,-.327567
+Greece,EL52,Kentriki Makedonia,2017,2106,2,EL,EL5,EL52,Elláda,Voreia Elláda,Kentriki Makedonia,-1.031,.216812,-1.247812,-.8141879999999999,-1.16,-.9409999999999999,-.887,-.436705,.216812
+Greece,EL52,Kentriki Makedonia,2010,2106,2,EL,EL5,EL52,Elláda,Voreia Elláda,Kentriki Makedonia,-1.197,.452979,-1.649979,-.744021,-1.277,-.8179999999999999,-1.377,,
+Greece,EL53,Dytiki Makedonia,2017,2107,2,EL,EL5,EL53,Elláda,Voreia Elláda,Dytiki Makedonia,-1.031,.216812,-1.247812,-.8141879999999999,-1.16,-.9409999999999999,-.887,-.436705,.216812
+Greece,EL53,Dytiki Makedonia,2013,2107,2,EL,EL5,EL53,Elláda,Voreia Elláda,Dytiki Makedonia,-1.047,.298746,-1.345746,-.748254,-.775,-1.09,-1.186,,
+Greece,EL53,Dytiki Makedonia,2024,2107,2,EL,EL5,EL53,Elláda,Voreia Elláda,Dytiki Makedonia,-.197,.437416,-.6344160000000001,.240416,.135,-.059,-.639,-.317824,-.971162
+Greece,EL53,Dytiki Makedonia,2021,2107,2,EL,EL5,EL53,Elláda,Voreia Elláda,Dytiki Makedonia,-.982,.28026,-1.26226,-.70174,-.739,-1.307,-.793,-.305251,-.474653
+Greece,EL53,Dytiki Makedonia,2010,2107,2,EL,EL5,EL53,Elláda,Voreia Elláda,Dytiki Makedonia,-1.197,.452979,-1.649979,-.744021,-1.277,-.8179999999999999,-1.377,,
+Greece,EL54,Ipeiros,2021,2108,2,EL,EL5,EL54,Elláda,Voreia Elláda,Ipeiros,-.794,.334879,-1.128879,-.4591210000000001,.31,-1.304,-1.3,-.458617,-1.25774
+Greece,EL54,Ipeiros,2010,2108,2,EL,EL5,EL54,Elláda,Voreia Elláda,Ipeiros,-1.197,.452979,-1.649979,-.744021,-1.277,-.8179999999999999,-1.377,,
+Greece,EL54,Ipeiros,2024,2108,2,EL,EL5,EL54,Elláda,Voreia Elláda,Ipeiros,-.681,.354306,-1.035306,-.326694,.155,-.868,-1.233,-.715935,-1.68028
+Greece,EL54,Ipeiros,2013,2108,2,EL,EL5,EL54,Elláda,Voreia Elláda,Ipeiros,-1.047,.298746,-1.345746,-.748254,-.775,-1.09,-1.186,,
+Greece,EL54,Ipeiros,2017,2108,2,EL,EL5,EL54,Elláda,Voreia Elláda,Ipeiros,-1.031,.216812,-1.247812,-.8141879999999999,-1.16,-.9409999999999999,-.887,-.436705,.216812
+Greece,EL61,Thessalia,2024,2109,2,EL,EL6,EL61,Elláda,Kentriki Elláda,Thessalia,-.44,.359034,-.799034,-.080966,.087,-.495,-.851,-.429193,-1.25518
+Greece,EL61,Thessalia,2013,2109,2,EL,EL6,EL61,Elláda,Kentriki Elláda,Thessalia,-1.113,.322416,-1.435416,-.790584,-.832,-.92,-1.493,,
+Greece,EL61,Thessalia,2017,2109,2,EL,EL6,EL61,Elláda,Kentriki Elláda,Thessalia,-1.279,.257879,-1.536879,-1.021121,-1.12,-1.176,-1.413,-1.1427,.257879
+Greece,EL61,Thessalia,2021,2109,2,EL,EL6,EL61,Elláda,Kentriki Elláda,Thessalia,-1.029,.238834,-1.267834,-.7901659999999999,-.337,-1.439,-1.197,-.546246,-.976984
+Greece,EL61,Thessalia,2010,2109,2,EL,EL6,EL61,Elláda,Kentriki Elláda,Thessalia,-.913,.541581,-1.454581,-.3714190000000001,-.84,-.908,-.9,,
+Greece,EL62,Ionia Nisia,2013,2110,2,EL,EL6,EL62,Elláda,Kentriki Elláda,Ionia Nisia,-1.113,.322416,-1.435416,-.790584,-.832,-.92,-1.493,,
+Greece,EL62,Ionia Nisia,2021,2110,2,EL,EL6,EL62,Elláda,Kentriki Elláda,Ionia Nisia,-1.401,.424647,-1.825647,-.976353,-1.177,-1.363,-1.509,-.684517,-1.41413
+Greece,EL62,Ionia Nisia,2017,2110,2,EL,EL6,EL62,Elláda,Kentriki Elláda,Ionia Nisia,-1.279,.257879,-1.536879,-1.021121,-1.12,-1.176,-1.413,-1.1427,.257879
+Greece,EL62,Ionia Nisia,2024,2110,2,EL,EL6,EL62,Elláda,Kentriki Elláda,Ionia Nisia,-.55,.569147,-1.119147,.0191469999999999,-.439,-.087,-1.046,-.20209,-1.84453
+Greece,EL62,Ionia Nisia,2010,2110,2,EL,EL6,EL62,Elláda,Kentriki Elláda,Ionia Nisia,-.913,.541581,-1.454581,-.3714190000000001,-.84,-.908,-.9,,
+Greece,EL63,Dytiki Ellada,2010,2111,2,EL,EL6,EL63,Elláda,Kentriki Elláda,Dytiki Elláda,-.913,.541581,-1.454581,-.3714190000000001,-.84,-.908,-.9,,
+Greece,EL63,Dytiki Ellada,2017,2111,2,EL,EL6,EL63,Elláda,Kentriki Elláda,Dytiki Elláda,-1.279,.257879,-1.536879,-1.021121,-1.12,-1.176,-1.413,-1.1427,.257879
+Greece,EL63,Dytiki Ellada,2013,2111,2,EL,EL6,EL63,Elláda,Kentriki Elláda,Dytiki Elláda,-1.113,.322416,-1.435416,-.790584,-.832,-.92,-1.493,,
+Greece,EL63,Dytiki Ellada,2024,2111,2,EL,EL6,EL63,Elláda,Kentriki Elláda,Dytiki Elláda,-1.239,.436127,-1.675127,-.8028730000000002,-.712,-1.277,-1.554,-.88006,-2.11431
+Greece,EL63,Dytiki Ellada,2021,2111,2,EL,EL6,EL63,Elláda,Kentriki Elláda,Dytiki Elláda,-1.445,.320596,-1.765596,-1.124404,-.651,-1.692,-1.833,-.812187,-1.88503
+Greece,EL64,Sterea Ellada,2017,2112,2,EL,EL6,EL64,Elláda,Kentriki Elláda,Sterea Elláda,-1.279,.257879,-1.536879,-1.021121,-1.12,-1.176,-1.413,-1.1427,.257879
+Greece,EL64,Sterea Ellada,2021,2112,2,EL,EL6,EL64,Elláda,Kentriki Elláda,Sterea Elláda,-1.32,.334718,-1.654718,-.985282,-1.133,-1.372,-1.312,-.652089,-1.08113
+Greece,EL64,Sterea Ellada,2013,2112,2,EL,EL6,EL64,Elláda,Kentriki Elláda,Sterea Elláda,-1.113,.322416,-1.435416,-.790584,-.832,-.92,-1.493,,
+Greece,EL64,Sterea Ellada,2010,2112,2,EL,EL6,EL64,Elláda,Kentriki Elláda,Sterea Elláda,-.913,.541581,-1.454581,-.3714190000000001,-.84,-.908,-.9,,
+Greece,EL64,Sterea Ellada,2024,2112,2,EL,EL6,EL64,Elláda,Kentriki Elláda,Sterea Elláda,-1.018,.328056,-1.346056,-.689944,-.595,-1.164,-1.152,-.950985,-1.29343
+Greece,EL65,Peloponnisos,2017,2113,2,EL,EL6,EL65,Elláda,Kentriki Elláda,Peloponnisos,-1.279,.257879,-1.536879,-1.021121,-1.12,-1.176,-1.413,-1.1427,.257879
+Greece,EL65,Peloponnisos,2024,2113,2,EL,EL6,EL65,Elláda,Kentriki Elláda,Peloponnisos,-1.108,.318564,-1.426564,-.789436,-.769,-1.309,-1.088,-.85298,-1.27332
+Greece,EL65,Peloponnisos,2010,2113,2,EL,EL6,EL65,Elláda,Kentriki Elláda,Peloponnisos,-.913,.541581,-1.454581,-.3714190000000001,-.84,-.908,-.9,,
+Greece,EL65,Peloponnisos,2013,2113,2,EL,EL6,EL65,Elláda,Kentriki Elláda,Peloponnisos,-1.113,.322416,-1.435416,-.790584,-.832,-.92,-1.493,,
+Greece,EL65,Peloponnisos,2021,2113,2,EL,EL6,EL65,Elláda,Kentriki Elláda,Peloponnisos,-.9409999999999999,.323746,-1.264746,-.617254,-.597,-1.082,-1.042,-.491205,-.745158
+Spain,ES11,Galicia,2021,601,2,ES,ES1,ES11,España,Noroeste,Galicia,-.291,.24694,-.53794,-.04406,-.085,-.342,-.413,-.465844,.588641
+Spain,ES11,Galicia,2017,601,2,ES,ES1,ES11,España,Noroeste,Galicia,-.33,.269196,-.5991960000000001,-.060804,-.12,-.201,-.635,.486628,.269196
+Spain,ES11,Galicia,2013,601,2,ES,ES1,ES11,España,Noroeste,Galicia,-.43,.264022,-.6940219999999999,-.165978,-.788,-.317,-.148,,
+Spain,ES11,Galicia,2010,601,2,ES,ES1,ES11,España,Noroeste,Galicia,.542,.508053,.0339470000000001,1.050053,.124,.826,.62,,
+Spain,ES11,Galicia,2024,601,2,ES,ES1,ES11,España,Noroeste,Galicia,-.387,.175334,-.562334,-.211666,-.008,-.59,-.508,-.058585,.127324
+Spain,ES12,Principado de Asturias,2010,602,2,ES,ES1,ES12,España,Noroeste,Principado de Asturias,.486,.468536,.017464,.9545360000000001,.275,.793,.34,,
+Spain,ES12,Principado de Asturias,2017,602,2,ES,ES1,ES12,España,Noroeste,Principado de Asturias,.323,.330297,-.007297,.653297,.597,.522,-.182,.879408,.330297
+Spain,ES12,Principado de Asturias,2013,602,2,ES,ES1,ES12,España,Noroeste,Principado de Asturias,.463,.299032,.163968,.762032,.74,.448,.162,,
+Spain,ES12,Principado de Asturias,2021,602,2,ES,ES1,ES12,España,Noroeste,Principado de Asturias,.627,.138884,.488116,.765884,.5649999999999999,.863,.386,.676982,.8980860000000001
+Spain,ES12,Principado de Asturias,2024,602,2,ES,ES1,ES12,España,Noroeste,Principado de Asturias,.061,.252,-.191,.313,.642,-.405,-.061,.088114,.81271
+Spain,ES13,Cantabria,2017,603,2,ES,ES1,ES13,España,Noroeste,Cantabria,.532,.332608,.199392,.864608,.698,.873,-.03,.800996,.332608
+Spain,ES13,Cantabria,2010,603,2,ES,ES1,ES13,España,Noroeste,Cantabria,.179,.440293,-.261293,.619293,.128,.218,.173,,
+Spain,ES13,Cantabria,2024,603,2,ES,ES1,ES13,España,Noroeste,Cantabria,.623,.176543,.446457,.799543,.975,.609,.196,.702556,.67783
+Spain,ES13,Cantabria,2021,603,2,ES,ES1,ES13,España,Noroeste,Cantabria,.119,.155373,-.036373,.274373,.125,.208,.01,.237708,.651756
+Spain,ES13,Cantabria,2013,603,2,ES,ES1,ES13,España,Noroeste,Cantabria,.445,.223234,.221766,.668234,.233,.632,.431,,
+Spain,ES21,País Vasco,2013,604,2,ES,ES2,ES21,España,Noreste,País Vasco,.329,.359976,-.030976,.688976,.507,.169,.283,,
+Spain,ES21,País Vasco,2010,604,2,ES,ES2,ES21,España,Noreste,País Vasco,.625,.384942,.240058,1.009942,.743,.577,.493,,
+Spain,ES21,País Vasco,2017,604,2,ES,ES2,ES21,España,Noreste,País Vasco,.757,.28431,.47269,1.04131,1.013,.8179999999999999,.364,1.02915,.28431
+Spain,ES21,País Vasco,2024,604,2,ES,ES2,ES21,España,Noreste,País Vasco,.051,.28,-.229,.331,.344,-.317,.119,.341919,.894942
+Spain,ES21,País Vasco,2021,604,2,ES,ES2,ES21,España,Noreste,País Vasco,.978,.40578,.57222,1.38378,1.051,1.179,.596,.776939,1.18552
+Spain,ES22,Comunidad Foral de Navarra,2024,605,2,ES,ES2,ES22,España,Noreste,Comunidad Foral de Navarra,.048,.171594,-.123594,.219594,.017,.047,.075,.377746,.776166
+Spain,ES22,Comunidad Foral de Navarra,2013,605,2,ES,ES2,ES22,España,Noreste,Comunidad Foral de Navarra,.309,.253086,.055914,.562086,.316,.348,.236,,
+Spain,ES22,Comunidad Foral de Navarra,2021,605,2,ES,ES2,ES22,España,Noreste,Comunidad Foral de Navarra,.723,.181689,.541311,.904689,1.041,.784,.263,.631039,.716812
+Spain,ES22,Comunidad Foral de Navarra,2017,605,2,ES,ES2,ES22,España,Noreste,Comunidad Foral de Navarra,.605,.2916,.3134,.8966000000000001,.798,.625,.331,1.07581,.2916
+Spain,ES22,Comunidad Foral de Navarra,2010,605,2,ES,ES2,ES22,España,Noreste,Comunidad Foral de Navarra,.207,.329998,-.122998,.536998,.469,.089,.042,,
+Spain,ES23,La Rioja,2021,606,2,ES,ES2,ES23,España,Noreste,La Rioja,.855,.273778,.5812219999999999,1.128778,1.383,.642,.446,.979762,.697358
+Spain,ES23,La Rioja,2010,606,2,ES,ES2,ES23,España,Noreste,La Rioja,.261,.499148,-.238148,.760148,-.028,.456,.329,,
+Spain,ES23,La Rioja,2017,606,2,ES,ES2,ES23,España,Noreste,La Rioja,.345,.325851,.019149,.670851,.95,.228,-.179,.755918,.325851
+Spain,ES23,La Rioja,2024,606,2,ES,ES2,ES23,España,Noreste,La Rioja,.213,.169496,.043504,.382496,.256,.425,-.072,.372031,.5087
+Spain,ES23,La Rioja,2013,606,2,ES,ES2,ES23,España,Noreste,La Rioja,.41,.252643,.157357,.662643,.6,.142,.453,,
+Spain,ES24,Aragón,2013,607,2,ES,ES2,ES24,España,Noreste,Aragón,.165,.222507,-.057507,.387507,.24,.022,.218,,
+Spain,ES24,Aragón,2021,607,2,ES,ES2,ES24,España,Noreste,Aragón,-.179,.237608,-.416608,.058608,.02,-.242,-.295,-.060602,.391924
+Spain,ES24,Aragón,2024,607,2,ES,ES2,ES24,España,Noreste,Aragón,.035,.241913,-.206913,.276913,.365,-.226,-.04,.322131,.619112
+Spain,ES24,Aragón,2017,607,2,ES,ES2,ES24,España,Noreste,Aragón,.199,.321278,-.122278,.520278,.449,.221,-.092,.809815,.321278
+Spain,ES24,Aragón,2010,607,2,ES,ES2,ES24,España,Noreste,Aragón,.329,.405618,-.076618,.734618,.295,.39,.268,,
+Spain,ES30,Comunidad de Madrid,2010,608,2,ES,ES3,ES30,España,Comunidad de Madrid,Comunidad de Madrid,-.019,.461037,-.480037,.442037,-.467,-.092,.503,,
+Spain,ES30,Comunidad de Madrid,2017,608,2,ES,ES3,ES30,España,Comunidad de Madrid,Comunidad de Madrid,-.123,.499456,-.622456,.376456,.5620000000000001,-.349,-.57,.831383,.499456
+Spain,ES30,Comunidad de Madrid,2021,608,2,ES,ES3,ES30,España,Comunidad de Madrid,Comunidad de Madrid,-.214,.367006,-.581006,.153006,.338,-.438,-.518,-.660965,.594102
+Spain,ES30,Comunidad de Madrid,2013,608,2,ES,ES3,ES30,España,Comunidad de Madrid,Comunidad de Madrid,.307,.318492,-.011492,.6254919999999999,.085,.5580000000000001,.252,,
+Spain,ES30,Comunidad de Madrid,2024,608,2,ES,ES3,ES30,España,Comunidad de Madrid,Comunidad de Madrid,.339,.220572,.118428,.559572,.581,.446,-.059,.376244,.527846
+Spain,ES41,Castilla y León,2013,609,2,ES,ES4,ES41,España,Centro (ES),Castilla y León,.29,.213678,.076322,.503678,.198,.419,.227,,
+Spain,ES41,Castilla y León,2024,609,2,ES,ES4,ES41,España,Centro (ES),Castilla y León,-1.242,.412303,-1.654303,-.829697,-.6929999999999999,-2.138,-.72,-.8363080000000001,.509768
+Spain,ES41,Castilla y León,2010,609,2,ES,ES4,ES41,España,Centro (ES),Castilla y León,.005,.448636,-.443636,.453636,-.177,.237,-.045,,
+Spain,ES41,Castilla y León,2021,609,2,ES,ES4,ES41,España,Centro (ES),Castilla y León,-.208,.22853,-.43653,.02053,-.296,-.069,-.237,-.201923,.644384
+Spain,ES41,Castilla y León,2017,609,2,ES,ES4,ES41,España,Centro (ES),Castilla y León,-.228,.412191,-.640191,.184191,.379,-.595,-.445,.810141,.412191
+Spain,ES42,Castilla-la Mancha,2013,610,2,ES,ES4,ES42,España,Centro (ES),Castilla-La Mancha,-.153,.202775,-.355775,.049775,-.283,-.188,.026,,
+Spain,ES42,Castilla-la Mancha,2017,610,2,ES,ES4,ES42,España,Centro (ES),Castilla-La Mancha,-.199,.293582,-.492582,.094582,-.054,-.112,-.41,.647743,.293582
+Spain,ES42,Castilla-la Mancha,2021,610,2,ES,ES4,ES42,España,Centro (ES),Castilla-La Mancha,.285,.170756,.114244,.4557559999999999,.334,.355,.136,.345307,.775006
+Spain,ES42,Castilla-la Mancha,2010,610,2,ES,ES4,ES42,España,Centro (ES),Castilla-La Mancha,.235,.395825,-.160825,.630825,.157,.263,.261,,
+Spain,ES42,Castilla-la Mancha,2024,610,2,ES,ES4,ES42,España,Centro (ES),Castilla-La Mancha,.028,.194118,-.166118,.222118,.42,-.252,-.087,.320661,.531339
+Spain,ES43,Extremadura,2017,611,2,ES,ES4,ES43,España,Centro (ES),Extremadura,.124,.281148,-.157148,.405148,.422,.097,-.16,.782176,.281148
+Spain,ES43,Extremadura,2010,611,2,ES,ES4,ES43,España,Centro (ES),Extremadura,.412,.38585,.02615,.7978499999999999,.508,.383,.304,,
+Spain,ES43,Extremadura,2013,611,2,ES,ES4,ES43,España,Centro (ES),Extremadura,.196,.225967,-.029967,.421967,.322,-.147,.397,,
+Spain,ES43,Extremadura,2021,611,2,ES,ES4,ES43,España,Centro (ES),Extremadura,.453,.17677,.27623,.6297700000000001,.5590000000000001,.511,.241,.366286,.948101
+Spain,ES43,Extremadura,2024,611,2,ES,ES4,ES43,España,Centro (ES),Extremadura,-.764,.363111,-1.127111,-.400889,-.305,-1.393,-.487,-.753115,.860873
+Spain,ES51,Cataluña,2017,612,2,ES,ES5,ES51,España,Este,Cataluña,-.293,.352023,-.6450229999999999,.059023,-.094,-.341,-.413,.82148,.352023
+Spain,ES51,Cataluña,2021,612,2,ES,ES5,ES51,España,Este,Cataluña,-.6850000000000001,.254346,-.939346,-.430654,-.472,-.514,-.994,-.740126,-.207603
+Spain,ES51,Cataluña,2024,612,2,ES,ES5,ES51,España,Este,Cataluña,-.232,.236199,-.468199,.004199,-.596,.198,-.266,.136004,.38392
+Spain,ES51,Cataluña,2010,612,2,ES,ES5,ES51,España,Este,Cataluña,-.331,.423601,-.7546010000000001,.092601,-.617,-.458,.116,,
+Spain,ES51,Cataluña,2013,612,2,ES,ES5,ES51,España,Este,Cataluña,-.114,.266125,-.380125,.152125,-.244,-.148,.059,,
+Spain,ES52,Comunitat Valenciana,2024,613,2,ES,ES5,ES52,España,Este,Comunitat Valenciana ,-.181,.231719,-.412719,.050719,-.093,-.043,-.381,-.183483,.488075
+Spain,ES52,Comunitat Valenciana,2010,613,2,ES,ES5,ES52,España,Este,Comunitat Valenciana ,.185,.401839,-.216839,.586839,.243,.293,-.001,,
+Spain,ES52,Comunitat Valenciana,2013,613,2,ES,ES5,ES52,España,Este,Comunitat Valenciana ,-.204,.27778,-.48178,.07378,-.346,-.185,-.064,,
+Spain,ES52,Comunitat Valenciana,2021,613,2,ES,ES5,ES52,España,Este,Comunitat Valenciana ,.295,.187837,.107163,.482837,.285,.634,-.066,.066732,.685399
+Spain,ES52,Comunitat Valenciana,2017,613,2,ES,ES5,ES52,España,Este,Comunitat Valenciana ,-.347,.399826,-.746826,.052826,.027,-.465,-.5679999999999999,.67456,.399826
+Spain,ES53,Illes Balears,2024,614,2,ES,ES5,ES53,España,Este,Illes Balears,-.263,.248457,-.5114570000000001,-.014543,.038,-.268,-.521,-.372201,.415409
+Spain,ES53,Illes Balears,2021,614,2,ES,ES5,ES53,España,Este,Illes Balears,.19,.174341,.015659,.364341,.051,.384,.114,.166691,.918249
+Spain,ES53,Illes Balears,2013,614,2,ES,ES5,ES53,España,Este,Illes Balears,.032,.271872,-.239872,.303872,-.231,.212,.113,,
+Spain,ES53,Illes Balears,2010,614,2,ES,ES5,ES53,España,Este,Illes Balears,.149,.415701,-.266701,.564701,.017,.22,.195,,
+Spain,ES53,Illes Balears,2017,614,2,ES,ES5,ES53,España,Este,Illes Balears,-.444,.381998,-.825998,-.062002,-.354,-.306,-.627,.698541,.381998
+Spain,ES61,Andalucía,2010,615,2,ES,ES6,ES61,España,Sur,Andalucía,-.111,.415652,-.526652,.304652,-.335,-.066,.08,,
+Spain,ES61,Andalucía,2021,615,2,ES,ES6,ES61,España,Sur,Andalucía,-.523,.308669,-.831669,-.214331,-.419,-.553,-.54,-.9247570000000001,.824438
+Spain,ES61,Andalucía,2013,615,2,ES,ES6,ES61,España,Sur,Andalucía,-.054,.241822,-.295822,.187822,.017,-.013,-.162,,
+Spain,ES61,Andalucía,2024,615,2,ES,ES6,ES61,España,Sur,Andalucía,-.764,.304799,-1.068799,-.459201,-.279,-1.179,-.726,-.699002,.359708
+Spain,ES61,Andalucía,2017,615,2,ES,ES6,ES61,España,Sur,Andalucía,-.642,.365327,-1.007327,-.276673,-.529,-.715,-.618,.784169,.365327
+Spain,ES62,Región de Murcia,2013,616,2,ES,ES6,ES62,España,Sur,Región de Murcia,.369,.265212,.103788,.634212,.432,.301,.343,,
+Spain,ES62,Región de Murcia,2021,616,2,ES,ES6,ES62,España,Sur,Región de Murcia,-.033,.130232,-.163232,.097232,.035,.362,-.493,.012172,-.050427
+Spain,ES62,Región de Murcia,2010,616,2,ES,ES6,ES62,España,Sur,Región de Murcia,.291,.426577,-.135577,.7175769999999999,.398,.515,-.069,,
+Spain,ES62,Región de Murcia,2017,616,2,ES,ES6,ES62,España,Sur,Región de Murcia,-.034,.316345,-.350345,.282345,.372,-.028,-.443,.706018,.316345
+Spain,ES62,Región de Murcia,2024,616,2,ES,ES6,ES62,España,Sur,Región de Murcia,.086,.157189,-.071189,.243189,.413,.109,-.276,.339492,.160327
+Spain,ES70,Canarias,2013,619,2,ES,ES7,ES70,España,Canarias,Canarias,-.254,.25374,-.5077400000000001,-.00026,-.5659999999999999,-.046,-.128,,
+Spain,ES70,Canarias,2017,619,2,ES,ES7,ES70,España,Canarias,Canarias,-.609,.289813,-.898813,-.319187,-.736,-.368,-.662,.683378,.289813
+Spain,ES70,Canarias,2021,619,2,ES,ES7,ES70,España,Canarias,Canarias,-.501,.23703,-.73803,-.26397,-.215,-.452,-.781,-.550065,-.008193
+Spain,ES70,Canarias,2010,619,2,ES,ES7,ES70,España,Canarias,Canarias,.287,.452808,-.165808,.739808,.078,.431,.324,,
+Spain,ES70,Canarias,2024,619,2,ES,ES7,ES70,España,Canarias,Canarias,-.139,.226887,-.365887,.087887,-.162,.309,-.544,.033127,-.031874
+Finland,FI19,Länsi-Suomi,2017,801,2,FI,FI1,FI19,Suomi/Finland,Manner-Suomi,Länsi-Suomi,1.395,.292264,1.102736,1.687264,1.161,1.27,1.614,.876976,.292264
+Finland,FI19,Länsi-Suomi,2013,801,2,FI,FI1,FI19,Suomi/Finland,Manner-Suomi,Länsi-Suomi,1.735,.238561,1.496439,1.973561,2.255,1.38,1.424,,
+Finland,FI19,Länsi-Suomi,2024,801,2,FI,FI1,FI19,Suomi/Finland,Manner-Suomi,Länsi-Suomi,1.542,.137792,1.404208,1.679792,1.308,1.487,1.612,1.52401,1.2044
+Finland,FI19,Länsi-Suomi,2010,801,2,FI,FI1,FI19,Suomi/Finland,Manner-Suomi,Länsi-Suomi,1.53,,,,1.347,1.213,1.877,,
+Finland,FI19,Länsi-Suomi,2021,801,2,FI,FI1,FI19,Suomi/Finland,Manner-Suomi,Länsi-Suomi,1.441,.192915,1.248085,1.633915,1.336,1.465,1.363,1.52529,.731191
+Finland,FI1B,Helsinki-Uusimaa,2013,802,2,FI,FI1,FI1B,Suomi/Finland,Manner-Suomi,Helsinki-Uusimaa,1.415,.2341,1.1809,1.6491,1.469,1.218,1.437,,
+Finland,FI1B,Helsinki-Uusimaa,2021,802,2,FI,FI1,FI1B,Suomi/Finland,Manner-Suomi,Helsinki-Uusimaa,1.637,.166686,1.470314,1.803686,1.59,1.513,1.627,1.58931,1.15685
+Finland,FI1B,Helsinki-Uusimaa,2017,802,2,FI,FI1,FI1B,Suomi/Finland,Manner-Suomi,Helsinki-Uusimaa,1.555,.286779,1.268221,1.841779,1.367,1.465,1.675,.837672,.286779
+Finland,FI1B,Helsinki-Uusimaa,2024,802,2,FI,FI1,FI1B,Suomi/Finland,Manner-Suomi,Helsinki-Uusimaa,1.559,.174758,1.384242,1.733758,1.414,1.456,1.586,1.64897,1.03133
+Finland,FI1B,Helsinki-Uusimaa,2010,802,2,FI,FI1,FI1B,Suomi/Finland,Manner-Suomi,Helsinki-Uusimaa,1.53,,,,1.347,1.213,1.877,,
+Finland,FI1C,Etelä-Suomi,2021,803,2,FI,FI1,FI1C,Suomi/Finland,Manner-Suomi,Etelä-Suomi,1.441,.172633,1.268367,1.613633,1.32,1.414,1.432,1.46556,.921603
+Finland,FI1C,Etelä-Suomi,2013,803,2,FI,FI1,FI1C,Suomi/Finland,Manner-Suomi,Etelä-Suomi,1.415,.24883,1.16617,1.66383,1.469,1.218,1.437,,
+Finland,FI1C,Etelä-Suomi,2017,803,2,FI,FI1,FI1C,Suomi/Finland,Manner-Suomi,Etelä-Suomi,1.466,.291713,1.174287,1.757713,1.257,1.323,1.67,.8915960000000001,.291713
+Finland,FI1C,Etelä-Suomi,2024,803,2,FI,FI1,FI1C,Suomi/Finland,Manner-Suomi,Etelä-Suomi,1.627,.15511,1.47189,1.78211,1.28,1.661,1.71,1.68285,1.22758
+Finland,FI1C,Etelä-Suomi,2010,803,2,FI,FI1,FI1C,Suomi/Finland,Manner-Suomi,Etelä-Suomi,1.53,,,,1.347,1.213,1.877,,
+Finland,FI1D,Pohjois- ja Itä-Suomi,2010,804,2,FI,FI1,FI1D,Suomi/Finland,Manner-Suomi,Pohjois- ja Itä-Suomi,1.53,,,,1.347,1.213,1.877,,
+Finland,FI1D,Pohjois- ja Itä-Suomi,2024,804,2,FI,FI1,FI1D,Suomi/Finland,Manner-Suomi,Pohjois- ja Itä-Suomi,1.935,.174917,1.760083,2.109917,1.868,1.874,1.79,1.72943,1.32994
+Finland,FI1D,Pohjois- ja Itä-Suomi,2017,804,2,FI,FI1,FI1D,Suomi/Finland,Manner-Suomi,Pohjois- ja Itä-Suomi,1.502,.280685,1.221315,1.782685,1.168,1.438,1.748,.968365,.280685
+Finland,FI1D,Pohjois- ja Itä-Suomi,2021,804,2,FI,FI1,FI1D,Suomi/Finland,Manner-Suomi,Pohjois- ja Itä-Suomi,1.63,.175407,1.454593,1.805407,1.565,1.569,1.579,1.54785,1.10929
+Finland,FI1D,Pohjois- ja Itä-Suomi,2013,804,2,FI,FI1,FI1D,Suomi/Finland,Manner-Suomi,Pohjois- ja Itä-Suomi,1.415,.255765,1.159235,1.670765,1.469,1.218,1.437,,
+Finland,FI20,Åland,2021,805,2,FI,FI2,FI20,Suomi/Finland,Åland,Åland,2.289,.239792,2.049208,2.528792,2.197,2.41,2.01,2.17702,1.26184
+Finland,FI20,Åland,2010,805,2,FI,FI2,FI20,Suomi/Finland,Åland,Åland,1.53,,,,1.347,1.213,1.877,,
+Finland,FI20,Åland,2017,805,2,FI,FI2,FI20,Suomi/Finland,Åland,Åland,2.385,.340344,2.044656,2.725344,2.08,2.264,2.572,1.12952,.340344
+Finland,FI20,Åland,2024,805,2,FI,FI2,FI20,Suomi/Finland,Åland,Åland,2.585,.222897,2.362103,2.807897,2.492,2.812,2.088,2.05894,1.55633
+Finland,FI20,Åland,2013,805,2,FI,FI2,FI20,Suomi/Finland,Åland,Åland,2.822,.278044,2.543956,3.100044,3.314,2.644,2.271,,
+France,FR10,Île de France,2017,1801,2,FR,FR1,FR10,France,Ile-de-France,Ile-de-France,.616,.303656,.312344,.919656,.462,.586,.737,.13694,.303656
+France,FR10,Île de France,2010,1801,2,FR,FR1,FR10,France,Ile-de-France,Ile-de-France,.674,.361731,.312269,1.035731,.639,.554,.762,,
+France,FR10,Île de France,2013,1801,2,FR,FR1,FR10,France,Ile-de-France,Ile-de-France,.466,.324443,.141557,.790443,.29,.476,.592,,
+France,FR10,Île de France,2021,1801,2,FR,FR1,FR10,France,Ile-de-France,Ile-de-France,.146,.261355,-.115355,.407355,-.04,.479,-.017,.038601,-.799822
+France,FR10,Île de France,2024,1801,2,FR,FR1,FR10,France,Ile-de-France,Ile-de-France,.023,.272643,-.249643,.295643,.103,.037,-.075,.013766,-.320654
+France,FRB0,Centre - Val de Loire,2021,1802,2,FR,FRB,FRB0,France,Centre — Val de Loire,Centre — Val de Loire,.728,.19205,.5359499999999999,.92005,.379,.904,.821,.542002,.238586
+France,FRB0,Centre - Val de Loire,2010,1802,2,FR,FRB,FRB0,France,Centre — Val de Loire,Centre — Val de Loire,.366,.329479,.036521,.695479,.584,.188,.288,,
+France,FRB0,Centre - Val de Loire,2013,1802,2,FR,FRB,FRB0,France,Centre — Val de Loire,Centre — Val de Loire,.331,.310346,.020654,.641346,.37,.147,.449,,
+France,FRB0,Centre - Val de Loire,2024,1802,2,FR,FRB,FRB0,France,Centre — Val de Loire,Centre — Val de Loire,.384,.351441,.032559,.735441,.025,.271,.802,.585977,.742007
+France,FRB0,Centre - Val de Loire,2017,1802,2,FR,FRB,FRB0,France,Centre — Val de Loire,Centre — Val de Loire,.452,.263615,.188385,.715615,.583,.263,.466,.089873,.263615
+France,FRC1,Bourgogne,2024,1803,2,FR,FRC,FRC1,France,Bourgogne-Franche-Comté,Bourgogne,.458,.284045,.173955,.7420450000000001,.374,.313,.621,.41068,.580969
+France,FRC1,Bourgogne,2017,1803,2,FR,FRC,FRC1,France,Bourgogne-Franche-Comté,Bourgogne,.522,.241509,.280491,.763509,.314,.473,.728,.451545,.241509
+France,FRC1,Bourgogne,2021,1803,2,FR,FRC,FRC1,France,Bourgogne-Franche-Comté,Bourgogne,.546,.226665,.319335,.772665,.363,.526,.6899999999999999,.322843,.220808
+France,FRC1,Bourgogne,2013,1803,2,FR,FRC,FRC1,France,Bourgogne-Franche-Comté,Bourgogne,.331,.305182,.025818,.636182,.432,.189,.345,,
+France,FRC1,Bourgogne,2010,1803,2,FR,FRC,FRC1,France,Bourgogne-Franche-Comté,Bourgogne,.61,.323054,.286946,.9330540000000001,.995,.367,.406,,
+France,FRC2,Franche-Comté,2017,1804,2,FR,FRC,FRC2,France,Bourgogne-Franche-Comté,Franche-Comté,.569,.253926,.315074,.8229259999999999,.642,.372,.635,.341952,.253926
+France,FRC2,Franche-Comté,2013,1804,2,FR,FRC,FRC2,France,Bourgogne-Franche-Comté,Franche-Comté,.388,.332716,.055284,.720716,.326,.268,.537,,
+France,FRC2,Franche-Comté,2021,1804,2,FR,FRC,FRC2,France,Bourgogne-Franche-Comté,Franche-Comté,.533,.265236,.267764,.7982360000000001,.457,.409,.676,.365068,.150061
+France,FRC2,Franche-Comté,2024,1804,2,FR,FRC,FRC2,France,Bourgogne-Franche-Comté,Franche-Comté,.492,.180401,.311599,.672401,.222,.675,.511,.412125,.372754
+France,FRC2,Franche-Comté,2010,1804,2,FR,FRC,FRC2,France,Bourgogne-Franche-Comté,Franche-Comté,.308,.297257,.010743,.6052569999999999,.411,.311,.171,,
+France,FRD1,Basse-Normandie,2017,1805,2,FR,FRD,FRD1,France,Normandie,Basse-Normandie ,.537,.219289,.317711,.756289,.447,.541,.569,.21765,.219289
+France,FRD1,Basse-Normandie,2024,1805,2,FR,FRD,FRD1,France,Normandie,Basse-Normandie ,.579,.28598,.2930199999999999,.86498,.475,.403,.776,.595337,.685092
+France,FRD1,Basse-Normandie,2021,1805,2,FR,FRD,FRD1,France,Normandie,Basse-Normandie ,.769,.246512,.5224880000000001,1.015512,.774,.706,.742,.5873429999999999,.045634
+France,FRD1,Basse-Normandie,2013,1805,2,FR,FRD,FRD1,France,Normandie,Basse-Normandie ,.821,.258356,.5626439999999999,1.079356,.653,.727,1.012,,
+France,FRD1,Basse-Normandie,2010,1805,2,FR,FRD,FRD1,France,Normandie,Basse-Normandie ,.731,.290151,.440849,1.021151,.679,.626,.8129999999999999,,
+France,FRD2,Haute-Normandie,2024,1806,2,FR,FRD,FRD2,France,Normandie,Haute-Normandie ,.427,.266795,.160205,.6937949999999999,.229,.395,.596,.322191,.622729
+France,FRD2,Haute-Normandie,2021,1806,2,FR,FRD,FRD2,France,Normandie,Haute-Normandie ,.574,.24886,.32514,.8228599999999999,.442,.63,.586,.346255,.003216
+France,FRD2,Haute-Normandie,2013,1806,2,FR,FRD,FRD2,France,Normandie,Haute-Normandie ,.736,.2397,.4963,.9757,.832,.6870000000000001,.627,,
+France,FRD2,Haute-Normandie,2017,1806,2,FR,FRD,FRD2,France,Normandie,Haute-Normandie ,.509,.202199,.306801,.711199,.424,.595,.457,.068315,.202199
+France,FRD2,Haute-Normandie,2010,1806,2,FR,FRD,FRD2,France,Normandie,Haute-Normandie ,.636,.288932,.347068,.9249320000000001,.625,.526,.6919999999999999,,
+France,FRE1,Nord-Pas-de-Calais,2024,1807,2,FR,FRE,FRE1,France,Hauts-de-France,Nord-Pas de Calais,.451,.313417,.137583,.764417,.768,.147,.376,.062742,.471071
+France,FRE1,Nord-Pas-de-Calais,2010,1807,2,FR,FRE,FRE1,France,Hauts-de-France,Nord-Pas de Calais,.615,.245144,.369856,.860144,.639,.677,.467,,
+France,FRE1,Nord-Pas-de-Calais,2017,1807,2,FR,FRE,FRE1,France,Hauts-de-France,Nord-Pas de Calais,.399,.208669,.190331,.607669,.283,.318,.555,.284967,.208669
+France,FRE1,Nord-Pas-de-Calais,2021,1807,2,FR,FRE,FRE1,France,Hauts-de-France,Nord-Pas de Calais,.414,.263929,.150071,.677929,.755,.389,.052,-.153816,-.4736
+France,FRE1,Nord-Pas-de-Calais,2013,1807,2,FR,FRE,FRE1,France,Hauts-de-France,Nord-Pas de Calais,.36,.261897,.098103,.6218969999999999,.37,.26,.419,,
+France,FRE2,Picardie,2017,1808,2,FR,FRE,FRE2,France,Hauts-de-France,Picardie,.407,.28311,.12389,.69011,.753,.158,.268,-.071839,.28311
+France,FRE2,Picardie,2013,1808,2,FR,FRE,FRE2,France,Hauts-de-France,Picardie,.225,.31136,-.08636,.5363600000000001,.436,.066,.154,,
+France,FRE2,Picardie,2010,1808,2,FR,FRE,FRE2,France,Hauts-de-France,Picardie,.672,.366176,.305824,1.038176,.853,.48,.617,,
+France,FRE2,Picardie,2021,1808,2,FR,FRE,FRE2,France,Hauts-de-France,Picardie,.346,.231325,.114675,.577325,.443,.289,.268,-.102001,-.126197
+France,FRE2,Picardie,2024,1808,2,FR,FRE,FRE2,France,Hauts-de-France,Picardie,.198,.269323,-.071323,.467323,.291,.052,.222,.066473,.180673
+France,FRF1,Alsace,2021,1809,2,FR,FRF,FRF1,France,Grand Est,Alsace,.743,.291326,.451674,1.034326,.9379999999999999,.587,.622,.545664,-.135766
+France,FRF1,Alsace,2013,1809,2,FR,FRF,FRF1,France,Grand Est,Alsace,.427,.283594,.143406,.7105939999999999,.447,.278,.52,,
+France,FRF1,Alsace,2017,1809,2,FR,FRF,FRF1,France,Grand Est,Alsace,.348,.278163,.069837,.626163,.597,-.032,.444,.152442,.278163
+France,FRF1,Alsace,2024,1809,2,FR,FRF,FRF1,France,Grand Est,Alsace,.569,.259954,.3090459999999999,.828954,.625,.485,.518,.438348,.36038
+France,FRF1,Alsace,2010,1809,2,FR,FRF,FRF1,France,Grand Est,Alsace,.415,.317802,.097198,.732802,.6850000000000001,.23,.29,,
+France,FRF2,Champagne-Ardenne,2013,1810,2,FR,FRF,FRF2,France,Grand Est,Champagne-Ardenne,.613,.306298,.306702,.9192979999999999,.526,.551,.709,,
+France,FRF2,Champagne-Ardenne,2024,1810,2,FR,FRF,FRF2,France,Grand Est,Champagne-Ardenne,.213,.320492,-.107492,.533492,.299,-.076,.388,.06985,.486265
+France,FRF2,Champagne-Ardenne,2021,1810,2,FR,FRF,FRF2,France,Grand Est,Champagne-Ardenne,.582,.2745,.3074999999999999,.8565,.665,.391,.627,.271306,.156227
+France,FRF2,Champagne-Ardenne,2017,1810,2,FR,FRF,FRF2,France,Grand Est,Champagne-Ardenne,.493,.286642,.206358,.7796419999999999,.765,.214,.45,.126261,.286642
+France,FRF2,Champagne-Ardenne,2010,1810,2,FR,FRF,FRF2,France,Grand Est,Champagne-Ardenne,.611,.327309,.283691,.9383090000000001,.763,.502,.505,,
+France,FRF3,Lorraine,2024,1811,2,FR,FRF,FRF3,France,Grand Est,Lorraine,.356,.281957,.074043,.637957,.317,.185,.516,.249493,.5459349999999999
+France,FRF3,Lorraine,2017,1811,2,FR,FRF,FRF3,France,Grand Est,Lorraine,.303,.192285,.110715,.495285,.285,.298,.295,-.239925,.192285
+France,FRF3,Lorraine,2021,1811,2,FR,FRF,FRF3,France,Grand Est,Lorraine,.524,.189758,.334242,.713758,.47,.586,.458,.201069,-.08604
+France,FRF3,Lorraine,2010,1811,2,FR,FRF,FRF3,France,Grand Est,Lorraine,.628,.355986,.272014,.983986,.96,.467,.392,,
+France,FRF3,Lorraine,2013,1811,2,FR,FRF,FRF3,France,Grand Est,Lorraine,.57,.221662,.3483379999999999,.791662,.296,.6860000000000001,.681,,
+France,FRG0,Pays-de-la-Loire,2021,1812,2,FR,FRG,FRG0,France,Pays de la Loire,Pays de la Loire,.843,.204742,.638258,1.047742,.696,.864,.877,.463332,.423291
+France,FRG0,Pays-de-la-Loire,2013,1812,2,FR,FRG,FRG0,France,Pays de la Loire,Pays de la Loire,.633,.30161,.33139,.9346099999999999,.534,.465,.845,,
+France,FRG0,Pays-de-la-Loire,2010,1812,2,FR,FRG,FRG0,France,Pays de la Loire,Pays de la Loire,.511,.355749,.155251,.866749,.758,.36,.362,,
+France,FRG0,Pays-de-la-Loire,2024,1812,2,FR,FRG,FRG0,France,Pays de la Loire,Pays de la Loire,.778,.254668,.523332,1.032668,.5580000000000001,.709,.956,.734002,.881351
+France,FRG0,Pays-de-la-Loire,2017,1812,2,FR,FRG,FRG0,France,Pays de la Loire,Pays de la Loire,.837,.250799,.586201,1.087799,.8100000000000001,.821,.795,.496168,.250799
+France,FRH0,Bretagne,2013,1813,2,FR,FRH,FRH0,France,Bretagne,Bretagne,.998,.265381,.732619,1.263381,.828,.964,1.119,,
+France,FRH0,Bretagne,2021,1813,2,FR,FRH,FRH0,France,Bretagne,Bretagne,.991,.259689,.731311,1.250689,.998,.8159999999999999,1.05,.7039800000000001,.496421
+France,FRH0,Bretagne,2024,1813,2,FR,FRH,FRH0,France,Bretagne,Bretagne,.8120000000000001,.284409,.527591,1.096409,.507,.755,1.061,.811509,.982614
+France,FRH0,Bretagne,2017,1813,2,FR,FRH,FRH0,France,Bretagne,Bretagne,.886,.23128,.65472,1.11728,.91,.853,.806,.260932,.23128
+France,FRH0,Bretagne,2010,1813,2,FR,FRH,FRH0,France,Bretagne,Bretagne,1.097,.329253,.767747,1.426253,1.316,.916,.949,,
+France,FRI1,Aquitaine,2024,1814,2,FR,FRI,FRI1,France,Nouvelle-Aquitaine,Aquitaine,.739,.238781,.500219,.977781,.62,.763,.731,.629656,.565568
+France,FRI1,Aquitaine,2013,1814,2,FR,FRI,FRI1,France,Nouvelle-Aquitaine,Aquitaine,.772,.307914,.464086,1.079914,.55,.633,1.066,,
+France,FRI1,Aquitaine,2017,1814,2,FR,FRI,FRI1,France,Nouvelle-Aquitaine,Aquitaine,.435,.220188,.214812,.655188,.5639999999999999,.256,.441,.101229,.220188
+France,FRI1,Aquitaine,2021,1814,2,FR,FRI,FRI1,France,Nouvelle-Aquitaine,Aquitaine,.8,.239476,.560524,1.039476,.8159999999999999,.744,.753,.327298,.333546
+France,FRI1,Aquitaine,2010,1814,2,FR,FRI,FRI1,France,Nouvelle-Aquitaine,Aquitaine,.866,.335217,.530783,1.201217,1.038,.591,.883,,
+France,FRI2,Limousin,2024,1815,2,FR,FRI,FRI2,France,Nouvelle-Aquitaine,Limousin,.584,.286511,.2974889999999999,.870511,.197,.569,.904,.604986,.91249
+France,FRI2,Limousin,2010,1815,2,FR,FRI,FRI2,France,Nouvelle-Aquitaine,Limousin,.907,.297417,.609583,1.204417,.887,.77,.974,,
+France,FRI2,Limousin,2017,1815,2,FR,FRI,FRI2,France,Nouvelle-Aquitaine,Limousin,.8100000000000001,.266526,.543474,1.076526,.965,.614,.77,.389813,.266526
+France,FRI2,Limousin,2013,1815,2,FR,FRI,FRI2,France,Nouvelle-Aquitaine,Limousin,.8129999999999999,.241132,.5718679999999999,1.054132,.489,.958,.923,,
+France,FRI2,Limousin,2021,1815,2,FR,FRI,FRI2,France,Nouvelle-Aquitaine,Limousin,.715,.243707,.471293,.958707,.544,.68,.843,.534851,.287256
+France,FRI3,Poitou-Charentes,2013,1816,2,FR,FRI,FRI3,France,Nouvelle-Aquitaine,Poitou-Charentes,.77,.26072,.50928,1.03072,.432,.993,.819,,
+France,FRI3,Poitou-Charentes,2017,1816,2,FR,FRI,FRI3,France,Nouvelle-Aquitaine,Poitou-Charentes,.552,.246985,.305015,.7989850000000001,.5,.57,.529,.292662,.246985
+France,FRI3,Poitou-Charentes,2021,1816,2,FR,FRI,FRI3,France,Nouvelle-Aquitaine,Poitou-Charentes,.726,.223598,.502402,.9495979999999999,.539,.723,.837,.516015,.294555
+France,FRI3,Poitou-Charentes,2010,1816,2,FR,FRI,FRI3,France,Nouvelle-Aquitaine,Poitou-Charentes,.54,.267951,.272049,.8079510000000001,.6830000000000001,.505,.376,,
+France,FRI3,Poitou-Charentes,2024,1816,2,FR,FRI,FRI3,France,Nouvelle-Aquitaine,Poitou-Charentes,.5590000000000001,.260925,.298075,.819925,.555,.444,.599,.427978,.5224760000000001
+France,FRJ1,Languedoc-Roussillon,2021,1817,2,FR,FRJ,FRJ1,France,Occitanie,Languedoc-Roussillon,.38,.241971,.138029,.6219710000000001,.296,.393,.411,.010705,.023309
+France,FRJ1,Languedoc-Roussillon,2017,1817,2,FR,FRJ,FRJ1,France,Occitanie,Languedoc-Roussillon,.737,.187883,.549117,.924883,.704,.748,.6850000000000001,.2243,.187883
+France,FRJ1,Languedoc-Roussillon,2010,1817,2,FR,FRJ,FRJ1,France,Occitanie,Languedoc-Roussillon,.822,.257167,.5648329999999999,1.079167,.6919999999999999,.907,.783,,
+France,FRJ1,Languedoc-Roussillon,2024,1817,2,FR,FRJ,FRJ1,France,Occitanie,Languedoc-Roussillon,.202,.272607,-.070607,.474607,.162,.178,.238,.058654,.219036
+France,FRJ1,Languedoc-Roussillon,2013,1817,2,FR,FRJ,FRJ1,France,Occitanie,Languedoc-Roussillon,.604,.295692,.308308,.8996919999999999,.498,.432,.829,,
+France,FRJ2,Midi-Pyrénées,2013,1818,2,FR,FRJ,FRJ2,France,Occitanie,Midi-Pyrénées,.678,.257992,.420008,.935992,.494,.6929999999999999,.789,,
+France,FRJ2,Midi-Pyrénées,2010,1818,2,FR,FRJ,FRJ2,France,Occitanie,Midi-Pyrénées,.882,.279919,.6020810000000001,1.161919,.973,.945,.64,,
+France,FRJ2,Midi-Pyrénées,2021,1818,2,FR,FRJ,FRJ2,France,Occitanie,Midi-Pyrénées,.71,.262135,.447865,.972135,.741,.651,.66,.392903,.092877
+France,FRJ2,Midi-Pyrénées,2017,1818,2,FR,FRJ,FRJ2,France,Occitanie,Midi-Pyrénées,.695,.256057,.438943,.9510569999999999,.752,.589,.673,.230431,.256057
+France,FRJ2,Midi-Pyrénées,2024,1818,2,FR,FRJ,FRJ2,France,Occitanie,Midi-Pyrénées,.569,.258673,.310327,.8276729999999999,.505,.5610000000000001,.5610000000000001,.533449,.345429
+France,FRK1,Auvergne,2010,1819,2,FR,FRK,FRK1,France,Auvergne-Rhône-Alpes,Auvergne,.6899999999999999,.335273,.354727,1.025273,.786,.482,.731,,
+France,FRK1,Auvergne,2013,1819,2,FR,FRK,FRK1,France,Auvergne-Rhône-Alpes,Auvergne,.744,.281278,.462722,1.025278,.62,.6840000000000001,.864,,
+France,FRK1,Auvergne,2021,1819,2,FR,FRK,FRK1,France,Auvergne-Rhône-Alpes,Auvergne,.611,.234292,.376708,.8452919999999999,.471,.5679999999999999,.728,.202139,.414987
+France,FRK1,Auvergne,2017,1819,2,FR,FRK,FRK1,France,Auvergne-Rhône-Alpes,Auvergne,.5570000000000001,.203333,.3536670000000001,.760333,.608,.465,.543,.077156,.203333
+France,FRK1,Auvergne,2024,1819,2,FR,FRK,FRK1,France,Auvergne-Rhône-Alpes,Auvergne,.6840000000000001,.270074,.4139260000000001,.9540740000000001,.585,.61,.76,.519588,.730864
+France,FRK2,Rhône-Alpes,2024,1820,2,FR,FRK,FRK2,France,Auvergne-Rhône-Alpes,Rhône-Alpes,.477,.269601,.207399,.746601,.241,.475,.648,.384729,.656084
+France,FRK2,Rhône-Alpes,2021,1820,2,FR,FRK,FRK2,France,Auvergne-Rhône-Alpes,Rhône-Alpes,.552,.253369,.298631,.805369,.66,.53,.406,.189445,-.17045
+France,FRK2,Rhône-Alpes,2010,1820,2,FR,FRK,FRK2,France,Auvergne-Rhône-Alpes,Rhône-Alpes,.657,.266711,.3902890000000001,.9237109999999999,.44,.835,.63,,
+France,FRK2,Rhône-Alpes,2017,1820,2,FR,FRK,FRK2,France,Auvergne-Rhône-Alpes,Rhône-Alpes,.247,.274357,-.027357,.5213570000000001,.345,.25,.122,-.1899,.274357
+France,FRK2,Rhône-Alpes,2013,1820,2,FR,FRK,FRK2,France,Auvergne-Rhône-Alpes,Rhône-Alpes,.435,.282031,.152969,.717031,.21,.497,.5610000000000001,,
+France,FRL0,Provence-Alpes-Côte d'Azur,2021,1821,2,FR,FRL,FRL0,France,Provence-Alpes-Côte d’Azur,Provence-Alpes-Côte d’Azur,.453,.215493,.237507,.668493,.428,.591,.292,-.180526,-.001431
+France,FRL0,Provence-Alpes-Côte d'Azur,2013,1821,2,FR,FRL,FRL0,France,Provence-Alpes-Côte d’Azur,Provence-Alpes-Côte d’Azur,.14,.313792,-.173792,.453792,-.009,.297,.121,,
+France,FRL0,Provence-Alpes-Côte d'Azur,2010,1821,2,FR,FRL,FRL0,France,Provence-Alpes-Côte d’Azur,Provence-Alpes-Côte d’Azur,.383,.260396,.122604,.6433960000000001,.437,.505,.168,,
+France,FRL0,Provence-Alpes-Côte d'Azur,2024,1821,2,FR,FRL,FRL0,France,Provence-Alpes-Côte d’Azur,Provence-Alpes-Côte d’Azur,.118,.269205,-.151205,.387205,.4,.039,-.101,-.25,-.104348
+France,FRL0,Provence-Alpes-Côte d'Azur,2017,1821,2,FR,FRL,FRL0,France,Provence-Alpes-Côte d’Azur,Provence-Alpes-Côte d’Azur,.334,.268702,.065298,.6027020000000001,.379,.473,.115,-.241215,.268702
+France,FRM0,Corse,2024,1822,2,FR,FRM,FRM0,France,Corse,Corse,.435,.198526,.236474,.633526,.352,.99,-.098,-.289367,-.060733
+France,FRM0,Corse,2013,1822,2,FR,FRM,FRM0,France,Corse,Corse,.253,.316472,-.063472,.569472,-.354,.77,.322,,
+France,FRM0,Corse,2017,1822,2,FR,FRM,FRM0,France,Corse,Corse,.192,.283853,-.091853,.475853,.032,.412,.114,-.018614,.283853
+France,FRM0,Corse,2021,1822,2,FR,FRM,FRM0,France,Corse,Corse,.333,.232077,.100923,.5650770000000001,.492,.593,-.122,-.585928,-.352546
+France,FRM0,Corse,2010,1822,2,FR,FRM,FRM0,France,Corse,Corse,.295,.337966,-.042966,.6329659999999999,-.357,.868,.345,,
+France,FRY1,Guadeloupe,2010,1823,2,FR,FRY,FRY1,France,RUP FR — Régions Ultrapériphériques Françaises,Guadeloupe,-.305,.431104,-.736104,.126104,-.258,-.281,-.346,,
+France,FRY1,Guadeloupe,2017,1823,2,FR,FRY,FRY1,France,RUP FR — Régions Ultrapériphériques Françaises,Guadeloupe,-.918,.347111,-1.265111,-.570889,-1.162,-.971,-.527,-.503787,.347111
+France,FRY1,Guadeloupe,2021,1823,2,FR,FRY,FRY1,France,RUP FR — Régions Ultrapériphériques Françaises,Guadeloupe,-.512,.390913,-.9029130000000001,-.121087,-1.145,-.253,-.083,-1.10242,.250045
+France,FRY1,Guadeloupe,2024,1823,2,FR,FRY,FRY1,France,RUP FR — Régions Ultrapériphériques Françaises,Guadeloupe,-.965,.251653,-1.216653,-.713347,-1.204,-.381,-1.174,-1.51353,-.841959
+France,FRY1,Guadeloupe,2013,1823,2,FR,FRY,FRY1,France,RUP FR — Régions Ultrapériphériques Françaises,Guadeloupe,-.297,.299769,-.596769,.002769,-.401,-.261,-.204,,
+France,FRY2,Martinique,2021,1824,2,FR,FRY,FRY2,France,RUP FR — Régions Ultrapériphériques Françaises,Martinique ,-.258,.417153,-.675153,.159153,-1.018,-.147,.419,-.714973,.785238
+France,FRY2,Martinique,2010,1824,2,FR,FRY,FRY2,France,RUP FR — Régions Ultrapériphériques Françaises,Martinique ,-.18,.397531,-.577531,.217531,.181,-.179,-.523,,
+France,FRY2,Martinique,2017,1824,2,FR,FRY,FRY2,France,RUP FR — Régions Ultrapériphériques Françaises,Martinique ,-.616,.343383,-.959383,-.272617,-.707,-.838,-.24,-.181595,.343383
+France,FRY2,Martinique,2024,1824,2,FR,FRY,FRY2,France,RUP FR — Régions Ultrapériphériques Françaises,Martinique ,-.506,.258843,-.7648429999999999,-.247157,-.839,-.043,-.5649999999999999,-1.0178,-.202277
+France,FRY2,Martinique,2013,1824,2,FR,FRY,FRY2,France,RUP FR — Régions Ultrapériphériques Françaises,Martinique ,-.01,.271585,-.281585,.261585,-.067,-.001,.037,,
+France,FRY3,Guyane,2010,1825,2,FR,FRY,FRY3,France,RUP FR — Régions Ultrapériphériques Françaises,Guyane,-.271,.356256,-.627256,.085256,-.216,-.284,-.286,,
+France,FRY3,Guyane,2024,1825,2,FR,FRY,FRY3,France,RUP FR — Régions Ultrapériphériques Françaises,Guyane,-.962,.302075,-1.264075,-.659925,-1.508,-.347,-.894,-1.03671,-.7974
+France,FRY3,Guyane,2017,1825,2,FR,FRY,FRY3,France,RUP FR — Régions Ultrapériphériques Françaises,Guyane,-1.441,.477127,-1.918127,-.963873,-2.556,-1.155,-.468,-.520212,.477127
+France,FRY3,Guyane,2013,1825,2,FR,FRY,FRY3,France,RUP FR — Régions Ultrapériphériques Françaises,Guyane,-.505,.325981,-.830981,-.179019,-1.046,-.388,-.039,,
+France,FRY3,Guyane,2021,1825,2,FR,FRY,FRY3,France,RUP FR — Régions Ultrapériphériques Françaises,Guyane,-.646,.408927,-1.054927,-.237073,-1.564,-.367,.062,-.944611,.358136
+France,FRY4,La Réunion,2013,1826,2,FR,FRY,FRY4,France,RUP FR — Régions Ultrapériphériques Françaises,La Réunion ,-.01,.357469,-.367469,.347469,-.023,-.1,.095,,
+France,FRY4,La Réunion,2024,1826,2,FR,FRY,FRY4,France,RUP FR — Régions Ultrapériphériques Françaises,La Réunion ,.012,.340502,-.328502,.352502,.285,.328,-.579,-1.10282,-.14239
+France,FRY4,La Réunion,2021,1826,2,FR,FRY,FRY4,France,RUP FR — Régions Ultrapériphériques Françaises,La Réunion ,.193,.335559,-.142559,.528559,.299,.293,-.033,-.930236,.1665
+France,FRY4,La Réunion,2010,1826,2,FR,FRY,FRY4,France,RUP FR — Régions Ultrapériphériques Françaises,La Réunion ,.059,.490033,-.431033,.549033,.175,.153,-.159,,
+France,FRY4,La Réunion,2017,1826,2,FR,FRY,FRY4,France,RUP FR — Régions Ultrapériphériques Françaises,La Réunion ,-.295,.354554,-.649554,.059554,-.097,-.253,-.505,-.645691,.354554
+France,FRY5,Mayotte,2013,1827,2,FR,FRY,FRY5,France,RUP FR — Régions Ultrapériphériques Françaises,Mayotte,-.206,,,,-.384,-.188,-.028,,
+France,FRY5,Mayotte,2021,1827,2,FR,FRY,FRY5,France,RUP FR — Régions Ultrapériphériques Françaises,Mayotte,-1.143,.35648,-1.49948,-.78652,-2.26,-.288,-.756,-1.24655,-.850818
+France,FRY5,Mayotte,2024,1827,2,FR,FRY,FRY5,France,RUP FR — Régions Ultrapériphériques Françaises,Mayotte,-1.171,.365155,-1.536155,-.805845,-1.968,.13,-1.511,-1.24148,-1.74215
+France,FRY5,Mayotte,2017,1827,2,FR,FRY,FRY5,France,RUP FR — Régions Ultrapériphériques Françaises,Mayotte,-.348,,,,.229,-.804,-.435,,
+France,FRY5,Mayotte,2010,1827,2,FR,FRY,FRY5,France,RUP FR — Régions Ultrapériphériques Françaises,Mayotte,-.174,,,,-.03,-.148,-.328,,
+Croatia,HR02,Panonska Hrvatska,2010,1622,2,HR,HR0,HR02,Hrvatska,Hrvatska,Panonska Hrvatska,-1.294,,,,-1.208,-1.359,-1.185,,
+Croatia,HR02,Panonska Hrvatska,2013,1622,2,HR,HR0,HR02,Hrvatska,Hrvatska,Panonska Hrvatska,-1.251,.355709,-1.606709,-.8952909999999998,-1.147,-1.384,-1.115,,
+Croatia,HR02,Panonska Hrvatska,2021,1622,2,HR,HR0,HR02,Hrvatska,Hrvatska,Panonska Hrvatska,-1.268,.419454,-1.687454,-.848546,-1.17,-1.163,-1.333,-2.65454,-1.20969
+Croatia,HR02,Panonska Hrvatska,2017,1622,2,HR,HR0,HR02,Hrvatska,Hrvatska,Panonska Hrvatska,-1.12,.565616,-1.685616,-.5543840000000001,-1.123,-1.309,-.8139999999999999,-.056933,.565616
+Croatia,HR02,Panonska Hrvatska,2024,1622,2,HR,HR0,HR02,Hrvatska,Hrvatska,Panonska Hrvatska,-1.082,.41308,-1.49508,-.6689200000000001,-.746,-1.064,-1.284,-2.6755,-1.99415
+Croatia,HR03,Jadranska Hrvatska,2010,1601,2,HR,HR0,HR03,Hrvatska,Hrvatska,Jadranska Hrvatska,-1.428,,,,-1.226,-1.56,-1.355,,
+Croatia,HR03,Jadranska Hrvatska,2021,1601,2,HR,HR0,HR03,Hrvatska,Hrvatska,Jadranska Hrvatska,-.806,.429957,-1.235957,-.3760430000000001,-1.143,-.728,-.46,-2.25129,.011238
+Croatia,HR03,Jadranska Hrvatska,2024,1601,2,HR,HR0,HR03,Hrvatska,Hrvatska,Jadranska Hrvatska,-.854,.383025,-1.237025,-.470975,-.789,-.855,-.798,-2.55207,-1.21261
+Croatia,HR03,Jadranska Hrvatska,2017,1601,2,HR,HR0,HR03,Hrvatska,Hrvatska,Jadranska Hrvatska,-1.037,.538178,-1.575178,-.4988219999999999,-1.124,-1.155,-.728,-.192715,.538178
+Croatia,HR03,Jadranska Hrvatska,2013,1601,2,HR,HR0,HR03,Hrvatska,Hrvatska,Jadranska Hrvatska,-1.379,.379096,-1.758096,-.999904,-1.166,-1.585,-1.268,,
+Croatia,HR05,Zagreb,2021,1623,2,HR,HR0,HR05,Hrvatska,Hrvatska,Grad Zagreb,-1.268,.419454,-1.687454,-.848546,-1.17,-1.163,-1.333,-2.65454,-1.20969
+Croatia,HR05,Zagreb,2013,1623,2,HR,HR0,HR05,Hrvatska,Hrvatska,Grad Zagreb,-1.251,.355709,-1.606709,-.8952909999999998,-1.147,-1.384,-1.115,,
+Croatia,HR05,Zagreb,2010,1623,2,HR,HR0,HR05,Hrvatska,Hrvatska,Grad Zagreb,-1.294,,,,-1.208,-1.359,-1.185,,
+Croatia,HR05,Zagreb,2017,1623,2,HR,HR0,HR05,Hrvatska,Hrvatska,Grad Zagreb,-1.12,.565616,-1.685616,-.5543840000000001,-1.123,-1.309,-.8139999999999999,-.056933,.565616
+Croatia,HR05,Grad Zagreb,2024,1623,2,HR,HR0,HR05,Hrvatska,Hrvatska,Grad Zagreb,-1.348,.428819,-1.776819,-.919181,-1.24,-1.424,-1.189,-3.11927,-1.37423
+Croatia,HR06,Sjeverna Hrvatska,2010,1624,2,HR,HR0,HR06,Hrvatska,Hrvatska,Sjeverna Hrvatska,-1.294,,,,-1.208,-1.359,-1.185,,
+Croatia,HR06,Sjeverna Hrvatska,2021,1624,2,HR,HR0,HR06,Hrvatska,Hrvatska,Sjeverna Hrvatska,-1.268,.419454,-1.687454,-.848546,-1.17,-1.163,-1.333,-2.65454,-1.20969
+Croatia,HR06,Sjeverna Hrvatska ,2024,1624,2,HR,HR0,HR06,Hrvatska,Hrvatska,Sjeverna Hrvatska,-.662,.333434,-.995434,-.328566,-.5649999999999999,-.353,-.973,-2.34072,-1.75059
+Croatia,HR06,Sjeverna Hrvatska,2017,1624,2,HR,HR0,HR06,Hrvatska,Hrvatska,Sjeverna Hrvatska,-1.12,.565616,-1.685616,-.5543840000000001,-1.123,-1.309,-.8139999999999999,-.056933,.565616
+Croatia,HR06,Sjeverna Hrvatska,2013,1624,2,HR,HR0,HR06,Hrvatska,Hrvatska,Sjeverna Hrvatska,-1.251,.355709,-1.606709,-.8952909999999998,-1.147,-1.384,-1.115,,
+Hungary,HU11,Budapest,2013,1401,2,HU,HU1,HU11,Magyarország,Közép-Magyarország,Budapest,-.876,.373345,-1.249345,-.5026550000000001,-1.077,-.532,-.944,,
+Hungary,HU11,Budapest,2017,1401,2,HU,HU1,HU11,Magyarország,Közép-Magyarország,Budapest,-1.333,.484638,-1.817638,-.8483619999999999,-1.359,-1.2,-1.307,-2.46396,.484638
+Hungary,HU11,Budapest,2021,1401,2,HU,HU1,HU11,Magyarország,Közép-Magyarország,Budapest,-1.301,.501731,-1.802731,-.7992689999999999,-1.384,-.736,-1.639,-.673454,-2.17471
+Hungary,HU11,Budapest,2024,1401,2,HU,HU1,HU11,Magyarország,Közép-Magyarország,Budapest,-1.15,.423158,-1.573158,-.726842,-1.177,-.713,-1.398,-.926141,-.332425
+Hungary,HU11,Budapest,2010,1401,2,HU,HU1,HU11,Magyarország,Közép-Magyarország,Budapest,-1.137,.37031,-1.50731,-.7666900000000001,-.8100000000000001,-1.22,-1.266,,
+Hungary,HU12,Pest,2024,1402,2,HU,HU1,HU12,Magyarország,Közép-Magyarország,Pest,-1.08,.392737,-1.472737,-.6872630000000001,-1.116,-.541,-1.431,-.693889,-.627346
+Hungary,HU12,Pest,2013,1402,2,HU,HU1,HU12,Magyarország,Közép-Magyarország,Pest,-.876,.373345,-1.249345,-.5026550000000001,-1.077,-.532,-.944,,
+Hungary,HU12,Pest,2021,1402,2,HU,HU1,HU12,Magyarország,Közép-Magyarország,Pest,-.893,.455762,-1.348762,-.437238,-1.257,-.413,-.911,-.122384,-1.3883
+Hungary,HU12,Pest,2010,1402,2,HU,HU1,HU12,Magyarország,Közép-Magyarország,Pest,-1.137,.37031,-1.50731,-.7666900000000001,-.8100000000000001,-1.22,-1.266,,
+Hungary,HU12,Pest,2017,1402,2,HU,HU1,HU12,Magyarország,Közép-Magyarország,Pest,-1.333,.484638,-1.817638,-.8483619999999999,-1.359,-1.2,-1.307,-2.46396,.484638
+Hungary,HU21,Közép-Dunántúl,2017,1403,2,HU,HU2,HU21,Magyarország,Dunántúl,Közép-Dunántúl,-.845,.520344,-1.365344,-.3246559999999999,-1.225,-.523,-.7,-1.76533,.520344
+Hungary,HU21,Közép-Dunántúl,2021,1403,2,HU,HU2,HU21,Magyarország,Dunántúl,Közép-Dunántúl,-1.057,.379385,-1.436385,-.677615,-1.461,-.734,-.86,-.181682,-1.23294
+Hungary,HU21,Közép-Dunántúl,2010,1403,2,HU,HU2,HU21,Magyarország,Dunántúl,Közép-Dunántúl,-.535,.226254,-.7612540000000001,-.308746,-.488,-.728,-.335,,
+Hungary,HU21,Közép-Dunántúl,2024,1403,2,HU,HU2,HU21,Magyarország,Dunántúl,Közép-Dunántúl,-.893,.362922,-1.255922,-.530078,-.874,-.624,-1.055,-.414364,-.204314
+Hungary,HU21,Közép-Dunántúl,2013,1403,2,HU,HU2,HU21,Magyarország,Dunántúl,Közép-Dunántúl,-.528,.311531,-.839531,-.216469,-.506,-.448,-.585,,
+Hungary,HU22,Nyugat-Dunántúl,2013,1404,2,HU,HU2,HU22,Magyarország,Dunántúl,Nyugat-Dunántúl,-.528,.311531,-.839531,-.216469,-.506,-.448,-.585,,
+Hungary,HU22,Nyugat-Dunántúl,2024,1404,2,HU,HU2,HU22,Magyarország,Dunántúl,Nyugat-Dunántúl,-1.137,.324608,-1.461608,-.812392,-.986,-1.07,-1.196,-.703627,-.177967
+Hungary,HU22,Nyugat-Dunántúl,2017,1404,2,HU,HU2,HU22,Magyarország,Dunántúl,Nyugat-Dunántúl,-.898,.493918,-1.391918,-.404082,-1.129,-.886,-.589,-1.56146,.493918
+Hungary,HU22,Nyugat-Dunántúl,2010,1404,2,HU,HU2,HU22,Magyarország,Dunántúl,Nyugat-Dunántúl,-.535,.226254,-.7612540000000001,-.308746,-.488,-.728,-.335,,
+Hungary,HU22,Nyugat-Dunántúl,2021,1404,2,HU,HU2,HU22,Magyarország,Dunántúl,Nyugat-Dunántúl,-1.106,.396773,-1.502773,-.7092270000000001,-1.269,-.892,-1.036,-.426493,-1.30735
+Hungary,HU23,Dél-Dunántúl,2013,1405,2,HU,HU2,HU23,Magyarország,Dunántúl,Dél-Dunántúl,-.528,.311531,-.839531,-.216469,-.506,-.448,-.585,,
+Hungary,HU23,Dél-Dunántúl,2024,1405,2,HU,HU2,HU23,Magyarország,Dunántúl,Dél-Dunántúl,-1.181,.319339,-1.500339,-.861661,-1.096,-1.071,-1.209,-.756849,-.149567
+Hungary,HU23,Dél-Dunántúl,2010,1405,2,HU,HU2,HU23,Magyarország,Dunántúl,Dél-Dunántúl,-.535,.226254,-.7612540000000001,-.308746,-.488,-.728,-.335,,
+Hungary,HU23,Dél-Dunántúl,2021,1405,2,HU,HU2,HU23,Magyarország,Dunántúl,Dél-Dunántúl,-1.007,.346549,-1.353549,-.6604509999999999,-1.237,-.859,-.8139999999999999,-.3379,-.986531
+Hungary,HU23,Dél-Dunántúl,2017,1405,2,HU,HU2,HU23,Magyarország,Dunántúl,Dél-Dunántúl,-.86,.549426,-1.409426,-.310574,-.855,-.83,-.8070000000000001,-2.0788,.549426
+Hungary,HU31,Észak-Magyarország,2024,1406,2,HU,HU3,HU31,Magyarország,Alföld és Észak,Észak-Magyarország,-1.276,.341022,-1.617022,-.9349780000000001,-1.147,-1.009,-1.492,-.725623,-.7093469999999999
+Hungary,HU31,Észak-Magyarország,2017,1406,2,HU,HU3,HU31,Magyarország,Alföld és Észak,Észak-Magyarország,-.968,.502313,-1.470313,-.465687,-1.371,-.798,-.639,-1.78205,.502313
+Hungary,HU31,Észak-Magyarország,2010,1406,2,HU,HU3,HU31,Magyarország,Alföld és Észak,Észak-Magyarország,-.635,.220305,-.855305,-.414695,-.364,-.9330000000000001,-.545,,
+Hungary,HU31,Észak-Magyarország,2021,1406,2,HU,HU3,HU31,Magyarország,Alföld és Észak,Észak-Magyarország,-1.511,.430418,-1.941418,-1.080582,-1.892,-1.065,-1.412,-.6377119999999999,-1.78828
+Hungary,HU31,Észak-Magyarország,2013,1406,2,HU,HU3,HU31,Magyarország,Alföld és Észak,Észak-Magyarország,-.712,.313682,-1.025682,-.3983179999999999,-.468,-.755,-.851,,
+Hungary,HU32,Észak-Alföld,2013,1407,2,HU,HU3,HU32,Magyarország,Alföld és Észak,Észak-Alföld,-.712,.313682,-1.025682,-.3983179999999999,-.468,-.755,-.851,,
+Hungary,HU32,Észak-Alföld,2024,1407,2,HU,HU3,HU32,Magyarország,Alföld és Észak,Észak-Alföld,-1.462,.267783,-1.729783,-1.194217,-1.095,-1.497,-1.587,-.979387,-.631745
+Hungary,HU32,Észak-Alföld,2021,1407,2,HU,HU3,HU32,Magyarország,Alföld és Észak,Észak-Alföld,-1.466,.356056,-1.822056,-1.109944,-1.382,-1.339,-1.515,-.67378,-1.94394
+Hungary,HU32,Észak-Alföld,2010,1407,2,HU,HU3,HU32,Magyarország,Alföld és Észak,Észak-Alföld,-.635,.220305,-.855305,-.414695,-.364,-.9330000000000001,-.545,,
+Hungary,HU32,Észak-Alföld,2017,1407,2,HU,HU3,HU32,Magyarország,Alföld és Észak,Észak-Alföld,-1.153,.518052,-1.671052,-.6349480000000001,-.913,-1.462,-.968,-2.01542,.518052
+Hungary,HU33,Dél-Alföld,2024,1408,2,HU,HU3,HU33,Magyarország,Alföld és Észak,Dél-Alföld,-1.191,.317831,-1.508831,-.8731690000000001,-1.018,-1.019,-1.368,-.691052,-.511873
+Hungary,HU33,Dél-Alföld,2017,1408,2,HU,HU3,HU33,Magyarország,Alföld és Észak,Dél-Alföld,-.627,.530281,-1.157281,-.096719,-.665,-.582,-.572,-1.68821,.530281
+Hungary,HU33,Dél-Alföld,2021,1408,2,HU,HU3,HU33,Magyarország,Alföld és Észak,Dél-Alföld,-1.002,.405694,-1.407694,-.596306,-1.161,-.65,-1.087,-.374522,-1.4553
+Hungary,HU33,Dél-Alföld,2013,1408,2,HU,HU3,HU33,Magyarország,Alföld és Észak,Dél-Alföld,-.712,.313682,-1.025682,-.3983179999999999,-.468,-.755,-.851,,
+Hungary,HU33,Dél-Alföld,2010,1408,2,HU,HU3,HU33,Magyarország,Alföld és Észak,Dél-Alföld,-.635,.220305,-.855305,-.414695,-.364,-.9330000000000001,-.545,,
+Ireland,IE04,Northern and Western,2010,10001,2,IE,IE0,IE04,Éire/Ireland,Ireland,Northern and Western,.925,,,,.747,.895,1.042,,
+Ireland,IE04,Northern and Western,2013,10001,2,IE,IE0,IE04,Éire/Ireland,Ireland,Northern and Western,.765,,,,.613,.977,.642,,
+Ireland,IE04,Northern and Western,2017,10001,2,IE,IE0,IE04,Éire/Ireland,Ireland,Northern and Western,.918,,,,.758,.988,.916,,
+Ireland,IE04,Northern and Western,2024,10001,2,IE,IE0,IE04,Éire/Ireland,Ireland,Northern and Western,1.014,.213155,.800845,1.227155,1.034,.748,1.116,.226379,-.031722
+Ireland,IE04,Northern and Western,2021,10001,2,IE,IE0,IE04,Éire/Ireland,Ireland,Northern and Western,.543,.24354,.2994600000000001,.78654,.451,.662,.456,.987967,-.075558
+Ireland,IE05,Southern,2010,10002,2,IE,IE0,IE05,Éire/Ireland,Ireland,Southern,.925,,,,.747,.895,1.042,,
+Ireland,IE05,Southern,2017,10002,2,IE,IE0,IE05,Éire/Ireland,Ireland,Southern,.918,,,,.758,.988,.916,,
+Ireland,IE05,Southern,2024,10002,2,IE,IE0,IE05,Éire/Ireland,Ireland,Southern,1.175,.246849,.9281510000000001,1.421849,1.208,.893,1.258,.437849,.021387
+Ireland,IE05,Southern,2021,10002,2,IE,IE0,IE05,Éire/Ireland,Ireland,Southern,.877,.246463,.630537,1.123463,.771,.726,1.038,1.09526,.895161
+Ireland,IE05,Southern,2013,10002,2,IE,IE0,IE05,Éire/Ireland,Ireland,Southern,.765,,,,.613,.977,.642,,
+Ireland,IE06,Eastern and Midland,2021,10003,2,IE,IE0,IE06,Éire/Ireland,Ireland,Eastern and Midland,.428,.200969,.227031,.628969,.442,.361,.436,.703932,.179738
+Ireland,IE06,Eastern and Midland,2013,10003,2,IE,IE0,IE06,Éire/Ireland,Ireland,Eastern and Midland,.765,,,,.613,.977,.642,,
+Ireland,IE06,Eastern and Midland,2024,10003,2,IE,IE0,IE06,Éire/Ireland,Ireland,Eastern and Midland,.917,.29912,.61788,1.21612,1.032,.948,.641,.109973,-.801034
+Ireland,IE06,Eastern and Midland,2010,10003,2,IE,IE0,IE06,Éire/Ireland,Ireland,Eastern and Midland,.925,,,,.747,.895,1.042,,
+Ireland,IE06,Eastern and Midland,2017,10003,2,IE,IE0,IE06,Éire/Ireland,Ireland,Eastern and Midland,.918,,,,.758,.988,.916,,
+Italy,ITC1,Piemonte,2017,301,2,IT,ITC,ITC1,Italia,Nord-Ovest,Piemonte,-1.08,.236961,-1.316961,-.8430390000000001,-.6820000000000001,-1.398,-1.05,-.422346,.236961
+Italy,ITC1,Piemonte,2024,301,2,IT,ITC,ITC1,Italia,Nord-Ovest,Piemonte,-.28,.267605,-.547605,-.012395,.151,-.801,-.151,-.015136,1.1976
+Italy,ITC1,Piemonte,2013,301,2,IT,ITC,ITC1,Italia,Nord-Ovest,Piemonte,-.79,.346802,-1.136802,-.443198,-.227,-1.131,-.947,,
+Italy,ITC1,Piemonte,2010,301,2,IT,ITC,ITC1,Italia,Nord-Ovest,Piemonte,-.257,.23751,-.49451,-.01949,-.074,-.285,-.386,,
+Italy,ITC1,Piemonte,2021,301,2,IT,ITC,ITC1,Italia,Nord-Ovest,Piemonte,-.503,.154995,-.657995,-.348005,-.247,-.8179999999999999,-.389,.423411,1.11252
+Italy,ITC2,Valle d’Aosta,2021,302,2,IT,ITC,ITC2,Italia,Nord-Ovest,Valle d’Aosta/Vallée d’Aoste,-.51,.21276,-.7227600000000001,-.29724,.022,-.757,-.741,.203162,.68623
+Italy,ITC2,Valle d’Aosta,2010,302,2,IT,ITC,ITC2,Italia,Nord-Ovest,Valle d’Aosta/Vallée d’Aoste,.449,.238802,.210198,.687802,.861,0,.441,,
+Italy,ITC2,Valle d’Aosta,2017,302,2,IT,ITC,ITC2,Italia,Nord-Ovest,Valle d’Aosta/Vallée d’Aoste,-.552,.374128,-.9261280000000001,-.177872,-1.325,.066,-.343,.033455,.374128
+Italy,ITC2,Valle d’Aosta,2024,302,2,IT,ITC,ITC2,Italia,Nord-Ovest,Valle d’Aosta/Vallée d’Aoste,-.127,.272791,-.399791,.145791,.75,-.762,-.351,.419287,.390161
+Italy,ITC2,Valle d’Aosta,2013,302,2,IT,ITC,ITC2,Italia,Nord-Ovest,Valle d’Aosta/Vallée d’Aoste,.38,.332597,.047403,.7125969999999999,.774,.263,.072,,
+Italy,ITC3,Liguria,2017,303,2,IT,ITC,ITC3,Italia,Nord-Ovest,Liguria,-1.136,.201491,-1.337491,-.9345089999999999,-.504,-1.319,-1.47,-1.22285,.201491
+Italy,ITC3,Liguria,2024,303,2,IT,ITC,ITC3,Italia,Nord-Ovest,Liguria,.081,.298921,-.217921,.379921,.041,.014,.178,.662794,1.13279
+Italy,ITC3,Liguria,2021,303,2,IT,ITC,ITC3,Italia,Nord-Ovest,Liguria,-.616,.189607,-.805607,-.426393,-.485,-.8179999999999999,-.478,.353668,1.01991
+Italy,ITC3,Liguria,2013,303,2,IT,ITC,ITC3,Italia,Nord-Ovest,Liguria,-.964,.362219,-1.326219,-.6017809999999999,-.853,-.905,-1.052,,
+Italy,ITC3,Liguria,2010,303,2,IT,ITC,ITC3,Italia,Nord-Ovest,Liguria,-.586,.311072,-.897072,-.274928,-.541,-.653,-.504,,
+Italy,ITC4,Lombardia,2017,304,2,IT,ITC,ITC4,Italia,Nord-Ovest,Lombardia,-.374,.280838,-.654838,-.093162,.589,-.971,-.701,.082415,.280838
+Italy,ITC4,Lombardia,2010,304,2,IT,ITC,ITC4,Italia,Nord-Ovest,Lombardia,-.695,.209745,-.9047449999999999,-.485255,-.492,-.869,-.655,,
+Italy,ITC4,Lombardia,2024,304,2,IT,ITC,ITC4,Italia,Nord-Ovest,Lombardia,-.225,.250227,-.475227,.025227,.411,-.841,-.214,.042851,1.02231
+Italy,ITC4,Lombardia,2021,304,2,IT,ITC,ITC4,Italia,Nord-Ovest,Lombardia,-.798,.186217,-.984217,-.6117830000000001,-.224,-1.205,-.878,.027122,.6124039999999999
+Italy,ITC4,Lombardia,2013,304,2,IT,ITC,ITC4,Italia,Nord-Ovest,Lombardia,-.6909999999999999,.353115,-1.044115,-.3378849999999999,-.221,-.879,-.914,,
+Italy,ITF1,Abruzzo,2013,305,2,IT,ITF,ITF1,Italia,Sud,Abruzzo,-1.186,.359058,-1.545058,-.826942,-1.115,-1.232,-1.111,,
+Italy,ITF1,Abruzzo,2017,305,2,IT,ITF,ITF1,Italia,Sud,Abruzzo,-1.839,.339605,-2.178605,-1.499395,-2.304,-.64,-2.386,.032421,.339605
+Italy,ITF1,Abruzzo,2021,305,2,IT,ITF,ITF1,Italia,Sud,Abruzzo,-1.096,.181153,-1.277153,-.9148470000000001,-.999,-1.24,-.928,.926991,.757153
+Italy,ITF1,Abruzzo,2010,305,2,IT,ITF,ITF1,Italia,Sud,Abruzzo,-.979,.3313,-1.3103,-.6476999999999999,-.771,-1.022,-1.047,,
+Italy,ITF1,Abruzzo,2024,305,2,IT,ITF,ITF1,Italia,Sud,Abruzzo,-.903,.280885,-1.183885,-.622115,-.446,-1.21,-.925,-.05886,-.200912
+Italy,ITF2,Molise,2017,306,2,IT,ITF,ITF2,Italia,Sud,Molise,-1.059,.339605,-1.398605,-.719395,-.7,-.733,-1.638,.032421,.339605
+Italy,ITF2,Molise,2024,306,2,IT,ITF,ITF2,Italia,Sud,Molise,-1.938,.390501,-2.328501,-1.547499,-2.113,-2.152,-1.275,-1.4041,.492557
+Italy,ITF2,Molise,2013,306,2,IT,ITF,ITF2,Italia,Sud,Molise,-1.691,.35304,-2.04404,-1.33796,-1.675,-1.647,-1.608,,
+Italy,ITF2,Molise,2021,306,2,IT,ITF,ITF2,Italia,Sud,Molise,-1.205,.163921,-1.368921,-1.041079,-1.302,-1.276,-.906,.802037,.948858
+Italy,ITF2,Molise,2010,306,2,IT,ITF,ITF2,Italia,Sud,Molise,-1.184,.345233,-1.529233,-.8387669999999999,-1.082,-1.452,-.899,,
+Italy,ITF3,Campania,2021,307,2,IT,ITF,ITF3,Italia,Sud,Campania,-1.912,.221345,-2.133345,-1.690655,-2.098,-1.554,-1.876,.616003,1.30385
+Italy,ITF3,Campania,2017,307,2,IT,ITF,ITF3,Italia,Sud,Campania,-1.767,.248828,-2.015828,-1.518172,-1.549,-1.912,-1.662,-.624059,.248828
+Italy,ITF3,Campania,2013,307,2,IT,ITF,ITF3,Italia,Sud,Campania,-2.212,.328326,-2.540326,-1.883674,-2.162,-2.185,-2.102,,
+Italy,ITF3,Campania,2010,307,2,IT,ITF,ITF3,Italia,Sud,Campania,-1.691,.293044,-1.984044,-1.397956,-2.194,-1.759,-.951,,
+Italy,ITF3,Campania,2024,307,2,IT,ITF,ITF3,Italia,Sud,Campania,-1.215,.269448,-1.484448,-.9455520000000001,-1.191,-1.187,-1.097,-.52171,-.058142
+Italy,ITF4,Puglia,2024,308,2,IT,ITF,ITF4,Italia,Sud,Puglia,-1.266,.329814,-1.595814,-.936186,-1.492,-1.458,-.67,-.195007,.410435
+Italy,ITF4,Puglia,2021,308,2,IT,ITF,ITF4,Italia,Sud,Puglia,-1.331,.121282,-1.452282,-1.209718,-1.378,-1.399,-1.071,.937808,1.12498
+Italy,ITF4,Puglia,2013,308,2,IT,ITF,ITF4,Italia,Sud,Puglia,-1.641,.376267,-2.017267,-1.264733,-1.432,-1.76,-1.594,,
+Italy,ITF4,Puglia,2017,308,2,IT,ITF,ITF4,Italia,Sud,Puglia,-1.429,.200489,-1.629489,-1.228511,-1.006,-1.479,-1.657,.047653,.200489
+Italy,ITF4,Puglia,2010,308,2,IT,ITF,ITF4,Italia,Sud,Puglia,-1.929,.316818,-2.245818,-1.612182,-1.812,-1.518,-2.265,,
+Italy,ITF5,Basilicata,2024,309,2,IT,ITF,ITF5,Italia,Sud,Basilicata,-1.079,.199992,-1.278992,-.879008,-.758,-1.345,-.984,-.449351,.07975
+Italy,ITF5,Basilicata,2010,309,2,IT,ITF,ITF5,Italia,Sud,Basilicata,-1.334,.301353,-1.635353,-1.032647,-1.215,-1.238,-1.418,,
+Italy,ITF5,Basilicata,2021,309,2,IT,ITF,ITF5,Italia,Sud,Basilicata,-1.421,.190173,-1.611173,-1.230827,-1.304,-1.624,-1.18,.375447,.919266
+Italy,ITF5,Basilicata,2013,309,2,IT,ITF,ITF5,Italia,Sud,Basilicata,-1.48,.356944,-1.836944,-1.123056,-1.082,-1.816,-1.416,,
+Italy,ITF5,Basilicata,2017,309,2,IT,ITF,ITF5,Italia,Sud,Basilicata,-1.535,.223358,-1.758358,-1.311642,-1.671,-.754,-2.026,.398938,.223358
+Italy,ITF6,Calabria,2021,310,2,IT,ITF,ITF6,Italia,Sud,Calabria,-2.069,.124043,-2.193043,-1.944957,-2.13,-2.223,-1.627,.609066,.8508599999999999
+Italy,ITF6,Calabria,2017,310,2,IT,ITF,ITF6,Italia,Sud,Calabria,-2.075,.206552,-2.281552,-1.868448,-2.473,-2.212,-1.332,.486386,.206552
+Italy,ITF6,Calabria,2024,310,2,IT,ITF,ITF6,Italia,Sud,Calabria,-1.278,.310498,-1.588498,-.9675020000000001,-1.395,-1.389,-.869,-.740412,.5841190000000001
+Italy,ITF6,Calabria,2013,310,2,IT,ITF,ITF6,Italia,Sud,Calabria,-1.714,.420713,-2.134713,-1.293287,-1.877,-1.472,-1.648,,
+Italy,ITF6,Calabria,2010,310,2,IT,ITF,ITF6,Italia,Sud,Calabria,-1.697,.44201,-2.13901,-1.25499,-2.08,-1.732,-1.11,,
+Italy,ITG1,Sicilia,2021,311,2,IT,ITG,ITG1,Italia,Isole,Sicilia,-1.347,.206672,-1.553672,-1.140328,-1.082,-1.496,-1.317,.082726,.992655
+Italy,ITG1,Sicilia,2013,311,2,IT,ITG,ITG1,Italia,Isole,Sicilia,-1.624,.3169,-1.9409,-1.3071,-1.999,-1.327,-1.409,,
+Italy,ITG1,Sicilia,2010,311,2,IT,ITG,ITG1,Italia,Isole,Sicilia,-1.847,.322493,-2.169493,-1.524507,-1.73,-1.551,-2.077,,
+Italy,ITG1,Sicilia,2024,311,2,IT,ITG,ITG1,Italia,Isole,Sicilia,-2.059,.356936,-2.415936,-1.702064,-2.116,-2.452,-1.32,-1.24451,.248666
+Italy,ITG1,Sicilia,2017,311,2,IT,ITG,ITG1,Italia,Isole,Sicilia,-1.439,.277073,-1.716073,-1.161927,-1.29,-1.778,-1.103,-.8494159999999999,.277073
+Italy,ITG2,Sardegna,2010,312,2,IT,ITG,ITG2,Italia,Isole,Sardegna,-1.283,.278953,-1.561953,-1.004047,-1.151,-.866,-1.706,,
+Italy,ITG2,Sardegna,2017,312,2,IT,ITG,ITG2,Italia,Isole,Sardegna,-1.109,.346478,-1.455478,-.7625219999999999,-1.095,-.676,-1.444,-2.01076,.346478
+Italy,ITG2,Sardegna,2013,312,2,IT,ITG,ITG2,Italia,Isole,Sardegna,-1.374,.368164,-1.742164,-1.005836,-1.379,-1.534,-1.094,,
+Italy,ITG2,Sardegna,2021,312,2,IT,ITG,ITG2,Italia,Isole,Sardegna,-1.252,.19466,-1.44666,-1.05734,-1.146,-1.557,-.915,.29194,.960767
+Italy,ITG2,Sardegna,2024,312,2,IT,ITG,ITG2,Italia,Isole,Sardegna,-.225,.270955,-.495955,.045955,-.438,-.127,-.079,.477048,.839423
+Italy,ITH1,Bolzano/Bozen,2013,313,2,IT,ITH,ITH1,Italia,Nord-Est,Provincia Autonoma di Bolzano/Bozen,.695,.305183,.389817,1.000183,1.019,.517,.491,,
+Italy,ITH1,Bolzano/Bozen,2021,313,2,IT,ITH,ITH1,Italia,Nord-Est,Provincia Autonoma di Bolzano/Bozen,-.238,.214562,-.452562,-.023438,.333,-.72,-.302,-.335674,.497472
+Italy,ITH1,Bolzano/Bozen,2010,313,2,IT,ITH,ITH1,Italia,Nord-Est,Provincia Autonoma di Bolzano/Bozen,.5620000000000001,.22427,.3377300000000001,.78627,.923,.203,.505,,
+Italy,ITH1,Bolzano/Bozen,2024,313,2,IT,ITH,ITH1,Italia,Nord-Est,Provincia Autonoma di Bolzano/Bozen,.075,.190924,-.115924,.265924,.618,-.452,.048,.677148,.875785
+Italy,ITH1,Bolzano/Bozen,2017,313,2,IT,ITH,ITH1,Italia,Nord-Est,Provincia Autonoma di Bolzano/Bozen,-.243,.201492,-.444492,-.041508,-.411,.012,-.305,-.182207,.201492
+Italy,ITH2,Trento,2010,314,2,IT,ITH,ITH2,Italia,Nord-Est,Provincia Autonoma di Trento,.319,.263473,.055527,.582473,.886,-.292,.33,,
+Italy,ITH2,Trento,2013,314,2,IT,ITH,ITH2,Italia,Nord-Est,Provincia Autonoma di Trento,.729,.322738,.406262,1.051738,1.218,.456,.45,,
+Italy,ITH2,Trento,2021,314,2,IT,ITH,ITH2,Italia,Nord-Est,Provincia Autonoma di Trento,.021,.218026,-.197026,.239026,.668,-.34,-.268,-.061576,.611626
+Italy,ITH2,Trento,2017,314,2,IT,ITH,ITH2,Italia,Nord-Est,Provincia Autonoma di Trento,-.243,.612663,-.855663,.369663,-.411,.012,-.305,-3.33705,.612663
+Italy,ITH2,Trento,2024,314,2,IT,ITH,ITH2,Italia,Nord-Est,Provincia Autonoma di Trento,.411,.250349,.160651,.661349,1.113,-.131,.194,.799167,1.02658
+Italy,ITH3,Veneto,2013,315,2,IT,ITH,ITH3,Italia,Nord-Est,Veneto,-.37,.346402,-.716402,-.023598,-.226,-.353,-.501,,
+Italy,ITH3,Veneto,2021,315,2,IT,ITH,ITH3,Italia,Nord-Est,Veneto,-.137,.337612,-.474612,.200612,.42,-.636,-.18,-.221712,.817454
+Italy,ITH3,Veneto,2017,315,2,IT,ITH,ITH3,Italia,Nord-Est,Veneto,-.344,.30382,-.64782,-.04018,.477,-.588,-.887,-1.67139,.30382
+Italy,ITH3,Veneto,2010,315,2,IT,ITH,ITH3,Italia,Nord-Est,Veneto,-.54,.250159,-.7901590000000001,-.289841,-.216,-.92,-.43,,
+Italy,ITH3,Veneto,2024,315,2,IT,ITH,ITH3,Italia,Nord-Est,Veneto,-.403,.166763,-.569763,-.236237,-.265,-.914,.027,.47008,1.04511
+Italy,ITH4,Friuli-Venezia Giulia,2010,316,2,IT,ITH,ITH4,Italia,Nord-Est,Friuli-Venezia Giulia,.017,.201181,-.184181,.218181,.095,-.102,.056,,
+Italy,ITH4,Friuli-Venezia Giulia,2021,316,2,IT,ITH,ITH4,Italia,Nord-Est,Friuli-Venezia Giulia,-.048,.314961,-.362961,.266961,.369,-.41,-.098,-1.05934,-.123434
+Italy,ITH4,Friuli-Venezia Giulia,2013,316,2,IT,ITH,ITH4,Italia,Nord-Est,Friuli-Venezia Giulia,.13,.296011,-.166011,.426011,.42,-.071,.03,,
+Italy,ITH4,Friuli-Venezia Giulia,2017,316,2,IT,ITH,ITH4,Italia,Nord-Est,Friuli-Venezia Giulia,-.372,.213979,-.585979,-.158021,-.269,-.393,-.417,-.476033,.213979
+Italy,ITH4,Friuli-Venezia Giulia,2024,316,2,IT,ITH,ITH4,Italia,Nord-Est,Friuli-Venezia Giulia,.718,.24,.478,.958,1.111,.506,.436,1.21024,1.06651
+Italy,ITH5,Emilia-Romagna,2024,317,2,IT,ITH,ITH5,Italia,Nord-Est,Emilia-Romagna,-1.102,.506242,-1.608242,-.5957580000000001,-.083,-1.986,-1.082,-1.16189,.609024
+Italy,ITH5,Emilia-Romagna,2017,317,2,IT,ITH,ITH5,Italia,Nord-Est,Emilia-Romagna,-.346,.229093,-.575093,-.116907,.053,-.627,-.429,-1.47094,.229093
+Italy,ITH5,Emilia-Romagna,2013,317,2,IT,ITH,ITH5,Italia,Nord-Est,Emilia-Romagna,-.399,.312135,-.7111350000000001,-.086865,-.166,-.386,-.611,,
+Italy,ITH5,Emilia-Romagna,2010,317,2,IT,ITH,ITH5,Italia,Nord-Est,Emilia-Romagna,-.444,.18156,-.62556,-.26244,-.339,-.5620000000000001,-.385,,
+Italy,ITH5,Emilia-Romagna,2021,317,2,IT,ITH,ITH5,Italia,Nord-Est,Emilia-Romagna,-.372,.311491,-.6834910000000001,-.060509,.342,-.896,-.52,-.60688,.9063560000000001
+Italy,ITI1,Toscana,2017,318,2,IT,ITI,ITI1,Italia,Centro (IT),Toscana,-.739,.474301,-1.213301,-.264699,-.854,-.921,-.368,-2.61326,.474301
+Italy,ITI1,Toscana,2010,318,2,IT,ITI,ITI1,Italia,Centro (IT),Toscana,-.623,.237019,-.860019,-.385981,-.508,-.72,-.578,,
+Italy,ITI1,Toscana,2013,318,2,IT,ITI,ITI1,Italia,Centro (IT),Toscana,-.681,.318506,-.999506,-.362494,-.605,-.793,-.588,,
+Italy,ITI1,Toscana,2021,318,2,IT,ITI,ITI1,Italia,Centro (IT),Toscana,-.346,.284538,-.630538,-.061462,.044,-.618,-.428,-.668559,.76686
+Italy,ITI1,Toscana,2024,318,2,IT,ITI,ITI1,Italia,Centro (IT),Toscana,-.514,.222902,-.7369019999999999,-.291098,-.085,-.847,-.538,.331234,.130119
+Italy,ITI2,Umbria,2021,319,2,IT,ITI,ITI2,Italia,Centro (IT),Umbria,-.719,.469707,-1.188707,-.249293,-.319,-1.117,-.643,-1.46655,.757153
+Italy,ITI2,Umbria,2010,319,2,IT,ITI,ITI2,Italia,Centro (IT),Umbria,-.311,.292086,-.603086,-.018914,.02,-.578,-.346,,
+Italy,ITI2,Umbria,2017,319,2,IT,ITI,ITI2,Italia,Centro (IT),Umbria,-1.395,.294968,-1.689968,-1.100032,-1.326,-1.37,-1.348,-.426106,.294968
+Italy,ITI2,Umbria,2013,319,2,IT,ITI,ITI2,Italia,Centro (IT),Umbria,-.647,.335608,-.982608,-.311392,-.491,-.591,-.805,,
+Italy,ITI2,Umbria,2024,319,2,IT,ITI,ITI2,Italia,Centro (IT),Umbria,-.945,.398138,-1.343138,-.546862,-.601,-1.472,-.628,-.8062279999999999,1.09919
+Italy,ITI3,Marche,2024,320,2,IT,ITI,ITI3,Italia,Centro (IT),Marche,-.152,.268452,-.420452,.116452,.419,-.508,-.347,.177398,.640512
+Italy,ITI3,Marche,2010,320,2,IT,ITI,ITI3,Italia,Centro (IT),Marche,-.542,.286874,-.8288740000000001,-.255126,-.214,-.8100000000000001,-.548,,
+Italy,ITI3,Marche,2021,320,2,IT,ITI,ITI3,Italia,Centro (IT),Marche,-.731,.282727,-1.013727,-.448273,-.597,-.973,-.544,-.75144,.598201
+Italy,ITI3,Marche,2017,320,2,IT,ITI,ITI3,Italia,Centro (IT),Marche,-1.257,.243805,-1.500805,-1.013195,-1.306,-.755,-1.582,.211259,.243805
+Italy,ITI3,Marche,2013,320,2,IT,ITI,ITI3,Italia,Centro (IT),Marche,-.6820000000000001,.310434,-.992434,-.3715660000000001,-.6879999999999999,-.784,-.518,,
+Italy,ITI4,Lazio,2010,321,2,IT,ITI,ITI4,Italia,Centro (IT),Lazio,-1.141,.253716,-1.394716,-.887284,-1.373,-1.167,-.77,,
+Italy,ITI4,Lazio,2017,321,2,IT,ITI,ITI4,Italia,Centro (IT),Lazio,-1.419,.326352,-1.745352,-1.092648,-1.262,-1.587,-1.266,-1.62483,.326352
+Italy,ITI4,Lazio,2024,321,2,IT,ITI,ITI4,Italia,Centro (IT),Lazio,-1.068,.199723,-1.267723,-.8682770000000001,-1.014,-1.37,-.67,-.080394,.296157
+Italy,ITI4,Lazio,2021,321,2,IT,ITI,ITI4,Italia,Centro (IT),Lazio,-1.191,.238586,-1.429586,-.9524140000000001,-1.074,-1.228,-1.141,-.102726,.676888
+Italy,ITI4,Lazio,2013,321,2,IT,ITI,ITI4,Italia,Centro (IT),Lazio,-1.556,.344233,-1.900233,-1.211767,-1.737,-1.365,-1.436,,
+Lithuania,LT01,Sostines regionas,2013,2501,2,LT,LT0,LT01,Lietuva,Lietuva,Sostinės regionas,-.718,,,,-.629,-.576,-.89,,
+Lithuania,LT01,Sostines regionas,2021,2501,2,LT,LT0,LT01,Lietuva,Lietuva,Sostinės regionas,.037,.335463,-.298463,.372463,.054,.172,-.119,-.116178,-1.32696
+Lithuania,LT01,Sostines regionas,2017,2501,2,LT,LT0,LT01,Lietuva,Lietuva,Sostinės regionas,-.17,,,,.032,-.154,-.371,,
+Lithuania,LT01,Sostines regionas,2010,2501,2,LT,LT0,LT01,Lietuva,Lietuva,Sostinės regionas,-.875,,,,-.778,-.614,-1.146,,
+Lithuania,LT01,Sostines regionas (Vilinius),2024,2501,2,LT,LT0,LT01,Lietuva,Lietuva,Sostinės regionas,.191,.257657,-.066657,.448657,.011,.547,-.013,.083468,-.088255
+Lithuania,LT02,Vidurio ir vakaru Lietuvos regionas,2021,2502,2,LT,LT0,LT02,Lietuva,Lietuva,Vidurio ir vakarų Lietuvos regionas ,-.207,.39032,-.59732,.18332,-.046,-.11,-.443,-.334442,-1.70462
+Lithuania,LT02,Vidurio ir vakaru Lietuvos regionas,2024,2502,2,LT,LT0,LT02,Lietuva,Lietuva,Vidurio ir vakarų Lietuvos regionas ,-.104,.370809,-.474809,.266809,.128,-.055,-.371,-.270222,-.394384
+Lithuania,LT02,Vidurio ir vakaru Lietuvos regionas,2010,2502,2,LT,LT0,LT02,Lietuva,Lietuva,Vidurio ir vakarų Lietuvos regionas ,-.875,,,,-.778,-.614,-1.146,,
+Lithuania,LT02,Vidurio ir vakaru Lietuvos regionas,2017,2502,2,LT,LT0,LT02,Lietuva,Lietuva,Vidurio ir vakarų Lietuvos regionas ,-.17,,,,.032,-.154,-.371,,
+Lithuania,LT02,Vidurio ir vakaru Lietuvos regionas,2013,2502,2,LT,LT0,LT02,Lietuva,Lietuva,Vidurio ir vakarų Lietuvos regionas ,-.718,,,,-.629,-.576,-.89,,
+Luxembourg,LU,Luxembourg,2013,2201,0,LU,,,Luxembourg,NA,NA,1.235,,,,1.189,1.033,1.378,,
+Luxembourg,LU,Luxembourg,2017,2201,0,LU,,,Luxembourg,NA,NA,1.271,,,,1.107,1.092,1.487,,
+Luxembourg,LU,Luxembourg,2021,2201,0,LU,,,Luxembourg,NA,NA,1.289,.176901,1.112099,1.465901,1.131,1.144,1.452,1.23509,1.0574
+Luxembourg,LU,Luxembourg,2024,2201,0,LU,,,Luxembourg,NA,NA,1.305,.178282,1.126718,1.483282,1.235,1.296,1.199,1.26727,1.06582
+Luxembourg,LU,Luxembourg,2010,2201,0,LU,,,Luxembourg,NA,NA,1.166,,,,.947,1.063,1.371,,
+Latvia,LV,Latvia,2021,2401,0,LV,,,Latvija,NA,NA,-.299,.183113,-.482113,-.115887,-.232,-.046,-.586,-.258565,-.8939589999999999
+Latvia,LV,Latvia,2013,2401,0,LV,,,Latvija,NA,NA,-.708,,,,-.768,-.585,-.711,,
+Latvia,LV,Latvia,2010,2401,0,LV,,,Latvija,NA,NA,-.8179999999999999,,,,-.892,-.455,-1.025,,
+Latvia,LV,Latvia,2024,2401,0,LV,,,Latvija,NA,NA,-.227,.175572,-.402572,-.051428,-.205,-.109,-.335,-.563149,-.490056
+Latvia,LV,Latvia,2017,2401,0,LV,,,Latvija,NA,NA,-.414,,,,-.219,-.438,-.545,,
+Malta,MT,Malta,2013,2701,0,MT,,,Malta,NA,NA,.085,,,,.176,.266,-.194,,
+Malta,MT,Malta,2010,2701,0,MT,,,Malta,NA,NA,.418,,,,.318,.754,.14,,
+Malta,MT,Malta,2024,2701,0,MT,,,Malta,NA,NA,-.471,.53786,-1.00886,.06686,-.094,-.333,-.922,-2.02437,-.066832
+Malta,MT,Malta,2021,2701,0,MT,,,Malta,NA,NA,-.394,.51824,-.9122400000000001,.12424,-.109,-.137,-.893,-.238349,1.44882
+Malta,MT,Malta,2017,2701,0,MT,,,Malta,NA,NA,.015,,,,-.102,.082,.064,,
+Netherlands,NL11,Groningen,2017,1301,2,NL,NL1,NL11,Nederland,Noord-Nederland,Groningen,1.425,.432774,.9922260000000001,1.857774,1.412,1.511,1.209,.687981,.432774
+Netherlands,NL11,Groningen,2013,1301,2,NL,NL1,NL11,Nederland,Noord-Nederland,Groningen,1.305,.259108,1.045892,1.564108,1.275,1.142,1.388,,
+Netherlands,NL11,Groningen,2010,1301,2,NL,NL1,NL11,Nederland,Noord-Nederland,Groningen,.995,.386333,.6086670000000001,1.381333,1.311,1.366,.208,,
+Netherlands,NL11,Groningen,2021,1301,2,NL,NL1,NL11,Nederland,Noord-Nederland,Groningen,1.354,.27974,1.07426,1.63374,1.37,1.4,1.145,1.09419,-.350221
+Netherlands,NL11,Groningen,2024,1301,2,NL,NL1,NL11,Nederland,Noord-Nederland,Groningen,1.381,.320698,1.060302,1.701698,1.153,1.322,1.472,.9089120000000001,-.391992
+Netherlands,NL12,Friesland (NL),2021,1302,2,NL,NL1,NL12,Nederland,Noord-Nederland,Friesland (NL),1.658,.181766,1.476234,1.839766,1.57,1.474,1.75,1.15965,.705061
+Netherlands,NL12,Friesland (NL),2017,1302,2,NL,NL1,NL12,Nederland,Noord-Nederland,Friesland (NL),1.425,.432774,.9922260000000001,1.857774,1.412,1.511,1.209,.687981,.432774
+Netherlands,NL12,Friesland (NL),2013,1302,2,NL,NL1,NL12,Nederland,Noord-Nederland,Friesland (NL),1.34,.272093,1.067907,1.612093,1.293,1.218,1.395,,
+Netherlands,NL12,Friesland (NL),2010,1302,2,NL,NL1,NL12,Nederland,Noord-Nederland,Friesland (NL),.997,.386333,.6106670000000001,1.383333,1.311,1.366,.212,,
+Netherlands,NL12,Friesland (NL),2024,1302,2,NL,NL1,NL12,Nederland,Noord-Nederland,Friesland (NL),1.425,.322013,1.102987,1.747013,1.214,1.308,1.552,.992891,-.326812
+Netherlands,NL13,Drenthe,2017,1303,2,NL,NL1,NL13,Nederland,Noord-Nederland,Drenthe,1.425,.432774,.9922260000000001,1.857774,1.412,1.511,1.209,.687981,.432774
+Netherlands,NL13,Drenthe,2013,1303,2,NL,NL1,NL13,Nederland,Noord-Nederland,Drenthe,1.137,.267804,.8691960000000001,1.404804,.944,.966,1.404,,
+Netherlands,NL13,Drenthe,2010,1303,2,NL,NL1,NL13,Nederland,Noord-Nederland,Drenthe,.993,.386333,.6066670000000001,1.379333,1.311,1.366,.202,,
+Netherlands,NL13,Drenthe,2024,1303,2,NL,NL1,NL13,Nederland,Noord-Nederland,Drenthe,1.355,.317263,1.037737,1.672263,1.179,1.212,1.485,1.02491,-.485505
+Netherlands,NL13,Drenthe,2021,1303,2,NL,NL1,NL13,Nederland,Noord-Nederland,Drenthe,1.547,.196251,1.350749,1.743251,1.324,1.566,1.582,1.09949,.45528
+Netherlands,NL21,Overijssel,2010,1304,2,NL,NL2,NL21,Nederland,Oost-Nederland,Overijssel,.792,.348038,.443962,1.140038,1,1.052,.245,,
+Netherlands,NL21,Overijssel,2013,1304,2,NL,NL2,NL21,Nederland,Oost-Nederland,Overijssel,1.527,.267095,1.259905,1.794095,1.365,1.475,1.612,,
+Netherlands,NL21,Overijssel,2017,1304,2,NL,NL2,NL21,Nederland,Oost-Nederland,Overijssel,1.403,.447807,.955193,1.850807,1.329,1.444,1.294,.841477,.447807
+Netherlands,NL21,Overijssel,2024,1304,2,NL,NL2,NL21,Nederland,Oost-Nederland,Overijssel,1.459,.270528,1.188472,1.729528,1.228,1.267,1.677,.963639,-.064892
+Netherlands,NL21,Overijssel,2021,1304,2,NL,NL2,NL21,Nederland,Oost-Nederland,Overijssel,1.488,.176168,1.311832,1.664168,1.366,1.327,1.61,1.12886,.476636
+Netherlands,NL22,Gelderland,2024,1305,2,NL,NL2,NL22,Nederland,Oost-Nederland,Gelderland,1.496,.363583,1.132417,1.859583,1.389,1.467,1.419,.971892,-.553907
+Netherlands,NL22,Gelderland,2017,1305,2,NL,NL2,NL22,Nederland,Oost-Nederland,Gelderland,1.403,.447807,.955193,1.850807,1.329,1.444,1.294,.841477,.447807
+Netherlands,NL22,Gelderland,2013,1305,2,NL,NL2,NL22,Nederland,Oost-Nederland,Gelderland,1.239,.23364,1.00536,1.47264,1.298,1.125,1.19,,
+Netherlands,NL22,Gelderland,2021,1305,2,NL,NL2,NL22,Nederland,Oost-Nederland,Gelderland,1.611,.190357,1.420643,1.801357,1.485,1.546,1.626,1.14705,.488969
+Netherlands,NL22,Gelderland,2010,1305,2,NL,NL2,NL22,Nederland,Oost-Nederland,Gelderland,.8120000000000001,.348038,.463962,1.160038,1,1.052,.303,,
+Netherlands,NL23,Flevoland,2010,1306,2,NL,NL2,NL23,Nederland,Oost-Nederland,Flevoland,.776,.348038,.427962,1.124038,1,1.052,.198,,
+Netherlands,NL23,Flevoland,2013,1306,2,NL,NL2,NL23,Nederland,Oost-Nederland,Flevoland,1.205,.268003,.9369970000000001,1.473003,1.086,1.04,1.386,,
+Netherlands,NL23,Flevoland,2017,1306,2,NL,NL2,NL23,Nederland,Oost-Nederland,Flevoland,1.403,.447807,.955193,1.850807,1.329,1.444,1.294,.841477,.447807
+Netherlands,NL23,Flevoland,2021,1306,2,NL,NL2,NL23,Nederland,Oost-Nederland,Flevoland,1.229,.175357,1.053643,1.404357,1.037,1.141,1.375,.95811,.216844
+Netherlands,NL23,Flevoland,2024,1306,2,NL,NL2,NL23,Nederland,Oost-Nederland,Flevoland,1.175,.35526,.81974,1.53026,.898,1.29,1.17,.798427,-.844452
+Netherlands,NL31,Utrecht,2024,1307,2,NL,NL3,NL31,Nederland,West-Nederland,Utrecht,1.208,.374822,.833178,1.582822,1.265,1.026,1.163,.843867,-.903512
+Netherlands,NL31,Utrecht,2017,1307,2,NL,NL3,NL31,Nederland,West-Nederland,Utrecht,1.172,.373527,.798473,1.545527,1.138,1.049,1.212,.94945,.373527
+Netherlands,NL31,Utrecht,2021,1307,2,NL,NL3,NL31,Nederland,West-Nederland,Utrecht,1.165,.273072,.8919280000000001,1.438072,1.15,1.229,.99,.9687170000000001,-.509756
+Netherlands,NL31,Utrecht,2010,1307,2,NL,NL3,NL31,Nederland,West-Nederland,Utrecht,.769,.320948,.448052,1.089948,1.041,.9360000000000001,.254,,
+Netherlands,NL31,Utrecht,2013,1307,2,NL,NL3,NL31,Nederland,West-Nederland,Utrecht,1.339,.281578,1.057422,1.620578,1.062,1.315,1.526,,
+Netherlands,NL32,Noord-Holland,2017,1308,2,NL,NL3,NL32,Nederland,West-Nederland,Noord-Holland,1.172,.373527,.798473,1.545527,1.138,1.049,1.212,.94945,.373527
+Netherlands,NL32,Noord-Holland,2013,1308,2,NL,NL3,NL32,Nederland,West-Nederland,Noord-Holland,1.132,.251083,.880917,1.383083,1.11,1.015,1.175,,
+Netherlands,NL32,Noord-Holland,2021,1308,2,NL,NL3,NL32,Nederland,West-Nederland,Noord-Holland,1.028,.26787,.76013,1.29587,1.258,.909,.804,.593805,-.468818
+Netherlands,NL32,Noord-Holland,2024,1308,2,NL,NL3,NL32,Nederland,West-Nederland,Noord-Holland,1.04,.421305,.618695,1.461305,1.283,.902,.788,.5195,-1.27812
+Netherlands,NL32,Noord-Holland,2010,1308,2,NL,NL3,NL32,Nederland,West-Nederland,Noord-Holland,.803,.320948,.482052,1.123948,1.041,.9360000000000001,.353,,
+Netherlands,NL33,Zuid-Holland,2024,1309,2,NL,NL3,NL33,Nederland,West-Nederland,Zuid-Holland,1.237,.330963,.9060370000000001,1.567963,1.26,1.078,1.197,.615545,-.611799
+Netherlands,NL33,Zuid-Holland,2017,1309,2,NL,NL3,NL33,Nederland,West-Nederland,Zuid-Holland,1.172,.373527,.798473,1.545527,1.138,1.049,1.212,.94945,.373527
+Netherlands,NL33,Zuid-Holland,2010,1309,2,NL,NL3,NL33,Nederland,West-Nederland,Zuid-Holland,.822,.320948,.5010519999999999,1.142948,1.041,.9360000000000001,.407,,
+Netherlands,NL33,Zuid-Holland,2013,1309,2,NL,NL3,NL33,Nederland,West-Nederland,Zuid-Holland,1.285,.211416,1.073584,1.496416,1.387,1.003,1.357,,
+Netherlands,NL33,Zuid-Holland,2021,1309,2,NL,NL3,NL33,Nederland,West-Nederland,Zuid-Holland,1.269,.213981,1.055019,1.482981,1.237,1.06,1.37,.991869,.173518
+Netherlands,NL34,Zeeland,2010,1310,2,NL,NL3,NL34,Nederland,West-Nederland,Zeeland,.749,.320948,.428052,1.069948,1.041,.9360000000000001,.195,,
+Netherlands,NL34,Zeeland,2021,1310,2,NL,NL3,NL34,Nederland,West-Nederland,Zeeland,1.249,.274205,.9747950000000001,1.523205,1.065,1.397,1.147,.83555,-.080533
+Netherlands,NL34,Zeeland,2024,1310,2,NL,NL3,NL34,Nederland,West-Nederland,Zeeland,1.336,.338612,.9973880000000001,1.674612,1.014,1.463,1.343,.894672,-.619098
+Netherlands,NL34,Zeeland,2013,1310,2,NL,NL3,NL34,Nederland,West-Nederland,Zeeland,1.187,.302376,.8846240000000001,1.489376,.961,1.089,1.412,,
+Netherlands,NL34,Zeeland,2017,1310,2,NL,NL3,NL34,Nederland,West-Nederland,Zeeland,1.172,.373527,.798473,1.545527,1.138,1.049,1.212,.94945,.373527
+Netherlands,NL41,Noord-Brabant,2010,1311,2,NL,NL4,NL41,Nederland,Zuid-Nederland,Noord-Brabant,.713,.299282,.413718,1.012282,.914,.82,.333,,
+Netherlands,NL41,Noord-Brabant,2017,1311,2,NL,NL4,NL41,Nederland,Zuid-Nederland,Noord-Brabant,1.296,.352932,.943068,1.648932,1.475,1.131,1.152,.961717,.352932
+Netherlands,NL41,Noord-Brabant,2021,1311,2,NL,NL4,NL41,Nederland,Zuid-Nederland,Noord-Brabant,1.334,.19788,1.13612,1.53188,1.372,1.097,1.388,.873573,.32731
+Netherlands,NL41,Noord-Brabant,2024,1311,2,NL,NL4,NL41,Nederland,Zuid-Nederland,Noord-Brabant,1.171,.301172,.869828,1.472172,1.054,.971,1.322,.672999,-.435759
+Netherlands,NL41,Noord-Brabant,2013,1311,2,NL,NL4,NL41,Nederland,Zuid-Nederland,Noord-Brabant,1.17,.269689,.9003109999999999,1.439689,1.124,.821,1.464,,
+Netherlands,NL42,Limburg (NL),2013,1312,2,NL,NL4,NL42,Nederland,Zuid-Nederland,Limburg (NL),1.225,.289217,.935783,1.514217,1.379,.833,1.358,,
+Netherlands,NL42,Limburg (NL),2010,1312,2,NL,NL4,NL42,Nederland,Zuid-Nederland,Limburg (NL),.6820000000000001,.299282,.3827180000000001,.981282,.914,.82,.242,,
+Netherlands,NL42,Limburg (NL),2017,1312,2,NL,NL4,NL42,Nederland,Zuid-Nederland,Limburg (NL),1.296,.352932,.943068,1.648932,1.475,1.131,1.152,.961717,.352932
+Netherlands,NL42,Limburg (NL),2021,1312,2,NL,NL4,NL42,Nederland,Zuid-Nederland,Limburg (NL),1.326,.162236,1.163764,1.488236,1.277,1.06,1.496,.8233200000000001,.579644
+Netherlands,NL42,Limburg (NL),2024,1312,2,NL,NL4,NL42,Nederland,Zuid-Nederland,Limburg (NL),1.175,.30438,.8706200000000001,1.47938,1.192,.888,1.278,.687754,-.532447
+Poland,PL21,Malopolskie,2010,501,2,PL,PL2,PL21,Polska,Makroregion południowy,Małopolskie,-.8120000000000001,.23019,-1.04219,-.58181,-.842,-.634,-.88,,
+Poland,PL21,Malopolskie,2013,501,2,PL,PL2,PL21,Polska,Makroregion południowy,Małopolskie,-.483,.334319,-.8173189999999999,-.148681,-.132,-.485,-.792,,
+Poland,PL21,Malopolskie,2021,501,2,PL,PL2,PL21,Polska,Makroregion południowy,Małopolskie,-.7,.220828,-.920828,-.4791719999999999,-.495,-.911,-.617,-.70641,-1.0886
+Poland,PL21,Malopolskie,2017,501,2,PL,PL2,PL21,Polska,Makroregion południowy,Małopolskie,-.324,.217511,-.5415110000000001,-.106489,-.18,-.404,-.357,-.34311,.217511
+Poland,PL21,Malopolskie,2024,501,2,PL,PL2,PL21,Polska,Makroregion południowy,Małopolskie,-1.022,.284473,-1.306473,-.737527,-1.31,-1.001,-.611,-.294459,-.073372
+Poland,PL22,Slaskie,2017,502,2,PL,PL2,PL22,Polska,Makroregion południowy,Śląskie,-.404,.256152,-.6601520000000001,-.147848,-.301,-.529,-.341,-.29959,.256152
+Poland,PL22,Slaskie,2013,502,2,PL,PL2,PL22,Polska,Makroregion południowy,Śląskie,-.833,.366062,-1.199062,-.466938,-.714,-.788,-.927,,
+Poland,PL22,Slaskie,2021,502,2,PL,PL2,PL22,Polska,Makroregion południowy,Śląskie,-.544,.24417,-.78817,-.29983,-.588,-.745,-.239,-.656857,-.436172
+Poland,PL22,Slaskie,2024,502,2,PL,PL2,PL22,Polska,Makroregion południowy,Śląskie,-.8070000000000001,.295962,-1.102962,-.5110380000000001,-1.038,-.779,-.49,-.162694,.020691
+Poland,PL22,Slaskie,2010,502,2,PL,PL2,PL22,Polska,Makroregion południowy,Śląskie,-1.01,.178799,-1.188799,-.831201,-.8149999999999999,-1.084,-1.031,,
+Poland,PL41,Wielkopolskie,2010,503,2,PL,PL4,PL41,Polska,Makroregion północno-zachodni,Wielkopolskie,-.912,.193677,-1.105677,-.718323,-.872,-.908,-.867,,
+Poland,PL41,Wielkopolskie,2013,503,2,PL,PL4,PL41,Polska,Makroregion północno-zachodni,Wielkopolskie,-.578,.263604,-.841604,-.314396,-.258,-.739,-.6889999999999999,,
+Poland,PL41,Wielkopolskie,2024,503,2,PL,PL4,PL41,Polska,Makroregion północno-zachodni,Wielkopolskie,-.643,.257189,-.900189,-.385811,-.849,-.657,-.334,-.110654,.260198
+Poland,PL41,Wielkopolskie,2017,503,2,PL,PL4,PL41,Polska,Makroregion północno-zachodni,Wielkopolskie,-.391,.203774,-.594774,-.187226,-.275,-.696,-.162,-.529814,.203774
+Poland,PL41,Wielkopolskie,2021,503,2,PL,PL4,PL41,Polska,Makroregion północno-zachodni,Wielkopolskie,-.573,.240449,-.813449,-.3325509999999999,-.46,-.876,-.319,-.81491,-.423911
+Poland,PL42,Zachodniopomorskie,2017,504,2,PL,PL4,PL42,Polska,Makroregion północno-zachodni,Zachodniopomorskie,-.292,.214178,-.506178,-.077822,-.091,-.499,-.257,-.722258,.214178
+Poland,PL42,Zachodniopomorskie,2010,504,2,PL,PL4,PL42,Polska,Makroregion północno-zachodni,Zachodniopomorskie,-.803,.200275,-1.003275,-.6027250000000001,-.521,-.795,-1.012,,
+Poland,PL42,Zachodniopomorskie,2013,504,2,PL,PL4,PL42,Polska,Makroregion północno-zachodni,Zachodniopomorskie,-.465,.364107,-.829107,-.100893,-.5679999999999999,-.574,-.212,,
+Poland,PL42,Zachodniopomorskie,2021,504,2,PL,PL4,PL42,Polska,Makroregion północno-zachodni,Zachodniopomorskie,-.873,.266361,-1.139361,-.6066389999999999,-1.113,-.968,-.442,-.886097,-.57843
+Poland,PL42,Zachodniopomorskie,2024,504,2,PL,PL4,PL42,Polska,Makroregion północno-zachodni,Zachodniopomorskie,-.858,.314493,-1.172493,-.543507,-1.308,-.738,-.406,-.142008,.156207
+Poland,PL43,Lubuskie,2024,505,2,PL,PL4,PL43,Polska,Makroregion północno-zachodni,Lubuskie,-1.048,.315314,-1.363314,-.7326860000000001,-1.344,-1.131,-.522,-.082858,-.118753
+Poland,PL43,Lubuskie,2021,505,2,PL,PL4,PL43,Polska,Makroregion północno-zachodni,Lubuskie,-.543,.272445,-.815445,-.270555,-.615,-.76,-.195,-.366349,-.653849
+Poland,PL43,Lubuskie,2017,505,2,PL,PL4,PL43,Polska,Makroregion północno-zachodni,Lubuskie,-.5570000000000001,.221295,-.7782950000000001,-.335705,-.212,-.838,-.5659999999999999,-.22073,.221295
+Poland,PL43,Lubuskie,2010,505,2,PL,PL4,PL43,Polska,Makroregion północno-zachodni,Lubuskie,-.83,.215436,-1.045436,-.614564,-.995,-.824,-.589,,
+Poland,PL43,Lubuskie,2013,505,2,PL,PL4,PL43,Polska,Makroregion północno-zachodni,Lubuskie,-.36,.336364,-.696364,-.023636,-.445,-.444,-.16,,
+Poland,PL51,Dolnoslaskie,2013,506,2,PL,PL5,PL51,Polska,Makroregion południowo-zachodni,Dolnośląskie,-.837,.363235,-1.200235,-.473765,-.909,-.838,-.695,,
+Poland,PL51,Dolnoslaskie,2010,506,2,PL,PL5,PL51,Polska,Makroregion południowo-zachodni,Dolnośląskie,-.853,.251899,-1.104899,-.601101,-.9350000000000001,-.828,-.711,,
+Poland,PL51,Dolnoslaskie,2021,506,2,PL,PL5,PL51,Polska,Makroregion południowo-zachodni,Dolnośląskie,-.755,.223766,-.978766,-.531234,-.6840000000000001,-.73,-.769,-.742274,-1.33441
+Poland,PL51,Dolnoslaskie,2017,506,2,PL,PL5,PL51,Polska,Makroregion południowo-zachodni,Dolnośląskie,-.331,.218453,-.549453,-.112547,-.619,-.19,-.15,-.590087,.218453
+Poland,PL51,Dolnoslaskie,2024,506,2,PL,PL5,PL51,Polska,Makroregion południowo-zachodni,Dolnośląskie,-1.261,.32,-1.581,-.9409999999999998,-1.731,-1.08,-.794,-.384359,-.325284
+Poland,PL52,Opolskie,2010,507,2,PL,PL5,PL52,Polska,Makroregion południowo-zachodni,Opolskie,-1.012,.237196,-1.249196,-.774804,-1.174,-.967,-.795,,
+Poland,PL52,Opolskie,2013,507,2,PL,PL5,PL52,Polska,Makroregion południowo-zachodni,Opolskie,-.186,.303899,-.489899,.117899,-.245,-.283,-.014,,
+Poland,PL52,Opolskie,2021,507,2,PL,PL5,PL52,Polska,Makroregion południowo-zachodni,Opolskie,-.327,.285646,-.612646,-.041354,-.675,-.336,.067,-.391625,-.141156
+Poland,PL52,Opolskie,2024,507,2,PL,PL5,PL52,Polska,Makroregion południowo-zachodni,Opolskie,-.868,.344492,-1.212492,-.523508,-1.369,-.907,-.204,.14022,.240924
+Poland,PL52,Opolskie,2017,507,2,PL,PL5,PL52,Polska,Makroregion południowo-zachodni,Opolskie,-.402,.266276,-.6682760000000001,-.135724,-.42,-.307,-.439,.008514,.266276
+Poland,PL61,Kujawsko-Pomorskie,2010,508,2,PL,PL6,PL61,Polska,Makroregion północny,Kujawsko-pomorskie,-.579,.217063,-.796063,-.361937,-.528,-.644,-.508,,
+Poland,PL61,Kujawsko-Pomorskie,2021,508,2,PL,PL6,PL61,Polska,Makroregion północny,Kujawsko-pomorskie,-.675,.210024,-.885024,-.4649760000000001,-.727,-.717,-.507,-.6865830000000001,-.903426
+Poland,PL61,Kujawsko-Pomorskie,2013,508,2,PL,PL6,PL61,Polska,Makroregion północny,Kujawsko-pomorskie,-.223,.366418,-.589418,.143418,-.359,-.134,-.156,,
+Poland,PL61,Kujawsko-Pomorskie,2024,508,2,PL,PL6,PL61,Polska,Makroregion północny,Kujawsko-pomorskie,-.89,.236516,-1.126516,-.653484,-1.029,-1.005,-.511,-.155851,-.024701
+Poland,PL61,Kujawsko-Pomorskie,2017,508,2,PL,PL6,PL61,Polska,Makroregion północny,Kujawsko-pomorskie,-.213,.243785,-.456785,.030785,-.29,.02,-.348,-.358893,.243785
+Poland,PL62,Warminsko-Mazurskie,2017,509,2,PL,PL6,PL62,Polska,Makroregion północny,Warmińsko-mazurskie,-.255,.297052,-.552052,.042052,-.445,.001,-.295,-.0889,.297052
+Poland,PL62,Warminsko-Mazurskie,2013,509,2,PL,PL6,PL62,Polska,Makroregion północny,Warmińsko-mazurskie,-.423,.354978,-.7779780000000001,-.068022,-.491,-.592,-.152,,
+Poland,PL62,Warminsko-Mazurskie,2021,509,2,PL,PL6,PL62,Polska,Makroregion północny,Warmińsko-mazurskie,-.795,.245869,-1.040869,-.549131,-.923,-.901,-.475,-.754486,-.775179
+Poland,PL62,Warminsko-Mazurskie,2024,509,2,PL,PL6,PL62,Polska,Makroregion północny,Warmińsko-mazurskie,-1.028,.333138,-1.361138,-.6948620000000001,-1.386,-1.135,-.417,-.054005,.04729
+Poland,PL62,Warminsko-Mazurskie,2010,509,2,PL,PL6,PL62,Polska,Makroregion północny,Warmińsko-mazurskie,-.867,.161552,-1.028552,-.705448,-.738,-.979,-.799,,
+Poland,PL63,Pomorskie,2010,510,2,PL,PL6,PL63,Polska,Makroregion północny,Pomorskie,-.628,.209937,-.837937,-.418063,-.582,-.708,-.532,,
+Poland,PL63,Pomorskie,2017,510,2,PL,PL6,PL63,Polska,Makroregion północny,Pomorskie,-.261,.268511,-.5295110000000001,.007511,-.334,-.12,-.304,-.574726,.268511
+Poland,PL63,Pomorskie,2021,510,2,PL,PL6,PL63,Polska,Makroregion północny,Pomorskie,-.476,.339661,-.815661,-.136339,-.743,-.823,.189,-.518157,.21606
+Poland,PL63,Pomorskie,2024,510,2,PL,PL6,PL63,Polska,Makroregion północny,Pomorskie,-.714,.291557,-1.005557,-.422443,-.98,-.659,-.403,.134472,-.118703
+Poland,PL63,Pomorskie,2013,510,2,PL,PL6,PL63,Polska,Makroregion północny,Pomorskie,-.351,.367544,-.718544,.016544,-.334,-.427,-.261,,
+Poland,PL71,Lódzkie,2010,511,2,PL,PL7,PL71,Polska,Makroregion centralny,Łódzkie,-.788,.193331,-.9813310000000001,-.594669,-.75,-.912,-.624,,
+Poland,PL71,Lódzkie,2024,511,2,PL,PL7,PL71,Polska,Makroregion centralny,Łódzkie,-.6929999999999999,.284,-.9769999999999999,-.409,-1.048,-.461,-.473,-.075854,-.033843
+Poland,PL71,Lódzkie,2017,511,2,PL,PL7,PL71,Polska,Makroregion centralny,Łódzkie,-.048,.320608,-.368608,.272608,.052,.186,-.379,-.695792,.320608
+Poland,PL71,Lódzkie,2013,511,2,PL,PL7,PL71,Polska,Makroregion centralny,Łódzkie,-.6899999999999999,.336223,-1.026223,-.353777,-.711,-.6,-.701,,
+Poland,PL71,Lódzkie,2021,511,2,PL,PL7,PL71,Polska,Makroregion centralny,Łódzkie,-.837,.203478,-1.040478,-.6335219999999999,-.951,-.788,-.681,-.9292280000000001,-.977163
+Poland,PL72,Swietokrzyskie,2017,512,2,PL,PL7,PL72,Polska,Makroregion centralny,Świętokrzyskie,-.583,.300333,-.8833329999999999,-.2826669999999999,-.385,-.699,-.606,-.516827,.300333
+Poland,PL72,Swietokrzyskie,2013,512,2,PL,PL7,PL72,Polska,Makroregion centralny,Świętokrzyskie,-.641,.311007,-.952007,-.329993,-.548,-.619,-.703,,
+Poland,PL72,Swietokrzyskie,2010,512,2,PL,PL7,PL72,Polska,Makroregion centralny,Świętokrzyskie,-.78,.23121,-1.01121,-.54879,-.976,-.788,-.498,,
+Poland,PL72,Swietokrzyskie,2024,512,2,PL,PL7,PL72,Polska,Makroregion centralny,Świętokrzyskie,-1.155,.255174,-1.410174,-.899826,-1.161,-1.347,-.794,-.353577,-.355042
+Poland,PL72,Swietokrzyskie,2021,512,2,PL,PL7,PL72,Polska,Makroregion centralny,Świętokrzyskie,-.769,.239935,-1.008935,-.529065,-.8120000000000001,-.971,-.44,-.765497,-.698678
+Poland,PL81,Lubelskie,2024,513,2,PL,PL8,PL81,Polska,Makroregion wschodni,Lubelskie,-1.093,.211259,-1.304259,-.881741,-1.116,-1.188,-.821,-.402754,-.356841
+Poland,PL81,Lubelskie,2013,513,2,PL,PL8,PL81,Polska,Makroregion wschodni,Lubelskie,-.598,.301197,-.899197,-.296803,-.304,-.65,-.789,,
+Poland,PL81,Lubelskie,2010,513,2,PL,PL8,PL81,Polska,Makroregion wschodni,Lubelskie,-.744,.22362,-.96762,-.52038,-.847,-.791,-.521,,
+Poland,PL81,Lubelskie,2017,513,2,PL,PL8,PL81,Polska,Makroregion wschodni,Lubelskie,-.436,.278608,-.714608,-.157392,-.318,-.619,-.327,-.456868,.278608
+Poland,PL81,Lubelskie,2021,513,2,PL,PL8,PL81,Polska,Makroregion wschodni,Lubelskie,-1.074,.284549,-1.358549,-.7894510000000001,-1.071,-1.451,-.583,-.966766,-.756274
+Poland,PL82,Podkarpackie,2021,514,2,PL,PL8,PL82,Polska,Makroregion wschodni,Podkarpackie,-.696,.240603,-.936603,-.4553969999999999,-.825,-.824,-.365,-.856405,-.465603
+Poland,PL82,Podkarpackie,2013,514,2,PL,PL8,PL82,Polska,Makroregion wschodni,Podkarpackie,-.708,.323184,-1.031184,-.3848159999999999,-.535,-.804,-.724,,
+Poland,PL82,Podkarpackie,2010,514,2,PL,PL8,PL82,Polska,Makroregion wschodni,Podkarpackie,-.785,.260699,-1.045699,-.524301,-.77,-.85,-.657,,
+Poland,PL82,Podkarpackie,2024,514,2,PL,PL8,PL82,Polska,Makroregion wschodni,Podkarpackie,-1.125,.245035,-1.370035,-.879965,-1.129,-1.272,-.8159999999999999,-.5481239999999999,-.201969
+Poland,PL82,Podkarpackie,2017,514,2,PL,PL8,PL82,Polska,Makroregion wschodni,Podkarpackie,-.549,.273866,-.8228660000000001,-.275134,-.243,-.666,-.6830000000000001,-.799244,.273866
+Poland,PL84,Podlaskie,2013,515,2,PL,PL8,PL84,Polska,Makroregion wschodni,Podlaskie,-.327,.314838,-.641838,-.012162,-.31,-.228,-.414,,
+Poland,PL84,Podlaskie,2021,515,2,PL,PL8,PL84,Polska,Makroregion wschodni,Podlaskie,-.863,.229608,-1.092608,-.633392,-.747,-1.092,-.656,-.733866,-1.13162
+Poland,PL84,Podlaskie,2024,515,2,PL,PL8,PL84,Polska,Makroregion wschodni,Podlaskie,-.928,.271038,-1.199038,-.656962,-1.061,-1.131,-.46,-.043416,-.043418
+Poland,PL84,Podlaskie,2017,515,2,PL,PL8,PL84,Polska,Makroregion wschodni,Podlaskie,-.381,.238015,-.619015,-.142985,.012,-.667,-.449,-.6662439999999999,.238015
+Poland,PL84,Podlaskie,2010,515,2,PL,PL8,PL84,Polska,Makroregion wschodni,Podlaskie,-.873,.1952,-1.0682,-.6778,-.839,-1.096,-.598,,
+Poland,PL91,Warszawski stoleczny,2010,516,2,PL,PL9,PL91,Polska,Makroregion województwo mazowieckie,Warszawski stołeczny,-.908,.203008,-1.111008,-.7049920000000001,-.919,-.949,-.766,,
+Poland,PL91,Warszawski stoleczny,2017,516,2,PL,PL9,PL91,Polska,Makroregion województwo mazowieckie,Warszawski stołeczny,-.446,.348398,-.7943979999999999,-.097602,-.387,-.586,-.319,-.402764,.348398
+Poland,PL91,Warszawski stoleczny,2013,516,2,PL,PL9,PL91,Polska,Makroregion województwo mazowieckie,Warszawski stołeczny,-.734,.356238,-1.090238,-.377762,-.994,-.449,-.697,,
+Poland,PL91,Warszawski stoleczny,2024,516,2,PL,PL9,PL91,Polska,Makroregion województwo mazowieckie,Warszawski stołeczny,-1.132,.342288,-1.474288,-.789712,-1.526,-.91,-.801,-.294796,-.427649
+Poland,PL91,Warszawski stoleczny,2021,516,2,PL,PL9,PL91,Polska,Makroregion województwo mazowieckie,Warszawski stołeczny,-1.213,.403067,-1.616067,-.809933,-1.544,-1.331,-.631,-1.05016,-.761014
+Poland,PL92,Mazowiecki regionalny,2024,517,2,PL,PL9,PL92,Polska,Makroregion województwo mazowieckie,Mazowiecki regionalny,-.911,.197789,-1.108789,-.713211,-.832,-1.052,-.722,-.191143,-.38288
+Poland,PL92,Mazowiecki regionalny,2021,517,2,PL,PL9,PL92,Polska,Makroregion województwo mazowieckie,Mazowiecki regionalny,-.734,.221612,-.955612,-.512388,-.72,-.909,-.493,-.7644570000000001,-.798911
+Poland,PL92,Mazowiecki regionalny,2010,517,2,PL,PL9,PL92,Polska,Makroregion województwo mazowieckie,Mazowiecki regionalny,-.908,.203008,-1.111008,-.7049920000000001,-.919,-.949,-.766,,
+Poland,PL92,Mazowiecki regionalny,2017,517,2,PL,PL9,PL92,Polska,Makroregion województwo mazowieckie,Mazowiecki regionalny,-.446,.348398,-.7943979999999999,-.097602,-.387,-.586,-.319,-.402764,.348398
+Poland,PL92,Mazowiecki regionalny,2013,517,2,PL,PL9,PL92,Polska,Makroregion województwo mazowieckie,Mazowiecki regionalny,-.734,.356238,-1.090238,-.377762,-.994,-.449,-.697,,
+Portugal,PT11,Norte,2017,2001,2,PT,PT1,PT11,Portugal,Continente,Norte,.024,.359352,-.335352,.383352,.438,-.277,-.093,.61367,.359352
+Portugal,PT11,Norte,2010,2001,2,PT,PT1,PT11,Portugal,Continente,Norte,-.275,.343651,-.6186510000000001,.068651,.098,-.5610000000000001,-.336,,
+Portugal,PT11,Norte,2024,2001,2,PT,PT1,PT11,Portugal,Continente,Norte,-.102,.284223,-.386223,.182223,.497,-.304,-.484,-.495788,.924889
+Portugal,PT11,Norte,2013,2001,2,PT,PT1,PT11,Portugal,Continente,Norte,-.213,.399372,-.612372,.186372,.096,-.5570000000000001,-.159,,
+Portugal,PT11,Norte,2021,2001,2,PT,PT1,PT11,Portugal,Continente,Norte,.037,.418127,-.381127,.455127,.622,.094,-.609,-.74359,.354052
+Portugal,PT15,Algarve,2021,2002,2,PT,PT1,PT15,Portugal,Continente,Algarve,-.063,.298848,-.361848,.235848,-.113,.164,-.234,-.265689,.559018
+Portugal,PT15,Algarve,2024,2002,2,PT,PT1,PT15,Portugal,Continente,Algarve,-.366,.286441,-.652441,-.079559,-.658,.104,-.491,-.399815,.814955
+Portugal,PT15,Algarve,2013,2002,2,PT,PT1,PT15,Portugal,Continente,Algarve,.203,.212508,-.009508,.415508,-.334,.437,.487,,
+Portugal,PT15,Algarve,2010,2002,2,PT,PT1,PT15,Portugal,Continente,Algarve,.173,.484593,-.311593,.657593,-.6830000000000001,.32,.864,,
+Portugal,PT15,Algarve,2017,2002,2,PT,PT1,PT15,Portugal,Continente,Algarve,-.198,.246745,-.444745,.048745,-.8100000000000001,.054,.182,.654338,.246745
+Portugal,PT16,Centro (PT),2013,2003,2,PT,PT1,PT16,Portugal,Continente,Centro (PT),-.058,.347903,-.405903,.289903,.013,-.263,.08,,
+Portugal,PT16,Centro (PT),2010,2003,2,PT,PT1,PT16,Portugal,Continente,Centro (PT),-.031,.340833,-.371833,.309833,.061,-.077,-.075,,
+Portugal,PT16,Centro (PT),2017,2003,2,PT,PT1,PT16,Portugal,Continente,Centro (PT),.166,.288214,-.122214,.454214,.06,.414,.009,.338542,.288214
+Portugal,PT16,Centro (PT),2021,2003,2,PT,PT1,PT16,Portugal,Continente,Centro (PT),.173,.33138,-.15838,.5043800000000001,.421,.143,-.065,-.27423,.881533
+Portugal,PT16,Centro (PT),2024,2003,2,PT,PT1,PT16,Portugal,Continente,Centro (PT),.057,.206159,-.149159,.263159,.223,.263,-.322,-.125923,.8567129999999999
+Portugal,PT17,Área Metropolitana de Lisboa,2010,2004,2,PT,PT1,PT17,Portugal,Continente,Área Metropolitana de Lisboa,.117,.37523,-.25823,.49223,-.037,.039,.336,,
+Portugal,PT17,Área Metropolitana de Lisboa,2017,2004,2,PT,PT1,PT17,Portugal,Continente,Área Metropolitana de Lisboa,.2,.321125,-.121125,.5211250000000001,.195,.19,.195,.699727,.321125
+Portugal,PT17,Área Metropolitana de Lisboa,2013,2004,2,PT,PT1,PT17,Portugal,Continente,Área Metropolitana de Lisboa,-.157,.27643,-.43343,.11943,-.594,.041,.097,,
+Portugal,PT17,Área Metropolitana de Lisboa,2021,2004,2,PT,PT1,PT17,Portugal,Continente,Área Metropolitana de Lisboa,.154,.303254,-.149254,.457254,-.041,.318,.168,-.110492,1.14583
+Portugal,PT17,Área Metropolitana de Lisboa,2024,2004,2,PT,PT1,PT17,Portugal,Continente,Área Metropolitana de Lisboa,.359,.232144,.126856,.591144,.41,.664,-.048,.017852,1.22362
+Portugal,PT18,Alentejo,2013,2005,2,PT,PT1,PT18,Portugal,Continente,Alentejo,.801,.190231,.610769,.9912310000000001,.231,.964,1.14,,
+Portugal,PT18,Alentejo,2017,2005,2,PT,PT1,PT18,Portugal,Continente,Alentejo,.34,.246602,.093398,.5866020000000001,.13,.398,.457,.82148,.246602
+Portugal,PT18,Alentejo,2021,2005,2,PT,PT1,PT18,Portugal,Continente,Alentejo,-.037,.299293,-.336293,.262293,.068,.061,-.237,-.245231,.5328889999999999
+Portugal,PT18,Alentejo,2010,2005,2,PT,PT1,PT18,Portugal,Continente,Alentejo,.626,.368398,.257602,.994398,.439,.555,.82,,
+Portugal,PT18,Alentejo,2024,2005,2,PT,PT1,PT18,Portugal,Continente,Alentejo,-.029,.270654,-.299654,.241654,-.427,.469,-.124,-.007552,1.10698
+Portugal,PT20,Região Autónoma dos Açores (PT),2010,2006,2,PT,PT2,PT20,Portugal,Região Autónoma dos Açores,Região Autónoma dos Açores,.436,.291886,.144114,.727886,.276,.264,.724,,
+Portugal,PT20,Região Autónoma dos Açores (PT),2024,2006,2,PT,PT2,PT20,Portugal,Região Autónoma dos Açores,Região Autónoma dos Açores,.608,.173472,.434528,.7814719999999999,.742,1.083,-.088,.277665,.88988
+Portugal,PT20,Região Autónoma dos Açores (PT),2013,2006,2,PT,PT2,PT20,Portugal,Região Autónoma dos Açores,Região Autónoma dos Açores,.451,.321169,.129831,.772169,.488,.232,.595,,
+Portugal,PT20,Região Autónoma dos Açores (PT),2017,2006,2,PT,PT2,PT20,Portugal,Região Autónoma dos Açores,Região Autónoma dos Açores,.1,.319691,-.219691,.419691,.273,-.021,.037,.51738,.319691
+Portugal,PT20,Região Autónoma dos Açores (PT),2021,2006,2,PT,PT2,PT20,Portugal,Região Autónoma dos Açores,Região Autónoma dos Açores,0,.256151,-.256151,.256151,.432,-.004,-.428,-.215484,.147519
+Portugal,PT30,Região Autónoma da Madeira (PT),2013,2007,2,PT,PT3,PT30,Portugal,Região Autónoma da Madeira,Região Autónoma da Madeira,.003,.375751,-.372751,.378751,.12,-.242,.131,,
+Portugal,PT30,Região Autónoma da Madeira (PT),2021,2007,2,PT,PT3,PT30,Portugal,Região Autónoma da Madeira,Região Autónoma da Madeira,-.2,.360132,-.5601320000000001,.160132,.518,-.381,-.715,-.7767309999999999,.191633
+Portugal,PT30,Região Autónoma da Madeira (PT),2010,2007,2,PT,PT3,PT30,Portugal,Região Autónoma da Madeira,Região Autónoma da Madeira,.239,.38957,-.15057,.6285700000000001,.642,-.107,.159,,
+Portugal,PT30,Região Autónoma da Madeira (PT),2017,2007,2,PT,PT3,PT30,Portugal,Região Autónoma da Madeira,Região Autónoma da Madeira,.257,.451481,-.194481,.708481,.8129999999999999,-.104,.035,.649033,.451481
+Portugal,PT30,Região Autónoma da Madeira (PT),2024,2007,2,PT,PT3,PT30,Portugal,Região Autónoma da Madeira,Região Autónoma da Madeira,.24,.256927,-.016927,.496927,.429,.523,-.267,.004463,.828641
+Romania,RO11,Nord-Vest,2021,201,2,RO,RO1,RO11,România,Macroregiunea Unu,Nord-Vest,-1.403,.327713,-1.730713,-1.075287,-1.5,-1.294,-1.261,-1.56058,-2.23509
+Romania,RO11,Nord-Vest,2024,201,2,RO,RO1,RO11,România,Macroregiunea Unu,Nord-Vest,-1.02,.407741,-1.427741,-.612259,-1.041,-.841,-1.033,-1.44013,-2.262
+Romania,RO11,Nord-Vest,2010,201,2,RO,RO1,RO11,România,Macroregiunea Unu,Nord-Vest,-1.099,.436835,-1.535835,-.662165,-1.513,-1.088,-.588,,
+Romania,RO11,Nord-Vest,2017,201,2,RO,RO1,RO11,România,Macroregiunea Unu,Nord-Vest,-1.73,.5337499999999999,-2.26375,-1.19625,-1.695,-1.922,-1.4,-1.14433,.5337499999999999
+Romania,RO11,Nord-Vest,2013,201,2,RO,RO1,RO11,România,Macroregiunea Unu,Nord-Vest,-1.773,.533948,-2.306948,-1.239052,-1.828,-2.038,-1.301,,
+Romania,RO12,Centru,2013,202,2,RO,RO1,RO12,România,Macroregiunea Unu,Centru,-1.263,.47875,-1.74175,-.7842499999999999,-1.686,-1.202,-.795,,
+Romania,RO12,Centru,2017,202,2,RO,RO1,RO12,România,Macroregiunea Unu,Centru,-1.311,.472051,-1.783051,-.8389489999999999,-1.476,-1.315,-1.01,-.947394,.472051
+Romania,RO12,Centru,2021,202,2,RO,RO1,RO12,România,Macroregiunea Unu,Centru,-.827,.261873,-1.088873,-.5651269999999999,-1.404,-.438,-.55,-.960966,-1.53064
+Romania,RO12,Centru,2010,202,2,RO,RO1,RO12,România,Macroregiunea Unu,Centru,-1.482,.436105,-1.918105,-1.045895,-1.838,-1.411,-1.049,,
+Romania,RO12,Centru,2024,202,2,RO,RO1,RO12,România,Macroregiunea Unu,Centru,-.8139999999999999,.309212,-1.123212,-.504788,-1.238,-.537,-.552,-1.19816,-1.60795
+Romania,RO21,Nord-Est,2021,203,2,RO,RO2,RO21,România,Macroregiunea Doi,Nord-Est,-1.74,.374348,-2.114348,-1.365652,-1.921,-1.257,-1.851,-1.97476,-2.90611
+Romania,RO21,Nord-Est,2024,203,2,RO,RO2,RO21,România,Macroregiunea Doi,Nord-Est,-1.432,.374506,-1.806506,-1.057494,-1.62,-1.085,-1.39,-1.78251,-2.5843
+Romania,RO21,Nord-Est,2017,203,2,RO,RO2,RO21,România,Macroregiunea Doi,Nord-Est,-1.451,.423568,-1.874568,-1.027432,-1.687,-1.116,-1.404,-1.63998,.423568
+Romania,RO21,Nord-Est,2013,203,2,RO,RO2,RO21,România,Macroregiunea Doi,Nord-Est,-1.808,.460967,-2.268967,-1.347033,-2.364,-1.602,-1.305,,
+Romania,RO21,Nord-Est,2010,203,2,RO,RO2,RO21,România,Macroregiunea Doi,Nord-Est,-1.856,.533039,-2.389039,-1.322961,-2.19,-1.627,-1.567,,
+Romania,RO22,Sud-Est,2021,204,2,RO,RO2,RO22,România,Macroregiunea Doi,Sud-Est,-1.611,.328557,-1.939557,-1.282443,-2.308,-.884,-1.465,-1.40036,-2.77882
+Romania,RO22,Sud-Est,2017,204,2,RO,RO2,RO22,România,Macroregiunea Doi,Sud-Est,-1.853,.439511,-2.292511,-1.413489,-1.779,-2.053,-1.542,-1.45526,.439511
+Romania,RO22,Sud-Est,2010,204,2,RO,RO2,RO22,România,Macroregiunea Doi,Sud-Est,-1.865,.568788,-2.433788,-1.296212,-1.813,-2.006,-1.59,,
+Romania,RO22,Sud-Est,2013,204,2,RO,RO2,RO22,România,Macroregiunea Doi,Sud-Est,-2.04,.549216,-2.589216,-1.490784,-2.503,-1.75,-1.695,,
+Romania,RO22,Sud-Est,2024,204,2,RO,RO2,RO22,România,Macroregiunea Doi,Sud-Est,-1.5,.368508,-1.868508,-1.131492,-1.729,-1.218,-1.343,-1.87521,-2.40392
+Romania,RO31,Sud - Muntenia,2013,205,2,RO,RO3,RO31,România,Macroregiunea Trei,Sud-Muntenia,-1.634,.497888,-2.131888,-1.136112,-2.116,-1.425,-1.222,,
+Romania,RO31,Sud - Muntenia,2021,205,2,RO,RO3,RO31,România,Macroregiunea Trei,Sud-Muntenia,-1.398,.268734,-1.666734,-1.129266,-1.909,-.958,-1.173,-1.28161,-2.35903
+Romania,RO31,Sud - Muntenia,2017,205,2,RO,RO3,RO31,România,Macroregiunea Trei,Sud-Muntenia,-.983,.462524,-1.445524,-.5204759999999999,-1.424,-.951,-.475,.080637,.462524
+Romania,RO31,Sud - Muntenia,2024,205,2,RO,RO3,RO31,România,Macroregiunea Trei,Sud-Muntenia,-1.433,.438723,-1.871723,-.9942770000000001,-1.755,-.743,-1.6,-1.61943,-3.13886
+Romania,RO31,Sud - Muntenia,2010,205,2,RO,RO3,RO31,România,Macroregiunea Trei,Sud-Muntenia,-1.651,.470453,-2.121453,-1.180547,-2.223,-1.408,-1.157,,
+Romania,RO32,Bucuresti - Ilfov,2017,206,2,RO,RO3,RO32,România,Macroregiunea Trei,Bucureşti-Ilfov,-1.454,.413733,-1.867733,-1.040267,-2.301,-1.115,-.799,-.290129,.413733
+Romania,RO32,Bucuresti - Ilfov,2010,206,2,RO,RO3,RO32,România,Macroregiunea Trei,Bucureşti-Ilfov,-2.672,.670909,-3.342909,-2.001091,-2.768,-2.329,-2.652,,
+Romania,RO32,Bucuresti - Ilfov,2013,206,2,RO,RO3,RO32,România,Macroregiunea Trei,Bucureşti-Ilfov,-2.305,.635744,-2.940744,-1.669256,-2.829,-1.662,-2.229,,
+Romania,RO32,Bucuresti - Ilfov,2021,206,2,RO,RO3,RO32,România,Macroregiunea Trei,Bucureşti-Ilfov,-2.144,.365794,-2.509794,-1.778206,-2.337,-1.684,-2.177,-2.18378,-3.29534
+Romania,RO32,Bucuresti - Ilfov,2024,206,2,RO,RO3,RO32,România,Macroregiunea Trei,Bucureşti-Ilfov,-1.542,.410976,-1.952976,-1.131024,-1.705,-1.243,-1.459,-1.99994,-2.49646
+Romania,RO41,Sud-Vest Oltenia,2024,207,2,RO,RO4,RO41,România,Macroregiunea Patru,Sud-Vest Oltenia,-1.183,.376125,-1.559125,-.806875,-1.302,-.989,-1.091,-1.68833,-2.12113
+Romania,RO41,Sud-Vest Oltenia,2013,207,2,RO,RO4,RO41,România,Macroregiunea Patru,Sud-Vest Oltenia,-1.798,.505902,-2.303902,-1.292098,-2.013,-1.86,-1.369,,
+Romania,RO41,Sud-Vest Oltenia,2021,207,2,RO,RO4,RO41,România,Macroregiunea Patru,Sud-Vest Oltenia,-1.434,.295857,-1.729857,-1.138143,-2.104,-.788,-1.253,-1.39794,-2.38705
+Romania,RO41,Sud-Vest Oltenia,2010,207,2,RO,RO4,RO41,România,Macroregiunea Patru,Sud-Vest Oltenia,-1.39,.534784,-1.924784,-.8552159999999999,-1.552,-1.479,-1.001,,
+Romania,RO41,Sud-Vest Oltenia,2017,207,2,RO,RO4,RO41,România,Macroregiunea Patru,Sud-Vest Oltenia,-1.492,.397857,-1.889857,-1.094143,-1.928,-1.413,-.985,-.7015130000000001,.397857
+Romania,RO42,Vest,2021,208,2,RO,RO4,RO42,România,Macroregiunea Patru,Vest,-1.18,.269105,-1.449105,-.910895,-1.722,-.8169999999999999,-.872,-1.28888,-1.79197
+Romania,RO42,Vest,2010,208,2,RO,RO4,RO42,România,Macroregiunea Patru,Vest,-2.05,.5251,-2.5751,-1.5249,-2.216,-2.078,-1.653,,
+Romania,RO42,Vest,2017,208,2,RO,RO4,RO42,România,Macroregiunea Patru,Vest,-1.212,.504227,-1.716227,-.707773,-1.793,-.775,-.945,-.621131,.504227
+Romania,RO42,Vest,2013,208,2,RO,RO4,RO42,România,Macroregiunea Patru,Vest,-1.737,.517392,-2.254392,-1.219608,-1.875,-1.867,-1.323,,
+Romania,RO42,Vest,2024,208,2,RO,RO4,RO42,România,Macroregiunea Patru,Vest,-1.222,.341634,-1.563634,-.880366,-1.394,-1.155,-.9429999999999999,-1.74286,-1.79182
+Sweden,SE11,Stockholm,2013,701,2,SE,SE1,SE11,Sverige,Östra Sverige,Stockholm,1.469,.329521,1.139479,1.798521,1.519,1.281,1.481,,
+Sweden,SE11,Stockholm,2024,701,2,SE,SE1,SE11,Sverige,Östra Sverige,Stockholm,1.289,.181554,1.107446,1.470554,1.505,.97,1.209,1.026,.66555
+Sweden,SE11,Stockholm,2021,701,2,SE,SE1,SE11,Sverige,Östra Sverige,Stockholm,1.466,.269403,1.196597,1.735403,1.428,1.336,1.474,1.19541,.329796
+Sweden,SE11,Stockholm,2010,701,2,SE,SE1,SE11,Sverige,Östra Sverige,Stockholm,1.427,.305196,1.121804,1.732196,1.223,1.327,1.614,,
+Sweden,SE11,Stockholm,2017,701,2,SE,SE1,SE11,Sverige,Östra Sverige,Stockholm,1.519,.480353,1.038647,1.999353,1.348,1.383,1.673,1.05975,.480353
+Sweden,SE12,Östra Mellansverige,2021,702,2,SE,SE1,SE12,Sverige,Östra Sverige,Östra Mellansverige,1.376,.289665,1.086335,1.665665,1.414,1.181,1.384,1.16102,.197756
+Sweden,SE12,Östra Mellansverige,2017,702,2,SE,SE1,SE12,Sverige,Östra Sverige,Östra Mellansverige,1.519,.480353,1.038647,1.999353,1.348,1.383,1.673,1.05975,.480353
+Sweden,SE12,Östra Mellansverige,2013,702,2,SE,SE1,SE12,Sverige,Östra Sverige,Östra Mellansverige,1.469,.329521,1.139479,1.798521,1.519,1.281,1.481,,
+Sweden,SE12,Östra Mellansverige,2010,702,2,SE,SE1,SE12,Sverige,Östra Sverige,Östra Mellansverige,1.427,.305196,1.121804,1.732196,1.223,1.172,1.614,,
+Sweden,SE12,Östra Mellansverige,2024,702,2,SE,SE1,SE12,Sverige,Östra Sverige,Östra Mellansverige,1.146,.269237,.876763,1.415237,1.056,.975,1.245,1.1657,.593963
+Sweden,SE21,Småland med öarna,2010,703,2,SE,SE2,SE21,Sverige,Södra Sverige,Småland med öarna,1.496,.343586,1.152414,1.839586,1.338,1.559,1.75,,
+Sweden,SE21,Småland med öarna,2017,703,2,SE,SE2,SE21,Sverige,Södra Sverige,Småland med öarna,1.384,.456778,.9272219999999999,1.840778,1.172,1.253,1.588,1.06859,.456778
+Sweden,SE21,Småland med öarna,2021,703,2,SE,SE2,SE21,Sverige,Södra Sverige,Småland med öarna,1.65,.266491,1.383509,1.916491,1.606,1.567,1.596,1.31112,.437923
+Sweden,SE21,Småland med öarna,2024,703,2,SE,SE2,SE21,Sverige,Södra Sverige,Småland med öarna,1.723,.263237,1.459763,1.986237,1.659,1.584,1.683,1.52555,1.05112
+Sweden,SE21,Småland med öarna,2013,703,2,SE,SE2,SE21,Sverige,Södra Sverige,Småland med öarna,1.445,.259495,1.185505,1.704495,1.531,1.27,1.41,,
+Sweden,SE22,Sydsverige,2021,704,2,SE,SE2,SE22,Sverige,Södra Sverige,Sydsverige,1.374,.237133,1.136867,1.611133,1.373,1.304,1.295,.935214,.265986
+Sweden,SE22,Sydsverige,2013,704,2,SE,SE2,SE22,Sverige,Södra Sverige,Sydsverige,1.445,.259495,1.185505,1.704495,1.531,1.27,1.41,,
+Sweden,SE22,Sydsverige,2010,704,2,SE,SE2,SE22,Sverige,Södra Sverige,Sydsverige,1.496,.343586,1.152414,1.839586,1.338,1.295,1.75,,
+Sweden,SE22,Sydsverige,2024,704,2,SE,SE2,SE22,Sverige,Södra Sverige,Sydsverige,1.079,.309406,.7695939999999999,1.388406,.792,.868,1.424,1.23701,.8563460000000001
+Sweden,SE22,Sydsverige,2017,704,2,SE,SE2,SE22,Sverige,Södra Sverige,Sydsverige,1.384,.456778,.9272219999999999,1.840778,1.172,1.253,1.588,1.06859,.456778
+Sweden,SE23,Västsverige,2017,705,2,SE,SE2,SE23,Sverige,Södra Sverige,Västsverige,1.384,.456778,.9272219999999999,1.840778,1.172,1.253,1.588,1.06859,.456778
+Sweden,SE23,Västsverige,2010,705,2,SE,SE2,SE23,Sverige,Södra Sverige,Västsverige,1.496,.343586,1.152414,1.839586,1.338,1.309,1.75,,
+Sweden,SE23,Västsverige,2021,705,2,SE,SE2,SE23,Sverige,Södra Sverige,Västsverige,1.446,.262899,1.183101,1.708899,1.289,1.318,1.573,1.09329,.619
+Sweden,SE23,Västsverige,2024,705,2,SE,SE2,SE23,Sverige,Södra Sverige,Västsverige,1.353,.278371,1.074629,1.631371,1.169,1.222,1.477,1.3913,.800631
+Sweden,SE23,Västsverige,2013,705,2,SE,SE2,SE23,Sverige,Södra Sverige,Västsverige,1.445,.259495,1.185505,1.704495,1.531,1.27,1.41,,
+Sweden,SE31,Norra Mellansverige,2024,706,2,SE,SE3,SE31,Sverige,Norra Sverige,Norra Mellansverige,1.36,.369474,.990526,1.729474,.6820000000000001,1.532,1.673,1.41457,1.14268
+Sweden,SE31,Norra Mellansverige,2021,706,2,SE,SE3,SE31,Sverige,Norra Sverige,Norra Mellansverige,1.326,.317682,1.008318,1.643682,1.032,1.291,1.509,1.08851,.505064
+Sweden,SE31,Norra Mellansverige,2010,706,2,SE,SE3,SE31,Sverige,Norra Sverige,Norra Mellansverige,1.332,.281338,1.050662,1.613338,1.377,1.282,1.46,,
+Sweden,SE31,Norra Mellansverige,2017,706,2,SE,SE3,SE31,Sverige,Norra Sverige,Norra Mellansverige,1.544,.436396,1.107604,1.980396,1.326,1.5,1.65,1.08383,.436396
+Sweden,SE31,Norra Mellansverige,2013,706,2,SE,SE3,SE31,Sverige,Norra Sverige,Norra Mellansverige,1.329,.307342,1.021658,1.636342,1.299,1.167,1.409,,
+Sweden,SE32,Mellersta Norrland,2017,707,2,SE,SE3,SE32,Sverige,Norra Sverige,Mellersta Norrland,1.544,.436396,1.107604,1.980396,1.326,1.5,1.65,1.08383,.436396
+Sweden,SE32,Mellersta Norrland,2010,707,2,SE,SE3,SE32,Sverige,Norra Sverige,Mellersta Norrland,1.332,.281338,1.050662,1.613338,1.377,1.429,1.46,,
+Sweden,SE32,Mellersta Norrland,2024,707,2,SE,SE3,SE32,Sverige,Norra Sverige,Mellersta Norrland,1.767,.321304,1.445696,2.088304,1.251,1.984,1.817,1.6402,1.18633
+Sweden,SE32,Mellersta Norrland,2021,707,2,SE,SE3,SE32,Sverige,Norra Sverige,Mellersta Norrland,1.228,.249627,.9783729999999999,1.477627,1.102,1.437,1.011,.762057,-.084975
+Sweden,SE32,Mellersta Norrland,2013,707,2,SE,SE3,SE32,Sverige,Norra Sverige,Mellersta Norrland,1.329,.307342,1.021658,1.636342,1.299,1.167,1.409,,
+Sweden,SE33,Övre Norrland,2017,708,2,SE,SE3,SE33,Sverige,Norra Sverige,Övre Norrland,1.544,.436396,1.107604,1.980396,1.326,1.5,1.65,1.08383,.436396
+Sweden,SE33,Övre Norrland,2010,708,2,SE,SE3,SE33,Sverige,Norra Sverige,Övre Norrland,1.332,.281338,1.050662,1.613338,1.377,1.412,1.46,,
+Sweden,SE33,Övre Norrland,2021,708,2,SE,SE3,SE33,Sverige,Norra Sverige,Övre Norrland,1.632,.25762,1.37438,1.88962,1.561,1.421,1.736,1.32553,.682911
+Sweden,SE33,Övre Norrland,2013,708,2,SE,SE3,SE33,Sverige,Norra Sverige,Övre Norrland,1.329,.307342,1.021658,1.636342,1.299,1.167,1.409,,
+Sweden,SE33,Övre Norrland,2024,708,2,SE,SE3,SE33,Sverige,Norra Sverige,Övre Norrland,1.651,.249566,1.401434,1.900566,1.496,1.46,1.765,1.59184,1.13612
+Slovenia,SI03,Vzhodna Slovenija,2021,2601,2,SI,SI0,SI03,Slovenija,Slovenija,Vzhodna Slovenija,-.208,.256293,-.464293,.048293,-.05,-.307,-.244,-.396263,.64112
+Slovenia,SI03,Vzhodna Slovenija,2017,2601,2,SI,SI0,SI03,Slovenija,Slovenija,Vzhodna Slovenija,-.203,,,,-.219,-.202,-.168,,
+Slovenia,SI03,Vzhodna Slovenija,2024,2601,2,SI,SI0,SI03,Slovenija,Slovenija,Vzhodna Slovenija,-.216,.292,-.508,.076,.058,-.27,-.405,-.813846,-.129423
+Slovenia,SI03,Vzhodna Slovenija,2013,2601,2,SI,SI0,SI03,Slovenija,Slovenija,Vzhodna Slovenija,-.131,,,,-.132,-.136,-.114,,
+Slovenia,SI03,Vzhodna Slovenija,2010,2601,2,SI,SI0,SI03,Slovenija,Slovenija,Vzhodna Slovenija,-.071,,,,-.006,-.164,-.036,,
+Slovenia,SI04,Zahodna Slovenija,2010,2602,2,SI,SI0,SI04,Slovenija,Slovenija,Zahodna Slovenija,-.071,,,,-.006,-.164,-.036,,
+Slovenia,SI04,Zahodna Slovenija,2017,2602,2,SI,SI0,SI04,Slovenija,Slovenija,Zahodna Slovenija,-.203,,,,-.219,-.202,-.168,,
+Slovenia,SI04,Zahodna Slovenija,2024,2602,2,SI,SI0,SI04,Slovenija,Slovenija,Zahodna Slovenija,.099,.271,-.172,.37,.097,.245,-.058,-.596539,.300393
+Slovenia,SI04,Zahodna Slovenija,2021,2602,2,SI,SI0,SI04,Slovenija,Slovenija,Zahodna Slovenija,.294,.269218,.024782,.563218,.083,.607,.161,-.212459,1.20429
+Slovenia,SI04,Zahodna Slovenija,2013,2602,2,SI,SI0,SI04,Slovenija,Slovenija,Zahodna Slovenija,-.131,,,,-.132,-.136,-.114,,
+Slovakia,SK01,Bratislavský kraj,2010,1501,2,SK,SK0,SK01,Slovensko,Slovensko,Bratislavský kraj,-.517,.284054,-.8010539999999999,-.232946,-.04,-.732,-.729,,
+Slovakia,SK01,Bratislavský kraj,2013,1501,2,SK,SK0,SK01,Slovensko,Slovensko,Bratislavský kraj,-.824,.222016,-1.046016,-.601984,-.5570000000000001,-.766,-1.08,,
+Slovakia,SK01,Bratislavský kraj,2024,1501,2,SK,SK0,SK01,Slovensko,Slovensko,Bratislavský kraj,-1.115,.327718,-1.442718,-.787282,-.77,-.82,-1.596,-1.58468,-1.22565
+Slovakia,SK01,Bratislavský kraj,2017,1501,2,SK,SK0,SK01,Slovensko,Slovensko,Bratislavský kraj,-.848,.46831,-1.31631,-.37969,-.516,-1.012,-.93,-2.00648,.46831
+Slovakia,SK01,Bratislavský kraj,2021,1501,2,SK,SK0,SK01,Slovensko,Slovensko,Bratislavský kraj,-.897,.275049,-1.172049,-.621951,-1.079,-.6840000000000001,-.831,-1.47931,-.781973
+Slovakia,SK02,Západné Slovensko,2010,1502,2,SK,SK0,SK02,Slovensko,Slovensko,Západné Slovensko,-.769,.288665,-1.057665,-.480335,-.597,-.8149999999999999,-.819,,
+Slovakia,SK02,Západné Slovensko,2017,1502,2,SK,SK0,SK02,Slovensko,Slovensko,Západné Slovensko,-.904,.4577,-1.3617,-.4463,-.442,-.996,-1.182,-2.45147,.4577
+Slovakia,SK02,Západné Slovensko,2021,1502,2,SK,SK0,SK02,Slovensko,Slovensko,Západné Slovensko,-.601,.198943,-.799943,-.402057,-.33,-.702,-.705,-1.33966,-.6912160000000001
+Slovakia,SK02,Západné Slovensko,2024,1502,2,SK,SK0,SK02,Slovensko,Slovensko,Západné Slovensko,-.634,.285589,-.919589,-.348411,-.572,-.373,-.867,-1.16924,-.28326
+Slovakia,SK02,Západné Slovensko,2013,1502,2,SK,SK0,SK02,Slovensko,Slovensko,Západné Slovensko,-.635,.209824,-.844824,-.425176,-.287,-.777,-.786,,
+Slovakia,SK03,Stredné Slovensko,2017,1503,2,SK,SK0,SK03,Slovensko,Slovensko,Stredné Slovensko,-.518,.470798,-.9887980000000001,-.047202,-.116,-.643,-.744,-1.94532,.470798
+Slovakia,SK03,Stredné Slovensko,2021,1503,2,SK,SK0,SK03,Slovensko,Slovensko,Stredné Slovensko,-.5600000000000001,.22488,-.78488,-.3351200000000001,-.472,-.547,-.601,-1.2628,-.577216
+Slovakia,SK03,Stredné Slovensko,2013,1503,2,SK,SK0,SK03,Slovensko,Slovensko,Stredné Slovensko,-.642,.208365,-.850365,-.433635,-.487,-.712,-.674,,
+Slovakia,SK03,Stredné Slovensko,2010,1503,2,SK,SK0,SK03,Slovensko,Slovensko,Stredné Slovensko,-.6830000000000001,.233103,-.9161030000000001,-.449897,-.367,-.845,-.771,,
+Slovakia,SK03,Stredné Slovensko,2024,1503,2,SK,SK0,SK03,Slovensko,Slovensko,Stredné Slovensko,-.551,.33755,-.8885500000000001,-.21345,-.897,-.155,-.524,-.964472,.152559
+Slovakia,SK04,Východné Slovensko,2010,1504,2,SK,SK0,SK04,Slovensko,Slovensko,Východné Slovensko,-.6899999999999999,.241271,-.931271,-.4487289999999999,-.436,-.717,-.848,,
+Slovakia,SK04,Východné Slovensko,2013,1504,2,SK,SK0,SK04,Slovensko,Slovensko,Východné Slovensko,-.88,.225981,-1.105981,-.654019,-.359,-1.101,-1.107,,
+Slovakia,SK04,Východné Slovensko,2017,1504,2,SK,SK0,SK04,Slovensko,Slovensko,Východné Slovensko,-.577,.526846,-1.103846,-.0501539999999999,-.291,-.833,-.548,-1.57455,.526846
+Slovakia,SK04,Východné Slovensko,2021,1504,2,SK,SK0,SK04,Slovensko,Slovensko,Východné Slovensko,-.84,.18457,-1.02457,-.65543,-.498,-.925,-1.004,-1.52985,-1.05054
+Slovakia,SK04,Východné Slovensko,2024,1504,2,SK,SK0,SK04,Slovensko,Slovensko,Východné Slovensko,-1.074,.310259,-1.384259,-.763741,-.8110000000000001,-1.146,-1.114,-1.40605,-.505869

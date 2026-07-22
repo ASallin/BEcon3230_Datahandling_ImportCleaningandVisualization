@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 9:<br>Exploratory Data Analysis and Visualization, Part I'
 author: "Dr. Aurélien Sallin"
-date: "2024-11-29"
+date: "2025-12-04"
 echo: false
 code-line-numbers: false
 format:
@@ -80,6 +80,24 @@ include_graphics("../../img/dplyr_blocks.png")
 ```
 
 
+## OK Boomer
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../../img/genzplyr.png")
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../../img/genzplyr2.png")
+```
+:::
+::::
+
+
 # Warm up
 
 ## Mutating dataframes
@@ -149,90 +167,72 @@ Select statements that are true:
 
 ## Question on merging dataframes
 
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {style="font-size: 80%;"}
+
 Consider the two following dataframes:
 
 ```
-> df_c <- data.frame(id = c(1:3,1:3,5),
-+                    money_spent= c(1000, 2000, 6000, 1500, 3000, 5500,3000),
-+                    currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD", "CAD"),
-+                    year=c(2017,2017,2017,2018,2018,2018,2018))
-> df_c
-  id money_spent currency year
-1  1        1000      CHF 2017
-2  2        2000      CHF 2017
-3  3        6000      USD 2017
-4  1        1500      EUR 2018
-5  2        3000      CHF 2018
-6  3        5500      USD 2018
-7  5        3000      CAD 2018
-
-
-> df_mtm <- data.frame(
-+   id = rep(1:3, 2),
-+   year = rep(c(2017,2017,2017,2018,2018,2018), 2),
-+   first_name = rep(c("Anna", "Betty", "Claire"), 2),
-+   profession = rep(c("Economist", "Data Scientist",
-+                  "Data Scientist"), 2)
+> df_family_work <- data.frame(
++   year     = c(2023,2024,2023,2023,2024,2023,2024),
++   name     = c("Peter", "Peter", "Lois", "Lois", "Stewie", 
++               "Stewie", "Stewie"),
++   hours    = c(10, 5, 20, 8, 12, 15, 4)
 + )
-> 
-> df_mtm
-   id year first_name     profession
-1   1 2017       Anna      Economist
-2   2 2017      Betty Data Scientist
-3   3 2017     Claire Data Scientist
-4   1 2018       Anna      Economist
-5   2 2018      Betty Data Scientist
-6   3 2018     Claire Data Scientist
-7   1 2017       Anna      Economist
-8   2 2017      Betty Data Scientist
-9   3 2017     Claire Data Scientist
-10  1 2018       Anna      Economist
-11  2 2018      Betty Data Scientist
-12  3 2018     Claire Data Scientist
+> df_family_work
+  year   name hours
+1 2023  Peter    10
+2 2024  Peter     5
+3 2023   Lois    20
+4 2023   Lois     8
+5 2024 Stewie    12
+6 2023 Stewie    15
+7 2024 Stewie     4
+
+
+> df_family_budget <- data.frame(
++   name     = c("Peter","Peter","Lois","Stewie","Meg","Meg"),
++   year        = c(2023,2024,2023,2023,2023,2024),
++   budget_k    = c(120, 140,  90, 160, 110, 130)
++ )
+> df_family_budget
+    name year budget_k
+1  Peter 2023      120
+2  Peter 2024      140
+3   Lois 2023       90
+4 Stewie 2023      160
+5    Meg 2023      110
+6    Meg 2024      130
 ```
-
-::: {style="font-size: 60%;"}
-Now consider the following two lines of code:
-
-`lj_1 <- left_join(df_mtm, df_c, by = "id")` <br>
-`lj_2 <- left_join(df_mtm, df_c, by = c("id", "year"))`
-
-Describe what these two lines of code do. What would be the output? What is the problem with the first line?
+:::
 :::
 
-## {class="inverse" background-image="../../img/computer_snow.png" background-size="100%" background-repeat="cover"}
+::: {.column width="50%"}
 
+::: {style="font-size: 80%;"}
+Now consider the following lines of code. Describe what these lines of code do. What would be the output? What is the problem with the first line? Is `j3` similar to `j4`, and how so?
 
-# Today
-
-## 📢 Announcements
-
-:::: {.columns}
-
-::: {.column width="65%"}
-<br>
-
-- Next week (05.12.2024): <br> "**Understanding and reacting to customer dissatisfaction through data: A case study**" by Rachel Lund, Deloitte
-
-- Exam and LockDown Browser: check Sharepoint on [StudentWeb](https://universitaetstgallen.sharepoint.com/sites/PruefungenDE/SitePages/en/Digitale-Pr%C3%BCfungen-(BYOD).aspx#how-to-prepare-for-a-digital-exam) and test on Canvas
-
-- Ideas for the last course
-
-- [Course evaluation](https://go.blueja.io/qPCs7PzMjk-bmsYYjjOunw): thanks for making this course <br> a success! 🤓
-
-
-:::
-
-::: {.column width="35%"}
-
-```{r , echo=FALSE, out.width = "85%", fig.align='center',  purl=FALSE}
-include_graphics("../../img/evaluation.png")
 ```
+j1 <- left_join(df_family_work, df_family_budget, by = "name")
 
+j2 <- left_join(df_family_work, df_family_budget, by = c("name", "year"))
+
+j3 <- inner_join(df_family_work, df_family_budget, by = c("name", "year"))
+
+j4 <- left_join(df_family_work, df_family_budget, by = "name")  |> 
+  filter(year.x == year.y)  |> 
+  select(-year.y)  |> 
+  rename(year = year.x)
+```
+:::
 :::
 ::::
 
 
+
+# Today
 
 ## Goals for the next two lectures
 
@@ -250,7 +250,7 @@ include_graphics("../../img/evaluation.png")
 ## Exploratory Data Analysis (EDA) is the first step of data analysis
 
 - 🔎 Get a first understanding of your dataset.
-- Show key aspects of data by modelling, transforming, and visualizing your data. 
+- Show **key aspects of data** by modelling, transforming, and visualizing your data. 
   - Investigate the quality and reliability of your data.
   - Inform your own statistical analysis.
   - Inform audience (helps understand analytics parts).
@@ -343,67 +343,146 @@ swiss |>
 
 swiss |> 
   group_by(Catholic > 50) |> 
-  summarize(across(.cols = c(Fertility, Education),
-                   .fns = list("min" = min, "mean" = mean, "max" = max))) 
+  summarize(
+    across(
+      .cols = c(Fertility, Education),
+      .fns = list("min" = min, "mean" = mean, "median" = median, "max" = max,
+                   "n_na" = ~sum(is.na(.)))
+          )
+        ) 
 ```
 
 
 ## The problem of missing values: potential bias
 
-### Bias! 
 
-- Missing at random
-- Not missing at random
+:::: {.columns}
+
+::: {.column width="48%"}
+
+##### 1. How big is the problem?
+
+  - How many observations and variables are affected?
+  - Is missingness clustered in groups or time periods?
+
+##### 2. What do missing values represent?
+ 
+  - Not collected, not available, not recorded, not applicable?
+
+:::
+
+::: {.column width="4%"}
+<div style="border-left: 20px solid #1c6b08ff; height: 100%; margin: 0 auto;"></div>
+:::
+
+::: {.column width="48%"}
+
+##### 3. What is the missingness mechanism? 
+
+  - **MCAR**: missing completely at random / **MAR**: missing at random
+    <!-- If the probability of being missing is the same for all cases, then the data are said to be missing completely at random (MCAR). The causes of the missing data are unrelated to the data. If the probability of being missing is the same only within groups defined by the observed data, then the data are missing at random (MAR)./ -->
+  - **MNAR**: not missing at random<br><br>
+
+##### 4. What are the risks for your analysis?
+
+  - Missing values can introduce selection bias
+  - Missing values can change distributions, shrink variances, or distort associations
+
+:::
+::::
+
+<br>
+
+📖 [Flexible Imputation of Missing Data, Van Buuren, 2018](https://stefvanbuuren.name/fimd/)
+
 
 ## How to solve the problem of missing values
 
 - **Complete case analysis** (listwise deletion): remove all observations with missing values.
+
+  - `na.omit()` that thing! 💣
+  - `complete.cases(df)` gives the indices of rows that contain NAs
+  - Default behavior in many commands (for instance `mean(., na.rm = T)` or `lm()`)
+
 - **Imputation**: replace missing values with a plausible value.
 - **Multiple imputation**: create multiple datasets with plausible values.
 - **Model-based imputation**: use a model to predict missing values.
 
 
+## My applied take on missing values
+
+##### 1. **Keep in mind the source of missingness throughout your analysis**
+
+  - In my experience, missingness is rarely random. 
+  - Common causes: data entry errors, expensive/unused variables, systematic non-response<br>
+
+##### 2. **Be aware of the trade-off between data loss and bias**
+
+  - **Removing variables**: Loss of information. Usually ok, poorer analysis.
+  - **Removing observations**: Risk of sample bias, reduced statistical power. More problematic.<br>
+
+#####  3. **Choose imputation methods wisely** (or maybe, don't bother)
+  
+  - Simple imputation (mean/median): acceptable for small amounts of missing data
+  - Multiple/model-based imputation: reserve for cases where data is highly valuable
+  - Document your approach and justify complex methods
+
+
+
 ## An example of handling missing values
 
-<details> <summary>Show example</summary>
+<details> <summary>Show example (see script)</summary>
 ```{r, echo = TRUE, eval = FALSE}
 data <- data.frame(
   Gender = c("Male", "Female", "Male", "Female", "Male", "Female"),
   Participation = c(1, 0, 1, NA, 0, 1),
-  Age = c(30, NA, 35, 28, 40, NA)
+  Wage = c(30, NA, 35, 28, 40, NA)
 )
 
 data
 
-# Complete case analysis
+# Complete case analysis ---------------------------------
 complete_case <- na.omit(data)
 
-# Mean imputation for missing Age
+
+
+# Imputation ---------------------------------
+# Mean imputation for missing Wage
 mean_impute <- data |> 
-  mutate(Age = ifelse(is.na(Age), mean(Age, na.rm = TRUE), Age)) |> 
-  mutate(Participation = ifelse(is.na(Participation), mean(Participation, na.rm = TRUE), Participation)) 
-  
-# Analyze mean age by gender
-data %>%
-    group_by(Gender) %>%
-    summarize(
-      Mean_Age = mean(Age, na.rm = TRUE),
-      Participation_Rate = mean(Participation, na.rm = TRUE)
-    )
+  mutate(
+    Wage = ifelse(is.na(Wage), mean(Wage, na.rm = TRUE), Wage),
+    Participation = ifelse(
+      is.na(Participation), 
+      round(mean(Participation, na.rm = TRUE), 0), 
+      Participation
+      )
+    ) 
 
-complete_case %>%
-    group_by(Gender) %>%
-    summarize(
-      Mean_Age = mean(Age, na.rm = TRUE),
-      Participation_Rate = mean(Participation, na.rm = TRUE)
-    )
 
-mean_impute %>%
-    group_by(Gender) %>%
-    summarize(
-      Mean_Age = mean(Age, na.rm = TRUE),
-      Participation_Rate = mean(Participation, na.rm = TRUE)
-    )
+
+# Analysis ---------------------------------
+# Analyze mean Wage by gender
+data |>
+  group_by(Gender) |>
+  summarize(
+    Mean_Wage = mean(Wage, na.rm = TRUE),
+    Participation_Rate = mean(Participation, na.rm = TRUE)
+  )
+
+complete_case |>
+  group_by(Gender) |>
+  summarize(
+    Mean_Wage = mean(Wage, na.rm = TRUE),
+    Participation_Rate = mean(Participation, na.rm = TRUE)
+  )
+
+mean_impute |>
+  group_by(Gender) |>
+  summarize(
+    Mean_Wage = mean(Wage, na.rm = TRUE),
+    Participation_Rate = mean(Participation, na.rm = TRUE)
+  )
+
 ```
 </details> 
 
@@ -411,29 +490,6 @@ mean_impute %>%
 
 - `na.omit()`
 - `f(..., na.rm = TRUE)` like in `mean()`, `sum()`, etc.  
-
-
-## EDA: a challenge on summarizing categorical variables
-
-Use what we just saw in the lecture to solve the following problem 💪. You have the following dataset:
-
-```{r, eval = FALSE}
-df_p <- data.frame(id = 1:5,
-                   first_name = c("Anna", "John", "Claire", "Evan", "Brigitte"),
-                   profession = c("Economist", "Data Scientist", 
-                                  "Data Scientist", "Economist", "Economist"),
-                   salaryK = c("100 ", 120, 90, 110, 105),
-                   experienceY = c(10, 10, 10, 10, 10))
-
-df_p
-```
-
-  1. Clean the data
-  2. Summarize the data. 
-  3. Give summary statistics on the categorical variable "profession". What can you show, and how can you code it?
-  3. You are interested in quantifying the gender pay gap. Prepare the data accordingly and give an estimate of the gender pay gap.
-
-
 
 
 # Visualizing data
@@ -469,13 +525,13 @@ include_graphics("../../img/trump_vs_biden.jpg")
 
 ## Data visualization through tables and graphs
 
-#### A **chart** typically contains at least one axis, the **values are represented in terms of visual objects** (dots, lines, bars) and axes typically have scales or labels.
+##### A **chart** typically contains at least one axis, the **values are represented in terms of visual objects** (dots, lines, bars) and axes typically have scales or labels.
 
   - If we are interested in exploring, analyzing or communicating **patterns** in the data, charts are more useful than tables.
     
 <br>
 
-#### A **table** typically contains rows and columns, and the **values are represented by text**.
+##### A **table** typically contains rows and columns, and the **values are represented by text**.
 
   - If we are interested in exploring, analyzing or communicating **specific numbers** in the data, tables are more useful than graphs.
 
@@ -533,7 +589,7 @@ swiss_form
 ```
 
 
-## See also the helpful functions for formatting text-strings
+## Helpful functions for formatting text-strings
 
 -   Uppercase/lowercase: `toupper()`/`tolower()`.
 -   Remove white spaces: `trimws()`,
@@ -596,14 +652,11 @@ USArrests_summary |>
 ## Get creative with tables: other sources
 
 -   `kable()` for `html` / Markdown reports
--   `stargazer` for your LaTeX reports or for your Office Word reports
-
-## Get creative with tables: `kable()`
-
 ```{r}
 knitr::kable(head(USArrests, 5), format = "html")
 ```
 
+-   `stargazer` for your LaTeX reports or for your Office Word reports
 
 
 
@@ -614,47 +667,46 @@ knitr::kable(head(USArrests, 5), format = "html")
 
 Three main approaches:
 
-1.  The original `graphics` package ([@r_2018]; shipped with the base R installation).
+1.  The original `graphics` package shipped with the base R installation.
 
 
 ## Graphs with R
 
 Three main approaches:
 
-1.  The original `graphics` package ([@r_2018]; shipped with the base R installation).
-2.  The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
+1.  The original `graphics` package shipped with the base R installation.
+2.  The `lattice` package, an implementation of the original Bell Labs 'Trellis' system.
 
 ## Graphs with R
 
 Three main approaches:
 
-1.  The original `graphics` package ([@r_2018]; shipped with the base R installation).
-2.  The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
-3.  The *`ggplot2`* package [@wickham_2016], an implementation of Leland Wilkinson's 'Grammar of Graphics'.
+1.  The original `graphics` package shipped with the base R installation.
+2.  The `lattice` package, an implementation of the original Bell Labs 'Trellis' system.
+3.  The *`ggplot2`* package, an implementation of Leland Wilkinson's 'Grammar of Graphics'.
 
 
 ## Graphs with R
 
 Three main approaches:
 
-1.  The original `graphics` package ([@r_2018]; shipped with the base R installation).
-2.  The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
-3.  The *`ggplot2`* package [@wickham_2016], an implementation of Leland Wilkinson's 'Grammar of Graphics'.
+1.  The original `graphics` package shipped with the base R installation.
+2.  The `lattice` package, an implementation of the original Bell Labs 'Trellis' system.
+3.  The *`ggplot2`* package, an implementation of Leland Wilkinson's 'Grammar of Graphics'.
 
 `ggplot2` is so good that it has become *THE* reference [In python, use `plotnine` to apply the grammar of graphics.]
+
+## `ggplot2`
+
+```{r echo= FALSE, out.width= "25%", fig.align="center"}
+include_graphics("../../img/ggplot2.png")
+```
 
 
 ## Grammar of graphics
 
 ```{r echo= FALSE,out.width="55%", fig.align="center"}
 include_graphics("../../img/grammargraphics.jpg")
-```
-
-
-## `ggplot2`
-
-```{r echo= FALSE, out.width= "25%", fig.align="center"}
-include_graphics("../../img/ggplot2.png")
 ```
 
 
@@ -853,6 +905,29 @@ Link: https://rstudio.github.io/cheatsheets/html/data-visualization.html
 include_graphics("../../img/chart_decision_tree.png")
 ```
 
+
+
+# Two challenges
+
+## EDA: a challenge on summarizing categorical variables
+
+Use what we just saw in the lecture to solve the following problem 💪. You have the following dataset:
+
+```{r, eval = FALSE}
+df_p <- data.frame(id = 1:5,
+                   first_name = c("Anna", "John", "Claire", "Evan", "Brigitte"),
+                   profession = c("Economist", "Data Scientist", 
+                                  "Data Scientist", "Economist", "Economist"),
+                   salaryK = c("100 ", 120, 90, 110, 105),
+                   experienceY = c(10, 10, 10, 10, 10))
+
+df_p
+```
+
+  1. Clean the data
+  2. Summarize the data. 
+  3. Give summary statistics on the categorical variable "profession". What can you show, and how can you code it?
+  3. You are interested in quantifying the gender pay gap. Prepare the data accordingly and give an estimate of the gender pay gap.
 
 
 

@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Dr. Aurélien Sallin"
 subtitle: "Lecture 3: A Brief Introduction to Data and Data Processing"
-date: "03/10/2024"
+date: "09/10/2025"
 # pagetitle: Title of Talk
 echo: false
 code-line-numbers: false
@@ -20,8 +20,8 @@ format:
 highlight-style: dracula # style to highlight code. Set background color in theme
 cache: false
 # bibliography: bibliography.bib
-
 ---
+
 
 ```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE}
 options(width = 100)
@@ -29,6 +29,25 @@ library(knitr)
 library(purrr)
 # knitr::opts_chunk$set(class.source = "chunkstyle")
 ```
+
+
+## {class="inverse"}
+
+Welcome back!
+
+
+## {class="inverse"}
+
+
+<center>
+
+🐢😴 1️⃣ … 🔟 🚀🏃  
+**How was the pace last time?**
+<br>
+<span style="font-size:60%;">Any comments on what felt too fast or too slow?</span>
+
+</center>
+
 
 
 ## {class="inverse"}
@@ -41,11 +60,17 @@ Recap
 - Functions and functionals.
 - Working installation of R and first coding exercises.
 
+## Atomic Vectors are the most fundamental data structures in R
+
+```{r, echo = F, fig.cap = "Source: https://r4ds.had.co.nz/vectors.html",  out.width = "70%"}
+include_graphics("../../img/data-structures-overview.png")
+```
+
 
 ## Basic programming concepts
 
- - Values, variables
- - Vectors
+ - Atomic Vectors
+ - Operators
  - Matrices
  - Loops
  - Logical statements
@@ -56,9 +81,9 @@ Recap
 
 ## Three tutorials
 
- - Compute the mean with your own function      [-> no solution posted]{style="color:#02934a;"}
- - Evolution in action: fast and slow sloths    [-> solution in the first exercise session]{style="color:#02934a;"}
- - Append and lists                             [-> solution in the second exercise session]{style="color:#02934a;"}
+ - Compute the mean with your own function      [-> no solution posted]{.green-bold}
+ - Evolution in action: fast and slow sloths    [-> solution in the first exercise session and on Canvas]{.green-bold}
+ - Append and lists                             [-> solution in the second exercise session and on Canvas]{.green-bold}
 
 ```{r scratch, echo=FALSE, out.width = "35%", fig.align='center', purl=FALSE}
 include_graphics("../../img/fastsloth.png")
@@ -67,7 +92,58 @@ include_graphics("../../img/fastsloth.png")
 
 ## {class="inverse"}
 
+Information
+
+
+## Examination
+
+##### Examination for *HSG students in exchange*
+
+For HSG-students currently abroad on an exchange semester (not exchange students at HSG):
+
+  - Central examination (50%): as planned, with all course participants.
+  - Group project (35%): completed remotely with your group.
+  - Decentral exam (15%): oral examination during the central examination period.
+
+<br>
+
+##### Examination for *exchange students at the HSG*
+
+  - Decentral examination (50%): December 18th.
+  - Group project (35%): completed remotely with your group.
+  - Decentral exam (15%): December 11th. 
+
+
+
+## Group size for the project
+
+<br>
+<br>
+<br>
+<center>
+<br>
+
+### 5*
+
+<br>
+</center>
+
+
+<div class="footnote-pin">*No exceptions apply</div>
+
+
+## {class="inverse"}
+
 Warm-up
+
+
+## Warm-up
+
+#### Answer the three questions in this week's quiz. 
+
+  - Exam style questions.
+  - Use LLM to help you understand the answer.
+  - Ask your instructor or TA if you have questions.
 
 
 ## Warm-up
@@ -84,6 +160,7 @@ some_numbers <- c(30, 50, 60)
 1. `sum(some_numbers[c(2,3)]) == 80`
 2. `some_numbers[some_numbers %in% c(30)] == 30`
 3. `some_numbers * 5 ` will do `30*5 + 50*5 + 60*5`
+
 
 ## Warm-up
 
@@ -106,8 +183,9 @@ Which of the answers are correct?
 #### Answer 1 (recap lecture 2)
 
 ```{r, echo = TRUE, eval = FALSE}
-max(mymatrix[,2]) == 3
+max(mymatrix[, 2]) == 3
 ```
+is `TRUE`
 
 <br>
 
@@ -116,7 +194,7 @@ max(mymatrix[,2]) == 3
 ```{r, echo = TRUE, eval = FALSE}
 apply(mymatrix, MARGIN = 2, min) 
 ```
-`returns a vector of size 4.`
+returns a vector of size 4.
 :::
 
 ::::
@@ -200,8 +278,8 @@ we actually don't need to create an empty vector m. We just need to save the out
 i <- 1
 
 m <- while(i < (ncol(mymatrix) + 1)){
-append(m, min(mymatrix[,i]))
-i <- i + 1
+  append(m, min(mymatrix[,i]))
+  i <- i + 1
 }
 ```
 :::
@@ -243,9 +321,11 @@ Data Processing
 
 ## Goals for today
 
-1. Have a basic understanding of data processing;
-2. Understand binary and hexadecimal systems;
-3. Understand the importance of encoding for data projects.
+  1. Get the basics of **data processing**
+  2. Learn what **binary** and **hexadecimal** systems are
+  3. See why **encoding** is crucial for any data project
+  4. Realize that both code and data are just **text** at their core
+
 
 
 ## Numeral systems as representations 
@@ -267,7 +347,7 @@ include_graphics("../../img/cpu_blackbox.png")
 ```
 
 
-## The binary sytem
+## The binary system
 
 Microprocessors can only represent two signs (states): 
 
@@ -278,7 +358,7 @@ Microprocessors can only represent two signs (states):
 include_graphics("../../img/on_off.png")
 ```
 
-## The binary sytem
+## The binary system
 
 ```{r matrix, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
 include_graphics("../../img/matrix.gif")
@@ -385,10 +465,45 @@ Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1
 
 ## The binary counting frame
 
-- Sufficient to represent all *natural* numbers in the decimal system.
+#### An algorithm to convert an integer to binary:
+
+  1. Divide the integer by 2.
+  2. Write down the remainder (0 or 1).
+  3. Update the integer to the quotient (integer division).
+  4. Repeat until the quotient is 0.
+  5. The binary number is the sequence of remainders read from bottom to top.
+
+<br>
+
+#### 🧠 Challenge: use a `while` loop, the operators `%%` and `%/%` to implement this algorithm in R.
+
+```{r, echo=TRUE}
+#| code-fold: true
+#| code-summary: "Show the function `decimal_to_binary_integers`"
+
+decimal_to_binary_integers <- function(decimal) {
+  
+  bin <- c()
+  
+  while(decimal > 0){
+    q <- decimal %% 2
+    decimal <- decimal %/% 2
+    bin <- c(q, bin)
+  }
+  
+  bin <- paste0(bin, collapse = "")
+  return(bin)
+}
+```
+
+```{r, echo=TRUE}
+decimal_to_binary_integers(47)
+```
 
 
-## The binary counting frame
+
+
+## The binary counting frame 
 
 - Sufficient to represent all *natural* numbers in the decimal system.
 - Representing fractions is tricky
@@ -414,8 +529,8 @@ result <- x == y
 
 ::: {.column width="50%"}
 ```{r, echo = TRUE}
-print(x)       
-print(y)       
+print(x, digits = 20)       
+print(y, digits = 20)
 ```
 :::
 
@@ -423,53 +538,6 @@ print(y)
 
 
 ## Floating point numbers
-
-A function to convert a decimal number to binary:
-
-```{r, echo=TRUE}
-#| code-fold: true
-#| code-summary: "Show the function"
-
-decimal_to_binary <- function(decimal, precision = 10) {
-  
-  # Separate integer and fractional part
-  integer_part <-  decimal %/% 1 # floor(x) takes the largest integers not greater than the corresponding elements x
-  fractional_part <- decimal %% 1
-  
-  # If integer part is 0, we need to retain "0" rather than removing it
-  if (integer_part == 0) {
-    binary_integer <- "0"
-  } else {
-    # Convert the integer part to binary
-    binary_integer <- as.character(intToBits(integer_part))
-    binary_integer <- rev(binary_integer)
-    binary_integer <- sub("^0", "", binary_integer)  # Remove leading zeros only if integer part is not zero
-    binary_integer <- tail(binary_integer, 8)
-    binary_integer <- paste(binary_integer, collapse = "")
-  }
-  
-  # Convert the fractional part to binary
-  binary_fraction <- ""
-  
-  while(fractional_part > 0 && nchar(binary_fraction) < precision) { 
-    fractional_part <- fractional_part * 2
-    bit <- floor(fractional_part)
-    binary_fraction <- paste0(binary_fraction, bit)
-    fractional_part <- fractional_part - bit
-  }
-  
-  return(paste0(binary_integer, ".", binary_fraction))
-}
-```
-
-
-```{r, echo = TRUE}
-decimal_to_binary(0.1, precision = 100)
-```
-
-
-## Floating point numbers
-
 
 :::: {.columns}
 
@@ -493,25 +561,7 @@ print(result)
 ::::
 
 
-
 ## Floating point numbers
-
-:::: {.columns}
-
-```{r example2, echo=TRUE, eval=TRUE}
-# prints a more precise value of x
-print(format(x, digits = 20))  
-```
-
-
-
-```{r example3, echo=TRUE, eval=TRUE}
-# prints a more precise value of y
-print(format(y, digits = 20))  
-
-```
-
-<br>
 
 #### ...now...
 
@@ -524,29 +574,132 @@ equal <- abs(x - y) < tolerance
 print(equal)  
 ```
 
-::::
+
+## Floating point numbers
+
+#### An algorithm to convert a fractional to binary:
+
+  1. *Multiply* the fraction by 2.
+  2. Write down the integer part.
+  3. Repeat 1 using the fractional part.
+  4. Repeat until the fractional part is 0.
+
+The binary number is the sequence of remainders read from bottom to top.
 
 
+#### Challenge: use a `while` loop, the operators `%%` and `%/%` to implement this algorithm in R.
 
+```{r, echo=TRUE}
+#| code-fold: true
+#| code-summary: "Show the function `decimal_to_binary_fractional`"
 
+decimal_to_binary_fractional <- function(fraction, max_digits) {
+  
+  bin <- c()
+  count <- 0
+  
+  while(fraction > 0 & count < max_digits){
+    
+    fraction <- fraction * 2
+    int <- fraction %/% 1
+    bin <- c(bin, int)
+    fraction <- fraction - int
+    count <- count + 1
+  }
+  
+  bin <- paste0("0.", paste0(bin, collapse = ""))
+  return(bin)
+}
 
-## Decimal numbers in a computer
-
-If computers only understand `0` and `1`, how can they express decimal numbers like *139*?
-
-
-
-## Decimal numbers in a computer
-
-If computers only understand `0` and `1`, how can they express decimal numbers like *139*?
-
-- *Standards* define how symbols, colors, etc are shown on the screen.
-- Facilitates interaction with a computer (our keyboards do not only consist of a `0`/`1` switch).
-
-
-```{r binarykeyboard, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
-include_graphics("../../img/binary_keyboard.jpg")
 ```
+
+```{r, echo=TRUE}
+decimal_to_binary_fractional(1/3, max_digits = 20)
+```
+
+
+
+## Floating point numbers
+
+All in all, we can combine both functions to create a converter function `decimal_to_binary`. 
+
+
+```{r, echo=TRUE}
+#| code-fold: true
+#| code-summary: "Show the function `decimal_to_binary`"
+
+decimal_to_binary <- function(decimal, max_digits = 20) {
+  
+  # Separate integer and fractional part
+  integer_part <-  decimal %/% 1 
+  fractional_part <- decimal %% 1
+  
+  
+  # Part on integer
+  # If integer part is 0, we need to retain "0" rather than removing it
+  if (integer_part == 0) {
+    
+    bin_integer <- "0"
+    
+  } else {
+    
+    bin_integer <- c()
+    
+    while(integer_part > 0){
+      q <- integer_part %% 2
+      integer_part <- integer_part %/% 2
+      bin_integer <- c(q, bin_integer)
+    }
+    
+    bin_integer <- paste0(bin_integer, collapse = "")
+  }
+  
+  # Part on fractional
+  if (fractional_part == 0){
+    bin_fraction <- "0"
+  } else {
+    
+    count <- 0
+    bin_fraction <- c()
+    
+    while(fractional_part > 0 & count < max_digits){
+      
+      fractional_part <- fractional_part * 2
+      int <- fractional_part %/% 1
+      bin_fraction <- c(bin_fraction, int)
+      fractional_part <- fractional_part - int
+      count <- count + 1
+    }
+    
+    bin_fraction <- paste0(bin_fraction, collapse = "")
+  }
+  
+  return(paste0(bin_integer, ".", bin_fraction))
+}
+
+```
+
+
+```{r, echo = TRUE}
+decimal_to_binary(9.25, max_digits = 20)
+decimal_to_binary(1/2, max_digits = 20)
+```
+
+
+
+
+## Floating point numbers
+
+❓ How does the "computer" handle the distinction between the part of a number before and after the decimal point?
+
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754) 
+- [Not exam relevant]{.green-bold}. See [this page](https://mathcenter.oxford.emory.edu/site/cs170/ieee754/) for a step-by-step explanation.
+
+```{r IEEE, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
+# include_graphics("https://media.geeksforgeeks.org/wp-content/uploads/Single-Precision-IEEE-754-Floating-Point-Standard.jpg")
+include_graphics("../../img/IEEE754.jpg")
+```
+
 
 
 
@@ -554,6 +707,13 @@ include_graphics("../../img/binary_keyboard.jpg")
 
 ```{r clock, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
 include_graphics("../../img/binarySBB.jpg")
+```
+
+
+## Floating point numbers be like...
+
+```{r meme, echo=FALSE, out.width = "70%", fig.align='center', purl=FALSE}
+include_graphics("../../img/meme_floating.webp")
 ```
 
 
@@ -567,25 +727,31 @@ include_graphics("../../img/binarySBB.jpg")
 
 ## The hexadecimal system
 
-- *16 symbols*:
-    - `0`-`9` (used like in the decimal system)...
-    - and `A`-`F` (for the numbers 10 to 15).
+#### 16 symbols >>> base 16
 
-
-
-## The hexadecimal system
-
-- *16 symbols*:
-    - `0`-`9` (used like in the decimal system)...
-    - and `A`-`F` (for the numbers 10 to 15).
-
-- *16 symbols >>> base 16*: each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
+  - `0`-`9` (used like in the decimal system)...
+  - and `A`-`F` (for the numbers 10 to 15).
+  - each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
 
 
 
 ## The hexadecimal system
 
 What is the decimal number 139 expressed in the hexadecimal system?
+
+
+## Decimal numbers in hexadecimal
+
+
+Number  | ... | $16^2=256$  | $16^1=16$  |  $16^0=1$
+------|-----|----|----|----|
+0  =  | ... |  0 | 0  |  0
+1  =  | ... |  0 | 0  |  1
+15 =  | ... |  0 | 0  |  F
+16 =  | ... |  0 | 1  |  0
+256 = | ... |  1 | 0  |  0
+...  | ... |    |    |   
+139 = | 0  |  0 | 8  |  B
 
 
 
@@ -614,7 +780,51 @@ $$(8\times 16^1) +  (B\times 16^0) = 8B = 139.$$
 
 ## The hexadecimal system
 
-Advantages (when working with binary numbers)
+#### Challenge: update your function `decimal_to_binary_integers` to write in hexadecimal system. 
+
+```{r, echo=TRUE}
+#| code-fold: true
+#| code-summary: "Show the function `decimal_to_binary_integers`"
+
+decimal_to_hexa_integers <- function(decimal) {
+  
+  hex <- c()
+  
+  while(decimal > 0){
+    q <- decimal %% 16
+    
+    q <- if(q - 10 >= 0) {
+      q <- if(q == 10) "A" 
+      else if(q == 11) "B"
+      else if(q == 12) "C"
+      else if(q == 13) "D"
+      else if(q == 14) "E"
+      else if(q == 15) "F"
+    } else {
+      q
+    }
+    
+    decimal <- decimal %/% 16
+    hex <- c(q, hex)
+  }
+  
+  hex <- paste0(hex, collapse = "")
+  return(hex)
+}
+
+decimal <- 31
+```
+
+```{r, echo=TRUE}
+lapply(c(1, 2, 12, 48, 255, 256), decimal_to_hexa_integers)
+```
+
+
+
+
+## The hexadecimal system
+
+#### Advantages (when working with binary numbers)
 
 1. Shorter than raw binary representation
 2. Much easier to translate back and forth between binary and hexadecimal than binary and decimal.
@@ -634,16 +844,29 @@ Advantages (when working with binary numbers)
 <!-- -  $8=1000$, $B=11=1011$, thus... -->
 <!-- - `8B` (in hexadecimal) = `10001011` (`1000 1011`) in binary. -->
 
+
+
 ## {class="inverse"}
 
 Character Encoding
 
 
 ## Computers and text
+
 How can a computer understand text if it only understands `0`s and `1`s?
 
-```{r keyboard, echo=FALSE, out.width = "90%", fig.align='center', fig.cap="A modified version of South Korean Dubeolsik (two-set type) for old hangul letters. (Illustration by Yes0song 2010,  [Creative Commons Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en))", purl=FALSE}
-include_graphics("../../img/keyboard.png")
+
+
+## Computers and text
+
+How can a computer understand text if it only understands `0`s and `1`s?
+
+  - **Standards** define how `0`s and `1`s correspond to specific letters/characters of different human languages.
+  - These standards are usually called **character encodings**.
+
+
+```{r binarykeyboard, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
+include_graphics("../../img/binary_keyboard.jpg")
 ```
 
 
@@ -651,18 +874,10 @@ include_graphics("../../img/keyboard.png")
 ## Computers and text
 How can a computer understand text if it only understands `0`s and `1`s?
 
-- *Standards* define how `0`s and `1`s correspond to specific letters/characters of different human languages.
-- These standards are usually called *character encodings*.
-- Coded character sets that map unique numbers (in the end in binary coded values) to each character in the set.
-
-
-## Computers and text
-How can a computer understand text if it only understands `0`s and `1`s?
-
-- *Standards* define how `0`s and `1`s correspond to specific letters/characters of different human languages.
-- These standards are usually called *character encodings*.
-- Coded character sets that map unique numbers (in the end in binary coded values) to each character in the set.
-- For example, ASCII (American Standard Code for Information Interchange), now superseded by **utf-8** (Unicode).
+  - **Standards** define how `0`s and `1`s correspond to specific letters/characters of different human languages.
+  - These standards are usually called **character encodings**.
+  - Coded character sets that map unique numbers (in the end in binary coded values) to each character in the set.
+  - For example, **ASCII** (American Standard Code for Information Interchange), now superseded by **utf-8** (Unicode).
 
 ```{r ascii, echo=FALSE, out.width = "30%", fig.align='center', fig.cap='ASCII logo. (public domain).', purl=FALSE}
 include_graphics("../../img/ascii.gif")
@@ -683,11 +898,11 @@ Binary  | Hexadecimal | Decimal | Character
 
 ## Character encodings: why should we care?
  
- - In practice, Data Science means handling digital data of all formats and shapes.
+ - In practice, working with data means handling digital data of all formats and shapes.
     - Diverse sources.
     - Different standards.
     - Different languages (Japanese vs English).
-    - *read*/*store* data.
+    - read and store data.
     
  - At the lowest level, this means understanding/handling encodings.
 
@@ -702,8 +917,8 @@ Computer Code and Text-Files
 
 Two core themes of this course:
 
-  1. How can *data* be *stored* digitally and be *read* by/imported to a computer?
-  2. How can we give instructions to a computer by writing *computer code*?
+  1. How can **data** be **stored** digitally and be **read** by/imported to a computer?
+  2. How can we give instructions to a computer by writing **computer code**?
 
 
 
@@ -711,32 +926,213 @@ Two core themes of this course:
 
 Two core themes of this course:
 
-  1. How can *data* be *stored* digitally and be *read* by/imported to a computer?
-  2. How can we give instructions to a computer by writing *computer code*?
+  1. How can **data** be **stored** digitally and be **read** by/imported to a computer?
+  2. How can we give instructions to a computer by writing **computer code**?
 
-In both of these domains we mainly work with one simple type of document: [*text files*]{style="color:#02934a;"}.
+In both of these domains we mainly work with one simple type of document: [**text files**]{.green-bold}.
+
 
 
 ## Text-files
 
- - A *collection of characters* stored in a designated part of the computer memory/hard drive.
+::: {.incremental}
+ - A **collection of characters** stored in a designated part of the computer memory/hard drive.
  - An easy-to-read representation of the underlying information (`0`s and `1`s)!
-
-
-
-## Text-files
-
- - A *collection of characters* stored in a designated part of the computer memory/hard drive.
- - An easy to read representation of the underlying information (`0`s and `1`s)!
  - Common device to store data:
     - Structured data (tables)
     - Semi-structured data (websites)
     - Unstructured data (plain text)
  - Typical device to store computer code.
+:::
 
 
 
-## Text-editors: RStudio, Atom, VsCode
+
+## Unstructured data in text files
+
+- Store ["Hello World"]{.green-bold} in `helloworld.txt`.
+  - Allocation of a block of computer memory containing "Hello World!".
+  - Simply a sequence of `0`s and `1`s...
+  - `.txt` indicates to the operating system which program to use when opening this file.
+  
+- Encoding and format tell the computer how to interpret the `0`s and `1`s.
+
+
+
+## Inspect a text file
+
+Interpreting `0`s and `1`s as text... using `bash` (scripting language to interact with the operating system):
+
+```{bash, eval=FALSE, echo = TRUE}
+cat helloworld.txt; echo
+```
+
+```{bash, echo=FALSE}
+cat ../../data/helloworld.txt; echo
+```
+
+
+
+## Inspect a text file
+
+Directly looking at the `0`s and `1`s...
+
+```{bash, eval = FALSE, echo = TRUE}
+xxd -b helloworld.txt
+```
+
+```{bash, echo = FALSE, eval = FALSE}
+xxd -b ../../data/helloworld.txt
+```
+
+```{}
+00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello 
+00000006: 01010111 01101111 01110010 01101100 01100100 00100001  World!
+```
+
+
+```{r, eval=FALSE, echo = FALSE}
+# Inspecting a text file as binary in R
+file_content <- readBin("../../data/helloworld.txt", 
+                        what = "raw",
+                        n = 12)
+
+binary_content <- paste(as.character(sapply(file_content, function(x) paste0(as.integer(rawToBits(x)), collapse = ""))), collapse = " ")
+
+binary_content
+```
+
+
+## Inspect a text file
+
+Similarly we can display the content in hexadecimal values:
+
+
+```{bash, eval = FALSE, echo = TRUE}
+xxd  data/helloworld.txt
+```
+
+```{bash, echo = FALSE, eval = FALSE}
+xxd  ../../data/helloworld.txt
+```
+
+```{}
+00000000: 4865 6c6c 6f20 576f 726c 6421            Hello World!
+```
+
+
+## Encoding issues
+
+#### What is the problem?
+
+```{bash, eval=FALSE, echo = TRUE}
+cat hastamanana.txt; echo
+```
+
+```{bash, eval=FALSE}
+cat ../../data/hastamanana.txt; echo
+```
+
+```{}
+## Hasta Ma?ana!
+```
+
+
+
+## Encoding issues
+
+<br> 
+
+```{}
+00000000: 4861 7374 6120 4d61 f161 6e61 210d 0a    Hasta Ma.ana!..
+```
+
+
+#### Inspect the encoding
+
+```{bash, eval = FALSE, echo = TRUE}
+file -b hastamanana.txt
+```
+
+```{bash, echo = FALSE}
+file -b ../../data/hastamanana.txt
+```
+
+`f1` is the problematic byte. [It corresponds to the "ñ" in ISO-8859.](https://cs.stanford.edu/people/miles/iso8859.html) and is the code `U+00F1` in unicode (Latin-1 supplement). In UTF-8, f1 is not a valid character by itself, [as UTF-8 expects two bytes (c3 b1)](https://www.utf8-chartable.de/).
+
+
+
+#### Read the file again, this time with the correct encoding
+
+```{bash, eval = FALSE, echo = TRUE}
+iconv -f iso-8859-1 -t utf-8 hastamanana.txt | cat
+```
+
+```{bash, echo = FALSE}
+iconv -f iso-8859-1 -t utf-8 ../../data/hastamanana.txt | cat
+```
+
+
+## UTF encodings
+  - 'Universal' standards.
+  - UTF-8 to UTF-16 to UTF-32
+  - Contain broad variety of symbols (various languages).
+  - Less problems with newer data sources...
+
+
+## Take-away message
+  - **Recognize an encoding issue when it occurs!**
+  - Problem occurs right at the beginning of the *data pipeline*!
+    - Rest of pipeline affected...
+    - ... cleaning of data fails ...
+    - ... analysis suffers. 😭
+
+
+
+<!-- # Encoding Issues -->
+
+<!-- ## Recognize the problem -->
+
+<!-- ```{r} -->
+<!-- FILE <- "../../data/hastamanana.txt" -->
+<!-- hasta <- readLines(FILE) -->
+<!-- hasta -->
+<!-- ``` -->
+
+<!-- (`readLines()` simply reads the content of a text file line by line.) -->
+
+<!-- ## Guess encoding -->
+
+<!-- - Recall that there are no meta data in csv or plain text file informing you about the encoding. -->
+<!-- - If no other information is available, we need to make an educated guess. -->
+<!-- - `readr` provides a function that does just that: `guess_encoding()` -->
+
+<!-- ```{r} -->
+<!-- readr::guess_encoding(FILE) -->
+<!-- ``` -->
+
+
+<!-- ## Handling encoding issues -->
+
+<!-- - `inconv()`: convert a character vector `from` one encoding `to` another encoding. -->
+<!-- - Use the guessed encoding for the `from` argument -->
+
+<!-- ```{r} -->
+<!-- iconv(hasta, from = "ISO-8859-2", to = "UTF-8") -->
+<!-- ``` -->
+
+
+<!-- ```{r} -->
+<!-- iconv(hasta, from = "ISO-8859-1", to = "UTF-8") -->
+<!-- ``` -->
+
+
+
+
+
+
+
+## A side note on text editors: RStudio, Atom, VsCode
 
 <p float="left">
   <img src="../../img/rstudio.png" width="20%" />
@@ -755,128 +1151,20 @@ Install VScode from [here](https://code.visualstudio.com/)!
 Install Sublime text from [here](https://www.sublimetext.com/)!
 
 
+
+
 ## {class="inverse"}
 
 Data Processing Basics
 
 
-## The black box of data processing
+## Components of a standard computing environment
 
 ```{r blackbox2, echo=FALSE, out.width = "75%", fig.align='center', fig.cap= "The 'blackbox' of data processing.", purl=FALSE}
 include_graphics("../../img/cpu_blackbox.png")
 ```
 
-
-
-## Components of a standard computing environment
-
-&nbsp;
-
-```{r components, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Basic components of a standard computing environment.", purl=FALSE}
-include_graphics("../../img/script-hardware.jpg")
-```
-
-
-## Central Processing Unit
-
-&nbsp;
-
-```{r cpu2, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
-include_graphics("../../img/cpu.jpg")
-```
-
-- R runs on one *CPU core* by default.
-- All modern CPUs have multiple cores. 
-- *Advanced*: explore parallelization with `plyr`, `doParallel()` and `future`
-
-
-
-## Random Access Memory
-
-&nbsp;
-
-```{r ram2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
-include_graphics("../../img/ram.jpg")
-```
-
-
-
-## Random Access Memory
-
-- Try to create a matrix with $10^8 \times 10^8$ elements:
-
-<br>
-
-```{r, error=TRUE, echo=TRUE}
-large_matrix <- matrix(1, nrow=1e8, ncol=1e8)
-```
-
-<br>
-
-- 💣💥💣💥💣💥
-
-- Assuming each number is stored using 8 bytes, this matrix would require $8\times10^16$ bytes of RAM.
-
-
-## Units of information/data storage
-
-- [*bit*]{style="color:#02934a;"} (abbrev 'b'): smallest unit of information in computing: `0` or `1`. 
-- To store this number, we require a capacity of 8 bits or one [*byte*]{style="color:#02934a;"} (1 byte = 8 bits; abbrev. 'B'). 
-- Historically, one byte encoded a single character of text (ASCII). 4 bytes (32 bits) are called a [*word*]{style="color:#02934a;"}. 
-
-```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
-include_graphics("../../img/bitbyte.jpg")
-```
-
-
-
-## Bigger units for storage capacity 
-
- - 1 kilobyte (KB) = $1000^1$ bytes
- - 1 megabyte (MB) = $1000^2$ bytes
- - 1 gigabyte (GB) = $1000^3$ bytes
- 
- <!-- - `1 \text{ kilobyte (KB)} = 1000^{1} \text{ bytes}` -->
- <!-- - `1 \text{ megabyte (MB)} = 1000^{2} \text{ bytes}` -->
- <!-- - `1 \text{ gigabyte (GB)} = 1000^{3} \text{ bytes}` -->
- 
-<!-- ## Common units for data transfer (over a network) -->
-
-<!--  - $1 \text{ kilobit per second (kbit/s)} = 1000^{1} \text{ bit/s}$ -->
-<!--  - $1 \text{ megabit per second (mbit/s)} = 1000^{2} \text{ bit/s}$ -->
-<!--  - $1 \text{ gigabit per second (gbit/s)} = 1000^{3} \text{ bit/s}$ -->
-
-
-
-## Mass storage: hard drive
-
-&nbsp;
-
-```{r harddrive2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
-include_graphics("../../img/harddrive.jpg")
-```
-
-
-
-## Network: Internet, cloud, etc.
-
-
-```{r www, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
-include_graphics("../../img/www.png")
-```
-
-
-
-## Putting the pieces together...
-
-Recall the initial example (survey) of this course.
-
-  1. Access a website (over the Internet), use keyboard to enter data into a website (a Google sheet in that case). 
-
-  2. R program accesses the data of the Google sheet (again over the Internet), downloads the data, and loads it into RAM.
-
-  3. Data processing: produce output (in the form of statistics/plots), output on screen.
-
+[Reading: please read the document "Data Processing Basics" published on Canvas (in materials/handout). This is exam relevant!]{.green-bold} 
 
 
 ##

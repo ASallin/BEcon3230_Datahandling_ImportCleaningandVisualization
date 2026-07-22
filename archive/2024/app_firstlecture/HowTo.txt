@@ -1,0 +1,63 @@
+How to create an app using Shiny, Google Docs and Flexboard
+
+1. Prepare the shiny app
+
+Sources: https://deanattali.com/2015/06/14/mimicking-google-form-shiny/
+https://deanattali.com/blog/shiny-persistent-data-storage/#gsheets
+
+Use the library(googlesheets4) and authenticate with Google Sheets (run once interactively if needed). The authentication comes
+from
+
+To create a Shiny app that collects input from participants and saves it to a Google Sheet, you'll need to follow these steps:
+
+    a. Set Up a Google Sheet:
+    Create a new Google Sheet where the participant input will be saved.
+    Share the Google Sheet with the appropriate permissions (make sure your API service account or the authenticated user has permission to edit the sheet).
+    Install Required R Packages: You'll need shiny, googlesheets4, and possibly shinyjs if you want to enhance the user interface.
+
+    b. Authenticate with Google Sheets
+    You can either authenticate interactively with your Google account or use a service account if deploying the app in a server environment.
+
+    -> I created a service account for this google sheet.
+    I followed https://support.google.com/a/answer/7378726?hl=en
+
+    For service account authentication:
+
+        Create a service account in the Google Cloud Console.
+            Steps to Enable Google Sheets API:
+                Go to the Google Cloud Console.
+                Select your project.
+                Navigate to APIs & Services → Library.
+                Search for "Google Sheets API".
+                Enable the API for your project.
+        Download the service account JSON key.
+        Use gs4_auth(path = "path/to/your-service-account-key.json") to authenticate.
+
+        Ensure that the Google Sheet is shared with either:
+        Your Google account (if authenticating interactively).
+        Your service account's email address (if using a service account for deployment).
+
+    c. Create the Shiny App:
+
+
+Example in the app
+gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets",
+         path = "datahandlingform-e3748c92a518.json")
+
+# Define the Google Sheet URL (replace with your actual sheet URL)
+sheet_url <- "https://docs.google.com/spreadsheets/d/13jZFfQHdqN5fI4PqGZZCvHGSgPbDPKBhdSmQ4WClyME/edit?gid=0#gid=0"
+
+
+loadData <- function() {
+  gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets",
+           path = "datahandlingform-e3748c92a518.json")
+  ss <- "https://docs.google.com/spreadsheets/d/13jZFfQHdqN5fI4PqGZZCvHGSgPbDPKBhdSmQ4WClyME/edit?gid=0#gid=0"
+  read_sheet(ss)
+}
+
+
+2. Push the shiny app on the shiny server
+https://shiny.posit.co/r/getstarted/shiny-basics/lesson7/
+https://statsandr.com/blog/how-to-publish-shiny-app-example-with-shinyapps-io/
+
+Publish from R Studio, in the publish button.

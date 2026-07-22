@@ -1,0 +1,12 @@
+name: FormDataHandling
+title: FormDataHandling
+username: datahandling
+account: datahandling
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15481128
+bundleId: 10917403
+url: https://datahandling.shinyapps.io/FormDataHandling/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

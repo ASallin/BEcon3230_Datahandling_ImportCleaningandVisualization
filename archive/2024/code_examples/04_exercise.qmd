@@ -1,0 +1,344 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: "Exercise to lecture 4"
+author: "Dr. Aurélien Sallin"
+params:
+  show_code: true  # Toggle this to switch between student and solution versions
+format:
+  html:
+    theme: ../../style/hsgtheme.scss
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+highlight-style: dracula
+---
+
+```{bash, eval = FALSE, echo = FALSE}
+# Render the student version (code hidden)
+quarto render 04_exercise.qmd -P show_code=false -o 04_exercise_questions.html
+
+# Render the solution version (code visible)
+quarto render 04_exercise.qmd -P show_code=true -o 04_exercise_solutions.html
+
+# Render the student version
+# system("quarto render 04_exercise.qmd -P show_code=false -o 04_exercise_questions.html")
+# system("quarto render 04_exercise.qmd -P show_code=true -o 04_exercise_solutions.html")
+
+```
+
+
+
+
+```{r setup, include=FALSE}
+# knitr::opts_chunk$set(echo = FALSE)
+# knitr::opts_chunk$set(results = "hide")
+```
+
+
+# Working with a data frame
+
+```{r data creation, include = FALSE, eval= FALSE, echo=params$show_code}
+# Data Creation (to be executed by the instructor)
+set.seed(1234) # For reproducibility
+
+firms <- c("FirmA", "FirmB", "FirmC", "FirmD", "FirmE")
+years <- 2017:2022
+
+# Generate sample data
+data <- expand.grid(Firm = firms, Year = years)
+data$Revenue <- sample(1000:5000, nrow(data), replace = TRUE)
+data$Profit <- data$Revenue * runif(nrow(data), 0.1, 0.5)
+data$Category <- factor(sample(c("Tech", "Health", "Finance"), nrow(data), replace = TRUE))
+data$Revenue[10] <- "1933\xF6"
+Encoding(data$Revenue) <- "latin1"
+
+# Write data to .txt with ":" as separator
+write.table(data, "financial_data.txt", row.names = FALSE, sep = ":",  fileEncoding = "latin1")
+
+```
+
+## Set up your script
+
+Set up your `R` Script.
+
+```{r eval = TRUE, echo = TRUE}
+#######################################################################
+# Data Handling Course: Example Script for Data Gathering and Import
+#
+# Imports data from ...
+# Input: import c to data sources (data comes in ... format)
+# Output: cleaned data as CSV
+# 
+# A. Sallin, St. Gallen, 2024
+#######################################################################
+
+# SET UP --------------
+# load packages
+library(readr)
+library(stringi)
+
+
+# SET PATH ------------------
+# financial_data <- read.csv("Path/to/my/file/financial_data.txt")
+
+
+```
+
+
+
+## Import data
+Have a look at the file `financial_data.txt` using your favorite text editor. What do you notice? 
+
+Import the table using the `read.csv()` function in your environment. Make sure you have the right path to access the .txt document. What does this parser do? Explore the data.frame. What is its structure? What are its dimensions?
+
+```{r eval = FALSE, error=FALSE, echo=params$show_code}
+
+# IMPORT RAW DATA FROM CSVs -------------
+
+# From simply opening the .txt data from the "Files" Panel on the left side
+# in RStudio, we can see that the file has a structure with ":" separated
+# value, has 5 columns and should have 30 rows. 
+
+# However, when importing the file with "read_csv" or "read.csv", we notice
+# that the output is not correct: R does not understand that the value separator
+# is a ":" and not a comma. For this reason, the file is not correctly read. 
+financial_data <- read.csv("financial_data.txt")
+# financial_data <- read_csv("financial_data.txt")
+
+# To indicate that the value separator is actually a ":", we need to tell R 
+# to use ":" as a separator.  This can be done using the option "sep = ":"" with 
+# read.csv().
+# With read_csv() and the readr package, we need to use the function read_delim()
+# instead.
+financial_data <- read.csv("financial_data.txt", sep = ":")
+# financial_data <- read_delim("financial_data.txt", delim = ":")
+
+```
+
+```{r warning=FALSE, eval = TRUE, output = FALSE, echo=params$show_code}
+# When using read.csv(), we notice the following warning:
+# "Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec,  : 
+# invalid multibyte string at '<f6>'"
+# This means there is an encoding problem in the file. A visual exploration shows
+# us that the encoding problem is in row 10, col 3.
+
+# We have the character \xF6. This could be any encoding. In this case, I am guessing
+# the encoding by trying different things. The function "string::stri_enc_detect()", upon
+# which "guess_encoding()" is built, does not help me much. 
+# I did a Google search and realized it is likely to be Latin-1, which is "ISO-8859-1" and 
+# ISO-8859- family
+stringi::stri_enc_detect("\xF6")
+iconv("\xF6", from = "ISO-8859-1", to = "UTF-8")
+iconv("\xF6", from = "ISO-8859-2", to = "UTF-8")
+iconv("\xF6", from = "ISO-8859-2", to = "UTF-8")
+
+# This seems to be OK. Therefore, I can specify Latin-1 in my encoding.
+financial_data <- read.csv("financial_data.txt", 
+                           sep = ":",
+                           fileEncoding = "ISO-8859-1")
+```
+
+
+
+
+```{r eval = TRUE, echo=params$show_code, output = FALSE}
+# The data looks now like what I expect... except for the variable "Revenue", which
+# is a character. I remove the special ö character from the encoding issue and 
+# coerce 
+head(financial_data, 10)
+str(financial_data)
+
+financial_data[10, 3] <- 1933
+
+# Coerce to numeric
+financial_data$Revenue <- as.numeric(financial_data$Revenue)
+
+# Another way of writing the column selection
+financial_data[10, "Revenue"]
+financial_data[10, "Revenue"] <- 1933
+
+financial_data[, "Revenue"] <- as.numeric(financial_data[, "Revenue"])
+
+# The data is now ready. You are ready to compute the rest of the exercise.
+```
+
+
+<br>
+
+## Summary statistics of your data
+Compute the summary statistics for each variable using the `summary()` command. What does this command give you? What do you notice? Make the necessary changes.
+
+```{r eval = FALSE, echo = TRUE}
+# Check summary again
+summary(financial_data)
+```
+
+
+<br>
+
+## Variable creation
+
+Create a new variable "costs", which is the revenue - profit. [There are many ways to create a variable in a data frame. Here, use the `$` index.]
+
+```{r, eval = TRUE, echo=params$show_code}
+financial_data$costs <- financial_data$Revenue - financial_data$Profit
+```
+
+<br>
+
+## Factor variable
+
+Which variable is (should be) a factor? Recode this variable as a factor. What are the levels? Should we have the variable `Firm` as a factor?
+
+```{r, eval = FALSE, echo=params$show_code}
+financial_data$Category <- as.factor(financial_data$Category)
+
+levels(financial_data$Category)
+```
+
+<br>
+
+## Nests  👻
+Split your data using the factor variable into three data frames that are contained in a list. Compute the mean profit for each data frame. 
+
+- Hint: use the function `split`. 
+- Hint: use a `for-loop` over each list element to compute the mean
+
+```{r, eval = FALSE, echo=params$show_code}
+list_financial_data <- split(financial_data, financial_data$Category)
+
+for (i in 1:length(list_financial_data)){
+  print(mean(list_financial_data[[i]]$Profit))
+}
+
+# Or, using lapply 
+lapply(list_financial_data, function(x) mean(x$Profit))
+```
+
+
+<br>
+
+## Functionals - `map`
+
+Do the same as the exercise above using the `map` function. Install the packages `tidyr`, `dplyr`, and `purrr`.
+
+```{r message=FALSE, warning=FALSE,  eval = FALSE, echo=params$show_code}
+# Or (advanced!) with a nested tibble and map 
+library(tidyr)
+library(dplyr)
+library(purrr)
+
+tibble_financial_data <- financial_data |>
+  group_by(Category) |>
+  nest()
+
+map(tibble_financial_data$data, ~mean(.$Profit))
+
+```
+
+
+<!-- <br> -->
+
+<!-- <br> -->
+
+<!-- # An exercise on arrays -->
+
+<!-- ## Using the code below, create an array containing three cities and temperatures -->
+
+<!-- Make sure you understand each line of code. This is exam relevant. Note: the function `rnorm(x)` randomly draws `x` values from a normal distribution with mean 0 and sd 1. We use it here to add some "random" variation in our simulated temperatures.  -->
+
+<!-- ```{r} -->
+<!-- # Monthly average temperatures for the years 2021 and 2022 (fake data!) -->
+
+<!-- St_Gallen <- c(2, 2, 5, 10, 13, 21, 22, 25, 18, 14, 6, 2) -->
+<!-- Lausanne  <- c(5, 6, 6, 13, 16, 23, 24, 25, 19, 16, 8, 3) -->
+<!-- Basel     <- c(2, 3, 3, 10, 15, 22, 22, 24, 19, 16, 8, 3) -->
+
+<!-- # Creating the Array -->
+<!-- data_cities <- c(St_Gallen, Lausanne, Basel,  -->
+<!--                  St_Gallen + 0.25*rnorm(12), Lausanne + 0.35*rnorm(12), Basel + 0.2*rnorm(12)) -->
+
+<!-- city_array <- array(data_cities,  -->
+<!--                     dim = c(12, 3, 2),  -->
+<!--                     dimnames = list(months = 1:12,  -->
+<!--                                     cities = c("St_Gallen", "Lausanne", "Basel"),  -->
+<!--                                     year = c(2021, 2022)) -->
+<!--                     ) -->
+<!-- ``` -->
+
+
+<!-- ## Answer the following questions: -->
+
+<!--   1. Compute the average temperature for each city for each year  -->
+
+<!--   2. Compute the average temperature for each city across years. -->
+
+<!--   3. Determine which city had the highest average temperature in July 2022. -->
+
+<!--   3. Find out the month when St. Gallen had the lowest temperature. -->
+
+<!--   4. Compute the overall average temperature for all cities for the year. -->
+
+
+<!-- ```{r} -->
+<!-- # Average temperature for each city in 2021 and 2022 -->
+<!-- # St. Gallen -->
+<!-- for (i in 1:2) print(mean(city_array[, 1, i])) -->
+
+<!-- # Lausanne -->
+<!-- for (i in 1:2) print(mean(city_array[, 2, i])) -->
+
+<!-- # Basel -->
+<!-- for (i in 1:2) print(mean(city_array[, 3, i])) -->
+
+<!-- # Alternatives -->
+<!-- for (i in 1:3){ -->
+<!--   for (j in 1:2){ -->
+<!--     print(mean(city_array[, i, j])) -->
+<!--   } -->
+<!-- } -->
+<!-- ``` -->
+
+
+<!-- ```{r} -->
+<!-- # Compute the average temperature for each city across years. -->
+
+<!-- # St. Gallen -->
+<!-- mean(city_array[, 1, ]) -->
+
+<!-- # Lausanne -->
+<!-- mean(city_array[, 2, ]) -->
+
+<!-- # Basel -->
+<!-- mean(city_array[, 3, ]) -->
+
+
+<!-- # Or (not exam relevant) -->
+<!-- apply(city_array, MARGIN = 2, mean) -->
+
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- # Determine which city had the highest average temperature in July 2022. -->
+
+<!-- ``` -->
+
+
+<!-- print(avg_temps) -->
+
+<!-- # b) City with highest temperature in July -->
+<!-- july_temps <- city_array[7, , 1] -->
+<!-- max_city <- names(which.max(july_temps)) -->
+<!-- cat("City with highest avg temperature in July:", max_city, "\n") -->
+
+<!-- # c) Month when New York had the lowest temperature -->
+<!-- ny_temps <- city_array[, 1, 1] -->
+<!-- min_month <- which.min(ny_temps) -->
+<!-- cat("Month when New York had the lowest temperature:", min_month, "\n") -->
+
+<!-- # d) Overall average temperature -->
+<!-- overall_avg <- mean(city_array) -->
+<!-- cat("Overall average temperature for all cities:", overall_avg, "\n") -->
+
+<!-- ``` -->
+

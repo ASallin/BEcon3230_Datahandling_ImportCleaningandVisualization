@@ -1,0 +1,268 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: "Lecture 3: Data Processing Basics"
+author: "Dr. Aurélien Sallin"
+params:
+  show_code: true  # Toggle this to switch between student and solution versions
+format:
+  html:
+    theme: ../../style/hsgtheme.scss
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+highlight-style: dracula
+---
+
+```{r}
+#| label: setup
+#| include: false
+options(width = 100)
+knitr::opts_chunk$set(results = "hold")
+library(knitr)
+library(purrr)
+```
+
+
+# Handout Lecture 3
+
+In this applied session, we will learn two important lessons: 
+
+  1. All data and commands are stored as text files.
+  2. Encoding matters.
+
+
+## Encoding matters
+
+- Store ["Hello World"]{.green-bold} in `helloworld.txt`.
+  - Allocation of a block of computer memory containing "Hello World!".
+  - Simply a sequence of `0`s and `1`s...
+  - `.txt` indicates to the operating system which program to use when opening this file.
+  
+- Encoding and format tell the computer how to interpret the `0`s and `1`s.
+
+
+You can store the file either using your favorite text editor, or using the command line from your terminal (Linux/Mac) or command prompt (Windows). The terminal can be also used from RStudio in Terminal (next to the console). Note that your path should be correct!
+
+```{bash, eval=FALSE, echo = TRUE}
+echo "Hello World!" > helloworld.txt
+
+# Given your path
+# echo "Hello World!" > C:/Users/aurel/OneDrive/Bureau/helloworld.txt
+```
+
+
+## Inspect a text file
+
+Interpreting `0`s and `1`s as text... using `bash` (scripting language to interact with the operating system):
+
+```{bash, eval=FALSE, echo = TRUE}
+cat helloworld.txt; echo
+
+# Given your path
+# cat C:/Users/aurel/OneDrive/Bureau/helloworld.txt; echo
+```
+
+```{bash, echo=FALSE}
+cat ../../data/helloworld.txt; echo
+```
+
+In `R`, use the `readLines()` function:
+
+```{r, eval=TRUE, echo = TRUE}
+readLines("helloworld.txt")
+```
+
+Directly looking at the `0`s and `1`s... (this works only from the terminal, not from the R console):
+
+```{bash, eval = FALSE}
+xxd -b helloworld.txt
+
+# Given your path, in the terminal
+# xxd -b C:/Users/aurel/OneDrive/Bureau/helloworld.txt
+```
+
+```{bash, echo = FALSE, eval = FALSE}
+xxd -b ../../data/helloworld.txt
+```
+
+```{}
+00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello 
+00000006: 01010111 01101111 01110010 01101100 01100100 00100001  World!
+```
+
+  - `xxd` is a hex dump tool. It displays the raw bytes of a file in a readable format.
+  - The option `-b` tells it to show those bytes in binary instead of the default hexadecimal.
+
+
+```{r, eval=FALSE, echo = F}
+# Inspecting a text file as binary in R
+file_content <- readBin("../../data/helloworld.txt", 
+                        what = "raw",
+                        n = 12)
+
+binary_content <- paste(as.character(
+  sapply(file_content, function(x) {
+    paste0(as.integer(rawToBits(x)), collapse = "")
+  })), 
+  collapse = " ")
+
+binary_content
+```
+
+
+Similarly we can display the content in hexadecimal values:
+
+
+```{bash, eval = FALSE, echo = TRUE}
+xxd  data/helloworld.txt
+```
+
+```{bash, echo = FALSE, eval = FALSE}
+xxd  ../../data/helloworld.txt
+```
+
+```{}
+00000000: 4865 6c6c 6f20 576f 726c 6421            Hello World!
+```
+
+For instance, we see that `6c6c` is two times the 108 in decimal. This is Latin Small Letter L in unicode. It is the code point `U+006C` in unicode. In utf-8, this is translated as a single byte `0x6C`, or in binary `01101100`.
+
+<br>
+
+
+## Encoding issues
+
+Import the file `hastamanana.txt` from Canvas. Read it with your text editor. Then check it with `cat` from the terminal or command prompt.
+
+
+### What is the problem?
+
+```{bash, eval=FALSE, echo = TRUE}
+cat hastamanana.txt; echo
+```
+
+```{bash, eval=FALSE}
+cat ../../data/hastamanana.txt; echo
+```
+
+```{}
+## Hasta Ma?ana!
+```
+
+
+Using `xxd` to inspect the file in hex, we see that the problem can likely be found in the hex `f1`, which is the ñ. `f1` is the problematic byte. [It corresponds to the "ñ" in ISO-8859.](https://cs.stanford.edu/people/miles/iso8859.html) and is the code `U+00F1` in unicode (Latin-1 supplement). In UTF-8, f1 is not a valid character by itself, [as UTF-8 expects two bytes (c3 b1)](https://www.utf8-chartable.de/).
+
+### Inspect the encoding
+
+```{bash, eval = FALSE, echo = TRUE}
+file -b hastamanana.txt
+```
+
+```{bash, echo = FALSE, eval = T}
+file -b ../../data/hastamanana.txt
+```
+It gives "ISO-8859 text, with CRLF line terminators". This means that the file is encoded in ISO-8859-1 (also known as Latin-1), which is a character encoding standard. 
+
+
+### Read the file again, this time with the correct encoding
+
+```{bash, eval = FALSE, echo = TRUE}
+iconv -f iso-8859-1 -t utf-8 hastamanana.txt | cat
+```
+
+```{bash, echo = FALSE}
+iconv -f iso-8859-1 -t utf-8 ../../data/hastamanana.txt | cat
+```
+
+
+
+
+<br>
+
+
+## All we see on the Internet is, ultimately, text files.
+
+When you access a website, you are downloading a text file (the HTML source code of the webpage). When you upload a picture on Instagram, you are uploading a text file (the binary encoding of the image). When you send an email, you are sending a text file (the email content encoded in a specific format).
+
+In this short illustration, we will see how to import an html content from the web. This will serve as an example to get an idea about a computing environment and the interaction between man and computer.
+
+<br>
+
+### Roadmap
+
+  1. Access a website (over the Internet), use keyboard to enter data into a website. 
+
+  2. R program accesses the data of the Google sheet (again over the Internet), downloads the data, and loads it into RAM.
+
+  3. Data processing: produce output (in the form of statistics/plots), output on screen.
+  
+  
+<br>
+
+## Load necessary packages
+
+We will need the packages `httr` and `pryr`. `httr` is used for working with URLs and HTTP. `pryr` is used to inspect the size of objects in RAM.
+
+```{r warning=FALSE}
+library(httr)
+library(pryr)
+```
+
+We want to load the website "https://www.economist.com/". We use the `GET()` function from the package `httr` to save the website in our environment. We can access the structure of the object with the function `str()` for "structure".
+
+```{r}
+economist <- GET("https://www.economist.com/")
+```
+
+We see that we have the following data: (1) the url written by hand in the form of a string, (2) the source code HTML being sent through the network, and (3) the HTML document loaded in the RAM. On top of this, we can see other meta-data, such as cookies, headers, date of access, etc.
+
+We can ask the size of the object in the RAM using `object_size()` from package `pryr`.
+
+```{r}
+pryr::object_size(economist)
+```
+
+
+<br>
+
+The html text data was sent in hexadecimal byte values to our computer. This is visible using the command `content` on our query, specifying that we want to see the raw data.
+
+```{r}
+economistRaw <- content(economist, as = "raw")
+head(economistRaw, 15)
+```
+
+When translated to ASCII characters, it represents a string typically found at the beginning of HTML documents.
+
+Hexadecimal  | Character 
+-----|-----
+3c | <
+21 | !
+44 | D
+4f | O
+43 | C
+54 | T
+59 | Y
+50 | P
+45 | E
+20 | (a space character)
+68 | h
+74 | t
+6d | m
+6c | l
+
+<br>
+
+Now we can encode these hexadecimal values using the command `content(., as = "text")`.
+
+```{r, collapse=TRUE}
+economistText <- content(economist, as = "text")
+head(economistText)
+```
+<br>
+
+Finally, we can tell R to store the source code of the downloaded webpage into our local hard drive. 
+
+```{r, collapse=TRUE}
+writeLines(economistText, "economistText.html")
+```

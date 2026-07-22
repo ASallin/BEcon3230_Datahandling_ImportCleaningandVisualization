@@ -1,0 +1,454 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: "Lecture 4: Students' notebook"
+author: "Dr. Aurélien Sallin"
+params:
+  show_code: true  # Toggle this to switch between student and solution versions
+format:
+  html:
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+highlight-style: dracula
+---
+
+```{r}
+#| label: setup
+#| include: false
+options(width = 100)
+# knitr::opts_chunk$set(results = "hold")
+library(knitr)
+library(purrr)
+library(readr)
+```
+
+
+::: {style="font-size: 80%;"}
+**Note**: *Sections and subsections marked with an asterisk (\*) are not exam-relevant. They are meant for deeper understanding.* 
+:::
+
+
+<br>
+
+# `R` data structures in depth
+
+
+<br>Structures to work with in R
+
+We distinguish two basic characteristics:
+
+  1. Data types:
+      - *integers*; 
+      - *real numbers* ('numeric values', 'doubles', floating point numbers); 
+      - *characters* ('string', 'character values');
+      - *booleans*
+    
+  2. Basic data structures in RAM:
+      - *Vectors*
+      - *Arrays/Matrices*
+      - *Lists*
+      - *Data frames* (very `R`-specific)
+
+A data structure in R is a way of **organizing data in memory**. It defines how elements are grouped, stored, and accessed. R has a few core structures, each designed for a different kind of organization.
+
+
+| Structure          | Key idea                            | Type     | Dim. |
+|--------------------|-------------------------------------|----------|------|
+| Vector             | Ordered collection of values        | Homog.   | 1D   |
+| Matrix             | 2D rectangular collection           | Homog.   | 2D   |
+| Array              | Generalization of a matrix          | Homog.   | nD   |
+| List               | Elements can differ in type/size    | Heterog. | Flex |
+| Data frame/Tibble  | Equal-length column vectors (table) | Heterog. | 2D   |
+
+
+<br>
+
+## Data types: numeric and integers
+
+R interprets these bytes of data as type `double` ('numeric') or type `integer`:
+
+```{r, echo = TRUE}
+a <- 1.5
+b <- 3
+c <- 3L
+
+# Use math operators
+a + b
+```
+
+
+```{r, echo = TRUE}
+a <- 1.5
+typeof(a); class(a)
+
+c <- 3L
+typeof(c); class(c)
+```
+
+
+
+
+<br>
+
+## Data types: character
+
+```{r, echo = TRUE}
+a <- "1.5"
+b <- "3"
+```
+
+<br>
+
+```{r, echo = TRUE}
+typeof(a)
+class(a)
+```
+
+<br>
+
+Now the same line of code as above will result in an error:
+
+```{r, error=TRUE, echo = TRUE}
+a + b
+```
+
+
+<br>
+
+## Data types: special values
+
+  - `NA`: "Not available", i.e. missing value for any type
+  - `NaN`: "Not a number": special case of NA for numeric
+  - `Inf`: specific to numeric
+  - `NULL`: absence of value
+
+
+
+<br>
+
+## Data structures: vectors
+
+Vectors are collections of value of same type. 
+
+```{r, echo = TRUE}
+persons <- c("Andy", "Brian", "Andy")
+persons
+
+is.character(persons)
+
+```
+
+```{r, echo = TRUE}
+ages <- c(24, 50, 30)
+ages
+```
+Vectors can be created and grouped together using **concatenation**. 
+
+```{r, echo = TRUE}
+paste(persons[1], "+", persons[3])    
+paste(persons[1], "+", persons[3] , sep = "")  
+paste0(persons[1], "+", persons[3] , sep = "") 
+```
+
+#### What happens when you create a vector out of `persons` and `ages`?
+```{r, eval = FALSE, echo = TRUE}
+c(persons, ages)
+```
+
+One of the two vectors is **coerced**. Vectors must be homogeneous in type. If they are not, they are **coerced**. **"Coercion"** is the process of converting an object from one data type to another. Coercion can be:
+  
+  - *Implicit*: happens automatically when combining objects of different types R will implicitly coerce to the most flexible type.
+  - *Explicit*: use specific functions to manually convert data types `as.numeric()`, `as.character()`, `as.logical()`, etc.
+
+Coercion hierarchy: Types from least to most flexible are: logical <- integer <- double <- character.
+
+
+#### Implicit coercion
+
+R will implicitly coerce to the most flexible type.
+
+```{r, echo = TRUE}
+mixed2 <- c(TRUE, 2, 3)
+mixed2
+
+x <- c(FALSE, FALSE, TRUE)
+as.numeric(x)
+```
+
+
+##### Example of implicit coercion with comparison operators*
+
+For instance, comparison operators will coerce their arguments. This is not the case with mathematical operators. This is an interesting and subtle behavior in R, and it is not similar in Python. 
+
+```{r, echo = TRUE}
+2 == "2"
+```
+
+returns `TRUE`. This can only be the case if R coerces one of the two arguments in order to correspond to the type of the other argument. 
+
+Using the `?` to call the help function on the `==` operator:
+```{r, echo = TRUE, eval = FALSE}
+?"=="
+```
+
+We read that *"If the two arguments are atomic vectors of different types, one is coerced to the type of the other, the (decreasing) order of precedence being character, complex, numeric, integer, logical and raw."*
+
+
+
+
+#### Explicit coercion
+
+Use functions like `as.numeric()`, `as.character()`, `as.logical()`, to convert data types.
+
+```{r, echo = TRUE}
+as.numeric(c("1.2", "3.4", "5.6"))
+as.numeric(c("1.2", "a", "5.6"))
+as.integer(c(1.2, 2.9, 3.7))
+```
+
+
+<br>
+
+
+## Data structures: matrices
+
+  - Matrices are two-dimensional collections of values of the same type
+  - Like vectors, they are homogeneous
+  - They are vectors that have a dimension attribute `dim`
+
+```{r matrix, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
+include_graphics("../../img/matrix.png")
+```
+
+```{r, echo = TRUE}
+mymatrix <- matrix(1:10, nrow = 3)
+
+mycoercedmatrix <- cbind(
+  persons, ages
+)
+
+```
+**Matrices** can also have names (rownames and colnames) as attributes.
+
+```{r, echo = TRUE}
+rownames(mycoercedmatrix) <- c("a", "b", "c")
+attributes(mycoercedmatrix)
+```
+
+<br>
+
+**Arrays** are higher-dimensional collections of values of the same type
+
+```{r array, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
+include_graphics("../../img/array.jpg")
+```
+
+```{r, echo = TRUE}
+my_array <- array(c(1:4), dim = c(2,3,4))
+my_array2 <- array(c(1:6), dim = c(2,3,4))
+
+dim(my_array)
+
+my_array + my_array2
+```
+
+<br>
+
+## Data frames, tibbles, and data tables
+
+  - Each column contains a vector of a given data type (or factor), but all columns need to be of identical length.
+  - Under the hood, a data frame is a list of equal-length vectors.
+  - `data.frame`, `tibble`, `data.table`
+
+```{r df, echo=FALSE, out.width = "40%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/dataframe.jpg")
+```
+
+```{r, echo = TRUE}
+
+# Data frames
+df <- data.frame(
+  person = persons, 
+  age = ages, 
+  gender = c(1, 1, 0),
+  stringsAsFactors = FALSE)
+
+names(df)
+colnames(df)
+str(df)
+df
+
+df$gender
+```
+
+
+<br>
+
+## Data structures: lists
+
+Lists can contain different data types in each element, or even different data structures of different dimensions.
+
+```{r list, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE}
+include_graphics("../../img/list.jpg")
+```
+
+Example:
+
+```{r, echo = TRUE}
+# lists
+my_list <- list(my_array, 
+                matriX = matrix(c(1,2,3,4,5,6), nrow = 3), 
+                df
+                )
+length(my_list)
+names(my_list)
+my_list[[1]]
+my_list$matriX
+```
+
+
+<br>
+
+## Data structures: most common attributes
+
+Most objects in R can have **attributes**. These are extra pieces of information (or "metadata") that describe or label the data but don't change their fundamental structure.
+
+  - names and dimnames
+  - dim
+  - class
+  - levels
+  - length
+
+
+<br>
+
+## Data attributes
+
+```{r, echo = TRUE}
+x <- c(a=1, b=2, c=3)
+names(x)
+
+m <- matrix(1:6, nrow=2)
+dim(m)
+dimnames(m) <- list(c("row1", "row2"), c("col1", "col2", "col3"))
+m
+```
+
+
+<br>
+
+## Factors
+
+Factors are used for categorical variables, variables that have a fixed and known set of possible values. They are also useful when you want to display character vectors in a non-alphabetical order.
+
+
+- Factors are sets of categories. 
+- The values come from a fixed set of possible values.
+
+```{r factor, echo=FALSE, out.width = "10%", fig.align='center',  purl=FALSE}
+include_graphics("../../img/factor.png")
+```
+
+
+```{r, echo = TRUE}
+gender <- factor(c("Male", "Male", "Female"))
+gender
+```
+
+Factors are "disguised" integers... with two components: 
+
+  - the integer (or "levels");
+  - the labels.
+
+```{r, echo = TRUE}
+typeof(gender)
+levels(gender)
+attributes(gender)
+```
+
+Or, with the example from R4DS: 
+
+```{r, echo = TRUE}
+
+x1 <- c("Dec", "Apr", "Jan", "Mar")
+
+month_levels <- c(
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+)
+
+y1 <- factor(x1, levels = month_levels)
+y1
+
+sort(y1)
+
+# Reorder
+levels(y1) <- rev(levels(y1))
+sort(y1)
+```
+
+<br>
+
+
+## Manipulating rectangular data in R
+
+We will use the `swiss` dataset, which is a built-in dataset in R from the package `datasets`. Simply use the `data()`-function to load from packages. 
+
+```{r, eval=TRUE, echo = TRUE}
+library(datasets)
+data(swiss)
+swiss <- read_csv("../../data/swiss.csv")
+```
+
+Famous built-in datasets are `mtcars`, `iris`, `USArrests`, etc. The `swiss` dataset is loaded from the package `datasets`, which can be installed with the command `install.packages("datasets")`. Description of the dataset is [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/swiss.html).
+
+First, convert to data.frame. 
+
+```{r, echo = FALSE}
+swiss <- as.data.frame(swiss)
+```
+
+
+```{r, eval=TRUE, echo = TRUE}
+# inspect the structure
+str(swiss)
+
+# look at the first few rows
+head(swiss, n = 5)
+```
+
+
+#### Select columns
+
+```{r, eval = FALSE, echo = TRUE}
+swiss$Fertility # use the $-operator
+```
+
+```{r, eval = FALSE, echo = TRUE}
+swiss[, 1] # use brackets [] and the column number/index 
+```
+
+```{r, eval = FALSE, echo = TRUE}
+swiss[, "Fertility"] # use the name of the column
+```
+
+```{r, eval = FALSE, echo = TRUE}
+swiss[, c("Fertility", "Agriculture")] # use the name of the column
+```
+<br>
+
+#### Select rows
+```{r, eval = FALSE, echo = TRUE}
+swiss[1,]  # First row
+```
+
+```{r, eval = FALSE, echo = TRUE}
+swiss[swiss$Fertility > 40,]  # Based on condition ("filter")
+```
+
+
+
+# Sources
+
+  - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Top)
+  - [Wickham, Hadley: Advanced R](https://adv-r.hadley.nz/index.html)
