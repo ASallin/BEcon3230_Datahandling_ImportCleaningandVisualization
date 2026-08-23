@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 11:<br>Wrap up'
 author: "Dr. Aurélien Sallin"
-date: "2025-12-18"
+date: "2026-12-10"
 echo: false
 code-line-numbers: false
 format:
@@ -15,8 +15,8 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    theme: ../../style/hsgtheme.scss
-highlight-style: dracula 
+    theme: ../../style/hsgtheme_slides.scss
+highlight-style: dracula
 cache: false
 execute:
   echo: true
@@ -55,7 +55,7 @@ Use `ggplot()` and the grammar of graphics to produce effective graphs.
 
 ## A Design Problem (self-study)
 
-What is wrong with the graph below? Create your own version of the graph. 
+What is wrong with the graph below? Create your own version of the graph.
 
 ```{r echo= FALSE, out.width="120%", fig.align="center", fig.cap = "Source: [perceptual edge](https://perceptualedge.com/example3.php)" }
 include_graphics("../../img/example3problem.gif")
@@ -97,7 +97,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, fill = Location)) +
 
 - The three resorts have been arranged in order of rank, based on revenue, to highlight their comparative performance.
 - The years have been arranged from left to right, which is intuitive.
-- The legend has been placed below the bars. 
+- The legend has been placed below the bars.
 
 :::
 ::::
@@ -136,7 +136,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
     y = "Revenue (in USD)"
   ) +
   scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
-  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+  scale_x_discrete(labels = c("1993", "1994", "1995"),
                    expand = expansion(add = c(0.5, 1))) +
   theme_classic() +
   theme(legend.position = "none")  +
@@ -146,7 +146,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
 
 ::: {.column width="40%"}
 
-- This design makes it easy to see how revenue has changed from year to year at each of these resorts. 
+- This design makes it easy to see how revenue has changed from year to year at each of these resorts.
 
 :::
 ::::
@@ -163,7 +163,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
     y = "Revenue (in USD)"
   ) +
   scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
-  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+  scale_x_discrete(labels = c("1993", "1994", "1995"),
                    expand = expansion(add = c(0.5, 1))) +
   theme_classic() +
   theme(legend.position = "none")  +
@@ -180,7 +180,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
 
 ::: {.column width="33%"}
 #### Minimize the **Lie Factor** <br>
-$\frac{\text{size of effect shown in graphic}}{\text{size of effect in data}}$ 
+$\frac{\text{size of effect shown in graphic}}{\text{size of effect in data}}$
 
 :::
 
@@ -189,7 +189,7 @@ $\frac{\text{size of effect shown in graphic}}{\text{size of effect in data}}$
 <br>
 
 #### Maximize the **Data-ink Ratio** <br>
-$\frac{\text{ink used for data points}}{\text{total ink used to print the graphic}}$ 
+$\frac{\text{ink used for data points}}{\text{total ink used to print the graphic}}$
 <!-- = proportion of a graphic's ink devoted to the non-redundant display of data-information -->
 <!-- The closer this ratio is to 1 the less distracted the user will be and the easier it will be to visualize the data. -->
 :::
@@ -206,7 +206,7 @@ $\frac{\text{number of entries in data matrix}}{\text{area of data graphic}}$
 :::
 ::::
 
-## Minimize the **Lie Factor** 
+## Minimize the **Lie Factor**
 
 ```{r echo=FALSE, eval = TRUE, out.width = "100%", message=FALSE, warning=FALSE}
 two_by_two_matrix <- data.frame(Candidate = c("Alex", "Nora"),
@@ -260,7 +260,7 @@ Do you recognize the theme?
 ::::
 
 
-## Maximize the **Data-ink Ratio** 
+## Maximize the **Data-ink Ratio**
 
 ```{r echo=FALSE, eval = TRUE, out.width = "100%", message=FALSE, warning=FALSE}
 library(ggpattern)
@@ -283,21 +283,21 @@ data <- data.frame(
 ```{r echo=FALSE, eval = TRUE, out.width = "100%", message=FALSE, warning=FALSE, fig.align='center'}
 ggplot(data, aes(x = Setting, y = Beds, pattern = Facility, fill = Facility, group = Facility)) +
   geom_col_pattern(
-    aes(pattern = Facility, fill = Facility, pattern_fill = Facility), 
-    colour = 'black', 
+    aes(pattern = Facility, fill = Facility, pattern_fill = Facility),
+    colour = 'black',
         width = 0.7,
-    position = position_dodge(width = 0.8), 
+    position = position_dodge(width = 0.8),
     pattern_density          = 0.35) +
     scale_pattern_fill_manual(
-      values = c("Public psychiatric hospitals"='blue', 
-                 "RTCs for children"='red', 
-                 "Veteran Administration medical centers"='yellow', 
-                 "Private psychiatric hospitals"='darkgreen', 
-                 "RTCs for adults" = 'orange', 
+      values = c("Public psychiatric hospitals"='blue',
+                 "RTCs for children"='red',
+                 "Veteran Administration medical centers"='yellow',
+                 "Private psychiatric hospitals"='darkgreen',
+                 "RTCs for adults" = 'orange',
                  "Community mental health centers" = 'purple')) +
   labs(title = "Median number of designated beds for mental health treatment per facility",
        subtitle = "By service setting and facility type: April 29, 2016",
-       x = "", 
+       x = "",
        y = "Median number of designated beds per facility") +
   theme_stata(base_size = 12) +
   theme(legend.position = "bottom",
@@ -308,21 +308,21 @@ ggplot(data, aes(x = Setting, y = Beds, pattern = Facility, fill = Facility, gro
 ```{r echo=TRUE, eval = FALSE}
 ggplot(data, aes(x = Setting, y = Beds, pattern = Facility, fill = Facility, group = Facility)) +
   geom_col_pattern(
-    aes(pattern = Facility, fill = Facility, pattern_fill = Facility), 
-    colour = 'black', 
+    aes(pattern = Facility, fill = Facility, pattern_fill = Facility),
+    colour = 'black',
         width = 0.7,
-    position = position_dodge(width = 0.8), 
+    position = position_dodge(width = 0.8),
     pattern_density          = 0.35) +
     scale_pattern_fill_manual(
-      values = c("Public psychiatric hospitals"='blue', 
-                 "RTCs for children"='red', 
-                 "Veteran Administration medical centers"='yellow', 
-                 "Private psychiatric hospitals"='darkgreen', 
-                 "RTCs for adults" = 'orange', 
+      values = c("Public psychiatric hospitals"='blue',
+                 "RTCs for children"='red',
+                 "Veteran Administration medical centers"='yellow',
+                 "Private psychiatric hospitals"='darkgreen',
+                 "RTCs for adults" = 'orange',
                  "Community mental health centers" = 'purple')) +
   labs(title = "Median number of designated beds for mental health treatment per facility",
        subtitle = "By service setting and facility type: April 29, 2016",
-       x = "", 
+       x = "",
        y = "Median number of designated beds per facility") +
   theme_stata(base_size = 12) +
   theme(legend.position = "bottom",
@@ -339,7 +339,7 @@ data$Facility <- str_wrap(data$Facility, width = 25)
 
 ggplot(data, aes(x = Beds, y = Facility, fill = Setting)) +
   geom_col(position = position_dodge(width = 0.8), width = 0.7) +
-   geom_text(aes(label = Beds), 
+   geom_text(aes(label = Beds),
             position = position_dodge(width = 0.8),  # Align with bars
             hjust = 1.1,  # Align left/right
             color = "white", size = 4) +  # Text color and sizesst color and size of the text
@@ -350,7 +350,7 @@ ggplot(data, aes(x = Beds, y = Facility, fill = Setting)) +
     subtitle = "Public psychiatric hospitals allocate the most beds for mental health treatment.",
     x = NULL,
     y = NULL
-  ) + 
+  ) +
   theme_minimal(base_size = 12) +
   theme(
     axis.text.x = element_blank(),  # Remove x-axis labels
@@ -369,7 +369,7 @@ data$Facility <- str_wrap(data$Facility, width = 25)
 
 ggplot(data, aes(x = Beds, y = Facility, fill = Setting)) +
   geom_col(position = position_dodge(width = 0.8), width = 0.7) +
-   geom_text(aes(label = Beds), 
+   geom_text(aes(label = Beds),
             position = position_dodge(width = 0.8),  # Align with bars
             hjust = 1.1,  # Align left/right
             color = "white", size = 4) +  # Text color and sizesst color and size of the text
@@ -380,7 +380,7 @@ ggplot(data, aes(x = Beds, y = Facility, fill = Setting)) +
     subtitle = "Public psychiatric hospitals allocate the most beds for mental health treatment.",
     x = NULL,
     y = NULL
-  ) + 
+  ) +
   theme_minimal(base_size = 12) +
   theme(
     axis.text.x = element_blank(),  # Remove x-axis labels
@@ -433,14 +433,14 @@ pacman::p_load(
     quanteda.textstats,
     quanteda.textplots
 )
-``` 
+```
 -->
 
 
 
 
 
-<!-- 
+<!--
 ## Shiny app
 
 - **Shiny** is an R package that makes it easy to build interactive web apps straight from R.
@@ -463,11 +463,11 @@ pacman::p_load(
 ## Data: EQI-CATI Country Level 2010-2024
 
 ```{r}
-eqi <- read_csv("C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/code_examples/qog_eqicati_long_24.csv") |> 
+eqi <- read_csv("C:/Users/aurel/OneDrive/Documents/DataHandling/datahandling-lecture/materials/code_examples/qog_eqicati_long_24.csv") |>
   select(cname, year, Ed_qual, Hel_qual, Law_qual, Helimpart1, Hel_ask)
 
 head(eqi)
-``` 
+```
 -->
 
 
@@ -481,7 +481,7 @@ head(eqi)
 - **BYO + cord🔌 + 🖱️**
 
 #### Lockdown browser
-- Exam and LockDown Browser: check Sharepoint on [StudentWeb](https://universitaetstgallen.sharepoint.com/sites/PruefungenDE/SitePages/en/Digitale-Pr%C3%BCfungen-(BYOD).aspx#how-to-prepare-for-a-digital-exam) and test on Canvas. 
+- Exam and LockDown Browser: check Sharepoint on [StudentWeb](https://universitaetstgallen.sharepoint.com/sites/PruefungenDE/SitePages/en/Digitale-Pr%C3%BCfungen-(BYOD).aspx#how-to-prepare-for-a-digital-exam) and test on Canvas.
 
 
 ## Exam questions
@@ -493,7 +493,7 @@ head(eqi)
 
 <br>
 
-  - Work step-by-step through the code example. What happens in each parenthesis, on each line? 
+  - Work step-by-step through the code example. What happens in each parenthesis, on each line?
   - From the inner part to the outer part, from top to bottom.
   - Use pencil/paper to keep track of values, data structures (how does a data-frame look like?), classes.
   - Importantly, if a code-example question refers to specific functions, you can always assume that the corresponding package is also loaded.
@@ -506,13 +506,13 @@ head(eqi)
 # Wrap up
 
 ## {class="inverse" background-image="../../img/mechanics.webp" background-size="100%" background-repeat="cover"}
- 
+
 
 
 ## At the end of the course, you will be able to...
 
-- **Understand the tools you need when working with data** 
-- **Work independently with data** 
+- **Understand the tools you need when working with data**
+- **Work independently with data**
 - **Ask the right questions to a dataset**
 - **Learn to communicate about data**
 
@@ -537,13 +537,13 @@ include_graphics("../../img/data_science_pipeline.png")
 - **Understand the very basics of how computers process data.**
   - Computers store data as bits (Bits → Bytes → Encoded Text)
   - Text encodes meaning using encodings and standards
-  - Files encode structure (→ Structured Files with special characters) 
+  - Files encode structure (→ Structured Files with special characters)
     - CSV: two-dimensional/table-like structure
     - JSON/XML: hierarchical data (high-dimensional)
   - R *parses* structure into RAM. (→ R Parsing → R Data Structures)
 
 - **Deal with data from all possible sources.**
-  - APIs, Webscrapers, JSON, etc. 
+  - APIs, Webscrapers, JSON, etc.
 
 :::
 
@@ -572,16 +572,16 @@ include_graphics("../../img/tidyverse_pipeline.png")
 ####  First of all...
 
   - I am **impressed** by your performance, interest, and dedication.
-  - The project was challenging, and part of the project was navigating **frustration** and **uncertainty**. 
+  - The project was challenging, and part of the project was navigating **frustration** and **uncertainty**.
   - This is **close to a real job or research project**, where there is often more than one correct answer.
   - With LLMs, navigating the full data handling pipeline is becoming a **basic skill** rather than an advanced one.
-  
+
 
 #### From my side
   - First year, first try, first experience.
   - I had fun. I hope you did too.
-  
-  
+
+
 ###### Congrats!
 
 
@@ -647,8 +647,8 @@ include_graphics("../../img/qr_evaluation_2025.png")
 
   - Next event: **29.01.2026, 18:00 - 21:30** at the ETH (DevOps for Data Science at KOF Institute).
   - Apéro + networking 🍕🍺
-  - [Free Registration on Meetup](DevOps for Data Science at KOF Institu)
-  - Presentations from R-Users in the industry and in academia. Past events at Datahouse, SNB, Helsana, Swiss, etc. 
+  - **Free Registration on Meetup**
+  - Presentations from R-Users in the industry and in academia. Past events at Datahouse, SNB, Helsana, Swiss, etc.
 
 
 ## Final Remarks
@@ -662,7 +662,7 @@ include_graphics("../../img/qr_evaluation_2025.png")
 :::
 
 
---- 
+---
 
 
 ```{r echo=FALSE, eval=TRUE, out.width="50%", message=FALSE, warning=FALSE, fig.align='center', fig.asp=0.8, fig.cap="Made with `ggplot`. Source: ['A very ggplot2 Christmas'](https://t-redactyl.io/blog/2016/12/a-very-ggplot2-christmas.html)"}
@@ -673,7 +673,7 @@ library(extrafont)
 ChristmasTree <- read.csv("https://raw.githubusercontent.com/t-redactyl/Blog-posts/master/Christmas%20tree%20base%20data.csv")
 
 Desired.Lights <- 50
-Total.Lights <- sum(round(Desired.Lights * 0.35) + round(Desired.Lights * 0.20) + 
+Total.Lights <- sum(round(Desired.Lights * 0.35) + round(Desired.Lights * 0.20) +
                       round(Desired.Lights * 0.17) + round(Desired.Lights * 0.13) +
                       round(Desired.Lights * 0.10) + round(Desired.Lights * 0.05))
 
@@ -691,7 +691,7 @@ Lights$Lights.Y <- c(round(runif(round(Desired.Lights * 0.35), 4, 6), 0),
                           round(runif(round(Desired.Lights * 0.05), 15, 17), 0))
 Lights$Lights.Colour <- c(round(runif(Total.Lights, 1, 4), 0))
 
-Baubles <- data.frame(Bauble.X = c(6, 9, 15, 17, 5, 13, 16, 7, 10, 14, 7, 9, 11, 
+Baubles <- data.frame(Bauble.X = c(6, 9, 15, 17, 5, 13, 16, 7, 10, 14, 7, 9, 11,
                                    14, 8, 14, 9, 12, 11, 12, 14, 11, 17, 10))
 Baubles$Bauble.Y <- c(4, 5, 4, 4, 5, 5, 5, 6, 6, 6, 8, 8, 8, 8, 10,
                       10, 11, 11, 12, 13, 10, 16, 7, 14)
@@ -700,17 +700,17 @@ Baubles$Bauble.Colour <- factor(c(1, 2, 2, 3, 2, 3, 1, 3, 1, 1, 1, 2, 1, 2,
 Baubles$Bauble.Size <- c(1, 3, 1, 1, 2, 1, 2, 2, 2, 1, 1, 1, 3, 3, 3,
                          2, 3, 1, 1, 2, 2, 3, 3, 2)
 
-tree <- ggplot() + 
-          geom_tile(data = ChristmasTree, aes(x = Tree.X, y = Tree.Y, fill = Tree.Colour)) +       
-          scale_fill_identity() + 
+tree <- ggplot() +
+          geom_tile(data = ChristmasTree, aes(x = Tree.X, y = Tree.Y, fill = Tree.Colour)) +
+          scale_fill_identity() +
           theme_bw() +
-          scale_x_continuous(breaks = NULL) + 
+          scale_x_continuous(breaks = NULL) +
           scale_y_continuous(breaks = NULL) +
           labs(x = "", y = "") +
           geom_point(data = Lights, aes(x = Lights.X, y = Lights.Y, alpha = Lights.Colour),
                      colour = "lightgoldenrodyellow", shape = 16) +
-          theme(legend.position = "none")+ 
-          geom_point(data = Baubles, aes(x = Bauble.X, y = Bauble.Y, 
+          theme(legend.position = "none")+
+          geom_point(data = Baubles, aes(x = Bauble.X, y = Bauble.Y,
                                          colour = Bauble.Colour, size = Bauble.Size),
                      shape = 16) +
           scale_colour_manual(values = c("firebrick2", "gold", "dodgerblue3")) +
@@ -723,8 +723,8 @@ tree <- ggplot() +
           geom_segment(aes(x = 7.0, xend = 7.0, y = 0.5, yend = 2.5), colour = "dodgerblue3", size = 2) +
           geom_segment(aes(x = 15.0, xend = 15.0, y = 0.5, yend = 2.5), colour = "blueviolet", size = 2) +
           geom_segment(aes(x = 18.5, xend = 18.5, y = 0.5, yend = 2.5), colour = "dodgerblue3", size = 2) +
-          annotate("text", x = 11, y = 20, 
-                   label = "Happy Holidays!", 
+          annotate("text", x = 11, y = 20,
+                   label = "Happy Holidays!",
                    family = "Luminari", size = 12)
 tree
 ```

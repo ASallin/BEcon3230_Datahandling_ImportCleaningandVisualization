@@ -1,0 +1,299 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Exercise/Workshop 6: Visualisation'
+author: "Prof. Dr. Ulrich Matter"
+format:
+  html:
+    theme: ../../../style/hsgtheme.scss
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+highlight-style: dracula
+bibliography: ../../../references/datahandling.bib
+---
+
+```{r}
+#| label: setup
+#| include: false
+options(width = 100)
+library(knitr)
+library(bookdown)
+```
+
+# Exercises
+
+## Exercise A: Summary Stats and Data Display
+
+Install and load the R package `nycflights13` and load `tidyverse`.
+
+```{r message=FALSE, warning=FALSE}
+# install and load packages
+# install.packages("nycflights13")
+library(nycflights13)
+library(tidyverse)
+```
+
+Have a look at the dimensions, data types, variables, and the first few observations of the dataset `flights`. Use `dim()`, `head()`, `colnames()`, etc. Also use `str()` to get a summary overview over the structure of the dataset.
+
+```{r}
+str(flights)
+```
+
+The dataset is on flights departing from New York City in 2013 (original data provided by the US Bureau of Transportation Statistics). You can have a closer look at what the variables describe by looking at the provided documentation by typing `?flights`.
+
+The dataset includes flights from three origins in New York:
+
+```{r}
+unique(flights$origin)
+```
+
+There are several destinations as can be seen by typing `unique(flights$dest)`, whereas we are only interested in flights to "BOS".
+
+
+```{r echo=TRUE, message=FALSE}
+# select flights to BOS
+boston_flights <- filter(flights, dest == "BOS")
+
+# summarize data by month
+bf_by_months <- group_by(boston_flights, month)
+bf_sum <- summarise(bf_by_months,
+                    mean_air_time= mean(air_time, na.rm = TRUE),
+                    median_air_time = median(air_time, na.rm = TRUE),
+                    sd_air_time=sd(air_time, na.rm = TRUE),
+                    min_air_time = min(air_time, na.rm = TRUE),
+                    max_air_time = max(air_time, na.rm = TRUE)
+                    )
+
+# Format data: rounding to 2 decimals
+# Using matrix (base-R) notation
+bf_sum[, 2:ncol(bf_sum)] <- round(bf_sum[, 2:ncol(bf_sum)], digits = 2)
+# Using dplyr notation
+bf_sum <- bf_sum %>%
+  mutate(across(.cols = ends_with("_time"), .fns = round, 2))
+```
+
+In order to improve the data display, the following steps can be undertaken. The package `lubridate` is useful to parse the month column. The function `months()` extracts the months from `Date` variables.
+
+```{r echo = TRUE, purl=FALSE, message=FALSE, warning=FALSE}
+# for date formats (Windows)
+loc <- Sys.setlocale("LC_TIME", "English")
+
+# for date formats (Mac)
+loc <- Sys.setlocale(locale = "en_US.utf8")
+```
+
+```{r echo = TRUE, message = FALSE}
+# load the package
+library(lubridate)
+
+# apply the function months() to the column month
+bf_sum$month <- months(parse_date_time(bf_sum$month, "m"))
+```
+
+The column headers can be re-written in a better readable way.
+```{r echo=TRUE}
+# change column headers
+names(bf_sum) <- c("Month", "Mean", "Median", "Std. Deviation", "Min. Value", "Max. Value")
+```
+
+The `kable` function is a table generator for RMarkdown. The function can be further specified to produce code in latex, html, etc. See `?kable` for more information.
+
+```{r echo=TRUE}
+kable(bf_sum,
+      row.names = FALSE,
+      digits = 2,
+      caption = "Summary Statistics: Air time (in minutes) for flights between NYC and BOS (2013)" )
+```
+
+
+
+\newpage
+## Exercise B: R Graphics with `ggplot2`
+
+First, a subset of the dataset `flights` with the variables needed for the required figure is created.
+
+```{r echo=TRUE, message=FALSE }
+# select subset
+plotdata <- select(flights, month, Destination = dest, arr_delay, dep_delay)
+plotdata <- na.omit(filter(plotdata, month == 6 | month == 12, Destination %in% c("BOS", "ORD", "LAX")))
+
+# format months
+plotdata$month <- months(parse_date_time(plotdata$month, "m"))
+```
+
+Second, the dataset can be plotted with `ggplot2`.
+```{r echo=TRUE, message = FALSE}
+# plot
+flights_plot <-
+  ggplot(plotdata, aes(x=dep_delay, y=arr_delay)) +
+  geom_point(aes(colour=Destination)) +
+  geom_smooth(colour="black") +
+  facet_wrap(~month) +
+  theme_minimal() +
+  ylab("Arrival Delay (in minutes)") +
+  xlab("Departure Delay (in minutes)") +
+  theme(legend.position = "top")
+
+flights_plot
+```
+
+The plot is saved (e.g., as pdf) by adding `ggsave("departure_and_arrival_delay.pdf")`.
+
+
+\newpage
+
+## Exercise C: `ggplot2` challenge on COVID
+
+Plot the cumulative confirmed COVID cases (on a log scale) for China, France, Germany, Italy, Switzerland, the United Kingdom, and the US. Use John Hopkinds GitHub data. Your graph will look like the example shown below.
+
+Hint: download the data as follows:
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/
+                         master/csse_covid_19_data/csse_covid_19_time_series/
+                         time_series_covid19_confirmed_global.csv")
+```
+
+Various cleaning steps are required (gathering data, reformatting date values, calculating the cumulative sum of cases, ...). For plotting, replace the dates by numbers (the first date is day 1, the second date day 2, etc. -- as shown in the graph). This exercise is inspired by https://mdl.library.utoronto.ca/technology/tutorials/covid-19-data-r.
+
+
+```{r echo = TRUE, message = FALSE, warning=FALSE}
+confirmedraw <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+
+confirmed <- confirmedraw %>%
+  gather(key="date", value="confirmed", -c(Country.Region, Province.State, Lat, Long)) %>%
+  group_by(Country.Region, date) %>%
+  summarize(confirmed=sum(confirmed))
+# summary(confirmed)
+
+# str(confirmed)
+confirmed$date <- confirmed$date %>%
+  sub("X", "", .) %>%
+  as.Date("%m.%d.%y")
+# str(confirmed)
+confirmed <- confirmed %>%
+  group_by(Country.Region) %>%
+  mutate(cumconfirmed=cumsum(confirmed), days = date - min(date) + 1)
+
+countryselection <- confirmed %>%
+  filter(Country.Region==c("US", "Italy", "China", "France", "United Kingdom", "Germany", "Switzerland"))
+
+ggplot(countryselection, aes(x=days, y=confirmed, colour=Country.Region)) +
+  geom_line(size=1) +
+  theme_classic() +
+  labs(title = "Covid-19 Confirmed Cases by Country", x= "Days", y= "Confirmed cases (log scale)") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_y_continuous(trans="log10")
+```
+
+
+
+\newpage
+# Christmas Gift Exercise (advanced)
+Two PhD students, after a long evening, were arguing about fundamental research questions. Talking about drug restrictions, one of the two was convinced that the liberalization of private drug use (such as cannabis and harder narcotics) would naturally lead to an increase in violence and in episodes of (collective) psychosis. The only way to see if this claim holds water is to find data that would confirm this hypothesis. The two economists then gathered the two following datasets:
+
+- To measure psychotic episodes, they used data from the National UFO Reporting Center, which collects data on each reported UFO seeing across the world. The data are available here: http://www.nuforc.org/webreports.html. The data are ready for use in the file  `ufodata_exercise.csv`, which contains the following variables:
+
+  + `State.name` and `State.abbr` give the US State identifier;
+  + `year` gives the year;
+  + `total.views.year` gives the number of UFO seeings per year and per State
+
+- To measure drug liberalization policies, they scraped the Wikipedia website to get a timeline of cannabis legalization dates across US States. The data was obtained here:  https://en.wikipedia.org/wiki/Legality_of_cannabis_by_U.S._jurisdiction. The data are ready for use in the file `pot_exercise.csv`, which contains the following variables:
+
+  + `state` gives the US State identifier;
+  + `year` gives the year;
+  + `Legalization_medical` is 1 if the use of cannabis for medical purposes was legalized in the State-year, and 0 otherwise.
+
+The hypothesis is the following: the legalization of cannabis for medical purposes leads to an increase in hallucinations and episodes of "psychosis". These episodes of psychosis might translate into the number of UFO seeings. Since cannabis was not legalized at the same time in all States ("staggered" introduction), we can compare States which have introduced legal cannabis for medical purposes with States which did not.
+
+ <br>
+
+ 1. First, import the two datasets `pot_exercise.csv` and `ufodata_exercise.csv` found on Canvas. Explore the datasets, and merge the two datasets using `left_join(pot_exercise, ufodata_exercise, by = c("state" = "State.name", "year"))` into a new dataframe called `data`. Clean the new dataset.**
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+pot <- read_csv("../data/pot_exercise.csv")
+ufodata <- read_csv("../data/ufodata_exercise.csv")
+
+# Merge
+data <- left_join(pot, ufodata,
+                  by = c("state" = "State.name", "year"))
+
+# Cleaning: total.views.year is NA for many observations. Remove these observations.
+data <- data[!is.na(data$total.views.year), ]
+```
+
+ <br>
+
+ 2. You want to see whether the number of UFO seeings in States which have legalized cannabis for medical use is larger than in States which have not. You consider the following linear regression model: $$\text{total.views.year} = \alpha + \beta \text{Legalization\_medical} + u, $$ where *total.views.year* is the number of UFO seeings, and *Legalization_medical* indicates whether the State has legalized cannabis for medical use. $u$ is an error term. Estimate the regression and save your regression model in an object called `regression`.
+
+
+```{r}
+regression <- lm(total.views.year ~ Legalization_medical, data = data)
+summary(regression)
+```
+
+<br>
+
+ 3. Use `ggplot()` to plot the coefficient estimates of Legalization_medical and corresponding confidence intervals. Interpret the results.
+
+*Hint (1)*: To draw a plot of regression estimates, transform the regression output into a tibble specifying that you need 95% confidence intervals. A handy way to do this is to use the command `tidy()`from the `broom` package (you'll need to load the package accordingly). The command `tidy()` takes an `lm` object as its argument, and "extracts" all the important information about the linear regression stored in the `lm` object. It works like `summary()`, but it delivers the information in a tibble: each parameter of the linear regression (here, $\alpha$ and $\beta$) is stored as an observation (row), which contains values for the coefficient, the standard errors, the $t$ statistics, and the p-value. Confidence intervals are optional, and must be called with the option `conf.int = T`. You can compare the result of `summary(regression)` above with the result of `tidy()` right below.
+
+```{r}
+library(broom)
+summary.regression <- tidy(regression, conf.int = T, conf.level = 0.95)
+summary.regression
+```
+
+*Hint (2)* To draw the graph, you will need `geom_point()` to draw your point estimate, `geom_errorbar()` to draw the confidence intervals, and `geom_hline()` to draw the horizontal zero line. Note that you don't need to draw the coefficient for the constant.)
+
+<br>
+
+```{r echo=TRUE}
+# We are not interested in the constant:
+summary.regression <- filter(summary.regression, term == "Legalization_medical")
+
+ggplot(summary.regression, aes(x = term, y = estimate)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=0.2, size=1, color="blue") +
+  geom_point(size = 3, color = "red") +
+  geom_hline(yintercept = 0, linetype = 2) +
+  theme_classic()
+```
+
+**Interpretation**: having cannabis legalized increases the average number of UFO seeings by 48.60. This effect is statistically significant at the 95% level (the confidence intervals do not touch the 0-line).
+
+ <br>
+
+ 4. In this analysis, we did not take into account the fact that States are heterogeneous, and that our effect could be driven only by the fact that States with lots of UFO seeings are also States that would be more inclined to have cannabis legalized. Perform the same analysis as before, but this time include State and year controls in your regression: $$total.views.year = \alpha + \beta *\text{Legalization\_medical} + \delta *\text{as.factor(state)} + \gamma *\text{as.factor(year)} + u, $$. This model is called a "Difference-in-Difference" model with many groups and time periods in econometrics. Look at the coefficient of `Legalization_medical`. What happened?
+
+```{r, echo = TRUE}
+regression_2 <- lm(total.views.year ~ Legalization_medical + as.factor(state) + as.factor(year), data = data)
+
+summary.regression_2 <- tidy(regression_2, conf.int = T, conf.level = 0.95)
+
+# We are not interested in the constant:
+summary.regression_2 <- filter(summary.regression_2, term == "Legalization_medical")
+
+ggplot(summary.regression_2, aes(x = term, y = estimate)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=0.2, size=1, color="blue") +
+  geom_point(size = 3, color = "red") +
+  geom_hline(yintercept = 0, linetype = 2) +
+  theme_classic()
+```
+
+This time, the effect is negative and not significant anymore. It means that the effect we obtained in the first regression was mostly due to the fact that the number of UFO seeings was more related to particular States rather than to the cannabis legalization.
+
+ <br>
+
+\newpage
+# Advanced visualization exercise
+## `ggplot2` challenge on corruption
+Import the dataset `EconomistData.csv` (provided in `data.zip`) to R. The underlying data sources have been used by The Economist (2nd December 2011, ['Corrosive Corruption']( https://www.economist.com/graphic-detail/2011/12/02/corrosive-corruption)) to generate the following figure:
+
+```{r echo = FALSE}
+include_graphics("../../../img/economist_corr_hdev.png")
+```
+
+Given the data, the challenge is to reproduce (or get as close to) the original figure with `ggplot2`.
+
+<!-- # References -->
+<!-- http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html -->

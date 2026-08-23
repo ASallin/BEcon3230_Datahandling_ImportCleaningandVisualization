@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 9:<br>Exploratory Data Analysis and Visualization, Part I'
 author: "Dr. Aurélien Sallin"
-date: "2025-12-04"
+date: "2026-11-26"
 echo: false
 code-line-numbers: false
 format:
@@ -15,8 +15,8 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    theme: ../../style/hsgtheme.scss
-highlight-style: dracula 
+    theme: ../../style/hsgtheme_slides.scss
+highlight-style: dracula
 cache: false
 execute:
   echo: true
@@ -117,28 +117,28 @@ Select all the statements that are true.
 ::: {style="font-size: 50%;"}
 
 ```{r, eval = FALSE}
-main_dataset |> 
+main_dataset |>
   mutate(temp_celsius = ifelse(scale == "Fahrenheit", (temp-32) * conversion_factor, temp))
 ```
-replaces the variable `temp` with `temp_celsius` 
+replaces the variable `temp` with `temp_celsius`
 <!-- #NO -->
 
 ```{r, eval = FALSE}
-main_dataset |> 
+main_dataset |>
   mutate(temp_celsius = ifelse(scale == "Fahrenheit", (temp-32) * conversion_factor, temp))
 ```
 has 3 rows and 5 columns
 <!-- YES -->
 
 ```{r, eval = FALSE}
-main_dataset |> 
+main_dataset |>
   summarize(mean_temp = mean(temp), min_temp = min(temp))
 ```
 returns a tibble containing 2 columns and 1 row
 <!-- YES -->
 
 ```{r, eval = FALSE}
-main_dataset |> 
+main_dataset |>
   summarize(mean_scale = mean(scale), sd_scale = sd(scale))
 ```
 is a good way to get summary statistics about the variable `scale`
@@ -177,7 +177,7 @@ Consider the two following dataframes:
 ```
 > df_family_work <- data.frame(
 +   year     = c(2023,2024,2023,2023,2024,2023,2024),
-+   name     = c("Peter", "Peter", "Lois", "Lois", "Stewie", 
++   name     = c("Peter", "Peter", "Lois", "Lois", "Stewie",
 +               "Stewie", "Stewie"),
 +   hours    = c(10, 5, 20, 8, 12, 15, 4)
 + )
@@ -221,9 +221,9 @@ j2 <- left_join(df_family_work, df_family_budget, by = c("name", "year"))
 
 j3 <- inner_join(df_family_work, df_family_budget, by = c("name", "year"))
 
-j4 <- left_join(df_family_work, df_family_budget, by = "name")  |> 
-  filter(year.x == year.y)  |> 
-  select(-year.y)  |> 
+j4 <- left_join(df_family_work, df_family_budget, by = "name")  |>
+  filter(year.x == year.y)  |>
+  select(-year.y)  |>
   rename(year = year.x)
 ```
 :::
@@ -250,7 +250,7 @@ j4 <- left_join(df_family_work, df_family_budget, by = "name")  |>
 ## Exploratory Data Analysis (EDA) is the first step of data analysis
 
 - 🔎 Get a first understanding of your dataset.
-- Show **key aspects of data** by modelling, transforming, and visualizing your data. 
+- Show **key aspects of data** by modelling, transforming, and visualizing your data.
   - Investigate the quality and reliability of your data.
   - Inform your own statistical analysis.
   - Inform audience (helps understand analytics parts).
@@ -293,7 +293,7 @@ Source: [R4DS](https://r4ds.hadley.nz/eda), *"Statistics for Public Policy" by J
 <br>
 
 ####  2. Functions to *apply* the statistics function to one or several columns in a tidy dataset.
-  
+
   - Including all values in a column.
   - By group (observation categories, e.g. by location, year, etc.)
 
@@ -316,7 +316,7 @@ swiss[swiss$municipality == "Lausanne", "Infant.Mortality"] <- 100
 # Add a NA for Agriculture in Gruyere
 swiss[swiss$municipality == "Gruyere", "Agriculture"] <- NA
 ```
-</details> 
+</details>
 ```{r}
 swiss
 ```
@@ -335,21 +335,21 @@ summarytools::dfSummary(swiss)
 ```
 
 
-## EDA: summaries per group 
+## EDA: summaries per group
 ```{r, echo = TRUE}
-swiss |> 
-  group_by(Catholic > 50) |> 
+swiss |>
+  group_by(Catholic > 50) |>
   summarize(mean(Fertility))
 
-swiss |> 
-  group_by(Catholic > 50) |> 
+swiss |>
+  group_by(Catholic > 50) |>
   summarize(
     across(
       .cols = c(Fertility, Education),
       .fns = list("min" = min, "mean" = mean, "median" = median, "max" = max,
                    "n_na" = ~sum(is.na(.)))
           )
-        ) 
+        )
 ```
 
 
@@ -366,7 +366,7 @@ swiss |>
   - Is missingness clustered in groups or time periods?
 
 ##### 2. What do missing values represent?
- 
+
   - Not collected, not available, not recorded, not applicable?
 
 :::
@@ -377,7 +377,7 @@ swiss |>
 
 ::: {.column width="48%"}
 
-##### 3. What is the missingness mechanism? 
+##### 3. What is the missingness mechanism?
 
   - **MCAR**: missing completely at random / **MAR**: missing at random
     <!-- If the probability of being missing is the same for all cases, then the data are said to be missing completely at random (MCAR). The causes of the missing data are unrelated to the data. If the probability of being missing is the same only within groups defined by the observed data, then the data are missing at random (MAR)./ -->
@@ -413,7 +413,7 @@ swiss |>
 
 ##### 1. **Keep in mind the source of missingness throughout your analysis**
 
-  - In my experience, missingness is rarely random. 
+  - In my experience, missingness is rarely random.
   - Common causes: data entry errors, expensive/unused variables, systematic non-response<br>
 
 ##### 2. **Be aware of the trade-off between data loss and bias**
@@ -422,7 +422,7 @@ swiss |>
   - **Removing observations**: Risk of sample bias, reduced statistical power. More problematic.<br>
 
 #####  3. **Choose imputation methods wisely** (or maybe, don't bother)
-  
+
   - Simple imputation (mean/median): acceptable for small amounts of missing data
   - Multiple/model-based imputation: reserve for cases where data is highly valuable
   - Document your approach and justify complex methods
@@ -448,15 +448,15 @@ complete_case <- na.omit(data)
 
 # Imputation ---------------------------------
 # Mean imputation for missing Wage
-mean_impute <- data |> 
+mean_impute <- data |>
   mutate(
     Wage = ifelse(is.na(Wage), mean(Wage, na.rm = TRUE), Wage),
     Participation = ifelse(
-      is.na(Participation), 
-      round(mean(Participation, na.rm = TRUE), 0), 
+      is.na(Participation),
+      round(mean(Participation, na.rm = TRUE), 0),
       Participation
       )
-    ) 
+    )
 
 
 
@@ -484,17 +484,17 @@ mean_impute |>
   )
 
 ```
-</details> 
+</details>
 
 #### Important commands
 
 - `na.omit()`
-- `f(..., na.rm = TRUE)` like in `mean()`, `sum()`, etc.  
+- `f(..., na.rm = TRUE)` like in `mean()`, `sum()`, etc.
 
 
 # Visualizing data
 
-## Data visualization is THE key to effectively delivering insights and to convince people 
+## Data visualization is THE key to effectively delivering insights and to convince people
 
 :::: {.columns}
 
@@ -528,7 +528,7 @@ include_graphics("../../img/trump_vs_biden.jpg")
 ##### A **chart** typically contains at least one axis, the **values are represented in terms of visual objects** (dots, lines, bars) and axes typically have scales or labels.
 
   - If we are interested in exploring, analyzing or communicating **patterns** in the data, charts are more useful than tables.
-    
+
 <br>
 
 ##### A **table** typically contains rows and columns, and the **values are represented by text**.
@@ -553,7 +553,7 @@ library(tidyverse)
 data("swiss")
 
 # compute summary statistics
-swiss_summary <- swiss |> 
+swiss_summary <- swiss |>
   summarise(avg_education = mean(Education),
             avg_fertility = mean(Fertility),
             N = n()
@@ -585,7 +585,7 @@ swiss_summary_rounded
 ```{r}
 swiss_form <- format(swiss_summary_rounded,
                      decimal.mark = ",")
-swiss_form 
+swiss_form
 ```
 
 
@@ -616,11 +616,11 @@ head(USArrests, 10)
 ```{r message=FALSE, warning=FALSE}
 library(gtExtras)
 
-USArrests_summary <- USArrests |> 
+USArrests_summary <- USArrests |>
   mutate(UrbanPop = case_when(UrbanPop > quantile(UrbanPop, .66) ~ "High",
                                 UrbanPop > quantile(UrbanPop, .33) ~ "Middle",
-                                UrbanPop > 0 ~ "Low")) |> 
-  group_by(UrbanPop) |> 
+                                UrbanPop > 0 ~ "Low")) |>
+  group_by(UrbanPop) |>
   summarize(
     "Mean murder" = mean(Murder),
     "SD murder" = sd(Murder),
@@ -635,13 +635,13 @@ USArrests_summary
 
 ```{r}
 
-USArrests_summary |> 
-  gt() |> 
+USArrests_summary |>
+  gt() |>
   tab_header(
     title = md("Murder rates"),
     subtitle = md("Per high, middle, and low urban population ")
-  ) |> 
-  gtExtras::gt_plt_dist(Density, type = "density", line_color = "black", 
+  ) |>
+  gtExtras::gt_plt_dist(Density, type = "density", line_color = "black",
                          fill_color = "red") %>%
   fmt_number(columns = `Mean murder`:`SD murder`, decimals = 2)
 
@@ -765,8 +765,8 @@ Code a province as 'Catholic' if more than 50% of the inhabitants are catholic:
 ```{r}
 
 # via tidyverse/mutate
-swiss <- mutate(swiss, 
-                Religion = 
+swiss <- mutate(swiss,
+                Religion =
                   ifelse(50 < Catholic, 'Catholic', 'Protestant'))
 
 # 'old school' alternative
@@ -790,7 +790,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination))
 ## Geometries (\~the type of plot)
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point()
 
 ```
@@ -799,7 +799,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ## Facets
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point() +
      facet_wrap(~Religion)
 
@@ -809,7 +809,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ## Additional layers and statistics
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point() +
      geom_smooth(method = 'loess') +
      facet_wrap(~Religion)
@@ -819,7 +819,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ## Additional layers and statistics
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point() +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion)
@@ -829,7 +829,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ## Additional aesthetics
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion)
@@ -839,7 +839,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ## Change coordinates
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion) +
@@ -850,17 +850,17 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ## Themes
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion) +
-     theme(legend.position = "bottom", axis.text=element_text(size=12) ) 
+     theme(legend.position = "bottom", axis.text=element_text(size=12) )
 ```
 
 ## Themes
 
 ```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion) +
@@ -882,7 +882,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ```{r echo=TRUE, fig.height=2.8, fig.width=6, message=FALSE, warning=FALSE, out.width="85%"}
 library(ggthemes)
 
-ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point() +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion) +
@@ -916,7 +916,7 @@ Use what we just saw in the lecture to solve the following problem 💪. You hav
 ```{r, eval = FALSE}
 df_p <- data.frame(id = 1:5,
                    first_name = c("Anna", "John", "Claire", "Evan", "Brigitte"),
-                   profession = c("Economist", "Data Scientist", 
+                   profession = c("Economist", "Data Scientist",
                                   "Data Scientist", "Economist", "Economist"),
                    salaryK = c("100 ", 120, 90, 110, 105),
                    experienceY = c(10, 10, 10, 10, 10))
@@ -925,7 +925,7 @@ df_p
 ```
 
   1. Clean the data
-  2. Summarize the data. 
+  2. Summarize the data.
   3. Give summary statistics on the categorical variable "profession". What can you show, and how can you code it?
   3. You are interested in quantifying the gender pay gap. Prepare the data accordingly and give an estimate of the gender pay gap.
 

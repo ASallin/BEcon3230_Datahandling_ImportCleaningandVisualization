@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 10:<br>Exploratory Data Analysis and Visualization, Part II'
 author: "Dr. Aurélien Sallin"
-date: "2025-11-12"
+date: "2026-12-03"
 echo: false
 code-line-numbers: false
 format:
@@ -15,8 +15,8 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    theme: ../../style/hsgtheme.scss
-highlight-style: dracula 
+    theme: ../../style/hsgtheme_slides.scss
+highlight-style: dracula
 cache: false
 execute:
   echo: true
@@ -46,12 +46,12 @@ include_graphics("../../img/dplyr_blocks.png")
 
 - `ifelse(test, yes, no)` returns a value with the same shape as the logical test. Filled with elements selected from either `yes` or `no` depending on whether the element of `test` is `TRUE` or `FALSE`
 ```{r, echo = TRUE, eval = FALSE}
-df |> 
+df |>
   mutate(gender = ifelse(gender == "m", 1, 0))
 ```
 - `case_when` vectorises multiple `ifelse()` statements. It is the `dplyr` equivalent of `if...else`
 ```{r, echo = TRUE, eval = FALSE}
-df |> 
+df |>
   mutate(
     agegroup = case_when(
       age >= 0 & age < 19 ~ "0-18",
@@ -89,7 +89,7 @@ df |>
   1. Keep in mind the **source of missingness throughout your analysis**
   2. Be aware of the **trade-off between data loss and bias**
   3. **Choose imputation methods wisely** (or, maybe, don't bother)
-  
+
 :::
 
 ::: {.column width="50%"}
@@ -106,13 +106,13 @@ include_graphics("../../img/meme_missingvalues_imputation.jpg")
 #### A **chart** typically contains at least one axis, the **values are represented in terms of visual objects** (dots, lines, bars) and axes typically have scales or labels.
 
   - If we are interested in exploring, analyzing or communicating **patterns** in the data, charts are more useful than tables.
-    
+
 <br>
 
 #### A **table** typically contains rows and columns, and the **values are represented by text**.
 
   - If we are interested in exploring, analyzing or communicating **specific numbers** in the data, tables are more useful than graphs.
-  
+
 
 ## The grammar of graphics
 
@@ -139,8 +139,8 @@ mtcars # mtcars is a built-in dataset in R
 
 ## From two dimensions...
 ```{r echo= TRUE, fig.align="center"}
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point() + 
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
   theme_bw()
 ```
 
@@ -148,23 +148,23 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 ## To three dimensions...
 
 ```{r echo= TRUE, fig.align="center"}
-ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear))) + 
-  geom_point() + 
+ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear))) +
+  geom_point() +
   theme_bw()
 ```
 
 ## To four dimensions...
 
 ```{r echo= TRUE, fig.align="center"}
-ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) + 
-  geom_point() + 
+ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) +
+  geom_point() +
   theme_bw()
 ```
 
 
 ## To five dimensions
 ```{r echo= TRUE, fig.align="center"}
-ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) + 
+ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) +
   geom_point() +
   facet_wrap(~am) +
   theme_bw()
@@ -172,7 +172,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) +
 
 ## To six dimensions
 ```{r echo= TRUE, fig.align="center"}
-ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) + 
+ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) +
   geom_point() +
   facet_grid(am ~ carb) +
   theme_bw()
@@ -185,7 +185,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, color=factor(gear), size = cyl)) +
 
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center", eval = FALSE}
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
+ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   geom_line() +
   theme_bw()
@@ -195,7 +195,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center", eval = FALSE}
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
+ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   theme_bw()
@@ -210,7 +210,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center"}
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
+ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   geom_line() +
   theme_bw()
@@ -220,7 +220,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center"}
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
+ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   theme_bw()
@@ -237,7 +237,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center", eval = FALSE}
 mtcars |>
-  ggplot(aes(x = wt, y = mpg)) + 
+  ggplot(aes(x = wt, y = mpg)) +
   geom_point(color = "blue") +
   theme_bw()
 ```
@@ -247,7 +247,7 @@ mtcars |>
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center", eval = FALSE}
 mtcars |>
-  ggplot(aes(x = wt, y = mpg, color=factor(gear))) + 
+  ggplot(aes(x = wt, y = mpg, color=factor(gear))) +
   geom_point() +
   theme_bw()
 ```
@@ -262,7 +262,7 @@ mtcars |>
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center", eval = T}
 mtcars |>
-  ggplot(aes(x = wt, y = mpg)) + 
+  ggplot(aes(x = wt, y = mpg)) +
   geom_point(color = "blue") +
   theme_bw()
 ```
@@ -272,7 +272,7 @@ mtcars |>
 ::: {.column width="50%"}
 ```{r echo= TRUE, fig.align="center", eval = T}
 mtcars |>
-  ggplot(aes(x = wt, y = mpg, color=factor(gear))) + 
+  ggplot(aes(x = wt, y = mpg, color=factor(gear))) +
   geom_point() +
   theme_bw()
 ```
@@ -333,7 +333,7 @@ ggplot(got_data, aes(x = year, y = soldiers, fill = house)) +
 
 
 
-<!-- 
+<!--
 
 # Today
 
@@ -353,10 +353,10 @@ ggplot(got_data, aes(x = year, y = soldiers, fill = house)) +
 
   - Same format as quizzes and mock exam, including True/False questions, multiple-choice, and multiple-correct options. These are designed to test your understanding of the material.
   - There will also be 3-4 essay-style questions aimed at evaluating your ability to apply your knowledge to new situations.
-    
+
     - E.g., you might be asked to explain particular steps of the data analysis process in a given situation. You can use code, R concepts, or you can explain in plain English. The more precise the better.
-  
-  - **You will not be required to write exact R code**, but you should be able to interpret and understand the code provided in the exam. 
+
+  - **You will not be required to write exact R code**, but you should be able to interpret and understand the code provided in the exam.
   - I expect you to be familiar with all R commands and concepts covered in the lectures, exercises, in-class code, and additional practice exercises.
   - The readings are not mandatory for the exam. The focus will be on the material discussed in class and during the exercises.
  -->
@@ -386,7 +386,7 @@ ggplot(got_data, aes(x = year, y = soldiers, fill = house)) +
 
 - Values are represented by their **position relative to the axes**: line charts and scatterplots.
 
-- Values are represented by the **size of an area**:  bar charts and area charts. 
+- Values are represented by the **size of an area**:  bar charts and area charts.
 
 - Values are **continuous**: use chart type that visually connects elements (line chart).
 
@@ -426,14 +426,14 @@ include_graphics("../../img/tufte.jpg")
 ::::
 
 
-## Lie Factor, or strive for graphical integrity 
+## Lie Factor, or strive for graphical integrity
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 <br>
 
-We can quantify the **Lie Factor** of a graph as a measure of how much the graphic distorts the data. 
+We can quantify the **Lie Factor** of a graph as a measure of how much the graphic distorts the data.
 
 "The representation of numbers, as physically measured on the surface of the graphic itself, should be directly proportional to the quantities represented." (Tufte, 1983)
 
@@ -449,8 +449,8 @@ include_graphics("../../img/doctors_tufte.jpg")
 :::
 
 <!-- # Lie factor of 2.25 -->
-<!-- From 1964 to 1990, 55% reduction in the number of doctors (from 27% to 12%). The number on the far left (27%) is a little over double the number on the far right (12%), so the picture of doctor on the left is a little more than twice as tall as the doctor on the right. The height of the doctor goes from around 8cm to 4cm on my screen. 
-The problem is that these doctors have width in addition to height and that the size of each doctor is proportional to both its width and its height. So the size of the doctor on the left is far more than twice the size of the doctor on the right. 
+<!-- From 1964 to 1990, 55% reduction in the number of doctors (from 27% to 12%). The number on the far left (27%) is a little over double the number on the far right (12%), so the picture of doctor on the left is a little more than twice as tall as the doctor on the right. The height of the doctor goes from around 8cm to 4cm on my screen.
+The problem is that these doctors have width in addition to height and that the size of each doctor is proportional to both its width and its height. So the size of the doctor on the left is far more than twice the size of the doctor on the right.
 The data increases by 2.25 from right to left. The picture increases by 5.0625 (squared). This is a lie factor of 2.25. -->
 
 ```{r, echo=FALSE, eval = FALSE}
@@ -467,7 +467,7 @@ effect_size/(effect_data)
 ::::
 
 
-## Lie Factor, or strive for graphical integrity 
+## Lie Factor, or strive for graphical integrity
 
 :::: {.columns}
 
@@ -519,12 +519,12 @@ library(gridExtra)
 df1 <- data.frame(
   category = c("A", "B"),
   value = c(85, 15)
-) 
+)
 
 df2 <- data.frame(
   category = c("A", "B"),
   value = c(55, 45)
-) 
+)
 
 # Pie chart
 pie_chart <- ggplot(df1, aes(x = "", y = value, fill = category)) +
@@ -661,25 +661,25 @@ p <- ggplot(data, aes(x = x, y = y, color = group)) +
   theme_classic() +
   theme(legend.position = "none")
 
-p2 <- p + 
+p2 <- p +
   labs(
     title = "Palette: Sequential",
     subtitle = 'scale_color_brewer(palette = "BuPu")'
-  ) + 
+  ) +
   scale_color_brewer(palette = "BuPu")
 
-p3 <- p + 
+p3 <- p +
   labs(
     title = "Palette: Qualitative",
     subtitle = 'scale_color_brewer(palette = "Dark2")'
-  ) + 
+  ) +
   scale_color_brewer(palette = "Dark2")
 
-p4 <- p + 
+p4 <- p +
   labs(
     title = "Palette: R Color brewer: Diverging",
     subtitle = 'scale_color_brewer(palette = "RdYlGn")'
-  ) + 
+  ) +
   scale_color_brewer(palette = "RdYlGn")
 
 library(harrypotter)
@@ -697,31 +697,31 @@ grid.arrange(p2, p3, p4, p1, ncol = 2)
 
 
 
-## Only what matters should be reported 
+## Only what matters should be reported
 
 - Data-ink Ratio = $\frac{\text{ink used for data points}}{\text{total ink used to print the graphic
-}}$ 
+}}$
 
   - Proportion of a graphic's ink devoted to the non-redundant display of data-information
-  - **Data ink**: data points and measured quantities, such as the dots in a scatter plot 
+  - **Data ink**: data points and measured quantities, such as the dots in a scatter plot
   - **Non-data ink**: functional marks such as titles, labels, axes, gridlines and tick points or decorative marks
-  
+
 #### Idea: maximize data-ink ratio
-  
+
   - Limits to this approach: we still need some ink to interpret and understand the data.
   - No chart junk!
 
 
-## Only what matters should be reported 
+## Only what matters should be reported
 
 ```{r echo=FALSE, out.width = "100%", message=FALSE, warning=FALSE, fig.align='center'}
 library(gridExtra)
 library(ggthemes)
 
 # High data-ink ratio graph (plot1)
-plot1 <- mtcars |> 
-  group_by(cyl) |> 
-  count() |> 
+plot1 <- mtcars |>
+  group_by(cyl) |>
+  count() |>
   ggplot(aes(x = as.factor(cyl), y = n, fill = as.factor(cyl), label = n)) +
   geom_bar(stat = "identity") +
   geom_label(color = "white", fontface = "bold", show.legend = FALSE) +
@@ -742,9 +742,9 @@ plot1 <- mtcars |>
   )
 
 # Minimalist graph (plot2)
-plot2 <- mtcars |> 
-  group_by(cyl) |> 
-  count() |> 
+plot2 <- mtcars |>
+  group_by(cyl) |>
+  count() |>
   ggplot(aes(x = as.factor(cyl), y = n)) +
   geom_bar(stat = "identity", fill = "gray50") +
   labs(
@@ -768,9 +768,9 @@ library(gridExtra)
 library(ggthemes)
 
 # High data-ink ratio graph (plot1)
-plot1 <- mtcars |> 
-  group_by(cyl) |> 
-  count() |> 
+plot1 <- mtcars |>
+  group_by(cyl) |>
+  count() |>
   ggplot(aes(x = as.factor(cyl), y = n, fill = as.factor(cyl), label = n)) +
   geom_bar(stat = "identity") +
   geom_label(color = "white", fontface = "bold", show.legend = FALSE) +
@@ -791,9 +791,9 @@ plot1 <- mtcars |>
   )
 
 # Minimalist graph (plot2)
-plot2 <- mtcars |> 
-  group_by(cyl) |> 
-  count() |> 
+plot2 <- mtcars |>
+  group_by(cyl) |>
+  count() |>
   ggplot(aes(x = as.factor(cyl), y = n)) +
   geom_bar(stat = "identity", fill = "gray50") +
   labs(
@@ -814,21 +814,21 @@ grid.arrange(plot1, plot2, ncol = 2)
 </details>
 
 
-## Only what matters should be reported 
+## Only what matters should be reported
 
 ```{r echo= FALSE, out.width="120%", fig.align="center", fig.cap = "Source: [simplexct.com](https://simplexct.com/data-ink-ratio)" }
 include_graphics("../../img/datainkration.png")
 ```
 
 
-## Only what matters should be reported 
+## Only what matters should be reported
 
 ```{r echo= FALSE, out.width="120%", fig.align="center", fig.cap = "Source: [simplexct.com](https://simplexct.com/data-ink-ratio)" }
 include_graphics("https://img.pagecloud.com/28E0b8Fkrd98Y1K8fxPD8bX0NqM=/918x0/filters:no_upscale()/simplexct/images/Fig2-b7d62.png")
 ```
 
 
-## Only what matters should be reported 
+## Only what matters should be reported
 
 Works for tables as well...
 
@@ -850,7 +850,7 @@ include_graphics("https://img.pagecloud.com/6e1pFdr0cwYRNL4ehktNetsGuCI=/936x0/f
 
 ## Data density
 
-The data density takes the number of data points that are being graphed relative to the physical size of the graphic to capture the principle of aiming to present many numbers in a small space: 
+The data density takes the number of data points that are being graphed relative to the physical size of the graphic to capture the principle of aiming to present many numbers in a small space:
 
 - Data density = $\frac{\text{number of entries in data matrix}}{\text{area of data graphic}}$
 
@@ -884,12 +884,12 @@ ggplot(two_by_two_matrix, aes(x = candidate, y = votes)) +
 
 ```{r echo=FALSE, eval = TRUE, out.width = "100%", message=FALSE, warning=FALSE, fig.align='center'}
 library(gtExtras)
-two_by_two_matrix |> 
-  gt() |> 
+two_by_two_matrix |>
+  gt() |>
   tab_header(
     title = md("Election results"),
     subtitle = md("Data Density Example")
-  ) 
+  )
 ```
 <!-- Give people the data so they can exercise their full powers – don’t limit them. Give the control of the information to the viewer instead of the editor. -->
 <!-- Data-thin displays move viewers towards ignorance and passivity. -->
@@ -923,15 +923,15 @@ two_by_two_matrix |>
 ## Data visualization: from a graph to a story
 
 
-#### Two pieces of advice I personally received: 
-    
+#### Two pieces of advice I personally received:
+
   1. If possible, **fit your whole story in one graph**.
   2. Your audience should understand your graph **without the need of listening to you** or **reading your text.**
 
 <br>
 
 - Be simple and avoid unnecessary fanciness.
-- Avoid pie charts and 3D charts. 
+- Avoid pie charts and 3D charts.
 
 
 ## Have fun with ggplot
@@ -956,7 +956,7 @@ include_graphics("../../img/meme_ggplot.jpg")
 
 # A Design problem (self-study)
 
-## A Design Problem 
+## A Design Problem
 
 What is wrong with the graph below? Create your own version of the graph. If we have time, we will solve this example in class. If not, try to solve it on your own before you check the detailed solution below.
 
@@ -966,7 +966,7 @@ include_graphics("../../img/example3problem.gif")
 ```
 
 
-## A Design Problem 
+## A Design Problem
 
 Use the following data to create your own version of the graph:
 
@@ -1016,7 +1016,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, fill = Location)) +
 
 - The three resorts have been arranged in order of rank, based on revenue, to highlight their comparative performance.
 - The years have been arranged from left to right, which is intuitive.
-- The legend has been placed below the bars. 
+- The legend has been placed below the bars.
 
 :::
 ::::
@@ -1061,7 +1061,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
 
 ::: {.column width="40%"}
 
-- This design makes it easy to see how revenue has changed from year to year at each of these resorts. 
+- This design makes it easy to see how revenue has changed from year to year at each of these resorts.
 - However, the magnitudes are difficult to read because the y-axis does not start at 0!
 - The eye is still going back and forth between the lines and the legend.
 
@@ -1078,7 +1078,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
     y = "Revenue (in USD)"
   ) +
   scale_y_continuous(labels = scales::dollar) +
-  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+  scale_x_discrete(labels = c("1993", "1994", "1995"),
                    expand = expansion(add = c(0.5, 0.5))) +
   theme_classic() +
   theme(legend.position = "bottom")
@@ -1103,7 +1103,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
     y = "Revenue (in USD)"
   ) +
   scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
-  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+  scale_x_discrete(labels = c("1993", "1994", "1995"),
                    expand = expansion(add = c(0.5, 1))) +
   theme_classic() +
   theme(legend.position = "none")  +
@@ -1113,7 +1113,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
 
 ::: {.column width="40%"}
 
-- This design makes it easy to see how revenue has changed from year to year at each of these resorts. 
+- This design makes it easy to see how revenue has changed from year to year at each of these resorts.
 
 :::
 ::::
@@ -1130,7 +1130,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
     y = "Revenue (in USD)"
   ) +
   scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
-  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+  scale_x_discrete(labels = c("1993", "1994", "1995"),
                    expand = expansion(add = c(0.5, 1))) +
   theme_classic() +
   theme(legend.position = "none")  +
@@ -1156,7 +1156,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
     y = "Revenue (in USD)"
   ) +
   scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
-  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+  scale_x_discrete(labels = c("1993", "1994", "1995"),
                    expand = expansion(add = c(0.5, 1))) +
   theme_classic() +
   theme(legend.position = "none") +
@@ -1183,7 +1183,7 @@ ggplot(dataChallenge, aes(x = Fiscal_Year, y = Revenue, color = Location,
     y = "Revenue (in USD)"
   ) +
   scale_y_continuous(labels = scales::dollar, limits = c(0, 500000)) +
-  scale_x_discrete(labels = c("1993", "1994", "1995"), 
+  scale_x_discrete(labels = c("1993", "1994", "1995"),
                    expand = expansion(add = c(0.5, 1))) +
   theme_classic() +
   theme(legend.position = "none") +

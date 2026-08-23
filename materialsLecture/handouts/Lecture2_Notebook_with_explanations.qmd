@@ -2,10 +2,15 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: "Lecture 2: Students' notebook"
 author: "Dr. Aurélien Sallin"
+author-title: "Lecturer"
+date: today
+date-format: "MMMM YYYY"
 params:
   show_code: true  # Toggle this to switch between student and solution versions
 format:
   html:
+    theme: ../../style/hsgtheme_reports.scss
+    include-after-body: ../../style/report-footer.html
     embed-resources: true
     self-contained: true
     self-contained-math: true
@@ -37,7 +42,7 @@ The entities that R creates and manipulates are known as objects. These may be v
 
   - Assign a variable in the environment using `<-` or `=`. However, `<-` is the more traditional and preferred way, especially in scripts and functions.
   - Manipulate the variable
-  
+
 During an R session, objects are created and stored by name. The R command `objects()` or `ls()` can be used to display the names of (most of) the objects which are currently stored within R. The collection of objects currently stored is called the **workspace**.
 
 To remove objects the function `rm()` (for remove) is available.
@@ -83,7 +88,7 @@ R has two types of vectors:
   - **atomic vectors**: homogeneous collections of the same type (e.g. all logical values, all numbers, or all character strings).
 
   - **lists**: heterogeneous collections of any type of R object, even other lists (meaning they can have a hierarchical/tree-like structure).
-  
+
 ```{r, echo = F, fig.cap = "Source: https://r4ds.had.co.nz/vectors.html",  out.width = "70%"}
 include_graphics("../../img/data-structures-overview.png")
 ```
@@ -139,8 +144,8 @@ matrix(nrow=3, ncol = 3, 1:9, byrow = FALSE) # fills by column by default
 The dimensions of a matrix are always given as **number of rows** x **number of columns**. We can subset and access elements of the matrix using square brackets `[]`.
 
 ```{r}
-mymatrix <- matrix(c(1,2,3,11,12,13,1,10), 
-                   nrow = 2, 
+mymatrix <- matrix(c(1,2,3,11,12,13,1,10),
+                   nrow = 2,
                    ncol = 4,
                    byrow = FALSE)
 print(mymatrix)
@@ -169,7 +174,7 @@ vect + 10
 ```{r}
 x <- c(2, 4, 6)
 y <- c(1, 1, 1, 2, 2)
-x > y # warning. 
+x > y # warning.
 x == y
 ```
 Here, the vector `x` is recycled to `c(2, 4, 6, 2, 4)` to match the length of `y`. The comparison is then done element-wise.
@@ -188,13 +193,13 @@ sum_result -2
 
 ```{r, eval = T}
 # Modulo (remainder)
-5 %% 3 
+5 %% 3
 
 # Integral division
 5 %/% 3
 ```
 
-These operators are vectorized (element-wise). 
+These operators are vectorized (element-wise).
 
 ℹ️ When a function or operator is called vectorized, it means that it can take a whole vector as input and apply the operation element by element, without writing an explicit loop.
 
@@ -206,7 +211,7 @@ a + b
 a * b
 a / b
 
-a %% b 
+a %% b
 a %/% b
 ```
 
@@ -294,8 +299,8 @@ check <- function() {
 }
 
 TRUE || check()
-FALSE || check()  
-TRUE | check()  
+FALSE || check()
+TRUE | check()
 
 FALSE && check()
 FALSE & check()
@@ -303,7 +308,7 @@ FALSE & check()
 ```
 
 
-Use concise operators. For instance, `x %in% c(1, 2, 3)` is more concise than `x == 1 | x == 2 | x == 3`. 
+Use concise operators. For instance, `x %in% c(1, 2, 3)` is more concise than `x == 1 | x == 2 | x == 3`.
 
 
 <br>
@@ -322,7 +327,7 @@ log(exp(10))
 
 ### Set operators
 
-Table: Set operators in R 
+Table: Set operators in R
 
 | Operator   | Operation      | Vectorized? |
 |------------|----------------|-------------|
@@ -413,10 +418,10 @@ x <- 1
 repeat {
   print(x)
   x = x + 1
-  
+
   # Break statement
   ################
-  if (x == 6){ 
+  if (x == 6){
     break
   }
   ################
@@ -427,7 +432,7 @@ repeat {
 
 ## Loop helper functions*
 
-Use `length()`, `seq()`, `seq_along()`, and `seq_len()` to loop over indices of an object. 
+Use `length()`, `seq()`, `seq_along()`, and `seq_len()` to loop over indices of an object.
 
 ```{r}
 vect <- c(10, 20, 30, 40)
@@ -438,7 +443,7 @@ seq_len(length(vect))
 # Both loops do the same thing
 for (i in seq_along(vect)) {
   print(vect[i] + 10)
-} 
+}
 
 for (i in (vect)) {
    print(i + 10)
@@ -450,16 +455,16 @@ for (i in (vect)) {
 
 ## Tips for loops*
 
-  1. Preallocate memory for objects that will grow inside a loop: create an empty vector before the loop starts and fill it in during each iteration -> Significant improvement in performance. 
-  
+  1. Preallocate memory for objects that will grow inside a loop: create an empty vector before the loop starts and fill it in during each iteration -> Significant improvement in performance.
+
 ```{r}
-# Don't: 
+# Don't:
 a <- c() # create an empty vector with size 0
 for (i in seq_len(10)) {
   a <- c(a, i ^ 3) # fill the vector by concatenation
 }
 
-# Do: 
+# Do:
 a <- numeric(10) # create an empty vector of given size 10
 for (i in seq_len(10)) {
   a[i] <- i ^ 3 # fill the vector
@@ -611,7 +616,7 @@ map(1:4, triple)
 
 ## The "apply" functional
 
-`apply` applies a function to columns or rows of a matrix. It loops over rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix. 
+`apply` applies a function to columns or rows of a matrix. It loops over rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix.
 
 ```{r}
 # Empty matrix with 2 rows and 4 columns

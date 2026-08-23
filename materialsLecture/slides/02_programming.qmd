@@ -1,8 +1,8 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 2: Programming with Data'
+subtitle: 'Lecture 2: Programming with R'
 author: "Dr. Aurélien Sallin"
-date: "2025-10-02"
+date: "2026-09-24"
 code-line-numbers: false
 format:
   revealjs:
@@ -14,8 +14,8 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    theme: ../../style/hsgtheme.scss
-highlight-style: dracula 
+    theme: ../../style/hsgtheme_slides.scss
+highlight-style: dracula
 cache: false
 echo: false
 execute:
@@ -33,14 +33,14 @@ library(purrr)
 
 Recap
 
-## 
+##
 
 ```{r , echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
 include_graphics("../../img/data_science_pipeline.png")
 ```
 
 
-## 
+##
 
 **At the end of the course, you will be able to...**
 
@@ -87,7 +87,7 @@ For HSG-students currently abroad on an exchange semester (not exchange students
   - I am allowed to offer an alternative examination as a sign of **goodwill** and **fairness** (**exception**!).
 
 #### Oral exam as alternative
-Exchange students will have the possibility to take an **oral exam** during the central examination period. 
+Exchange students will have the possibility to take an **oral exam** during the central examination period.
 Students in exchange must email me before **October 10th, 2025** to register.
 
 
@@ -96,7 +96,7 @@ Students in exchange must email me before **October 10th, 2025** to register.
   - Central examination (50%): as planned, with all course participants.
   - Group project (35%): completed remotely with your group.
   - Decentral exam (15%): oral examination during the central examination period.
- 
+
 
 
 
@@ -111,7 +111,7 @@ Students in exchange must email me before **October 10th, 2025** to register.
 
   - Groups with fewer than five students will be completed by the instructors.
   - Students who do not join a group will be randomly assigned.
- 
+
 <br>
 
 #### Important for both options:
@@ -119,7 +119,7 @@ Students in exchange must email me before **October 10th, 2025** to register.
   - Groups are **compulsory** for the group project submission.
   - Once created, groups remain **fixed** for the entire project. No reshuffling is allowed.
 
- 
+
 
 ## Now, the vote:
 
@@ -159,7 +159,7 @@ R has two types of vectors:
 
   - **atomic vectors**: homogeneous collections of the same type ⚛️
     - Atomic Vectors are the most fundamental data structures in R
-    
+
   - **lists**: heterogeneous collections of any type of R object, even other lists
 
 
@@ -173,7 +173,7 @@ include_graphics("../../img/data-structures-overview.png")
 ## Vectors
 
 The four types of atomic vectors that are used the most are: **logical, integer, double, character**.
-  
+
 ## Vectors
 
 ```{r echo=FALSE, fig.align='center', out.width="10%"}
@@ -203,7 +203,7 @@ Homogeneous vectors with an added `dim` attribute that gives it rows and columns
 
 ::: {.column width="50%"}
 ```{r, eval=FALSE, `code-line-numbers`= "1-1"}
-cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
+cbind(c(1,2,3), c(4,5,6), c(7,8,9))
 rbind(c(1,4,7), c(2,5,8), c(3,6,9))
 matrix(nrow = 3, ncol = 3, 1:9)
 
@@ -212,7 +212,7 @@ dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 :::
 ::: {.column width="50%"}
 ```{r echo=FALSE}
-cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
+cbind(c(1,2,3), c(4,5,6), c(7,8,9))
 ```
 :::
 ::::
@@ -225,8 +225,8 @@ Homogeneous vectors with an added `dim` attribute that gives it rows and columns
 
 ::: {.column width="50%"}
 ```{r, eval=FALSE, `code-line-numbers`="2-2"}
-cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
-rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
+cbind(c(1,2,3), c(4,5,6), c(7,8,9))
+rbind(c(1,4,7), c(2,5,8), c(3,6,9))
 matrix(nrow = 3, ncol = 3, 1:9)
 
 dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
@@ -247,9 +247,9 @@ Homogeneous vectors with an added `dim` attribute that gives it rows and columns
 :::: {.columns}
 ::: {.column width="50%"}
 ```{r, eval = F, `code-line-numbers`="3-3"}
-cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
-rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
-matrix(nrow = 3, ncol = 3, 1:9) 
+cbind(c(1,2,3), c(4,5,6), c(7,8,9))
+rbind(c(1,4,7), c(2,5,8), c(3,6,9))
+matrix(nrow = 3, ncol = 3, 1:9)
 
 dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 ```
@@ -257,7 +257,7 @@ dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 
 ::: {.column width="50%"}
 ```{r echo=FALSE}
-matrix(nrow=3, ncol = 3, 1:9) 
+matrix(nrow=3, ncol = 3, 1:9)
 ```
 :::
 ::::
@@ -269,9 +269,9 @@ Homogeneous vectors with an added `dim` attribute that gives it rows and columns
 :::: {.columns}
 ::: {.column width="50%"}
 ```{r, eval = F, `code-line-numbers`="5-5"}
-cbind(c(1,2,3), c(4,5,6), c(7,8,9)) 
-rbind(c(1,4,7), c(2,5,8), c(3,6,9)) 
-matrix(nrow = 3, ncol = 3, 1:9) 
+cbind(c(1,2,3), c(4,5,6), c(7,8,9))
+rbind(c(1,4,7), c(2,5,8), c(3,6,9))
+matrix(nrow = 3, ncol = 3, 1:9)
 
 dim(cbind(c(1,2,3), c(4,5,6), c(7,8,9)))
 ```
@@ -318,7 +318,7 @@ sum_result -2
 
 ```{r, eval = F}
 # Modulo (remainder)
-5 %% 3 
+5 %% 3
 
 # Integral division
 5 %/% 3
@@ -338,7 +338,7 @@ sum_result -2
 
 ```{r, echo=FALSE}
 # Modulo (remainder)
-5 %% 3 
+5 %% 3
 
 # Integral division
 5 %/% 3
@@ -382,7 +382,7 @@ Table: Logical operators in R (Source: Shawn Santo)
 
 <br>
 
-**Question:** 
+**Question:**
 
 Given `x = 1` and `y = 6`, what is: `x < 5 & y < 5`?
 
@@ -399,7 +399,7 @@ log(exp(10))
 
 ## Set operators
 
-Table: Set operators in R 
+Table: Set operators in R
 
 | Operator   | Operation      | Vectorized? |
 |------------|----------------|-------------|
@@ -423,7 +423,7 @@ The colon operator `:` generates regular sequences. It is equivalent to `seq(fro
 # Loops
 
 ## for-loop
-  
+
 ```{r echo=FALSE, fig.align='center', out.width="35%"}
 include_graphics("../../img/forloop_black.png")
 ```
@@ -437,9 +437,9 @@ n <- 100
 
 # start loop
 for (i in 1:n) {
-  
+
   # BODY
-  
+
 }
 
 ```
@@ -452,16 +452,16 @@ include_graphics("../../img/while_loop_black_own.png")
 ```
 
 
-## while-loop 
+## while-loop
 ```{r eval=FALSE}
 # initiate variable for logical statement
 x <- 1
 
 # start loop
 while (x == 1) {
-  
+
   # BODY
-  
+
 }
 
 ```
@@ -480,11 +480,11 @@ x <- 1
 
 # Start repeat loop
 repeat {
-  
+
   x = x + 1
-  
+
   # Break statement
-  if (x == 6){ 
+  if (x == 6){
     break
   }
 }
@@ -492,9 +492,9 @@ repeat {
 
 
 # Logical and control statements
-  
 
-## Control statements 
+
+## Control statements
 ```{r}
 condition <- TRUE
 
@@ -512,19 +512,19 @@ if (condition) {
 ## Functions
 
 <p style="text-align: center;font-size: 25pt;">$$f:X \rightarrow Y$$</p>
-  
+
 
 ## Functions
-  
+
   <p style="text-align: center;font-size: 25pt;">$$2\times X = Y$$</p>
-  
-  
+
+
 ## Functions in R
 
 Functions in R are either **built-in** or **user-defined**.
-  
+
 Load built-in functions from a R-package:
-  
+
 ```{r eval=FALSE, purl=FALSE}
 # install a package
 install.packages("<PACKAGE NAME>")
@@ -538,8 +538,8 @@ library(<PACKAGE NAME>)
 ## Functions in R
 
 Functions have three elements:
-  
-  1. [formals()]{.green-bold}, the list of arguments that control how you call the function 
+
+  1. [formals()]{.green-bold}, the list of arguments that control how you call the function
   2. [body()]{.green-bold}, the code inside the function
   3. [environment()]{.green-bold}, the data structure that determines how the function finds the values associated with the names (not the focus of this course)
 
@@ -549,10 +549,10 @@ Functions have three elements:
 
 ```{r eval=TRUE, purl=FALSE}
 myfun <- function(x, y){
-  
+
   # BODY
   z <- x + y
-  
+
   # What the function returns
   return(z)
 }
@@ -571,10 +571,10 @@ formals(myfun)
 
 ```{r eval=TRUE, purl=FALSE}
 myfun <- function(x, y){
-  
+
   # BODY
   z <- x + y
-  
+
   # What the function returns
   return(z)
 }
@@ -591,10 +591,10 @@ body(myfun)
 ## Functions in R
 ```{r eval=TRUE, purl=FALSE}
 myfun <- function(x, y){
-  
+
   # BODY
   z <- x + y
-  
+
   # What the function returns
   return(z)
 }
@@ -614,9 +614,9 @@ A simple power function
 
 ```{r eval=TRUE, echo = TRUE, purl=FALSE, results = 'hide'}
 powerFunction <- function(base, exponent){
-  
+
   results <- base ^ exponent
-  
+
   return(results)
 }
 
@@ -631,7 +631,7 @@ powerFunction(c(2,4,3), 3)
 
 ## Functionals
 
-  - A functional is a function that takes a function as an input and returns a vector or a list as output. 
+  - A functional is a function that takes a function as an input and returns a vector or a list as output.
   - Functionals are alternative to for-loops.
   - Functionals can be programmed using the `apply` family (`apply`, `lapply`, `tapply`), or the `purrr::map()` family.
 
@@ -657,7 +657,7 @@ triple <- function(x) x * 3
 # With lapply
 lapply(1:3, triple)
 
-# Apply the function to a vector. map_dbl Returns a vector 
+# Apply the function to a vector. map_dbl Returns a vector
 map_dbl(1:3, triple)
 ```
 
@@ -665,23 +665,23 @@ map_dbl(1:3, triple)
 
 ## The "apply" functional
 
-`apply` applies a function to columns or rows of a matrix. It loops over rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix. 
+`apply` applies a function to columns or rows of a matrix. It loops over rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix.
 
 
 :::: {.columns}
 ::: {.column width="50%"}
 ```{r, eval = F}
 # Empty matrix with 2 rows and 4 columns
-mymatrix <- matrix(c(1,2,3,11,12,13,1,10), 
-                   nrow = 2, 
+mymatrix <- matrix(c(1,2,3,11,12,13,1,10),
+                   nrow = 2,
                    ncol = 4)
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r echo=FALSE}
-mymatrix <- matrix(c(1,2,3, 11,12,13, 1,10), 
-                   nrow = 2, 
+mymatrix <- matrix(c(1,2,3, 11,12,13, 1,10),
+                   nrow = 2,
                    ncol = 4)
 print(mymatrix)
 ```
@@ -733,20 +733,20 @@ apply(mymatrix, MARGIN = 1, sum)
 Write a function `meaN(x)` that computes the mean of a numeric vector. We are not allowed to call it "mean" because `mean()` is already a function in R.
 
 Starting point: we should be aware of how the mean is defined:
-  
+
 $$\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}$$
-  
+
 
 ## Tutorial 1: A Function to Compute the Mean
-  
+
 ```{r}
 #####################################
 # Mean Function:
-# Computes the mean, given a 
+# Computes the mean, given a
 # numeric vector.
 
 meaN <- function(x){
-  
+
 }
 
 ```
@@ -755,11 +755,11 @@ meaN <- function(x){
 ```{r mean solution, eval=FALSE, include=FALSE}
 
 meaN <- function(x){
-  
+
   mean <- (sum(x)/length(x))
-  
+
   return(mean)
-  
+
 }
 
 meaN(c(1,2,3))
@@ -772,7 +772,7 @@ meaN(vector)
 
 ## Tutorial 2: on slow and fast sloths
 
-We can use loops to simulate natural processes over time. Write a program that calculates the populations of two kinds of sloths over time. At the beginning of year 1, there are **1000 slow sloths** and **1 fast sloth**. This one fast sloth is a new mutation that is genetically able to use roller blades. Not surprisingly, being fast gives it an advantage, as it can better escape from predators. 
+We can use loops to simulate natural processes over time. Write a program that calculates the populations of two kinds of sloths over time. At the beginning of year 1, there are **1000 slow sloths** and **1 fast sloth**. This one fast sloth is a new mutation that is genetically able to use roller blades. Not surprisingly, being fast gives it an advantage, as it can better escape from predators.
 
 :::: {.columns}
 
@@ -788,10 +788,10 @@ include_graphics("../../img/fastsloth.png")
 :::
 ::::
 
-  
-  
+
+
 ## Tutorial 2: on slow and fast sloths
-  
+
 Each year, each sloth has one offspring. There are no further mutations, so slow sloths beget slow sloths, and fast sloths beget fast sloths. Also, each year 40% of all slow sloths die each year, while only 30% of the fast sloths do.
 
 At the beginning of year one there are 1000 slow sloths. Another 1000 slow sloths are born. But, 40% of these 2000 slow sloths die, leaving a total of 1200 at the end of year one. Meanwhile, in the same year, we begin with 1 fast sloth, 1 more is born, and 30% of these die, leaving 1.4.
@@ -799,21 +799,21 @@ At the beginning of year one there are 1000 slow sloths. Another 1000 slow sloth
 |Beginning of Year   |Slow Sloths   |Fast Sloths   |
 |---|---|---|
 |1   |1000   |1   |
-|2   |1200   |1.4  | 
-|3   |1440   |1.96   | 
-  
-**Enter the first year in which the fast sloths outnumber the slow sloths.** 
-  
-  
+|2   |1200   |1.4  |
+|3   |1440   |1.96   |
+
+**Enter the first year in which the fast sloths outnumber the slow sloths.**
+
+
 ```{r sloth solution, eval=FALSE, include=FALSE}
 i <- 1
 Nslow <- 1000
 Nfast <- 1
 
 while(Nslow > Nfast){
-  Nslow <- (Nslow *2)*0.6 
-  Nfast <- (Nfast *2)*0.7 
-  
+  Nslow <- (Nslow *2)*0.6
+  Nfast <- (Nfast *2)*0.7
+
   i <- i + 1
 }
 
@@ -826,8 +826,8 @@ Nfast <- 1
 for (i in 1:48){
   Nslow <- c(Nslow, (Nslow[i] *2)*0.6)
   Nfast <- c(Nfast, (Nfast[i] *2)*0.7)
-  
-  print(i) 
+
+  print(i)
 }
 
 Nslow[44:48]
@@ -843,14 +843,14 @@ Be the function
 
 ```{r}
 appendsums <- function(lst){
-  
-  #Repeatedly append the sum of the current last three elements 
-  #of lst to lst. 
+
+  #Repeatedly append the sum of the current last three elements
+  #of lst to lst.
 }
 ```
 
 Create a function that repeatedly appends the sum of the current last three elements of the vector lst to lst. Hint: use the `append` and `tail` functions. Your function should loop 25 times. To check if your function is correct, run:
-  
+
 ```{r, eval = FALSE}
 sum_three = c(0, 1, 2)
 appendsums(sum_three)
@@ -862,14 +862,14 @@ sum_three[10] == 125
 
 ```{r loop solution, eval=FALSE, include=FALSE}
 appendsums <- function(lst){
-  
+
   i <- 1
-  
+
   for (i in 1:25){
     lst <- append(lst, sum(tail(lst, 3)))
     i <- i + 1
   }
-  
+
   lst
 }
 
@@ -877,10 +877,9 @@ sum_three = c(0, 1, 2)
 sum_three <- appendsums(sum_three)
 
 # Solution for testing:
-sum_three[10] 
+sum_three[10]
 
 ```
 
 
-# Questions?  
-  
+# Questions?

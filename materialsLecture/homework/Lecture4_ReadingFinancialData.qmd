@@ -2,10 +2,15 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: "Exercise to lecture 4: Reading Financial Data"
 author: "Dr. Aurélien Sallin"
+author-title: "Lecturer"
+date: today
+date-format: "MMMM YYYY"
 params:
   show_code: true  # Toggle this to switch between student and solution versions
 format:
   html:
+    theme: ../../style/hsgtheme_reports.scss
+    include-after-body: ../../style/report-footer.html
     embed-resources: true
     self-contained: true
     self-contained-math: true

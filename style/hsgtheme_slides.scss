@@ -1,0 +1,147 @@
+/*-- scss:defaults --*/
+
+// fonts for the whole document
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+// fonts
+// body copy stays on Open Sans; headings switch to Lato Bold for a touch of
+// distinct character without introducing a new typeface into the stack
+$font-family-sans-serif: 'Open Sans', Lato, sans-serif !default;
+
+// colors ---------------------------------------------------------------
+// One accent color, used everywhere green shows up (headings, links,
+// emphasis, inverse slides). Previously three different greens were in
+// circulation (#02934a / #008000 / #1c6b08) - unified to the HSG brand green.
+$hsg-green: #02934a !default;
+$accent-warm: #b45309 !default;    // new secondary accent (amber), used sparingly
+                                     // for hints, warnings, asides
+$ink: #111827 !default;             // near-black body text, softer than pure #000
+$muted: #6b7280 !default;           // de-emphasized text (unchanged, already consistent)
+
+$body-bg: #ffffff !default;
+$body-color: $ink !default;
+$link-color: $hsg-green !default;
+$selection-bg: $hsg-green !default;
+
+$code-bg: $body-bg !default; // background for the code inline
+$code-color: #530aa7 !default; // color for inline code
+
+$code-block-bg: #04041bc2 !default; // background code chunks. Overrides highlight-style
+$code-block-border-color: rgb(255, 255, 255) !default;
+
+// emphasis helper classes - both now resolve to the single accent green
+.green-bold {
+  color: $hsg-green;
+  font-weight: bold;
+}
+
+// new: warm accent for hints/asides, e.g. [Or so it seems...]{.accent-bold}
+.accent-bold {
+  color: $accent-warm;
+  font-weight: bold;
+}
+
+// headings - driven entirely through reveal's own theme variables now
+// (a hand-written .reveal h1/h2/... override block used to sit here and
+// silently lose the cascade fight against reveal's built-in CSS - removed).
+$presentation-heading-font: 'Lato' !default;
+$presentation-heading-color: $hsg-green !default;
+$presentation-heading-font-weight: 700 !default;
+$presentation-heading-line-height: 1.2 !default;
+
+$presentation-h1-font-size: 2.5em;
+$presentation-h2-font-size: 1.35em;
+$presentation-h3-font-size: 1.2em;
+$presentation-h4-font-size: 1em;
+$presentation-h5-font-size: 0.85em;
+
+// code
+$code-font: 'Courier New', monospace !default;
+
+// others - a bit more breathing room than before, per request. This drives
+// --r-heading-margin, which every heading level's margin comes from.
+$presentation-block-margin: 32px !default;
+
+
+/*-- scss:rules --*/
+
+.reveal a {
+    line-height: 1.3em;
+}
+
+code {
+    // changes inline code output
+    font-size: 1.1em;
+}
+
+.reveal div.sourceCode {
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+    padding: 0px;
+}
+
+.reveal pre code {
+    border: none;
+    background-color: #dfdadafb;
+    color: #050364d0;
+    padding: 20px;
+}
+
+// add footnote-style
+.footnote-pin {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.3rem;
+  color: $muted;
+}
+
+// h2 is the workhorse title on every regular slide - kept black (matches
+// the original design) rather than the accent color, so the accent doesn't
+// get monotonous slide after slide. Also restores the old, larger gap
+// beneath h2 specifically. Needs !important to win over reveal's own
+// heading-color/heading-margin rules, which otherwise apply uniformly.
+.reveal h2 {
+    color: #000 !important;
+    margin: 0 0 50px 0 !important;
+}
+
+// h4 is used as an in-slide sub-header, kept visually distinct (muted gray)
+// from the main accent-colored heading levels. Same !important reasoning.
+.reveal h4 {
+    color: $muted !important;
+    font-weight: 600 !important;
+}
+
+
+// Define inverse slides like in Xaringan
+.inverse {
+    background-color: $hsg-green;
+    color: #d6d6d6;
+    text-shadow: 0 0 20px #333;
+    text-align: center;
+}
+
+.inverse h1,
+.inverse h2,
+.inverse h3,
+.inverse p {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 350px;
+    position: center;
+}
+
+/* Overriding green background when a background image is present */
+.inverse[data-background-image] {
+    background-color: transparent !important;
+}
+
+.inverse .quarto-slide-number {
+    display: none;
+}

@@ -2,8 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Dr. Aurélien Sallin"
 subtitle: "Lecture 3: A Brief Introduction to Data and Data Processing"
-date: "09/10/2025"
-# pagetitle: Title of Talk
+date: "2025-10-01"
 echo: false
 code-line-numbers: false
 format:
@@ -16,7 +15,7 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    theme: ../../style/hsgtheme.scss
+    theme: ../../style/hsgtheme_slides.scss
 highlight-style: dracula # style to highlight code. Set background color in theme
 cache: false
 # bibliography: bibliography.bib
@@ -41,7 +40,7 @@ Welcome back!
 
 <center>
 
-🐢😴 1️⃣ … 🔟 🚀🏃  
+🐢😴 1️⃣ … 🔟 🚀🏃
 **How was the pace last time?**
 <br>
 <span style="font-size:60%;">Any comments on what felt too fast or too slow?</span>
@@ -111,7 +110,7 @@ For HSG-students currently abroad on an exchange semester (not exchange students
 
   - Decentral examination (50%): December 18th.
   - Group project (35%): completed remotely with your group.
-  - Decentral exam (15%): December 11th. 
+  - Decentral exam (15%): December 11th.
 
 
 
@@ -139,7 +138,7 @@ Warm-up
 
 ## Warm-up
 
-#### Answer the three questions in this week's quiz. 
+#### Answer the three questions in this week's quiz.
 
   - Exam style questions.
   - Use LLM to help you understand the answer.
@@ -192,7 +191,7 @@ is `TRUE`
 #### Answer 2 (recap lecture 2)
 
 ```{r, echo = TRUE, eval = FALSE}
-apply(mymatrix, MARGIN = 2, min) 
+apply(mymatrix, MARGIN = 2, min)
 ```
 returns a vector of size 4.
 :::
@@ -261,7 +260,7 @@ Which of the answers are correct?
 #### Answer 4 (🌶️)
 
 In this code:
-  
+
 ```{r, echo = TRUE, eval = FALSE}
 i <- 1
 m <- c()
@@ -298,7 +297,7 @@ n <- length(numbers)
 
 # start loop
 for (i in 1:n) {
-  
+
   if(i %% 2 == 0){
      total_sum <- total_sum + numbers[i]
   } else {
@@ -328,7 +327,7 @@ Data Processing
 
 
 
-## Numeral systems as representations 
+## Numeral systems as representations
 
 ```{r newabacus, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
 include_graphics("../../img/new_abacus.jpg")
@@ -349,7 +348,7 @@ include_graphics("../../img/cpu_blackbox.png")
 
 ## The binary system
 
-Microprocessors can only represent two signs (states): 
+Microprocessors can only represent two signs (states):
 
  - 'Off' = `0`
  - 'On' = `1`
@@ -379,9 +378,9 @@ What is the decimal number *139* in the binary counting frame?
 ## The binary counting frame
 
 What is the decimal number *139* in the binary counting frame?
- 
+
  - Solution:
- 
+
 $$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
 
 
@@ -390,13 +389,13 @@ $$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
 ## The binary counting frame
 
 What is the decimal number *139* in the binary counting frame?
- 
+
  - Solution:
- 
+
 $$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
 
   - More precisely:
-  
+
 $$(1 \times 2^7) + (0 \times 2^6) +  (0 \times 2^5) +  (0 \times 2^4) + (1 \times 2^3)\\ + (0 \times 2^2) + (1 \times 2^1) +  (1 \times 2^0)  = 139.$$
 
   - That is, the number `139` in the decimal system corresponds to `10001011` in the binary system.
@@ -405,7 +404,7 @@ $$(1 \times 2^7) + (0 \times 2^6) +  (0 \times 2^5) +  (0 \times 2^4) + (1 \time
 
 ## Conversion between binary and decimal
 
-Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1
 -----|-----|----|----|----|----|----|----|----
 
 
@@ -452,14 +451,14 @@ Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1
 ## Conversion between binary and decimal
 
 
-Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1
 -----|-----|----|----|----|----|----|----|----
-0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0
 1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
 2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
 3  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  1
-... |    |   |   |  |  |   |   |  
-139 = | 1   |  0 | 0  |  0 |  1 |  0 | 1  |  1    
+... |    |   |   |  |  |   |   |
+139 = | 1   |  0 | 0  |  0 |  1 |  0 | 1  |  1
 
 
 
@@ -482,15 +481,15 @@ Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1
 #| code-summary: "Show the function `decimal_to_binary_integers`"
 
 decimal_to_binary_integers <- function(decimal) {
-  
+
   bin <- c()
-  
+
   while(decimal > 0){
     q <- decimal %% 2
     decimal <- decimal %/% 2
     bin <- c(q, bin)
   }
-  
+
   bin <- paste0(bin, collapse = "")
   return(bin)
 }
@@ -503,7 +502,7 @@ decimal_to_binary_integers(47)
 
 
 
-## The binary counting frame 
+## The binary counting frame
 
 - Sufficient to represent all *natural* numbers in the decimal system.
 - Representing fractions is tricky
@@ -529,7 +528,7 @@ result <- x == y
 
 ::: {.column width="50%"}
 ```{r, echo = TRUE}
-print(x, digits = 20)       
+print(x, digits = 20)
 print(y, digits = 20)
 ```
 :::
@@ -554,7 +553,7 @@ result <- x == y
 
 ::: {.column width="50%"}
 ```{r, echo = TRUE}
-print(result)  
+print(result)
 ```
 :::
 
@@ -571,7 +570,7 @@ print(result)
 
 tolerance <- 1e-9
 equal <- abs(x - y) < tolerance
-print(equal)  
+print(equal)
 ```
 
 
@@ -594,19 +593,19 @@ The binary number is the sequence of remainders read from bottom to top.
 #| code-summary: "Show the function `decimal_to_binary_fractional`"
 
 decimal_to_binary_fractional <- function(fraction, max_digits) {
-  
+
   bin <- c()
   count <- 0
-  
+
   while(fraction > 0 & count < max_digits){
-    
+
     fraction <- fraction * 2
     int <- fraction %/% 1
     bin <- c(bin, int)
     fraction <- fraction - int
     count <- count + 1
   }
-  
+
   bin <- paste0("0.", paste0(bin, collapse = ""))
   return(bin)
 }
@@ -621,7 +620,7 @@ decimal_to_binary_fractional(1/3, max_digits = 20)
 
 ## Floating point numbers
 
-All in all, we can combine both functions to create a converter function `decimal_to_binary`. 
+All in all, we can combine both functions to create a converter function `decimal_to_binary`.
 
 
 ```{r, echo=TRUE}
@@ -629,51 +628,51 @@ All in all, we can combine both functions to create a converter function `decima
 #| code-summary: "Show the function `decimal_to_binary`"
 
 decimal_to_binary <- function(decimal, max_digits = 20) {
-  
+
   # Separate integer and fractional part
-  integer_part <-  decimal %/% 1 
+  integer_part <-  decimal %/% 1
   fractional_part <- decimal %% 1
-  
-  
+
+
   # Part on integer
   # If integer part is 0, we need to retain "0" rather than removing it
   if (integer_part == 0) {
-    
+
     bin_integer <- "0"
-    
+
   } else {
-    
+
     bin_integer <- c()
-    
+
     while(integer_part > 0){
       q <- integer_part %% 2
       integer_part <- integer_part %/% 2
       bin_integer <- c(q, bin_integer)
     }
-    
+
     bin_integer <- paste0(bin_integer, collapse = "")
   }
-  
+
   # Part on fractional
   if (fractional_part == 0){
     bin_fraction <- "0"
   } else {
-    
+
     count <- 0
     bin_fraction <- c()
-    
+
     while(fractional_part > 0 & count < max_digits){
-      
+
       fractional_part <- fractional_part * 2
       int <- fractional_part %/% 1
       bin_fraction <- c(bin_fraction, int)
       fractional_part <- fractional_part - int
       count <- count + 1
     }
-    
+
     bin_fraction <- paste0(bin_fraction, collapse = "")
   }
-  
+
   return(paste0(bin_integer, ".", bin_fraction))
 }
 
@@ -692,7 +691,7 @@ decimal_to_binary(1/2, max_digits = 20)
 
 ❓ How does the "computer" handle the distinction between the part of a number before and after the decimal point?
 
-- IEEE Standard for Floating-Point Arithmetic (IEEE 754) 
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754)
 - [Not exam relevant]{.green-bold}. See [this page](https://mathcenter.oxford.emory.edu/site/cs170/ieee754/) for a step-by-step explanation.
 
 ```{r IEEE, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
@@ -750,7 +749,7 @@ Number  | ... | $16^2=256$  | $16^1=16$  |  $16^0=1$
 15 =  | ... |  0 | 0  |  F
 16 =  | ... |  0 | 1  |  0
 256 = | ... |  1 | 0  |  0
-...  | ... |    |    |   
+...  | ... |    |    |
 139 = | 0  |  0 | 8  |  B
 
 
@@ -780,21 +779,21 @@ $$(8\times 16^1) +  (B\times 16^0) = 8B = 139.$$
 
 ## The hexadecimal system
 
-#### Challenge: update your function `decimal_to_binary_integers` to write in hexadecimal system. 
+#### Challenge: update your function `decimal_to_binary_integers` to write in hexadecimal system.
 
 ```{r, echo=TRUE}
 #| code-fold: true
 #| code-summary: "Show the function `decimal_to_binary_integers`"
 
 decimal_to_hexa_integers <- function(decimal) {
-  
+
   hex <- c()
-  
+
   while(decimal > 0){
     q <- decimal %% 16
-    
+
     q <- if(q - 10 >= 0) {
-      q <- if(q == 10) "A" 
+      q <- if(q == 10) "A"
       else if(q == 11) "B"
       else if(q == 12) "C"
       else if(q == 13) "D"
@@ -803,11 +802,11 @@ decimal_to_hexa_integers <- function(decimal) {
     } else {
       q
     }
-    
+
     decimal <- decimal %/% 16
     hex <- c(q, hex)
   }
-  
+
   hex <- paste0(hex, collapse = "")
   return(hex)
 }
@@ -888,22 +887,22 @@ include_graphics("../../img/ascii.gif")
 ## ASCII Table
 
 
-Binary  | Hexadecimal | Decimal | Character 
+Binary  | Hexadecimal | Decimal | Character
 -----|-----|----|----
-0011 1111 | 3F   |  63 | `?`  
-0100 0001 | 41   |  65 | `A`  
+0011 1111 | 3F   |  63 | `?`
+0100 0001 | 41   |  65 | `A`
 0110 0010 | 62  |  98 | `b`
 
 
 
 ## Character encodings: why should we care?
- 
+
  - In practice, working with data means handling digital data of all formats and shapes.
     - Diverse sources.
     - Different standards.
     - Different languages (Japanese vs English).
     - read and store data.
-    
+
  - At the lowest level, this means understanding/handling encodings.
 
 
@@ -954,7 +953,7 @@ In both of these domains we mainly work with one simple type of document: [**tex
   - Allocation of a block of computer memory containing "Hello World!".
   - Simply a sequence of `0`s and `1`s...
   - `.txt` indicates to the operating system which program to use when opening this file.
-  
+
 - Encoding and format tell the computer how to interpret the `0`s and `1`s.
 
 
@@ -986,14 +985,14 @@ xxd -b ../../data/helloworld.txt
 ```
 
 ```{}
-00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello 
+00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello
 00000006: 01010111 01101111 01110010 01101100 01100100 00100001  World!
 ```
 
 
 ```{r, eval=FALSE, echo = FALSE}
 # Inspecting a text file as binary in R
-file_content <- readBin("../../data/helloworld.txt", 
+file_content <- readBin("../../data/helloworld.txt",
                         what = "raw",
                         n = 12)
 
@@ -1041,7 +1040,7 @@ cat ../../data/hastamanana.txt; echo
 
 ## Encoding issues
 
-<br> 
+<br>
 
 ```{}
 00000000: 4861 7374 6120 4d61 f161 6e61 210d 0a    Hasta Ma.ana!..
@@ -1136,7 +1135,7 @@ iconv -f iso-8859-1 -t utf-8 ../../data/hastamanana.txt | cat
 
 <p float="left">
   <img src="../../img/rstudio.png" width="20%" />
-  <img src="../../img/atom.png" width="20%" /> 
+  <img src="../../img/atom.png" width="20%" />
   <img src="../../img/vscode.png" width="18%" />
   <img src="../../img/sublime_logo.png" width="20%" />
 </p>
@@ -1164,7 +1163,7 @@ Data Processing Basics
 include_graphics("../../img/cpu_blackbox.png")
 ```
 
-[Reading: please read the document "Data Processing Basics" published on Canvas (in materials/handout). This is exam relevant!]{.green-bold} 
+[Reading: please read the document "Data Processing Basics" published on Canvas (in materials/handout). This is exam relevant!]{.green-bold}
 
 
 ##

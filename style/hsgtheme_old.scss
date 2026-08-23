@@ -1,0 +1,177 @@
+/*-- scss:defaults --*/
+
+// fonts for the whole document
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+// fonts
+$font-family-sans-serif: 'Open Sans', Lato, sans-serif !default;
+//$font-family-sans-serif: 'Open Sans', sans-serif !default;
+
+// colors
+$body-bg: #ffffff !default;
+$body-color: #000 !default;
+$link-color: #02934a !default; // hsg-green
+$selection-bg: #02934a !default;
+
+$code-bg: $body-bg !default; // background for the code inline
+$code-color: #530aa7 !default; // color for inline code
+
+//$code-block-bg: $link-color !default; // background code chunks. Overrides highlight-style
+//$code-block-bg: #050364d0 !default; // background code chunks. Overrides highlight-style
+$code-block-bg: #04041bc2 !default; // background code chunks. Overrides highlight-style
+$code-block-border-color: rgb(255, 255, 255) !default;
+
+// add green-bold for emphasis
+.green-bold {
+  color: #008000;   /* or your HSG green variable if defined */
+  font-weight: bold;
+}
+
+// headings. presentation-heading changes all headings, independently of their level!
+$presentation-heading-font: 'Open Sans' !default;
+$presentation-heading-color: #02934a;
+
+$presentation-h1-font-size: 2.5em;
+$presentation-h2-font-size: 1.35em;
+$presentation-h3-font-size: 1.2em;
+$presentation-h4-font-size: 1em;
+$presentation-h5-font-size: 14px;
+
+// code
+$code-font: 'Courier New', monospace !default;
+
+// others
+$presentation-block-margin: 24px;
+
+
+/*-- scss:rules --*/
+
+.reveal a {
+    line-height: 1.3em;
+}
+
+code {
+    // changes inline code output
+    font-size: 1.1em;
+}
+
+// Change code font size
+// code.sourceCode { // changes only the font in the code chunks
+//    font-size: 1.25em;
+// }
+
+.reveal div.sourceCode {
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+    //box-shadow: 0 20px 47px rgb(0 0 0 / 55%);
+    //width: fit-content;
+    //margin: auto !important;
+    padding: 0px;
+}
+
+.reveal pre code {
+    border: none;
+    background-color: #dfdadafb;
+    color: #050364d0;
+    padding: 20px;
+}
+
+// add footnote-style 
+.footnote-pin {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.3rem;
+  color: #6b7280; 
+}
+
+
+// if you want to specify headings with more details than what is available with sass variables above
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    margin: 0 0 20px 0;
+    color: #02934a;
+    //font-family: 'Arial', sans-serif ;
+    //line-height: 0.9em;
+    //letter-spacing: 0.02em;
+    //text-transform: uppercase;
+    //text-shadow: none;
+}
+
+.reveal h2 {
+    margin: 0 0 50px 0;
+    color: #000;
+    //font-family: 'Arial', sans-serif ;
+    //line-height: 0.9em;
+    //letter-spacing: 0.02em;
+    //text-transform: uppercase;
+    //text-shadow: none;
+}
+
+.reveal h4 {
+    margin: 30px 0 10px 0;
+    color: #6b7280;
+    //font-family: 'Arial', sans-serif ;
+    //line-height: 0.9em;
+    //letter-spacing: 0.02em;
+    //text-transform: uppercase;
+    //text-shadow: none;
+}
+
+.reveal h5 {
+    margin: 30px 0 10px 0;
+    color: #02934a;
+    //font-family: 'Arial', sans-serif ;
+    //line-height: 0.9em;
+    //letter-spacing: 0.02em;
+    //text-transform: uppercase;
+    //text-shadow: none;
+}
+
+
+// Define inverse slides like in Xaringan
+// Still "gebastelt": impossible to set it in center vertically. I had to play with the margin: 350px
+.inverse {
+    background-color: #02934a;
+    color: #d6d6d6;
+    text-shadow: 0 0 20px #333;
+    text-align: center;
+}
+
+.inverse h1,
+.inverse h2,
+.inverse h3,
+.inverse p {
+    font-size: 40px;
+    font-weight: bold;
+    /* Make the text large */
+    margin: 350px;
+    /* middle is at 360 */
+    /* Remove any default margin */
+    position: center;
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*-ms-transform: translateY(-50%), translateX(-50%);*/
+    /*transform: translateY(-50%), translateX(-50%);*/
+    /*text-align: center;*/
+}
+
+/* Overriding green background when a background image is present */
+.inverse[data-background-image] {
+    background-color: transparent !important;
+    /* Remove the green background when an image is applied */
+}
+
+.inverse .quarto-slide-number {
+    display: none;
+}
+

@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 8:<br>Data Preparation, Manipulation, and Cleaning II'
 author: "Dr. Aurélien Sallin"
-date: "2025-11-20"
+date: "2026-11-19"
 echo: false
 code-line-numbers: false
 format:
@@ -15,8 +15,8 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    theme: ../../style/hsgtheme.scss
-highlight-style: dracula 
+    theme: ../../style/hsgtheme_slides.scss
+highlight-style: dracula
 cache: false
 execute:
   echo: true
@@ -57,7 +57,7 @@ include_graphics("../../img/data_science_pipeline.png")
   1. Data values are consistent/clean within each variable.
   2. Variables are of proper data types.
   3. Dataset is in 'tidy' (in long format)!
-  
+
 :::
 
 ::: {.column width="40%"}
@@ -68,7 +68,7 @@ include_graphics("../../img/dalle_garbageinout.png")
 
 
 :::
-:::: 
+::::
 
 
 ## Data preparation consists of five main steps
@@ -89,7 +89,7 @@ include_graphics("../../img/panel_crosssection_timeseries.svg")
 :::
 
 
-## A tidy dataset is tidy, when ... 
+## A tidy dataset is tidy, when ...
 
   1. Each <span style="color:red">variable</span> is a <span style="color:red">column</span>; each column is a variable.
   2. Each <span style="color:green">observation</span> is a <span style="color:green">row</span>; each row is an observation.
@@ -107,13 +107,13 @@ include_graphics("../../img/longvswideCode.png")
 ```
 
 
-## When to Use Wide vs Long Format 
+## When to Use Wide vs Long Format
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 
-#### **Use Long Format for:** 
+#### **Use Long Format for:**
 
 - **Data analysis** with tidyverse/ggplot2
 - **Grouping and summarizing operations** (summarize, mutate by groups)
@@ -125,10 +125,10 @@ include_graphics("../../img/longvswideCode.png")
 
 ::: {.column width="50%"}
 
-#### **Use Wide Format for:** 
+#### **Use Wide Format for:**
 
 - **Data entry** and manual correction
-- **Reports and tables** for presentation  
+- **Reports and tables** for presentation
 - <span style="color:red">**Statistical models**</span> like regressions where each predictor should be a separate column (`lm`), many machine learning functions, matrix multiplication (erratum last time!)
 - **Spreadsheet analysis** (Excel-style operations)
 - **Human readability** and quick scanning
@@ -180,7 +180,7 @@ schwiizerChuchiLong <- pivot_longer(schwiizerChuchi,
 include_graphics("../../img/schwiizerchuchi.jpg")
 ```
 :::
-:::: 
+::::
 
 ::: {style="margin-top: -1em;"}
 Which of the following statements is true?
@@ -202,7 +202,7 @@ Which of the following statements is true?
 - `mean(schwiizerChuchiLong$Raclette) == 8.333`
 
 :::
-:::: 
+::::
 :::
 
 ## A "weird" dataset
@@ -375,7 +375,7 @@ include_graphics("../../img/join-rowmatching.png")
 ```
 
 :::
-:::: 
+::::
 
 
 ## Filtering joins with the <span style="color:#02934a;">semi join</span> and the <span style="color:#02934a;">anti join</span>
@@ -397,7 +397,7 @@ include_graphics("../../img/join-anti.png")
 ```
 
 :::
-:::: 
+::::
 
 
 
@@ -424,7 +424,7 @@ df_c
 # initiate data frame on persons' characteristics
 df_p <- data.frame(id = 1:4,
                    first_name = c("Anna", "Betty", "Claire", "Diane"),
-                   profession = c("Economist", "Data Scientist", 
+                   profession = c("Economist", "Data Scientist",
                                   "Data Scientist", "Economist"))
 df_p
 ```
@@ -451,7 +451,7 @@ dplyr (tidyverse)  | base::merge
 
 
 
-# Transforming and cleaning data 
+# Transforming and cleaning data
 
 ---
 
@@ -484,7 +484,7 @@ include_graphics("../../img/dplyr_blocks.png")
 
 
 :::
-:::: 
+::::
 
 
 ## Prepare your data in a `pipe`line
@@ -507,17 +507,17 @@ include_graphics("../../img/magrittr.png")
 
 ```{r, eval = FALSE}
 # Traditional way
-mydf <- data(swiss) 
+mydf <- data(swiss)
 mydf <- arrange(mydf, -Catholic)
 mydf <- filter(mydf, Education > 8 & Catholic > 90)
 mydf <- mutate(mydf, Country = "Switzerland")
 mydf <- select(mydf, Examination)
 
 # The pipe way
-mydf <- data(swiss)  |> 
-  arrange(-Catholic) |> 
-  filter(Education > 8 & Catholic > 90) |> 
-  mutate(Country = "Switzerland") |> 
+mydf <- data(swiss)  |>
+  arrange(-Catholic) |>
+  filter(Education > 8 & Catholic > 90) |>
+  mutate(Country = "Switzerland") |>
   select(Examination)
 
 ```
@@ -528,7 +528,7 @@ mydf <- data(swiss)  |>
 
 ```{r, eval = FALSE}
 # Base-R equivalent
-mydf <- data(swiss) 
+mydf <- data(swiss)
 mydf <- mydf[order(-mydf$Catholic), ]
 mydf <- mydf[mydf$Education > 8 & mydf$Catholic > 90, ]
 mydf$Country <- "Switzerland"
@@ -542,7 +542,7 @@ mydf <- mydf["Examination"]
 ```
 
 :::
-:::: 
+::::
 
 
 ## Further tools for data transformation and cleaning in `dplyr`

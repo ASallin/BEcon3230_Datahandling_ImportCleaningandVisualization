@@ -2,9 +2,13 @@
 title: "Exploratory Data Analysis: a challenge on summarizing categorical variables"
 subtitle: "Exercise to lecture 9"
 author: "Aurélien Sallin"
+author-title: "Lecturer"
+date: today
+date-format: "MMMM YYYY"
 format:
   html:
-    theme: ../../style/hsgtheme.scss
+    theme: ../../style/hsgtheme_reports.scss
+    include-after-body: ../../style/report-footer.html
     embed-resources: true
     self-contained: true
     self-contained-math: true

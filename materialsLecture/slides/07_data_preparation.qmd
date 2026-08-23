@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Dr. Aurélien Sallin"
 subtitle: 'Lecture 7:<br>Data Preparation, Manipulation, and Cleaning I'
-date: "2025-11-13"
+date: "2026-11-12"
 echo: false
 code-line-numbers: false
 format:
@@ -15,8 +15,8 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    theme: ../../style/hsgtheme.scss
-highlight-style: dracula 
+    theme: ../../style/hsgtheme_slides.scss
+highlight-style: dracula
 cache: false
 ---
 
@@ -101,7 +101,7 @@ include_graphics("../../img/data_science_pipeline.png")
 
 ::: {style="font-size: 60%;"}
   - **Tags**: `<element>value</element>` or `<element attribute="value"/>`
-  - **Repetition**: Multiple `<phoneNumber>` elements  
+  - **Repetition**: Multiple `<phoneNumber>` elements
   - **Verbose**: More characters for structure
 :::
 
@@ -135,7 +135,7 @@ include_graphics("../../img/data_science_pipeline.png")
 
 ::: {style="font-size: 60%;"}
   - **Objects**: `{}` for key-value pairs
-  - **Arrays**: `[]` for sequences  
+  - **Arrays**: `[]` for sequences
   - **Compact**: Less verbose syntax
 :::
 
@@ -193,7 +193,7 @@ person_df
 ```{r, echo = TRUE, eval = FALSE}
 library(jsonlite)
 
-# Read JSON file  
+# Read JSON file
 json_doc <- fromJSON("data/person.json")
 
 # Access elements directly
@@ -207,7 +207,7 @@ person_df <- as.data.frame(json_doc)
 ```{r, echo = FALSE, eval = TRUE}
 library(jsonlite)
 
-# Read JSON file  
+# Read JSON file
 json_doc <- fromJSON("../../data/person.json")
 
 # Access elements directly
@@ -216,7 +216,7 @@ phones <- json_doc$phoneNumber$number
 
 # Convert to data frame (automatic!)
 person_df <- as.data.frame(json_doc)
-person_df 
+person_df
 ```
 :::
 ::::
@@ -248,7 +248,7 @@ person_df
 <tbody>
 <tr>
   <th>Year</th>
-  <th>GDP (billions of 
+  <th>GDP (billions of
     <a href="/wiki/Swiss_franc">CHF</a>)
   </th>
   <th>US dollar exchange</th>
@@ -289,11 +289,11 @@ Use APIs to retrieve World Bank Data and OECD Data.
 ## JSON files: open-ended question
 
 ::: {style="font-size: 70%;"}
-You import the following json file using fromJSON() and store the file in the object `students` in R, i.e. <br> `students <- fromJSON("students.json")`. 
+You import the following json file using fromJSON() and store the file in the object `students` in R, i.e. <br> `students <- fromJSON("students.json")`.
 
 Which statements are TRUE?
 
-::: 
+:::
 
 :::: {.columns}
 ::: {.column width="60%"}
@@ -453,13 +453,13 @@ sched <- read_xlsx("../../schedule2025.xlsx", col_types = "text")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(sched[12:15, c(1,5)], format = "markdown") 
+kable(sched[12:15, c(1,5)], format = "markdown")
 ```
 
 
 ## Part II: Schedule & Organization
 ```{r echo = FALSE, warning = FALSE}
-kable(sched[16:nrow(sched), c(1,5)], format = "markdown") 
+kable(sched[16:nrow(sched), c(1,5)], format = "markdown")
 ```
 
 
@@ -473,15 +473,15 @@ kable(sched[16:nrow(sched), c(1,5)], format = "markdown")
 
 <div style="margin-top: 1.5em;"></div>
 
-##### Walk-ins for the digital exam: 
-  
+##### Walk-ins for the digital exam:
+
   - **Wednesday, 3 December 2025** from 10:30 to 14:00 in Room 23-104 (A 23 Lehr-Pavillon)
   - **Tuesday, 16 December 2025** from 10:30 to 14:00 in 23-203 (A 23 Lehr-Pavillon)
 
 <div style="margin-top: 1.5em;"></div>
 
-##### Second part of the project: online today. 
-  
+##### Second part of the project: online today.
+
   - Recommendation: wait for week 9 to start, as we will cover the necessary concepts in class until then.
 
 
@@ -506,7 +506,7 @@ include_graphics("../../img/tidyverse.png")
 :::
 ::::
 
-## Tidyverse for data handling in R 
+## Tidyverse for data handling in R
 
 ```{r, echo=FALSE, out.width = "40%", fig.align='center', purl=FALSE, fig.cap = "Source: https://www.storybench.org/wp-content/uploads/2017/05/tidyverse.png"}
 include_graphics("../../img/tidyverse_pipeline.png")
@@ -525,9 +525,9 @@ include_graphics("../../img/tidyverse_pipeline.png")
 
 #### Tibbles are a modern version of data frames
 
-Similar! 
+Similar!
 
-- Tibbles are used in the tidyverse and ggplot2 packages. 
+- Tibbles are used in the tidyverse and ggplot2 packages.
 - Same information as a data frame.
 - Small differences in the manipulation and representation of data.
 - See [**Tibble vs. DataFrame**](https://jtr13.github.io/cc21fall1/tibble-vs.-dataframe.html#tibble-vs.-dataframe") for more details.
@@ -553,7 +553,7 @@ as_tibble(swiss)
 
 # Data cleaning
 
-## 
+##
 
 :::: {.columns}
 
@@ -572,7 +572,7 @@ include_graphics("../../img/dalle_garbageinout.png")
 
 
 :::
-:::: 
+::::
 
 
 ## Beware of the "Garbage in garbage out" problem
@@ -597,7 +597,7 @@ include_graphics("../../img/dalle_garbageinout.png")
 
 
 :::
-:::: 
+::::
 
 
 ## Data preparation can be understood as consisting of five main actions
@@ -617,7 +617,7 @@ include_graphics("../../img/dalle_garbageinout.png")
 
 ## Tidy data: some vocabulary
 
-Following R4DS, a tidy dataset is tidy when... 
+Following R4DS, a tidy dataset is tidy when...
 
   1. Each <span style="color:red">variable</span> is a <span style="color:red">column</span>; each column is a variable.
   2. Each <span style="color:green">observation</span> is a <span style="color:green">row</span>; each row is an observation.
@@ -648,7 +648,7 @@ In Economics, the definition of an *observation* can vary:
 ## Tidy data is not trivial
 
 #### Panel Data (Longitudinal Data):
-  
+
   - Panel data tracks the same units over multiple time periods: we observe each unit repeatedly across time.<br>
   - **Observation**: One unit at one specific time point (e.g., Person A in 2020, Person A in 2021).
 
@@ -669,7 +669,7 @@ In Economics, the definition of an *observation* can vary:
 
 ## Three examples of non-tidy data (1)
 
-#### Messy 💩 
+#### Messy 💩
 ```{r, echo = FALSE}
 weather_data <- tibble(
   measure = c("Temperature", "Humidity"),
@@ -741,8 +741,8 @@ homework..
 # Tidying the dataset by separating the variables
 tidy_temp_location <- data.frame(
   temp_location_data$year,
-  str_split(temp_location_data$temperature_location, 
-            pattern = "_", 
+  str_split(temp_location_data$temperature_location,
+            pattern = "_",
             simplify = TRUE)
 )
 
@@ -798,10 +798,10 @@ include_graphics("../../img/longvswide.png")
 
 ::: {.column width="50%"}
 
-#### **Long Format** 
+#### **Long Format**
 - **Structure**: Each measurement = one row
 - **Variables**: Stacked vertically
-- **Dimensions**: More rows, fewer columns  
+- **Dimensions**: More rows, fewer columns
 - **Analysis**: Better for statistical operations
 - **Example**: Database-normalized format
 
@@ -821,9 +821,9 @@ grades_long
 
 ::: {.column width="50%"}
 
-#### **Wide Format** 
+#### **Wide Format**
 - **Structure**: Each observation = one row
-- **Variables**: Spread across multiple columns  
+- **Variables**: Spread across multiple columns
 - **Dimensions**: More columns, fewer rows
 - **Analysis**: Easy for humans to read
 - **Example**: Spreadsheet-style layout
@@ -863,7 +863,7 @@ include_graphics("../../img/longvswideCode.png")
 
 ::: {.column width="50%"}
 
-#### **Use Long Format for:** 
+#### **Use Long Format for:**
 
 - **Data analysis** with tidyverse/ggplot2
 - **Grouping and summarizing operations** (summarize, mutate by groups)
@@ -875,10 +875,10 @@ include_graphics("../../img/longvswideCode.png")
 
 ::: {.column width="50%"}
 
-#### **Use Wide Format for:** 
+#### **Use Wide Format for:**
 
 - **Data entry** and manual correction
-- **Reports and tables** for presentation  
+- **Reports and tables** for presentation
 - **Statistical models** like regressions where each predictor should be a separate column (`lm`), many machine learning functions, matrix multiplication
 - **Spreadsheet analysis** (Excel-style operations)
 - **Human readability** and quick scanning
@@ -903,8 +903,8 @@ include_graphics("../../img/rowbinding_dark.png")
 ## Stack/row-bind: implementation in `R`
 
 - Use `rbind()` in base `R`
-  - Requires that the data frames have the same column names and same column classes. 
-  
+  - Requires that the data frames have the same column names and same column classes.
+
 <br>
 
 - Use `bind_rows()` from `dplyr()`
@@ -942,7 +942,7 @@ subset3
 ```{r, error=TRUE, echo = TRUE, eval=TRUE}
 # Stack data frames
 combined_df_bind_rows <- bind_rows(subset1, subset2, subset3)
-combined_df_rbind     <- rbind(subset1, subset2, subset3) 
+combined_df_rbind     <- rbind(subset1, subset2, subset3)
 
 # What are the following objects?
 combined_df_bind_rows
