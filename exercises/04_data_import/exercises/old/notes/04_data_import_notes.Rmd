@@ -1,0 +1,152 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+author: "Ulrich Matter"
+date: "19/11/2020"
+output:
+  html_document:
+    highlight: tango
+    mathjax: http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    theme: cerulean
+  pdf_document: default
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes_hsg.css
+subtitle: 'Exercise 4: Data Import and Data Preparation/Manipulation'
+bibliography: ../../references/datahandling.bib
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+```
+
+
+
+## Notes on Exercise B
+The US Federal Communications Commission (FCC) provides detailed data on TV and Radio stations in the US. The file `tv_ownership.dat` is an excerpt of these data in the orignal format as provided by the FCC. Figure out how to properly read this dataset into R with the functions provided in the `tidyverse/readr`-packages. Write your solution down in an R-Script and document in this script why certain problems occur and how you solved them.
+
+Let's just give it a try with `read_csv()` and see what happens.
+```{r, message=FALSE, warning=FALSE, message=FALSE}
+# load packages for import and data handling
+library(tidyverse)
+
+```
+
+
+```{r eval=FALSE}
+
+# first try to read the data
+mydata <- read_csv("tv_ownership.dat")
+
+```
+
+
+```{r echo=FALSE}
+
+# first try to read the data
+mydata <- read_csv("../tv_ownership.dat")
+
+```
+
+
+The code did not break down but R issued a warning message, indicating that something might have gone wrong. Let's look at the first few rows to see the result.
+
+```{r}
+mydata
+```
+We note that the tibble created consists of 24 rows, but only one column. From looking at the first few rows we see that this is likely wrong. It looks like the data values should be delimited with the pipe character `|` and not with commas as `read_csv()` does. In addition, we notice that the first row of the raw data does not contain column names but that the file directly starts with observations. Let's try it again with `read_delim()`, a function that allows us to specify which special character should be used as delimiter when parsing the data file. In addition we specify that the values in the first row are not taken as column names.
+
+
+```{r eval=FALSE}
+mydata <- read_delim("tv_ownership.dat", delim = "|", col_names = FALSE)
+mydata
+```
+
+
+```{r echo=FALSE}
+mydata <- read_delim("../tv_ownership.dat", delim = "|", col_names = FALSE)
+mydata
+```
+
+
+From looking at the output, the columns seem to be recognized correctly by the parser now. However, R is still issuing a warning, indicating that there is a parsing issue in rows 13 and 14. We therefore use the `problems()`-function introduced in Exercise A in order to investigate what the problem is.
+
+```{r}
+problems(mydata)
+```
+
+In row 13, the parser expected 18 columns, but only encountered 3 columns. Quite likely, there is an inconsistency in the formal structure/syntax of the data. At this point, it makes sense to have a look at the raw data in order to investigate whether there is an extra newline or quote where it should not be. The following code block shows line 13 and 14 of the raw data file:
+
+```{}
+206425|1464390|GUARANTEE AGREEMENT       (COPY ON FILE)|SALEM COMMUNICATIONS CORPORATION ('SALEM'), SALEM COMMUNICATIONS HOLDING CORPORATION,
+
+ EACH OF THE OTHER DIRECT AND INDIRECT SUBSIDIARIES OF SALEM, AND BANK OF AMERICA, N.A., AS ADMINISTRATIVE AGENT.|||6|||X|DEC|2009|DEC|2012||12/21/2011|^|
+```
+
+
+From looking at the raw data, we see that the fourth data field contains newline-characters, which the parser then wrongly interprets as the beginning of a new row. One way to deal with this is to manually remove this extra newline in the raw data file. However, if the dataset is large and contains several of these cases, removing all of them manually would be rather unpleasant.
+
+Thus, how could we implement a cleaning procedure of the raw data in order to resolve this issue? From looking at the raw data, we notice a peculiarity about the structure of this dataset. Each proper line ends with `|^|`. Hence, we can first remove all end of line (eol) characters from the raw data, and then replace `|^|` with eol characters in order to recover the proper rows when parsing the data.
+
+```{r eval=FALSE}
+# read the file as raw text
+myrawdata <- read_file("tv_ownership.dat")
+```
+
+```{r echo=FALSE}
+# read the file as raw text
+myrawdata <- read_file("../tv_ownership.dat")
+```
+
+The code below prints `myrawdata`, allowing us to observe the eol characters This is a useful check because how they are displayed can vary with the operating system. On the printout we see the linebreaks written as `\r\n`. Note that in your case they could also be indicated as `\n`.
+
+```{r}
+print(myrawdata)
+```
+
+
+```{r eval=FALSE}
+# remove eol characters
+myrawdata <- gsub("\r\n", "", myrawdata, fixed = TRUE)
+# replace all `|^|` with eol characters
+myrawdata <- gsub("|^|", "\r\n", myrawdata, fixed = TRUE)
+
+```
+
+```{r echo=FALSE}
+# remove eol characters
+myrawdata <- gsub("\r\n", "", myrawdata, fixed = TRUE)
+# replace all `|^|` with eol characters
+myrawdata <- gsub("|^|", "\r\n", myrawdata, fixed = TRUE)
+
+```
+
+
+
+```{r, eval=FALSE, echo=FALSE}
+# remove eol characters
+myrawdata <- gsub("\n", "", myrawdata, fixed = TRUE)
+# replace all `|^|` with eol characters
+myrawdata <- gsub("|^|", "\n", myrawdata, fixed = TRUE)
+
+```
+
+```{r, echo=FALSE, eval=FALSE}
+# remove eol characters
+myrawdata <- gsub("\n", "", myrawdata, fixed = TRUE)
+# replace all `|^|` with eol characters
+myrawdata <- gsub("|^|", "\n", myrawdata, fixed = TRUE)
+
+```
+
+
+Finally, we can parse the cleaned raw data without any parsing issues.
+     
+```{r}
+mydata <- read_delim(myrawdata, delim = "|", col_names = FALSE)
+mydata
+```
+
