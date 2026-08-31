@@ -9,7 +9,7 @@ WHAT IS NEW
     - officially 2 groups -> one group remains
     - in exchange: support for exam and group project creation
 
-- One single githug, github page with everything in quarto
+- One single github, github page with everything in quarto
     - migration from rmd to quarto -> claude did it, just check it
     - one single repo: please always commit to new branch and merge afterwards. Keep working tree clean and remove your old branches.
     - Pushing exercise on Tuesday before exercise session at the latest!
@@ -59,4 +59,4 @@ Ana:
 
 
 Andrea:
-- -
+- 12.11.2026 Q&A session
